@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ifreund</title>
-    <link>https://ifreund.xyz/</link>
-    <description>Recent content on ifreund</description>
+    <title>Blogs on ifreund</title>
+    <link>https://ifreund.xyz/blog/</link>
+    <description>Recent content in Blogs on ifreund</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 21 Apr 2020 07:08:40 +0200</lastBuildDate>
     
-	<atom:link href="https://ifreund.xyz/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ifreund.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
