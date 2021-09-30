@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ifreund</title>
-    <link>https://ifreund.xyz/</link>
-    <description>Recent content on ifreund</description>
+    <title>Isaac Freund</title>
+    <link>https://isaacfreund.com/</link>
+    <description>Recent content on Isaac Freund</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Apr 2020 12:38:56 +0200</lastBuildDate>
-    
-	<atom:link href="https://ifreund.xyz/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 21 Apr 2020 12:38:56 +0200</lastBuildDate><atom:link href="https://isaacfreund.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello World</title>
-      <link>https://ifreund.xyz/blog/hello-world/</link>
+      <link>https://isaacfreund.com/blog/hello-world/</link>
       <pubDate>Tue, 21 Apr 2020 12:38:56 +0200</pubDate>
       
-      <guid>https://ifreund.xyz/blog/hello-world/</guid>
+      <guid>https://isaacfreund.com/blog/hello-world/</guid>
       <description>Hello World I&amp;rsquo;ve finally done it. I&amp;rsquo;ve taken the time to learn enough about web development to set up my own blog. I may tweak the styling a little in the future, but I think the bare bones look will never really be out of date.
 I&amp;rsquo;m using hugo to build this site. It may seem a little overkill for something so simple, but I find it quite easy to use despite its power and it allows me to compose these posts in markdown.</description>
     </item>

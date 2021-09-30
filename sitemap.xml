@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
-    <loc>https://ifreund.xyz/blog/</loc>
+    <loc>https://isaacfreund.com/blog/</loc>
     <lastmod>2020-04-21T12:38:56+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ifreund.xyz/blog/hello-world/</loc>
+  </url><url>
+    <loc>https://isaacfreund.com/blog/hello-world/</loc>
     <lastmod>2020-04-21T12:38:56+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ifreund.xyz/</loc>
+  </url><url>
+    <loc>https://isaacfreund.com/</loc>
     <lastmod>2020-04-21T12:38:56+02:00</lastmod>
+  </url><url>
+    <loc>https://isaacfreund.com/categories/</loc>
+  </url><url>
+    <loc>https://isaacfreund.com/tags/</loc>
   </url>
-  
-  <url>
-    <loc>https://ifreund.xyz/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>https://ifreund.xyz/tags/</loc>
-  </url>
-  
 </urlset>
