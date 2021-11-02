@@ -6,15 +6,15 @@
     <description>Recent content in Blogs on Isaac Freund</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Apr 2020 12:38:56 +0200</lastBuildDate><atom:link href="https://isaacfreund.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Nov 2021 00:00:00 +0200</lastBuildDate><atom:link href="https://isaacfreund.com/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hello World</title>
-      <link>https://isaacfreund.com/blog/hello-world/</link>
-      <pubDate>Tue, 21 Apr 2020 12:38:56 +0200</pubDate>
+      <title>Introducing River, a Dynamic Tiling Wayland Compositor</title>
+      <link>https://isaacfreund.com/blog/river-intro/</link>
+      <pubDate>Wed, 03 Nov 2021 00:00:00 +0200</pubDate>
       
-      <guid>https://isaacfreund.com/blog/hello-world/</guid>
-      <description>I&amp;rsquo;ve finally done it. I&amp;rsquo;ve taken the time to learn enough about web development to set up my own blog. I may tweak the styling a little in the future, but I think the bare bones look will never really be out of date.
-I&amp;rsquo;m using hugo to build this site. It may seem a little overkill for something so simple, but I find it quite easy to use despite its power and it allows me to compose these posts in markdown.</description>
+      <guid>https://isaacfreund.com/blog/river-intro/</guid>
+      <description>In the spring of 2020 I found myself hooked on Wayland thanks to sway but increasingly frustrated with the i3 style window management sway implements. I tried several of the other more mature Wayland compositors including hikari and Wayfire but didn&amp;rsquo;t enjoy them any more than sway. I wanted dynamic tiling window management similar to dwm but on Wayland and without dwm&amp;rsquo;s configuration through patching the source code approach.
+As I had a newfound abundance of free time at home in front of my computer thanks to the global pandemic that was ramping up that spring, I decided to write my own Wayland compositor.</description>
     </item>
     
   </channel>
