@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Isaac Freund's Blog</title>
+  <link href="https://isaacfreund.com/blog/"/>
+  <link rel="self" href="https://isaacfreund.com/blog/feed.xml"/>
+  <id>https://isaacfreund.com/blog/feed.xml</id>
+  <author>
+    <name>Isaac Freund</name>
+    <email>mail@isaacfreund.com</email>
+  </author>
+  <updated>2022-01-01T00:00:00Z</updated>
+  
+  <entry>
+    <title>2021 Year&#39;s End Status Update</title>
+    <link href="https://isaacfreund.com/blog/2021-years-end/"/>
+    <id>https://isaacfreund.com/blog/2021-years-end/</id>
+    <published>2022-01-01T00:00:00Z</published>
+    <updated>2022-01-01T00:00:00Z</updated>
+    <summary type="html">Hello all! This is my first ever status update so I&amp;rsquo;ve ambitiously decided to cover all of 2021. In the future I intend to write these updates on a monthly basis and provide a bit more detail. Since so much has happened in the past year I&amp;rsquo;ll be leaving out a lot, but here are some of the highlights.
+In January I spent most of my time on river, fixing bugs and implementing an experimental river-options protocol.</summary>
+    <content type="html">&lt;p&gt;Hello all!
+This is my first ever status update so I&amp;rsquo;ve ambitiously decided to cover all of 2021.
+In the future I intend to write these updates on a monthly basis and provide a bit more detail.
+Since so much has happened in the past year I&amp;rsquo;ll be leaving out a lot, but here are some of the highlights.&lt;/p&gt;
+&lt;p&gt;In January I spent most of my time on &lt;a href=&#34;https://github.com/riverwm/river&#34;&gt;river&lt;/a&gt;,
+fixing bugs and implementing an experimental &lt;a href=&#34;https://github.com/riverwm/river/pull/202&#34;&gt;river-options protocol&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://archive.fosdem.org/2021/&#34;&gt;FOSDEM 2021&lt;/a&gt; took place online during first weekend of February and
+I gave a &lt;a href=&#34;https://archive.fosdem.org/2021/schedule/event/zig_wayland/&#34;&gt;talk&lt;/a&gt; on my type safe &lt;a href=&#34;https://ziglang.org&#34;&gt;Zig&lt;/a&gt; bindings for wlroots/libwayland.
+Around the same time I got sucked into Andrew Kelley&amp;rsquo;s work applying data oriented design principles to Zig&amp;rsquo;s Abstract Syntax Tree.
+I collaborated with him on the data structure that became &lt;a href=&#34;https://zig.news/kristoff/struct-of-arrays-soa-in-zig-easy-in-userland-40m0&#34;&gt;std.MultiArrayList&lt;/a&gt;
+and contributed a significant amount of code to his &lt;a href=&#34;https://github.com/ziglang/zig/pull/7920&#34;&gt;PR branch&lt;/a&gt;.
+Andrew gave a &lt;a href=&#34;https://media.handmade-seattle.com/practical-data-oriented-design/&#34;&gt;talk&lt;/a&gt; on this subject at Handmade Seattle later on in November which I highly recommend checking out if you haven&amp;rsquo;t seen it yet.&lt;/p&gt;
+&lt;p&gt;In March I joined the team working on &lt;a href=&#34;https://www.tigerbeetle.com&#34;&gt;TigerBeetle&lt;/a&gt; and got paid to write Zig code for the first time.
+I also contributed to Andrew&amp;rsquo;s further application of data oriented design to the &lt;a href=&#34;https://github.com/ziglang/zig/pull/8266&#34;&gt;ZIR memory layout&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In April my stalwart collaborator &lt;a href=&#34;https://leon_plickat.srht.site&#34;&gt;Leon Plickat&lt;/a&gt; and I finally got the &lt;a href=&#34;https://github.com/riverwm/river/pull/112&#34;&gt;river-layout protocol&lt;/a&gt; merged to master branch.
+We&amp;rsquo;d been discussing and working on this off and on for ~6 months at that point so it was really great to get it merged and start daily driving it.
+As is normal with such large changes, there were still some rough edges to be smoothed out and I &lt;a href=&#34;https://github.com/riverwm/river/pull/274&#34;&gt;bumped the protocol to version 2 and removed the river-options protocol&lt;/a&gt; shortly afterwards.&lt;/p&gt;
+&lt;p&gt;One of the critical missing features for river at this point in time was damage tracking support to improve performance and save battery life.
+To remedy this I &lt;a href=&#34;https://github.com/riverwm/river/pull/296&#34;&gt;implementated&lt;/a&gt; basic yes/no damage tracking in May.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ziglang.org/download/0.8.0/release-notes.html&#34;&gt;Zig 0.8.0&lt;/a&gt; was released in the first week of June, which included several improvements I made to Zig&amp;rsquo;s handling of linking libc.
+These improvements directly affected users building river, solving a few long-standing issues on that front.
+Around this time I also started to think about a first river release and resumed my effort to &lt;a href=&#34;https://github.com/void-linux/void-packages/pull/29288&#34;&gt;properly package zig software for void linux&lt;/a&gt;.
+This lead to a series of zig patches to allow for cross compilation while linking system libraries and integration into void linux&amp;rsquo;s build system.&lt;/p&gt;
+&lt;p&gt;In July I focused on stabilizing and simplifying river&amp;rsquo;s behavior, aiming for consistency and predictability.
+As part of this, I &lt;a href=&#34;https://github.com/riverwm/river/pull/359&#34;&gt;further simplified our layout protocol&lt;/a&gt; and cleaned up all of river&amp;rsquo;s user-facing interfaces.
+The goal was to get a first release out the door, but unfortunately exams got in the way.&lt;/p&gt;
+&lt;p&gt;Throughout August and September I had relatively little time for my open source work as I was busy with exams at my university.
+I did however manage to keep up with bug reports from river&amp;rsquo;s small but steadily growing number of users fairly well.
+In retrospect, it was nice to allow bug reports to trickle in for another couple months before tagging the first release as the end result was much more polished.&lt;/p&gt;
+&lt;p&gt;I ended up changing domains for my personal website and email from ifreund.xyz to isaacfreund.com after reading &lt;a href=&#34;https://www.spotvirtual.com/blog/the-perils-of-an-xyz-domain/&#34;&gt;this post&lt;/a&gt; in October.
+It makes me sad that this is the way things are, but I&amp;rsquo;d rather die on a different hill.
+I set up &lt;a href=&#34;https://github.com/sponsors/ifreund&#34;&gt;GitHub Sponsors&lt;/a&gt; and &lt;a href=&#34;https://liberapay.com/ifreund&#34;&gt;Liberapay&lt;/a&gt; around this time and was pleasantly surprised to immediately see some support.
+Thank you to all my current sponsors, you helping make my open source work sustainable in the long term.&lt;/p&gt;
+&lt;p&gt;On the river front, I spent October fixing every bug I could and finally tagged the &lt;a href=&#34;https://github.com/riverwm/river/releases/tag/v0.1.0&#34;&gt;river 0.1.0 release&lt;/a&gt; on November 2nd.
+If you haven&amp;rsquo;t yet seen my &lt;a href=&#34;https://isaacfreund.com/blog/river-intro&#34;&gt;blog post introducing river&lt;/a&gt; you may want to check that out.
+Later in November my focus shifted to helping push the new wlroots scene graph API forward, &lt;a href=&#34;https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3250&#34;&gt;getting tinywl using it&lt;/a&gt;
+as well as &lt;a href=&#34;https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3398&#34;&gt;other&lt;/a&gt; &lt;a href=&#34;https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3403&#34;&gt;improvements&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This wlroots work carried on into December, when &lt;a href=&#34;https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/0.15.0&#34;&gt;wlroots 0.15.0&lt;/a&gt; was released.
+As it so happened, &lt;a href=&#34;https://ziglang.org/download/0.9.0/release-notes.html&#34;&gt;Zig 0.9.0&lt;/a&gt; was released only a few days later.
+Thus, &lt;a href=&#34;https://github.com/riverwm/river/releases/tag/v0.1.1&#34;&gt;river 0.1.1&lt;/a&gt; and &lt;a href=&#34;https://github.com/riverwm/river/releases/tag/v0.1.2&#34;&gt;river 0.1.2&lt;/a&gt; were released in quick succession,
+fixing several bugs and updating the wlroots and Zig version requirements.&lt;/p&gt;
+&lt;p&gt;I also ended up starting and finishing a tiny new project in December, &lt;a href=&#34;https://github.com/ifreund/dumb_runtime_dir&#34;&gt;dumb_runtime_dir&lt;/a&gt;,
+to replace my older, more complex &lt;a href=&#34;https://github.com/ifreund/rundird&#34;&gt;rundird&lt;/a&gt; project.
+This is useful on systems that do not run logind, opting for a simpler alternative such as &lt;a href=&#34;https://sr.ht/~kennylevinsen/seatd&#34;&gt;seatd&lt;/a&gt; instead.&lt;/p&gt;
+&lt;p&gt;2021 was an action packed year for me, I&amp;rsquo;m very happy looking back on the progress I&amp;rsquo;ve made on river and the surrounding open source ecosystem.
+Here&amp;rsquo;s to another year of work towards building my ideal linux graphical environment in 2022!&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Introducing River, a Dynamic Tiling Wayland Compositor</title>
+    <link href="https://isaacfreund.com/blog/river-intro/"/>
+    <id>https://isaacfreund.com/blog/river-intro/</id>
+    <published>2021-11-03T00:00:00Z</published>
+    <updated>2021-11-03T00:00:00Z</updated>
+    <summary type="html">In the spring of 2020 I found myself hooked on Wayland thanks to sway but increasingly frustrated with the i3 style window management sway implements. I tried several of the other more mature Wayland compositors including hikari and Wayfire but didn&amp;rsquo;t enjoy them any more than sway. I wanted dynamic tiling window management similar to dwm but on Wayland and without dwm&amp;rsquo;s configuration through patching the source code approach.
+As I had a newfound abundance of free time at home in front of my computer thanks to the global pandemic that was ramping up that spring, I decided to write my own Wayland compositor.</summary>
+    <content type="html">&lt;p&gt;In the spring of 2020 I found myself hooked on Wayland thanks to
+&lt;a href=&#34;https://swaywm.org/&#34;&gt;sway&lt;/a&gt; but increasingly frustrated with the
+&lt;a href=&#34;https://i3wm.org/&#34;&gt;i3&lt;/a&gt; style window management sway implements.
+I tried several of the other more mature Wayland compositors
+including &lt;a href=&#34;https://hub.darcs.net/raichoo/hikari&#34;&gt;hikari&lt;/a&gt; and
+&lt;a href=&#34;https://wayfire.org&#34;&gt;Wayfire&lt;/a&gt; but didn&amp;rsquo;t enjoy them any more
+than sway. I wanted dynamic tiling window management similar to
+&lt;a href=&#34;https://dwm.suckless.org/&#34;&gt;dwm&lt;/a&gt; but on Wayland and without dwm&amp;rsquo;s configuration
+through patching the source code approach.&lt;/p&gt;
+&lt;p&gt;As I had a newfound abundance of free time at home in front of
+my computer thanks to the global pandemic that was ramping up
+that spring, I decided to write my own Wayland compositor. Thus,
+&lt;a href=&#34;https://github.com/riverwm/river&#34;&gt;river&lt;/a&gt; was born.&lt;/p&gt;
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
+&lt;p&gt;The core guiding principle in river&amp;rsquo;s design is that its behavior should
+be predictable. This means keeping things as simple as possible, reducing
+implicit state the user must keep in their head while using river.&lt;/p&gt;
+&lt;p&gt;River&amp;rsquo;s window management is based on a linear stack of windows much like
+dwm. These windows are arranged by a separate program called a layout
+generator. Users are encouraged to write and share their own layout
+generators, they are simply Wayland clients which implement a custom
+river-layout-v3 protocol. You can find links to several nice ones on this
+&lt;a href=&#34;https://github.com/riverwm/river/wiki/Community-Layouts&#34;&gt;wiki page&lt;/a&gt;. River
+also ships with a layout generator, rivertile, that provides a few simple
+layouts for those who don&amp;rsquo;t need anything custom or fancy.&lt;/p&gt;
+&lt;p&gt;Instead of traditional workspaces, river supports tags. Each window may be
+assigned one or more tags and multiple tags may be displayed at once. Again,
+this behavior is strongly influenced by dwm.&lt;/p&gt;
+&lt;p&gt;All configuration and control of river happens at runtime through the riverctl
+tool. It can be used to create keybindings, move focus between windows,
+set the border color, etc. River doesn&amp;rsquo;t have any traditional configuration
+file, instead it runs an arbitrary executable on startup which is generally
+a shell script invoking riverctl to setup the user&amp;rsquo;s desired configuration.&lt;/p&gt;
+&lt;h2 id=&#34;river-010&#34;&gt;River 0.1.0&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve been using river as my daily driver for well over a year now, and am
+happy to announce the first release today, river 0.1.0. In recent months
+there has been little churn in river&amp;rsquo;s codebase and it is currently quite
+stable and bug free. Because of this, people seem to have started using it.
+As I plan to cause a lot more churn on the master branch in the near future
+which will inevitably create new bugs and break people&amp;rsquo;s configuration,
+this is the perfect time for a release.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d like to thank everyone who has contributed code, documentation
+and bug reports to river. In particular, thanks to &lt;a href=&#34;https://leon_plickat.srht.site/&#34;&gt;Leon Henrik
+Plickat&lt;/a&gt; for his consistent, high quality
+collaboration since the early days of the project. Without all of you this
+release would not have been possible.&lt;/p&gt;
+&lt;h2 id=&#34;the-future-of-river&#34;&gt;The Future of River&lt;/h2&gt;
+&lt;p&gt;Although I consider river useful enough today to tag a first release, it
+is not yet complete. The core functionality and standard use cases are well
+supported but river is not yet nearly as flexible as I would like it to be.
+I have several ideas that I plan to try out to improve river&amp;rsquo;s flexibility
+and ease of customization, but this will take time. For this reason,
+users should expect widely breaking changes to how river is configured
+and controlled before we approach a stable 1.0 release. Fear not though,
+the core functionality and spirit of river are here to stay!&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;d like to contribute financially to my work on river, please consider
+sponsoring me on &lt;a href=&#34;https://github.com/sponsors/ifreund&#34;&gt;GitHub Sponsors&lt;/a&gt;
+or &lt;a href=&#34;https://liberapay.com/ifreund&#34;&gt;Liberapay&lt;/a&gt;. To those already donating,
+thank you so much for your support!&lt;/p&gt;
+</content>
+  </entry>
+  
+</feed>
