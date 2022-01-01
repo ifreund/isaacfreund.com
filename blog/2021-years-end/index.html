@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>2021 Year&#39;s End Status Update</title>
+		<link rel="stylesheet" href="https://isaacfreund.com/css/style.css">
+	</head>
+	<body>
+
+
+<nav class="row">
+	<a href="https://isaacfreund.com">
+		<svg viewBox="0 0 5 5">
+	<rect x="0" y="0" width="1" height="1"/>
+	<rect x="0" y="2" width="1" height="3"/>
+	<path d="M2 0 h3 v1 h-2 v1 h2 v1 h-2 v2 h-1 v-5 Z"/>
+	<rect x="4" y="4" width="1" height="1"/>
+</svg>
+
+	</a>
+	<div>
+		&nbsp;
+		<a href="https://isaacfreund.com/blog">blog</a> &middot;
+		<a href="https://github.com/ifreund">github</a> &middot;
+		<a href="https://isaacfreund.com/public_key.txt">pgp</a> &middot;
+		<a href="mailto:mail@isaacfreund.com">email</a>
+	</div>
+</nav>
+
+
+<div class="title">
+	<time>2022-01-01</time>
+	<h1>2021 Year&#39;s End Status Update</h1>
+</div>
+
+<p>Hello all!
+This is my first ever status update so I&rsquo;ve ambitiously decided to cover all of 2021.
+In the future I intend to write these updates on a monthly basis and provide a bit more detail.
+Since so much has happened in the past year I&rsquo;ll be leaving out a lot, but here are some of the highlights.</p>
+<p>In January I spent most of my time on <a href="https://github.com/riverwm/river">river</a>,
+fixing bugs and implementing an experimental <a href="https://github.com/riverwm/river/pull/202">river-options protocol</a>.</p>
+<p><a href="https://archive.fosdem.org/2021/">FOSDEM 2021</a> took place online during first weekend of February and
+I gave a <a href="https://archive.fosdem.org/2021/schedule/event/zig_wayland/">talk</a> on my type safe <a href="https://ziglang.org">Zig</a> bindings for wlroots/libwayland.
+Around the same time I got sucked into Andrew Kelley&rsquo;s work applying data oriented design principles to Zig&rsquo;s Abstract Syntax Tree.
+I collaborated with him on the data structure that became <a href="https://zig.news/kristoff/struct-of-arrays-soa-in-zig-easy-in-userland-40m0">std.MultiArrayList</a>
+and contributed a significant amount of code to his <a href="https://github.com/ziglang/zig/pull/7920">PR branch</a>.
+Andrew gave a <a href="https://media.handmade-seattle.com/practical-data-oriented-design/">talk</a> on this subject at Handmade Seattle later on in November which I highly recommend checking out if you haven&rsquo;t seen it yet.</p>
+<p>In March I joined the team working on <a href="https://www.tigerbeetle.com">TigerBeetle</a> and got paid to write Zig code for the first time.
+I also contributed to Andrew&rsquo;s further application of data oriented design to the <a href="https://github.com/ziglang/zig/pull/8266">ZIR memory layout</a>.</p>
+<p>In April my stalwart collaborator <a href="https://leon_plickat.srht.site">Leon Plickat</a> and I finally got the <a href="https://github.com/riverwm/river/pull/112">river-layout protocol</a> merged to master branch.
+We&rsquo;d been discussing and working on this off and on for ~6 months at that point so it was really great to get it merged and start daily driving it.
+As is normal with such large changes, there were still some rough edges to be smoothed out and I <a href="https://github.com/riverwm/river/pull/274">bumped the protocol to version 2 and removed the river-options protocol</a> shortly afterwards.</p>
+<p>One of the critical missing features for river at this point in time was damage tracking support to improve performance and save battery life.
+To remedy this I <a href="https://github.com/riverwm/river/pull/296">implementated</a> basic yes/no damage tracking in May.</p>
+<p><a href="https://ziglang.org/download/0.8.0/release-notes.html">Zig 0.8.0</a> was released in the first week of June, which included several improvements I made to Zig&rsquo;s handling of linking libc.
+These improvements directly affected users building river, solving a few long-standing issues on that front.
+Around this time I also started to think about a first river release and resumed my effort to <a href="https://github.com/void-linux/void-packages/pull/29288">properly package zig software for void linux</a>.
+This lead to a series of zig patches to allow for cross compilation while linking system libraries and integration into void linux&rsquo;s build system.</p>
+<p>In July I focused on stabilizing and simplifying river&rsquo;s behavior, aiming for consistency and predictability.
+As part of this, I <a href="https://github.com/riverwm/river/pull/359">further simplified our layout protocol</a> and cleaned up all of river&rsquo;s user-facing interfaces.
+The goal was to get a first release out the door, but unfortunately exams got in the way.</p>
+<p>Throughout August and September I had relatively little time for my open source work as I was busy with exams at my university.
+I did however manage to keep up with bug reports from river&rsquo;s small but steadily growing number of users fairly well.
+In retrospect, it was nice to allow bug reports to trickle in for another couple months before tagging the first release as the end result was much more polished.</p>
+<p>I ended up changing domains for my personal website and email from ifreund.xyz to isaacfreund.com after reading <a href="https://www.spotvirtual.com/blog/the-perils-of-an-xyz-domain/">this post</a> in October.
+It makes me sad that this is the way things are, but I&rsquo;d rather die on a different hill.
+I set up <a href="https://github.com/sponsors/ifreund">GitHub Sponsors</a> and <a href="https://liberapay.com/ifreund">Liberapay</a> around this time and was pleasantly surprised to immediately see some support.
+Thank you to all my current sponsors, you helping make my open source work sustainable in the long term.</p>
+<p>On the river front, I spent October fixing every bug I could and finally tagged the <a href="https://github.com/riverwm/river/releases/tag/v0.1.0">river 0.1.0 release</a> on November 2nd.
+If you haven&rsquo;t yet seen my <a href="https://isaacfreund.com/blog/river-intro">blog post introducing river</a> you may want to check that out.
+Later in November my focus shifted to helping push the new wlroots scene graph API forward, <a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3250">getting tinywl using it</a>
+as well as <a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3398">other</a> <a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3403">improvements</a>.</p>
+<p>This wlroots work carried on into December, when <a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/0.15.0">wlroots 0.15.0</a> was released.
+As it so happened, <a href="https://ziglang.org/download/0.9.0/release-notes.html">Zig 0.9.0</a> was released only a few days later.
+Thus, <a href="https://github.com/riverwm/river/releases/tag/v0.1.1">river 0.1.1</a> and <a href="https://github.com/riverwm/river/releases/tag/v0.1.2">river 0.1.2</a> were released in quick succession,
+fixing several bugs and updating the wlroots and Zig version requirements.</p>
+<p>I also ended up starting and finishing a tiny new project in December, <a href="https://github.com/ifreund/dumb_runtime_dir">dumb_runtime_dir</a>,
+to replace my older, more complex <a href="https://github.com/ifreund/rundird">rundird</a> project.
+This is useful on systems that do not run logind, opting for a simpler alternative such as <a href="https://sr.ht/~kennylevinsen/seatd">seatd</a> instead.</p>
+<p>2021 was an action packed year for me, I&rsquo;m very happy looking back on the progress I&rsquo;ve made on river and the surrounding open source ecosystem.
+Here&rsquo;s to another year of work towards building my ideal linux graphical environment in 2022!</p>
+
+
+	</body>
+</html>
+
