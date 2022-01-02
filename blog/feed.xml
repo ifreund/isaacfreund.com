@@ -50,7 +50,7 @@ In retrospect, it was nice to allow bug reports to trickle in for another couple
 &lt;p&gt;I ended up changing domains for my personal website and email from ifreund.xyz to isaacfreund.com after reading &lt;a href=&#34;https://www.spotvirtual.com/blog/the-perils-of-an-xyz-domain/&#34;&gt;this post&lt;/a&gt; in October.
 It makes me sad that this is the way things are, but I&amp;rsquo;d rather die on a different hill.
 I set up &lt;a href=&#34;https://github.com/sponsors/ifreund&#34;&gt;GitHub Sponsors&lt;/a&gt; and &lt;a href=&#34;https://liberapay.com/ifreund&#34;&gt;Liberapay&lt;/a&gt; around this time and was pleasantly surprised to immediately see some support.
-Thank you to all my current sponsors, you helping make my open source work sustainable in the long term.&lt;/p&gt;
+Thank you to all my current sponsors, you are helping make my open source work sustainable in the long term!&lt;/p&gt;
 &lt;p&gt;On the river front, I spent October fixing every bug I could and finally tagged the &lt;a href=&#34;https://github.com/riverwm/river/releases/tag/v0.1.0&#34;&gt;river 0.1.0 release&lt;/a&gt; on November 2nd.
 If you haven&amp;rsquo;t yet seen my &lt;a href=&#34;https://isaacfreund.com/blog/river-intro&#34;&gt;blog post introducing river&lt;/a&gt; you may want to check that out.
 Later in November my focus shifted to helping push the new wlroots scene graph API forward, &lt;a href=&#34;https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3250&#34;&gt;getting tinywl using it&lt;/a&gt;
