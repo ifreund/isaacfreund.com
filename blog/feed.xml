@@ -36,7 +36,7 @@ I also contributed to Andrew&amp;rsquo;s further application of data oriented de
 We&amp;rsquo;d been discussing and working on this off and on for ~6 months at that point so it was really great to get it merged and start daily driving it.
 As is normal with such large changes, there were still some rough edges to be smoothed out and I &lt;a href=&#34;https://github.com/riverwm/river/pull/274&#34;&gt;bumped the protocol to version 2 and removed the river-options protocol&lt;/a&gt; shortly afterwards.&lt;/p&gt;
 &lt;p&gt;One of the critical missing features for river at this point in time was damage tracking support to improve performance and save battery life.
-To remedy this I &lt;a href=&#34;https://github.com/riverwm/river/pull/296&#34;&gt;implementated&lt;/a&gt; basic yes/no damage tracking in May.&lt;/p&gt;
+To remedy this I &lt;a href=&#34;https://github.com/riverwm/river/pull/296&#34;&gt;implemented&lt;/a&gt; basic yes/no damage tracking in May.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://ziglang.org/download/0.8.0/release-notes.html&#34;&gt;Zig 0.8.0&lt;/a&gt; was released in the first week of June, which included several improvements I made to Zig&amp;rsquo;s handling of linking libc.
 These improvements directly affected users building river, solving a few long-standing issues on that front.
 Around this time I also started to think about a first river release and resumed my effort to &lt;a href=&#34;https://github.com/void-linux/void-packages/pull/29288&#34;&gt;properly package zig software for void linux&lt;/a&gt;.
