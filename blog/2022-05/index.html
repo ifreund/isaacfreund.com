@@ -4,9 +4,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>May 2022 Status Update</title>
 		<link rel="icon" href="/if.png">
-		<link rel="stylesheet" href="/css/style.css">
-		<link rel="alternate" title="Isaac Freund's Blog" type="application/atom+xml"
-			href="/blog/feed.xml"/>
+		<link rel="stylesheet" href="/style.css">
+		<link rel="alternate" href="/blog/feed.xml" type="application/atom+xml"/>
 		<link rel="me" href="https://hachyderm.io/@ifreund"/>
 	</head>
 	<body>
@@ -24,68 +23,71 @@
 	</a>
 	&nbsp;
 	<div>
-		<a href="/blog">blog</a> &middot;
-		<a href="https://github.com/ifreund">github</a> &middot;
-		<a href="/public_key.txt">pgp</a> &middot;
-		<a href="mailto:mail@isaacfreund.com">email</a>
-	</div>
+	<a href="/blog">blog</a> &middot;
+	<a href="https://github.com/ifreund">github</a> &middot;
+	<a href="/public_key.txt">pgp</a> &middot;
+	<a href="mailto:mail@isaacfreund.com">email</a>
+</div>
+
 </nav>
 
 
 <div class="title">
 	<time>2022-05-23</time>
+
 	<h1>May 2022 Status Update</h1>
 </div>
 
 <div class="content">
-<p>Welcome back to my blog, it&rsquo;s been a while.
-Over the past few months I&rsquo;ve been busier with other aspects of my life than expected, hence the lack of status updates.
-Despite that, I&rsquo;ve made progress on various fronts.</p>
-<h2 id="waylock-040-and-rewrite">Waylock 0.4.0 and Rewrite</h2>
+	<p>Welcome back to my blog, it’s been a while.
+Over the past few months I’ve been busier with other aspects of my life than expected, hence the lack of status updates.
+Despite that, I’ve made progress on various fronts.</p>
+<h2>Waylock 0.4.0 and Rewrite</h2>
 <p>Yesterday I finally released <a href="https://github.com/ifreund/waylock/releases/tag/v0.4.0">waylock 0.4.0</a> which has been rewritten in <a href="https://ziglang.org/">Zig</a>.
 It now uses the <a href="https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/131">ext-session-lock-v1</a> protocol,
 which I worked on earlier this year and discussed in my <a href="https://isaacfreund.com/blog/2022-02/">February 2022</a> update.
 Unfortunately, <a href="https://github.com/riverwm/river">river</a> itself does not yet support this protocol.
-The work is already done and there&rsquo;s been a <a href="https://github.com/riverwm/river/pull/497">pull request</a> implementing it open for quite some time,
-the only thing I&rsquo;m waiting on is a wlroots release including the session lock implementation.
+The work is already done and there’s been a <a href="https://github.com/riverwm/river/pull/497">pull request</a> implementing it open for quite some time,
+the only thing I’m waiting on is a wlroots release including the session lock implementation.
 I intend to spend some more time working on upstream wlroots to help tie up various loose ends before 0.16.0 and further develop the scene graph API.</p>
 <p>Rewriting waylock from Rust into Zig has made me think once again about the different trade-offs made by the two languages and their ecosystems.
 Looking at the Rust code I wrote several years ago I am rather appalled by how many dependencies it has.
-If I&rsquo;ve managed to use the cargo tooling correctly, I count 48 crates that waylock 0.3.5 depends on in addition to linking the system libxkbcommon and PAM libraries.
+If I’ve managed to use the cargo tooling correctly, I count 48 crates that waylock 0.3.5 depends on in addition to linking the system libxkbcommon and PAM libraries.
 That is a <em>lot</em> of code running inside my application that I never read let alone seriously audited.</p>
 <p>To compare, waylock 0.4.0 depends only on libwayland, libxkbcommon, and PAM as well as thin Zig bindings I have written to make their APIs a bit more type safe.</p>
 <p>This is also reflected in the binary size of waylock 0.3.5 vs 0.4.0.
 A stripped release build of the Rust version weighs in at 1.7MiB or, if the native Rust Wayland implementation is replaced by linking libwayland, 1.6MiB.
-A stripped &ldquo;release-safe&rdquo; build of the Zig version with all runtime safety checks and assertions enabled is just 69KiB.</p>
+A stripped “release-safe” build of the Zig version with all runtime safety checks and assertions enabled is just 69KiB.</p>
 <p>If this makes you wonder what all that extra code in the Rust version was doing, waylock 0.3.5 did have a few more features than 0.4.0 such as reading a config file.
 However, even after removing the config file feature out of curiosity, the Rust version was still 1.5MiB.</p>
 <p>The only real answer I have to this question is that the Rust version and its dependencies do a lot of abstraction,
-and that abstractions are seldom &ldquo;zero cost&rdquo; in practice despite what people may tell you.</p>
-<h2 id="zig-wayland-improvements">zig-wayland Improvements</h2>
+and that abstractions are seldom “zero cost” in practice despite what people may tell you.</p>
+<h2>zig-wayland Improvements</h2>
 <p>Rewriting waylock in Zig also led me to rexamine some aspects of <a href="https://github.com/ifreund/zig-wayland">zig-wayland</a>,
 particularly regarding its usage in client applications.
 The scanner (which generates zig bindings from xml protocol specifications) now requires the user to explicitly request
 code generation for each global Wayland interface used.
 For example, the application must now call e.g.</p>
-<pre tabindex="0"><code>scanner.generate(&#34;wl_compositor&#34;, 4);
-</code></pre><p>as part of its build process,
+<pre><code>scanner.generate(&quot;wl_compositor&quot;, 4);
+</code></pre>
+<p>as part of its build process,
 passing the global interface name and the version for which to generate code.
 In this example the wl_surface.offset request would not be generated as it is only available since version 5.</p>
-<p>(If you&rsquo;re not familiar with Wayland, wl_surface is created through wl_compositor and inherits its version,
+<p>(If you’re not familiar with Wayland, wl_surface is created through wl_compositor and inherits its version,
 see the Wayland <a href="https://wayland.freedesktop.org/docs/html/ch04.html#sect-Protocol-Versioning">docs on protocol versioning</a> for more information.)</p>
 <p>This solves the outstanding forward compatibility issue and allows building against newer system Wayland protocol versions than the application supports.</p>
 <p>The knowledge of what maximum version a client application supports at compile time allows us to make another improvement as well.
-One of the most common Wayland client bugs I&rsquo;ve seen in clients using libwayland is passing the interface version received from the server
+One of the most common Wayland client bugs I’ve seen in clients using libwayland is passing the interface version received from the server
 in the wl_registry.global event straight to wl_registry_bind().
 A forwards compatible client must check the version advertised by the server against the maximum version the client supports, otherwise
 the client will be terminated when the server sends events unknown to the client.</p>
 <p>This is a particularly nasty bug because everything will work fine until your software is around long enough for Wayland protocols to evolve.
 For example, Chromium <a href="https://chromium.googlesource.com/chromium/src/+/dd4c3ddadbb9869f59cee201a38e9ca3b9154f4d">recently fixed</a> this bug.
-I&rsquo;ve also written this bug a few times myself, including in previous Rust versions of waylock.</p>
-<p>That&rsquo;s why it&rsquo;s pretty cool that zig-wayland now makes this bug impossible.
-Since we know the maximum version the client supports at build time, it&rsquo;s trivial to insert the required version check into the generated code
-for zig-wayland&rsquo;s wl_registry_bind() equivalent as a safeguard.</p>
-<h2 id="river-progress">River Progress</h2>
+I’ve also written this bug a few times myself, including in previous Rust versions of waylock.</p>
+<p>That’s why it’s pretty cool that zig-wayland now makes this bug impossible.
+Since we know the maximum version the client supports at build time, it’s trivial to insert the required version check into the generated code
+for zig-wayland’s wl_registry_bind() equivalent as a safeguard.</p>
+<h2>River Progress</h2>
 <p>River has also gained some nice new features recently:</p>
 <p>Automatic cursor hiding after a timeout or when typing was contributed by Duncan Overbruck.
 On moving the cursor after it has been hidden it will be shown again.</p>
@@ -102,12 +104,12 @@ I plan to release river 0.2.0 shortly after wlroots 0.16.0 is released.</p>
 
 </div>
 
-
 	<footer>
 		© 2021-2024 Isaac Freund &middot;
 		Content <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a> &middot;
 		<a href="https://github.com/ifreund/website">Source Code</a> <a href="https://spdx.org/licenses/0BSD.html">0BSD</a> &middot;
-		<a href="/blog/feed.xml">Atom Feed</a>
+		<a href="/blog/feed.xml" type="application/atom+xml">Atom Feed</a>
 	</footer>
+	</body>
 </html>
 
