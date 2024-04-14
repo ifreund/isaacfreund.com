@@ -22,9 +22,9 @@ However, even after removing the config file feature out of curiosity, the Rust 
 &lt;p>The only real answer I have to this question is that the Rust version and its dependencies do a lot of abstraction,
 and that abstractions are seldom “zero cost” in practice despite what people may tell you.&lt;/p>
 &lt;h2>zig-wayland Improvements&lt;/h2>
-&lt;p>Rewriting waylock in Zig also led me to rexamine some aspects of &lt;a href="https://github.com/ifreund/zig-wayland">zig-wayland&lt;/a>,
+&lt;p>Rewriting waylock in Zig also led me to reexamine some aspects of &lt;a href="https://github.com/ifreund/zig-wayland">zig-wayland&lt;/a>,
 particularly regarding its usage in client applications.
-The scanner (which generates zig bindings from xml protocol specifications) now requires the user to explicitly request
+The scanner (which generates zig bindings from XML protocol specifications) now requires the user to explicitly request
 code generation for each global Wayland interface used.
 For example, the application must now call e.g.&lt;/p>
 &lt;pre>&lt;code>scanner.generate(&amp;quot;wl_compositor&amp;quot;, 4);
@@ -104,8 +104,8 @@ As is normal with such large changes, there were still some rough edges to be sm
 To remedy this I &lt;a href="https://github.com/riverwm/river/pull/296">implemented&lt;/a> basic yes/no damage tracking in May.&lt;/p>
 &lt;p>&lt;a href="https://ziglang.org/download/0.8.0/release-notes.html">Zig 0.8.0&lt;/a> was released in the first week of June, which included several improvements I made to Zig’s handling of linking libc.
 These improvements directly affected users building river, solving a few long-standing issues on that front.
-Around this time I also started to think about a first river release and resumed my effort to &lt;a href="https://github.com/void-linux/void-packages/pull/29288">properly package zig software for void linux&lt;/a>.
-This lead to a series of zig patches to allow for cross compilation while linking system libraries and integration into void linux’s build system.&lt;/p>
+Around this time I also started to think about a first river release and resumed my effort to &lt;a href="https://github.com/void-linux/void-packages/pull/29288">properly package zig software for void Linux&lt;/a>.
+This lead to a series of zig patches to allow for cross compilation while linking system libraries and integration into void Linux’s build system.&lt;/p>
 &lt;p>In July I focused on stabilizing and simplifying river’s behavior, aiming for consistency and predictability.
 As part of this, I &lt;a href="https://github.com/riverwm/river/pull/359">further simplified our layout protocol&lt;/a> and cleaned up all of river’s user-facing interfaces.
 The goal was to get a first release out the door, but unfortunately exams got in the way.&lt;/p>
@@ -128,7 +128,7 @@ fixing several bugs and updating the wlroots and Zig version requirements.&lt;/p
 to replace my older, more complex &lt;a href="https://github.com/ifreund/rundird">rundird&lt;/a> project.
 This is useful on systems that do not run logind, opting for a simpler alternative such as &lt;a href="https://sr.ht/~kennylevinsen/seatd">seatd&lt;/a> instead.&lt;/p>
 &lt;p>2021 was an action packed year for me, I’m very happy looking back on the progress I’ve made on river and the surrounding open source ecosystem.
-Here’s to another year of work towards building my ideal linux graphical environment in 2022!&lt;/p></content></entry><entry><title>Introducing River, a Dynamic Tiling Wayland Compositor</title><link href="https://isaacfreund.com/blog/river-intro/"/><id>https://isaacfreund.com/blog/river-intro/</id><published>2021-11-03T00:00:00Z</published><updated>2021-11-03T00:00:00Z</updated><content type="html">&lt;p>In the spring of 2020 I found myself hooked on Wayland thanks to
+Here’s to another year of work towards building my ideal Linux graphical environment in 2022!&lt;/p></content></entry><entry><title>Introducing River, a Dynamic Tiling Wayland Compositor</title><link href="https://isaacfreund.com/blog/river-intro/"/><id>https://isaacfreund.com/blog/river-intro/</id><published>2021-11-03T00:00:00Z</published><updated>2021-11-03T00:00:00Z</updated><content type="html">&lt;p>In the spring of 2020 I found myself hooked on Wayland thanks to
 &lt;a href="https://swaywm.org/">sway&lt;/a> but increasingly frustrated with the
 &lt;a href="https://i3wm.org/">i3&lt;/a> style window management sway implements.
 I tried several of the other more mature Wayland compositors

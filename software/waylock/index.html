@@ -1,0 +1,32 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title>waylock</title>
+<link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a></div></nav></header><main class=waylock><div class=title><h1>waylock</h1></div><div class=content><h2>Overview</h2><p>Waylock is a small screenlocker for Wayland compositors implementing the
+<span class=nowrap>ext-session-lock-v1</span> protocol.
+It is free and open source software.<p>Waylock is <a href=https://repology.org/project/waylock/versions>packaged</a> by various
+Linux distributions as well as FreeBSD. The source code is hosted on
+<a href=https://codeberg.org/ifreund/waylock>codeberg</a>, which is where the issue tracker
+may be found and where contributions are accepted. Read-only mirrors of the
+source code exist on <a href=https://git.sr.ht/~ifreund/waylock>sourcehut</a> and
+<a href=https://github.com/ifreund/waylock>github</a>.<h2>Features</h2><p>Waylock’s feature set prioritizes functionality and simplicity. When the session
+is locked, all monitors are blanked with a solid color. Keyboard input will
+cause the color to change. If the password is incorrect, the color will turn
+red, if correct the session will be unlocked. The colors are configurable with
+command line options but that’s about it, see the
+<a href=https://codeberg.org/ifreund/waylock/src/branch/master/doc/waylock.1.scd>waylock(1)</a>
+man page for details.<p>Waylock supports readiness notification for race-free lock and suspend by either
+forking to the background or writing to a user-provided file descriptor after
+the session has been locked. See the
+<a href=https://codeberg.org/ifreund/waylock/src/branch/master/doc/waylock.1.scd>waylock(1)</a>
+man page for details.<h2>ext-session-lock-v1</h2><p>The <a href=https://gitlab.freedesktop.org/wayland/wayland-protocols/-/blob/main/staging/ext-session-lock/ext-session-lock-v1.xml>ext-session-lock-v1</a>
+protocol is a Wayland protocol extension I developed. It is included in the official
+<a href=https://gitlab.freedesktop.org/wayland/wayland-protocols>wayland-protocols</a>
+repository.<p>This protocol is significantly more robust than previous client-side Wayland
+screen locking approaches. Importantly, the screenlocker crashing does not cause
+the session to be unlocked.<p>The ext-session-lock-v1 protocol is supported by many Wayland compositors
+including <a href=/software/river/>river</a>, <a href=swaywm.org>sway</a>,
+<a href=https://wayfire.org>Wayfire</a>, <a href=https://github.com/labwc/labwc/>labwc</a>,
+<a href=https://github.com/canonical/mir>Mir</a>, and more.</div></main><footer><span class=line>© 2021-2024 Isaac Freund,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://github.com/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>

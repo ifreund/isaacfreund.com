@@ -1,9 +1,9 @@
 <!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title>May 2022 Status Update</title>
-<link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml><link rel=me href=https://hachyderm.io/@ifreund><nav class=row><a href=/><svg viewBox="0 0 5 5"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg>
-</a>&nbsp;<div><a href=/blog>blog</a> &#183;
-<a href=https://github.com/ifreund>github</a> &#183;
-<a href=/public_key.txt>pgp</a> &#183;
-<a href=mailto:mail@isaacfreund.com>email</a></div></nav><div class=title><time>2022-05-23</time><h1>May 2022 Status Update</h1></div><div class=content><p>Welcome back to my blog, it’s been a while.
+<link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a></div></nav></header><main class=2022-05><div class=title><h1>May 2022 Status Update</h1><div><span class=line><time>2022-05-23</time></span>
+<span class=line>by Isaac Freund</span></div></div><div class=content><p>Welcome back to my blog, it’s been a while.
 Over the past few months I’ve been busier with other aspects of my life than expected, hence the lack of status updates.
 Despite that, I’ve made progress on various fronts.<h2>Waylock 0.4.0 and Rewrite</h2><p>Yesterday I finally released <a href=https://github.com/ifreund/waylock/releases/tag/v0.4.0>waylock 0.4.0</a> which has been rewritten in <a href=https://ziglang.org/>Zig</a>.
 It now uses the <a href=https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/131>ext-session-lock-v1</a> protocol,
@@ -18,9 +18,9 @@ That is a <em>lot</em> of code running inside my application that I never read l
 A stripped release build of the Rust version weighs in at 1.7MiB or, if the native Rust Wayland implementation is replaced by linking libwayland, 1.6MiB.
 A stripped “release-safe” build of the Zig version with all runtime safety checks and assertions enabled is just 69KiB.<p>If this makes you wonder what all that extra code in the Rust version was doing, waylock 0.3.5 did have a few more features than 0.4.0 such as reading a config file.
 However, even after removing the config file feature out of curiosity, the Rust version was still 1.5MiB.<p>The only real answer I have to this question is that the Rust version and its dependencies do a lot of abstraction,
-and that abstractions are seldom “zero cost” in practice despite what people may tell you.<h2>zig-wayland Improvements</h2><p>Rewriting waylock in Zig also led me to rexamine some aspects of <a href=https://github.com/ifreund/zig-wayland>zig-wayland</a>,
+and that abstractions are seldom “zero cost” in practice despite what people may tell you.<h2>zig-wayland Improvements</h2><p>Rewriting waylock in Zig also led me to reexamine some aspects of <a href=https://github.com/ifreund/zig-wayland>zig-wayland</a>,
 particularly regarding its usage in client applications.
-The scanner (which generates zig bindings from xml protocol specifications) now requires the user to explicitly request
+The scanner (which generates zig bindings from XML protocol specifications) now requires the user to explicitly request
 code generation for each global Wayland interface used.
 For example, the application must now call e.g.<pre><code>scanner.generate(&quot;wl_compositor&quot;, 4);
 </code></pre><p>as part of its build process,
@@ -40,7 +40,6 @@ No longer shall swayidle put your monitor to sleep while watching a movie in mpv
 Now you can have a command run when you close the lid of your laptop!<p>Peter Kaplan also contributed a very nice feature for people switching between multiple keyboard layouts: layout independent mappings.
 The riverctl map command has gained a -layout option taking an index into the list of layouts set with XKB_DEFAULT_LAYOUT.
 If passed, keyboard input will always be interpreted using the given layout, ignoring the currently active xkb layout.<p>Note that these features are not yet available in a released version of river, only on the git master branch.
-I plan to release river 0.2.0 shortly after wlroots 0.16.0 is released.<p>Thanks for reading and till next time!</div><footer>© 2021-2024 Isaac Freund &#183;
-Content <a href=https://creativecommons.org/licenses/by/4.0/>CC-BY-4.0</a> &#183;
-<a href=https://github.com/ifreund/website>Source Code</a> <a href=https://spdx.org/licenses/0BSD.html>0BSD</a> &#183;
-<a href=/blog/feed.xml type=application/atom+xml>Atom Feed</a></footer>
+I plan to release river 0.2.0 shortly after wlroots 0.16.0 is released.<p>Thanks for reading and till next time!</div></main><footer><span class=line>© 2021-2024 Isaac Freund,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://github.com/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>
