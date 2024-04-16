@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>Isaac Freund's Blog</title><link href="https://isaacfreund.com/blog/"/><link rel="self" href="https://isaacfreund.com/blog/feed.xml" type="application/atom+xml"/><id>https://isaacfreund.com/blog/feed.xml</id><author><name>Isaac Freund</name><email>mail@isaacfreund.com</email></author><updated>2022-05-23T00:00:00Z</updated><entry><title>May 2022 Status Update</title><link href="https://isaacfreund.com/blog/2022-05/"/><id>https://isaacfreund.com/blog/2022-05/</id><published>2022-05-23T00:00:00Z</published><updated>2022-05-23T00:00:00Z</updated><content type="html">&lt;p>Welcome back to my blog, it’s been a while.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>Isaac Freund's Blog</title><link href="https://isaacfreund.com/blog/"/><link rel="self" href="https://isaacfreund.com/blog/feed.xml" type="application/atom+xml"/><id>https://isaacfreund.com/blog/feed.xml</id><author><name>Isaac Freund</name><email>mail@isaacfreund.com</email></author><updated>2024-16-04T00:00:00Z</updated><entry><title>River 0.3.0, Waylock 1.0.0, Status Update</title><link href="https://isaacfreund.com/blog/river-0.3-waylock-1.0/"/><id>https://isaacfreund.com/blog/river-0.3-waylock-1.0/</id><published>2024-16-04T00:00:00Z</published><updated>2024-16-04T00:00:00Z</updated><content type="html">&lt;p>Things have been a bit quiet on this blog recently.
+I spent most of 2023 writing my bachelor’s thesis and finishing up my degree.
+That’s all wrapped up now though,
+which means I’ve finally had time to wrap up some other things for my open source projects.&lt;/p>
+&lt;h2>River 0.3.0&lt;/h2>
+&lt;p>The river 0.3.0 release has finally been &lt;a href="https://codeberg.org/river/river/releases/tag/v0.3.0">tagged&lt;/a>!
+This one’s been in the pipeline for quite a while,
+it’s been over a year since 0.2.0 was released and river has seen significant improvements since then.
+The past few months I’ve done my best to fix as many bugs as possible
+but a non-bugfix release always entails new code reaching a lot of people with diverse setups.
+If you find a bug in river please &lt;a href="https://codeberg.org/river/river/issues/new/choose">open an issue&lt;/a>.&lt;/p>
+&lt;p>The biggest change in river 0.3.0 is not immediately visible:
+river 0.3.0 uses the wlroots scene graph API and has see a lot of internal improvements related to that transition.
+An initial version of the wlroots scene graph API was landed in wlroots over two years ago and has seen steady improvement since.
+I helped to push it forward in upstream wlroots over the years and am very happy to finally be using it in river.
+It brings finely-grained damage tracking and other performance optimizations to river which should positively
+impact battery life and make running river with software rendering bearable.&lt;/p>
+&lt;p>Aside from that more behind-the-scenes work, river 0.3.0 brings many nice usability enhancements.
+There is now a “rules system” for automatically assigning tags to new windows and performing other actions.
+The input-method-v2 and text-input-v3 protocols are supported,
+allowing use of alternative input software for users that speak a language not well supported by western keyboards.
+River also now has basic support for drawing tablet input.
+For a full list of changes, see the release notes &lt;a href="https://codeberg.org/river/river/releases/tag/v0.3.0">here&lt;/a>&lt;/p>
+&lt;p>Thank you to everyone who has contributed code and bug reports to river!
+River would not be where it is today without you.&lt;/p>
+&lt;p>In other river news, the upstream river repository has moved to https://codeberg.org/river/river.
+Github is a proprietary platform with interests increasingly misaligned with my values.
+Free and open source software like river should not require contributors to have a github account or interact with github in any way.
+There is still a read-only mirror of the river repository on github for now to ease the transition,
+it may be dropped eventually if/when I decide to delete my personal github account.&lt;/p>
+&lt;p>River also now has a page &lt;a href="/software/river">here&lt;/a> on my website,
+I’ve written a bit about my future plans for river there if you’re curious :)
+River also has gained a written &lt;a href="https://codeberg.org/river/river/src/branch/master/CODE_OF_CONDUCT.md">Code of Conduct&lt;/a>
+documenting the existing standards and moderation practice.
+Luckily, we have have a wonderful community and haven’t yet had to deal with any notable unacceptable behavior I’m aware of.&lt;/p>
+&lt;h2>Waylock 1.0.0&lt;/h2>
+&lt;p>There haven’t been any breaking changes to waylock in over a year and I’m happy with its feature set.
+Therefore, I’ve tagged a stable 1.0 &lt;a href="https://codeberg.org/ifreund/waylock/releases/tag/v1.0.0">release&lt;/a>.
+The only change since the last waylock release is the addition of the &lt;code>-ready-fd&lt;/code> flag contributed by tiosgz.
+This is an alternative to the &lt;code>-fork-on-lock&lt;/code> flag for notification that waylock has successfully locked the session.
+The new flag is compatible with the readiness notification protocol used by the &lt;code>s6&lt;/code> and &lt;code>dinit&lt;/code> service managers
+as well as being more flexible than &lt;code>-fork-on-lock&lt;/code> for use in scripting.&lt;/p>
+&lt;p>Don’t be alarmed if waylock development slows down to a snail’s pace after this release.
+I consider it to be feature complete and as long as there are no bugs found there is little reason to make changes.
+I will of course continue to update it to be compatible with new Zig releases as needed.&lt;/p>
+&lt;h2>Website Rewrite&lt;/h2>
+&lt;p>You may have noticed that my website looks a bit different than it used to and has a few new pages.
+I’d been wanting to add some new pages for a while but had entirely forgotten how to use hugo.
+Since I didn’t like hugo very much in practice anyways,
+I decided to switch to something more transparent and chose &lt;a href="https://bagatto.co">Bagatto&lt;/a>.
+It has been lovely to work with and I’m much more confident that I’ll remember how to modify and extend my website years from now.
+Source code &lt;a href="https://codeberg.org/ifreund/website">here&lt;/a> for the curious.
+This was also my first time using &lt;a href="https://janet-lang.org">Janet&lt;/a> (or any lispy language) for anything “real” and I found the experience very pleasant.&lt;/p>
+&lt;h2>Donate&lt;/h2>
+&lt;p>If my work on river and waylock adds value to your life and you’d like to
+support me financially you can find donation information &lt;a href="/donate/">here&lt;/a>.&lt;/p></content></entry><entry><title>May 2022 Status Update</title><link href="https://isaacfreund.com/blog/2022-05/"/><id>https://isaacfreund.com/blog/2022-05/</id><published>2022-05-23T00:00:00Z</published><updated>2022-05-23T00:00:00Z</updated><content type="html">&lt;p>Welcome back to my blog, it’s been a while.
 Over the past few months I’ve been busier with other aspects of my life than expected, hence the lack of status updates.
 Despite that, I’ve made progress on various fronts.&lt;/p>
 &lt;h2>Waylock 0.4.0 and Rewrite&lt;/h2>
