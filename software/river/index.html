@@ -16,7 +16,7 @@ implementing the <a href=https://codeberg.org/river/river/src/branch/main/protoc
 protocol. This includes window position/size, pointer/keyboard bindings, focus
 management, window decorations, desktop shell graphics, and more.<p>River itself provides frame perfect rendering, good performance, support for
 many Wayland protocol extensions, robust Xwayland support, the ability to
-hot-swap window managers, and more.<h2>Motivation</h2><p>Why split the window manager to a separate process? I aim to:<ul><li><p>Significantly lower the barrier of entry to writing a Wayland window manager.<li><p>Allow implementing Wayland window managers in high-level garbage collected
+hot-swap window managers, and more.<h2>Motivation</h2><p>Why split the window manager to a separate process? I aim to:<ul><li><p>Significantly lower the barrier to entry for writing a Wayland window manager.<li><p>Allow implementing Wayland window managers in high-level garbage collected
 languages without impacting compositor performance and latency.<li><p>Allow hot-swapping between window managers without restarting the compositor
 and all Wayland programs.<li><p>Promote diversity and experimentation in window manager design.</ul><h2>Current Status</h2><p>The first release supporting the
 <a href=https://codeberg.org/river/river/src/branch/main/protocol/river-window-management-v1.xml>river-window-management-v1</a>
