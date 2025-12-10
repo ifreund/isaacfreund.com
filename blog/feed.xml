@@ -1,244 +1,244 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>Isaac Freund's Blog</title><link href="https://isaacfreund.com/blog/"/><link rel="self" href="https://isaacfreund.com/blog/feed.xml" type="application/atom+xml"/><id>https://isaacfreund.com/blog/feed.xml</id><author><name>Isaac Freund</name><email>mail@isaacfreund.com</email></author><updated>2024-04-16T00:00:00Z</updated><entry><title>River 0.3.0, Waylock 1.0.0, Status Update</title><link href="https://isaacfreund.com/blog/river-0.3-waylock-1.0/"/><id>https://isaacfreund.com/blog/river-0.3-waylock-1.0/</id><published>2024-04-16T00:00:00Z</published><updated>2024-04-16T00:00:00Z</updated><content type="html">&lt;p>Things have been a bit quiet on this blog recently.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>Isaac Freund's Blog</title><link href="https://isaacfreund.com/blog/"/><link rel="self" href="https://isaacfreund.com/blog/feed.xml" type="application/atom+xml"/><id>https://isaacfreund.com/blog/feed.xml</id><author><name>Isaac Freund</name><email>mail@isaacfreund.com</email></author><updated>2024-04-16T00:00:00Z</updated><entry><title>River 0.3.0, Waylock 1.0.0, Status Update</title><link href="https://isaacfreund.com/blog/river-0.3-waylock-1.0/"/><id>https://isaacfreund.com/blog/river-0.3-waylock-1.0/</id><published>2024-04-16T00:00:00Z</published><updated>2024-04-16T00:00:00Z</updated><content type="html">&lt;p&gt;Things have been a bit quiet on this blog recently.
 I spent most of 2023 writing my bachelor’s thesis and finishing up my degree.
 That’s all wrapped up now though,
-which means I’ve finally had time to wrap up some other things for my open source projects.&lt;/p>
-&lt;h2>River 0.3.0&lt;/h2>
-&lt;p>The river 0.3.0 release has finally been &lt;a href="https://codeberg.org/river/river/releases/tag/v0.3.0">tagged&lt;/a>!
+which means I’ve finally had time to wrap up some other things for my open source projects.&lt;/p&gt;
+&lt;h2&gt;River 0.3.0&lt;/h2&gt;
+&lt;p&gt;The river 0.3.0 release has finally been &lt;a href="https://codeberg.org/river/river/releases/tag/v0.3.0"&gt;tagged&lt;/a&gt;!
 This one’s been in the pipeline for quite a while,
 it’s been over a year since 0.2.0 was released and river has seen significant improvements since then.
 The past few months I’ve done my best to fix as many bugs as possible
 but a non-bugfix release always entails new code reaching a lot of people with diverse setups.
-If you find a bug in river please &lt;a href="https://codeberg.org/river/river/issues/new/choose">open an issue&lt;/a>.&lt;/p>
-&lt;p>The biggest change in river 0.3.0 is not immediately visible:
+If you find a bug in river please &lt;a href="https://codeberg.org/river/river/issues/new/choose"&gt;open an issue&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The biggest change in river 0.3.0 is not immediately visible:
 river 0.3.0 uses the wlroots scene graph API and has see a lot of internal improvements related to that transition.
 An initial version of the wlroots scene graph API was landed in wlroots over two years ago and has seen steady improvement since.
 I helped to push it forward in upstream wlroots over the years and am very happy to finally be using it in river.
 It brings finely-grained damage tracking and other performance optimizations to river which should positively
-impact battery life and make running river with software rendering bearable.&lt;/p>
-&lt;p>Aside from that more behind-the-scenes work, river 0.3.0 brings many nice usability enhancements.
+impact battery life and make running river with software rendering bearable.&lt;/p&gt;
+&lt;p&gt;Aside from that more behind-the-scenes work, river 0.3.0 brings many nice usability enhancements.
 There is now a “rules system” for automatically assigning tags to new windows and performing other actions.
 The input-method-v2 and text-input-v3 protocols are supported,
 allowing use of alternative input software for users that speak a language not well supported by western keyboards.
 River also now has basic support for drawing tablet input.
-For a full list of changes, see the release notes &lt;a href="https://codeberg.org/river/river/releases/tag/v0.3.0">here&lt;/a>&lt;/p>
-&lt;p>Thank you to everyone who has contributed code and bug reports to river!
-River would not be where it is today without you.&lt;/p>
-&lt;p>In other river news, the upstream river repository has moved to &lt;a href="https://codeberg.org/river/river">https://codeberg.org/river/river&lt;/a>.
+For a full list of changes, see the release notes &lt;a href="https://codeberg.org/river/river/releases/tag/v0.3.0"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Thank you to everyone who has contributed code and bug reports to river!
+River would not be where it is today without you.&lt;/p&gt;
+&lt;p&gt;In other river news, the upstream river repository has moved to &lt;a href="https://codeberg.org/river/river"&gt;https://codeberg.org/river/river&lt;/a&gt;.
 Github is a proprietary platform with interests increasingly misaligned with my values.
 Free and open source software like river should not require contributors to have a github account or interact with github in any way.
 There is still a read-only mirror of the river repository on github for now to ease the transition,
-it may be dropped eventually if/when I decide to delete my personal github account.&lt;/p>
-&lt;p>River also now has a page &lt;a href="/software/river">here&lt;/a> on my website,
+it may be dropped eventually if/when I decide to delete my personal github account.&lt;/p&gt;
+&lt;p&gt;River also now has a page &lt;a href="/software/river"&gt;here&lt;/a&gt; on my website,
 I’ve written a bit about my future plans for river there if you’re curious :)
-River also has gained a written &lt;a href="https://codeberg.org/river/river/src/branch/master/CODE_OF_CONDUCT.md">Code of Conduct&lt;/a>
+River also has gained a written &lt;a href="https://codeberg.org/river/river/src/branch/master/CODE_OF_CONDUCT.md"&gt;Code of Conduct&lt;/a&gt;
 documenting the existing standards and moderation practice.
-Luckily, we have a wonderful community and haven’t yet had to deal with any notable unacceptable behavior I’m aware of.&lt;/p>
-&lt;h2>Waylock 1.0.0&lt;/h2>
-&lt;p>There haven’t been any breaking changes to waylock in over a year and I’m happy with its feature set.
-Therefore, I’ve tagged a stable 1.0 &lt;a href="https://codeberg.org/ifreund/waylock/releases/tag/v1.0.0">release&lt;/a>.
-The only change since the last waylock release is the addition of the &lt;code>-ready-fd&lt;/code> flag contributed by tiosgz.
-This is an alternative to the &lt;code>-fork-on-lock&lt;/code> flag for notification that waylock has successfully locked the session.
-The new flag is compatible with the readiness notification protocol used by the &lt;code>s6&lt;/code> and &lt;code>dinit&lt;/code> service managers
-as well as being more flexible than &lt;code>-fork-on-lock&lt;/code> for use in scripting.&lt;/p>
-&lt;p>Don’t be alarmed if waylock development slows down to a snail’s pace after this release.
+Luckily, we have a wonderful community and haven’t yet had to deal with any notable unacceptable behavior I’m aware of.&lt;/p&gt;
+&lt;h2&gt;Waylock 1.0.0&lt;/h2&gt;
+&lt;p&gt;There haven’t been any breaking changes to waylock in over a year and I’m happy with its feature set.
+Therefore, I’ve tagged a stable 1.0 &lt;a href="https://codeberg.org/ifreund/waylock/releases/tag/v1.0.0"&gt;release&lt;/a&gt;.
+The only change since the last waylock release is the addition of the &lt;code&gt;-ready-fd&lt;/code&gt; flag contributed by tiosgz.
+This is an alternative to the &lt;code&gt;-fork-on-lock&lt;/code&gt; flag for notification that waylock has successfully locked the session.
+The new flag is compatible with the readiness notification protocol used by the &lt;code&gt;s6&lt;/code&gt; and &lt;code&gt;dinit&lt;/code&gt; service managers
+as well as being more flexible than &lt;code&gt;-fork-on-lock&lt;/code&gt; for use in scripting.&lt;/p&gt;
+&lt;p&gt;Don’t be alarmed if waylock development slows down to a snail’s pace after this release.
 I consider it to be feature complete and as long as there are no bugs found there is little reason to make changes.
-I will of course continue to update it to be compatible with new Zig releases as needed.&lt;/p>
-&lt;h2>Website Rewrite&lt;/h2>
-&lt;p>You may have noticed that my website looks a bit different than it used to and has a few new pages.
+I will of course continue to update it to be compatible with new Zig releases as needed.&lt;/p&gt;
+&lt;h2&gt;Website Rewrite&lt;/h2&gt;
+&lt;p&gt;You may have noticed that my website looks a bit different than it used to and has a few new pages.
 I’d been wanting to add some new pages for a while but had entirely forgotten how to use hugo.
 Since I didn’t like hugo very much in practice anyways,
-I decided to switch to something more transparent and chose &lt;a href="https://bagatto.co">Bagatto&lt;/a>.
+I decided to switch to something more transparent and chose &lt;a href="https://bagatto.co"&gt;Bagatto&lt;/a&gt;.
 It has been lovely to work with and I’m much more confident that I’ll remember how to modify and extend my website years from now.
-Source code &lt;a href="https://codeberg.org/ifreund/website">here&lt;/a> for the curious.
-This was also my first time using &lt;a href="https://janet-lang.org">Janet&lt;/a> (or any lispy language) for anything “real” and I found the experience very pleasant.&lt;/p>
-&lt;h2>Donate&lt;/h2>
-&lt;p>If my work on river and waylock adds value to your life and you’d like to
-support me financially you can find donation information &lt;a href="/donate/">here&lt;/a>.&lt;/p></content></entry><entry><title>May 2022 Status Update</title><link href="https://isaacfreund.com/blog/2022-05/"/><id>https://isaacfreund.com/blog/2022-05/</id><published>2022-05-23T00:00:00Z</published><updated>2022-05-23T00:00:00Z</updated><content type="html">&lt;p>Welcome back to my blog, it’s been a while.
+Source code &lt;a href="https://codeberg.org/ifreund/website"&gt;here&lt;/a&gt; for the curious.
+This was also my first time using &lt;a href="https://janet-lang.org"&gt;Janet&lt;/a&gt; (or any lispy language) for anything “real” and I found the experience very pleasant.&lt;/p&gt;
+&lt;h2&gt;Donate&lt;/h2&gt;
+&lt;p&gt;If my work on river and waylock adds value to your life and you’d like to
+support me financially you can find donation information &lt;a href="/donate/"&gt;here&lt;/a&gt;.&lt;/p&gt;</content></entry><entry><title>May 2022 Status Update</title><link href="https://isaacfreund.com/blog/2022-05/"/><id>https://isaacfreund.com/blog/2022-05/</id><published>2022-05-23T00:00:00Z</published><updated>2022-05-23T00:00:00Z</updated><content type="html">&lt;p&gt;Welcome back to my blog, it’s been a while.
 Over the past few months I’ve been busier with other aspects of my life than expected, hence the lack of status updates.
-Despite that, I’ve made progress on various fronts.&lt;/p>
-&lt;h2>Waylock 0.4.0 and Rewrite&lt;/h2>
-&lt;p>Yesterday I finally released &lt;a href="https://github.com/ifreund/waylock/releases/tag/v0.4.0">waylock 0.4.0&lt;/a> which has been rewritten in &lt;a href="https://ziglang.org/">Zig&lt;/a>.
-It now uses the &lt;a href="https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/131">ext-session-lock-v1&lt;/a> protocol,
-which I worked on earlier this year and discussed in my &lt;a href="https://isaacfreund.com/blog/2022-02/">February 2022&lt;/a> update.
-Unfortunately, &lt;a href="https://github.com/riverwm/river">river&lt;/a> itself does not yet support this protocol.
-The work is already done and there’s been a &lt;a href="https://github.com/riverwm/river/pull/497">pull request&lt;/a> implementing it open for quite some time,
+Despite that, I’ve made progress on various fronts.&lt;/p&gt;
+&lt;h2&gt;Waylock 0.4.0 and Rewrite&lt;/h2&gt;
+&lt;p&gt;Yesterday I finally released &lt;a href="https://github.com/ifreund/waylock/releases/tag/v0.4.0"&gt;waylock 0.4.0&lt;/a&gt; which has been rewritten in &lt;a href="https://ziglang.org/"&gt;Zig&lt;/a&gt;.
+It now uses the &lt;a href="https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/131"&gt;ext-session-lock-v1&lt;/a&gt; protocol,
+which I worked on earlier this year and discussed in my &lt;a href="https://isaacfreund.com/blog/2022-02/"&gt;February 2022&lt;/a&gt; update.
+Unfortunately, &lt;a href="https://github.com/riverwm/river"&gt;river&lt;/a&gt; itself does not yet support this protocol.
+The work is already done and there’s been a &lt;a href="https://github.com/riverwm/river/pull/497"&gt;pull request&lt;/a&gt; implementing it open for quite some time,
 the only thing I’m waiting on is a wlroots release including the session lock implementation.
-I intend to spend some more time working on upstream wlroots to help tie up various loose ends before 0.16.0 and further develop the scene graph API.&lt;/p>
-&lt;p>Rewriting waylock from Rust into Zig has made me think once again about the different trade-offs made by the two languages and their ecosystems.
+I intend to spend some more time working on upstream wlroots to help tie up various loose ends before 0.16.0 and further develop the scene graph API.&lt;/p&gt;
+&lt;p&gt;Rewriting waylock from Rust into Zig has made me think once again about the different trade-offs made by the two languages and their ecosystems.
 Looking at the Rust code I wrote several years ago I am rather appalled by how many dependencies it has.
 If I’ve managed to use the cargo tooling correctly, I count 48 crates that waylock 0.3.5 depends on in addition to linking the system libxkbcommon and PAM libraries.
-That is a &lt;em>lot&lt;/em> of code running inside my application that I never read let alone seriously audited.&lt;/p>
-&lt;p>To compare, waylock 0.4.0 depends only on libwayland, libxkbcommon, and PAM as well as thin Zig bindings I have written to make their APIs a bit more type safe.&lt;/p>
-&lt;p>This is also reflected in the binary size of waylock 0.3.5 vs 0.4.0.
+That is a &lt;em&gt;lot&lt;/em&gt; of code running inside my application that I never read let alone seriously audited.&lt;/p&gt;
+&lt;p&gt;To compare, waylock 0.4.0 depends only on libwayland, libxkbcommon, and PAM as well as thin Zig bindings I have written to make their APIs a bit more type safe.&lt;/p&gt;
+&lt;p&gt;This is also reflected in the binary size of waylock 0.3.5 vs 0.4.0.
 A stripped release build of the Rust version weighs in at 1.7MiB or, if the native Rust Wayland implementation is replaced by linking libwayland, 1.6MiB.
-A stripped “release-safe” build of the Zig version with all runtime safety checks and assertions enabled is just 69KiB.&lt;/p>
-&lt;p>If this makes you wonder what all that extra code in the Rust version was doing, waylock 0.3.5 did have a few more features than 0.4.0 such as reading a config file.
-However, even after removing the config file feature out of curiosity, the Rust version was still 1.5MiB.&lt;/p>
-&lt;p>The only real answer I have to this question is that the Rust version and its dependencies do a lot of abstraction,
-and that abstractions are seldom “zero cost” in practice despite what people may tell you.&lt;/p>
-&lt;h2>zig-wayland Improvements&lt;/h2>
-&lt;p>Rewriting waylock in Zig also led me to reexamine some aspects of &lt;a href="https://github.com/ifreund/zig-wayland">zig-wayland&lt;/a>,
+A stripped “release-safe” build of the Zig version with all runtime safety checks and assertions enabled is just 69KiB.&lt;/p&gt;
+&lt;p&gt;If this makes you wonder what all that extra code in the Rust version was doing, waylock 0.3.5 did have a few more features than 0.4.0 such as reading a config file.
+However, even after removing the config file feature out of curiosity, the Rust version was still 1.5MiB.&lt;/p&gt;
+&lt;p&gt;The only real answer I have to this question is that the Rust version and its dependencies do a lot of abstraction,
+and that abstractions are seldom “zero cost” in practice despite what people may tell you.&lt;/p&gt;
+&lt;h2&gt;zig-wayland Improvements&lt;/h2&gt;
+&lt;p&gt;Rewriting waylock in Zig also led me to reexamine some aspects of &lt;a href="https://github.com/ifreund/zig-wayland"&gt;zig-wayland&lt;/a&gt;,
 particularly regarding its usage in client applications.
 The scanner (which generates zig bindings from XML protocol specifications) now requires the user to explicitly request
 code generation for each global Wayland interface used.
-For example, the application must now call e.g.&lt;/p>
-&lt;pre>&lt;code>scanner.generate(&amp;quot;wl_compositor&amp;quot;, 4);
-&lt;/code>&lt;/pre>
-&lt;p>as part of its build process,
+For example, the application must now call e.g.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;scanner.generate(&amp;quot;wl_compositor&amp;quot;, 4);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;as part of its build process,
 passing the global interface name and the version for which to generate code.
-In this example the wl_surface.offset request would not be generated as it is only available since version 5.&lt;/p>
-&lt;p>(If you’re not familiar with Wayland, wl_surface is created through wl_compositor and inherits its version,
-see the Wayland &lt;a href="https://wayland.freedesktop.org/docs/html/ch04.html#sect-Protocol-Versioning">docs on protocol versioning&lt;/a> for more information.)&lt;/p>
-&lt;p>This solves the outstanding forward compatibility issue and allows building against newer system Wayland protocol versions than the application supports.&lt;/p>
-&lt;p>The knowledge of what maximum version a client application supports at compile time allows us to make another improvement as well.
+In this example the wl_surface.offset request would not be generated as it is only available since version 5.&lt;/p&gt;
+&lt;p&gt;(If you’re not familiar with Wayland, wl_surface is created through wl_compositor and inherits its version,
+see the Wayland &lt;a href="https://wayland.freedesktop.org/docs/html/ch04.html#sect-Protocol-Versioning"&gt;docs on protocol versioning&lt;/a&gt; for more information.)&lt;/p&gt;
+&lt;p&gt;This solves the outstanding forward compatibility issue and allows building against newer system Wayland protocol versions than the application supports.&lt;/p&gt;
+&lt;p&gt;The knowledge of what maximum version a client application supports at compile time allows us to make another improvement as well.
 One of the most common Wayland client bugs I’ve seen in clients using libwayland is passing the interface version received from the server
 in the wl_registry.global event straight to wl_registry_bind().
 A forwards compatible client must check the version advertised by the server against the maximum version the client supports, otherwise
-the client will be terminated when the server sends events unknown to the client.&lt;/p>
-&lt;p>This is a particularly nasty bug because everything will work fine until your software is around long enough for Wayland protocols to evolve.
-For example, Chromium &lt;a href="https://chromium.googlesource.com/chromium/src/+/dd4c3ddadbb9869f59cee201a38e9ca3b9154f4d">recently fixed&lt;/a> this bug.
-I’ve also written this bug a few times myself, including in previous Rust versions of waylock.&lt;/p>
-&lt;p>That’s why it’s pretty cool that zig-wayland now makes this bug impossible.
+the client will be terminated when the server sends events unknown to the client.&lt;/p&gt;
+&lt;p&gt;This is a particularly nasty bug because everything will work fine until your software is around long enough for Wayland protocols to evolve.
+For example, Chromium &lt;a href="https://chromium.googlesource.com/chromium/src/+/dd4c3ddadbb9869f59cee201a38e9ca3b9154f4d"&gt;recently fixed&lt;/a&gt; this bug.
+I’ve also written this bug a few times myself, including in previous Rust versions of waylock.&lt;/p&gt;
+&lt;p&gt;That’s why it’s pretty cool that zig-wayland now makes this bug impossible.
 Since we know the maximum version the client supports at build time, it’s trivial to insert the required version check into the generated code
-for zig-wayland’s wl_registry_bind() equivalent as a safeguard.&lt;/p>
-&lt;h2>River Progress&lt;/h2>
-&lt;p>River has also gained some nice new features recently:&lt;/p>
-&lt;p>Automatic cursor hiding after a timeout or when typing was contributed by Duncan Overbruck.
-On moving the cursor after it has been hidden it will be shown again.&lt;/p>
-&lt;p>Initial support for the idle-inhibit protocol was contributed by dfangx.
-No longer shall swayidle put your monitor to sleep while watching a movie in mpv!&lt;/p>
-&lt;p>Mapping of lid and tablet switches was contributed by Peter Kaplan.
-Now you can have a command run when you close the lid of your laptop!&lt;/p>
-&lt;p>Peter Kaplan also contributed a very nice feature for people switching between multiple keyboard layouts: layout independent mappings.
+for zig-wayland’s wl_registry_bind() equivalent as a safeguard.&lt;/p&gt;
+&lt;h2&gt;River Progress&lt;/h2&gt;
+&lt;p&gt;River has also gained some nice new features recently:&lt;/p&gt;
+&lt;p&gt;Automatic cursor hiding after a timeout or when typing was contributed by Duncan Overbruck.
+On moving the cursor after it has been hidden it will be shown again.&lt;/p&gt;
+&lt;p&gt;Initial support for the idle-inhibit protocol was contributed by dfangx.
+No longer shall swayidle put your monitor to sleep while watching a movie in mpv!&lt;/p&gt;
+&lt;p&gt;Mapping of lid and tablet switches was contributed by Peter Kaplan.
+Now you can have a command run when you close the lid of your laptop!&lt;/p&gt;
+&lt;p&gt;Peter Kaplan also contributed a very nice feature for people switching between multiple keyboard layouts: layout independent mappings.
 The riverctl map command has gained a -layout option taking an index into the list of layouts set with XKB_DEFAULT_LAYOUT.
-If passed, keyboard input will always be interpreted using the given layout, ignoring the currently active xkb layout.&lt;/p>
-&lt;p>Note that these features are not yet available in a released version of river, only on the git master branch.
-I plan to release river 0.2.0 shortly after wlroots 0.16.0 is released.&lt;/p>
-&lt;p>Thanks for reading and till next time!&lt;/p></content></entry><entry><title>February 2022 Status Update</title><link href="https://isaacfreund.com/blog/2022-02/"/><id>https://isaacfreund.com/blog/2022-02/</id><published>2022-02-11T00:00:00Z</published><updated>2022-02-11T00:00:00Z</updated><content type="html">&lt;p>Hello again!
+If passed, keyboard input will always be interpreted using the given layout, ignoring the currently active xkb layout.&lt;/p&gt;
+&lt;p&gt;Note that these features are not yet available in a released version of river, only on the git master branch.
+I plan to release river 0.2.0 shortly after wlroots 0.16.0 is released.&lt;/p&gt;
+&lt;p&gt;Thanks for reading and till next time!&lt;/p&gt;</content></entry><entry><title>February 2022 Status Update</title><link href="https://isaacfreund.com/blog/2022-02/"/><id>https://isaacfreund.com/blog/2022-02/</id><published>2022-02-11T00:00:00Z</published><updated>2022-02-11T00:00:00Z</updated><content type="html">&lt;p&gt;Hello again!
 It’s been nearly a month and a half since my last status update.
 Since I hope to fall into a monthly rhythm with these this is a decent start, look for the next one around the middle of March.
-I’ve also gotten a proper &lt;a href="https://isaacfreund.com/blog/feed.xml">Atom Feed&lt;/a> set up for this blog now for those of you using feed readers of some kind.&lt;/p>
-&lt;p>I spent a fair bit of time over the past month an a half working on a better screenlocking protocol for Wayland.
-This resulted in the ext-session-lock-v1 protocol which was merged into the upstream &lt;a href="https://gitlab.freedesktop.org/wayland/wayland-protocols/">wayland-protocols&lt;/a> repository three weeks ago.
-This marks the first upstream Wayland protocol I have written and the first protocol in the ext- namespace to be accepted into wayland-protocols!&lt;/p>
-&lt;p>The ext-session-lock-v1 protocol makes it possible for lockscreens implemented outside of the Wayland compositor to be far more secure, compared to the status quo wlr-input-inhibitor-v1 plus wlr-layer-shell-v1 solution that has been used by &lt;a href="https://github.com/swaywm/swaylock">swaylock&lt;/a> and &lt;a href="https://github.com/ifreund/waylock">waylock&lt;/a> thus far.
+I’ve also gotten a proper &lt;a href="https://isaacfreund.com/blog/feed.xml"&gt;Atom Feed&lt;/a&gt; set up for this blog now for those of you using feed readers of some kind.&lt;/p&gt;
+&lt;p&gt;I spent a fair bit of time over the past month an a half working on a better screenlocking protocol for Wayland.
+This resulted in the ext-session-lock-v1 protocol which was merged into the upstream &lt;a href="https://gitlab.freedesktop.org/wayland/wayland-protocols/"&gt;wayland-protocols&lt;/a&gt; repository three weeks ago.
+This marks the first upstream Wayland protocol I have written and the first protocol in the ext- namespace to be accepted into wayland-protocols!&lt;/p&gt;
+&lt;p&gt;The ext-session-lock-v1 protocol makes it possible for lockscreens implemented outside of the Wayland compositor to be far more secure, compared to the status quo wlr-input-inhibitor-v1 plus wlr-layer-shell-v1 solution that has been used by &lt;a href="https://github.com/swaywm/swaylock"&gt;swaylock&lt;/a&gt; and &lt;a href="https://github.com/ifreund/waylock"&gt;waylock&lt;/a&gt; thus far.
 Currently if, for example, swaylock crashes while the session is locked then the session will no longer be locked.
 With ext-session-lock-v1, the session does not unlock if the client crashes.
 Furthermore, hotplugging outputs is inherently racy with the current solution which means that a few frames of the unlocked session may be visible if a monitor is plugged in while the session is locked.
-Again, with ext-session-lock-v1 this problem is solved.&lt;/p>
-&lt;p>Many thanks to &lt;a href="https://emersion.fr">Simon Ser&lt;/a> for the excellent code reviews of the protocol and &lt;a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3414">wlroots implementation&lt;/a>, as well as for &lt;a href="https://github.com/swaywm/swaylock/pull/219">updating swaylock&lt;/a> to use ext-session-lock-v1.
-I’ve &lt;a href="https://github.com/riverwm/river/pull/497">implemented&lt;/a> ext-session-lock-v1 for river but am waiting for the 0.16.0 wlroots release to merge it as river tracks the latest wlroots release not the master branch.
-I’ve also started rewriting &lt;a href="https://github.com/ifreund/waylock">waylock&lt;/a> from the ground up in Zig with a much higher focus on security and benefiting from the experience I’ve gained over the past 2 years of doing this stuff.
-Until that work is complete I recommend using swaylock instead.&lt;/p>
-&lt;p>The goal of this work is to ensure, to the best of my ability, that &lt;a href="https://www.jwz.org/">jwz&lt;/a> doesn’t have to say &lt;a href="https://www.jwz.org/blog/2021/01/i-told-you-so-2021-edition/">“I told you so”&lt;/a> about screen locking on my Wayland compositor.
-Once the security problem has been satisfactorily solved I want to explore making fun graphics possible without compromising security, but that may take me a long time to get around to.&lt;/p>
-&lt;p>I &lt;a href="https://github.com/riverwm/river/releases/tag/v0.1.3">released&lt;/a> river 0.1.3 about a week ago.
+Again, with ext-session-lock-v1 this problem is solved.&lt;/p&gt;
+&lt;p&gt;Many thanks to &lt;a href="https://emersion.fr"&gt;Simon Ser&lt;/a&gt; for the excellent code reviews of the protocol and &lt;a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3414"&gt;wlroots implementation&lt;/a&gt;, as well as for &lt;a href="https://github.com/swaywm/swaylock/pull/219"&gt;updating swaylock&lt;/a&gt; to use ext-session-lock-v1.
+I’ve &lt;a href="https://github.com/riverwm/river/pull/497"&gt;implemented&lt;/a&gt; ext-session-lock-v1 for river but am waiting for the 0.16.0 wlroots release to merge it as river tracks the latest wlroots release not the master branch.
+I’ve also started rewriting &lt;a href="https://github.com/ifreund/waylock"&gt;waylock&lt;/a&gt; from the ground up in Zig with a much higher focus on security and benefiting from the experience I’ve gained over the past 2 years of doing this stuff.
+Until that work is complete I recommend using swaylock instead.&lt;/p&gt;
+&lt;p&gt;The goal of this work is to ensure, to the best of my ability, that &lt;a href="https://www.jwz.org/"&gt;jwz&lt;/a&gt; doesn’t have to say &lt;a href="https://www.jwz.org/blog/2021/01/i-told-you-so-2021-edition/"&gt;“I told you so”&lt;/a&gt; about screen locking on my Wayland compositor.
+Once the security problem has been satisfactorily solved I want to explore making fun graphics possible without compromising security, but that may take me a long time to get around to.&lt;/p&gt;
+&lt;p&gt;I &lt;a href="https://github.com/riverwm/river/releases/tag/v0.1.3"&gt;released&lt;/a&gt; river 0.1.3 about a week ago.
 It includes quite a few bug fixes, so if you’re not yet using river 0.1.3 and wlroots 0.15.1 I’d highly recommend upgrading.
 I also decided to change river’s license from GPL-3.0-or-later to GPL-3.0-only with this release,
 primarily because I decided that I do not feel comfortable licensing software under a hypothetical future license version which is outside my control.
 What if I disagree with the changes made?
-I’m happy with locking in on version 3 of the GPL for river as there’s no real need to worry about the compatibility benefits of the “or later” clause as river is not a library.&lt;/p>
-&lt;p>That’s all for now, see you all in March!&lt;/p></content></entry><entry><title>2021 Year's End Status Update</title><link href="https://isaacfreund.com/blog/2021-years-end/"/><id>https://isaacfreund.com/blog/2021-years-end/</id><published>2022-01-01T00:00:00Z</published><updated>2022-01-01T00:00:00Z</updated><content type="html">&lt;p>Hello all!
+I’m happy with locking in on version 3 of the GPL for river as there’s no real need to worry about the compatibility benefits of the “or later” clause as river is not a library.&lt;/p&gt;
+&lt;p&gt;That’s all for now, see you all in March!&lt;/p&gt;</content></entry><entry><title>2021 Year's End Status Update</title><link href="https://isaacfreund.com/blog/2021-years-end/"/><id>https://isaacfreund.com/blog/2021-years-end/</id><published>2022-01-01T00:00:00Z</published><updated>2022-01-01T00:00:00Z</updated><content type="html">&lt;p&gt;Hello all!
 This is my first ever status update so I’ve ambitiously decided to cover all of 2021.
 In the future I intend to write these updates on a monthly basis and provide a bit more detail.
-Since so much has happened in the past year I’ll be leaving out a lot, but here are some of the highlights.&lt;/p>
-&lt;p>In January I spent most of my time on &lt;a href="https://github.com/riverwm/river">river&lt;/a>,
-fixing bugs and implementing an experimental &lt;a href="https://github.com/riverwm/river/pull/202">river-options protocol&lt;/a>.&lt;/p>
-&lt;p>&lt;a href="https://archive.fosdem.org/2021/">FOSDEM 2021&lt;/a> took place online during first weekend of February and
-I gave a &lt;a href="https://archive.fosdem.org/2021/schedule/event/zig_wayland/">talk&lt;/a> on my type safe &lt;a href="https://ziglang.org">Zig&lt;/a> bindings for wlroots/libwayland.
+Since so much has happened in the past year I’ll be leaving out a lot, but here are some of the highlights.&lt;/p&gt;
+&lt;p&gt;In January I spent most of my time on &lt;a href="https://github.com/riverwm/river"&gt;river&lt;/a&gt;,
+fixing bugs and implementing an experimental &lt;a href="https://github.com/riverwm/river/pull/202"&gt;river-options protocol&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://archive.fosdem.org/2021/"&gt;FOSDEM 2021&lt;/a&gt; took place online during first weekend of February and
+I gave a &lt;a href="https://archive.fosdem.org/2021/schedule/event/zig_wayland/"&gt;talk&lt;/a&gt; on my type safe &lt;a href="https://ziglang.org"&gt;Zig&lt;/a&gt; bindings for wlroots/libwayland.
 Around the same time I got sucked into Andrew Kelley’s work applying data oriented design principles to Zig’s Abstract Syntax Tree.
-I collaborated with him on the data structure that became &lt;a href="https://zig.news/kristoff/struct-of-arrays-soa-in-zig-easy-in-userland-40m0">std.MultiArrayList&lt;/a>
-and contributed a significant amount of code to his &lt;a href="https://github.com/ziglang/zig/pull/7920">PR branch&lt;/a>.
-Andrew gave a &lt;a href="https://media.handmade-seattle.com/practical-data-oriented-design/">talk&lt;/a> on this subject at Handmade Seattle later on in November which I highly recommend checking out if you haven’t seen it yet.&lt;/p>
-&lt;p>In March I joined the team working on &lt;a href="https://www.tigerbeetle.com">TigerBeetle&lt;/a> and got paid to write Zig code for the first time.
-I also contributed to Andrew’s further application of data oriented design to the &lt;a href="https://github.com/ziglang/zig/pull/8266">ZIR memory layout&lt;/a>.&lt;/p>
-&lt;p>In April my stalwart collaborator &lt;a href="https://leon_plickat.srht.site">Leon Plickat&lt;/a> and I finally got the &lt;a href="https://github.com/riverwm/river/pull/112">river-layout protocol&lt;/a> merged to master branch.
+I collaborated with him on the data structure that became &lt;a href="https://zig.news/kristoff/struct-of-arrays-soa-in-zig-easy-in-userland-40m0"&gt;std.MultiArrayList&lt;/a&gt;
+and contributed a significant amount of code to his &lt;a href="https://github.com/ziglang/zig/pull/7920"&gt;PR branch&lt;/a&gt;.
+Andrew gave a &lt;a href="https://media.handmade-seattle.com/practical-data-oriented-design/"&gt;talk&lt;/a&gt; on this subject at Handmade Seattle later on in November which I highly recommend checking out if you haven’t seen it yet.&lt;/p&gt;
+&lt;p&gt;In March I joined the team working on &lt;a href="https://www.tigerbeetle.com"&gt;TigerBeetle&lt;/a&gt; and got paid to write Zig code for the first time.
+I also contributed to Andrew’s further application of data oriented design to the &lt;a href="https://github.com/ziglang/zig/pull/8266"&gt;ZIR memory layout&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In April my stalwart collaborator &lt;a href="https://leon_plickat.srht.site"&gt;Leon Plickat&lt;/a&gt; and I finally got the &lt;a href="https://github.com/riverwm/river/pull/112"&gt;river-layout protocol&lt;/a&gt; merged to master branch.
 We’d been discussing and working on this off and on for ~6 months at that point so it was really great to get it merged and start daily driving it.
-As is normal with such large changes, there were still some rough edges to be smoothed out and I &lt;a href="https://github.com/riverwm/river/pull/274">bumped the protocol to version 2 and removed the river-options protocol&lt;/a> shortly afterwards.&lt;/p>
-&lt;p>One of the critical missing features for river at this point in time was damage tracking support to improve performance and save battery life.
-To remedy this I &lt;a href="https://github.com/riverwm/river/pull/296">implemented&lt;/a> basic yes/no damage tracking in May.&lt;/p>
-&lt;p>&lt;a href="https://ziglang.org/download/0.8.0/release-notes.html">Zig 0.8.0&lt;/a> was released in the first week of June, which included several improvements I made to Zig’s handling of linking libc.
+As is normal with such large changes, there were still some rough edges to be smoothed out and I &lt;a href="https://github.com/riverwm/river/pull/274"&gt;bumped the protocol to version 2 and removed the river-options protocol&lt;/a&gt; shortly afterwards.&lt;/p&gt;
+&lt;p&gt;One of the critical missing features for river at this point in time was damage tracking support to improve performance and save battery life.
+To remedy this I &lt;a href="https://github.com/riverwm/river/pull/296"&gt;implemented&lt;/a&gt; basic yes/no damage tracking in May.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ziglang.org/download/0.8.0/release-notes.html"&gt;Zig 0.8.0&lt;/a&gt; was released in the first week of June, which included several improvements I made to Zig’s handling of linking libc.
 These improvements directly affected users building river, solving a few long-standing issues on that front.
-Around this time I also started to think about a first river release and resumed my effort to &lt;a href="https://github.com/void-linux/void-packages/pull/29288">properly package zig software for void Linux&lt;/a>.
-This lead to a series of zig patches to allow for cross compilation while linking system libraries and integration into void Linux’s build system.&lt;/p>
-&lt;p>In July I focused on stabilizing and simplifying river’s behavior, aiming for consistency and predictability.
-As part of this, I &lt;a href="https://github.com/riverwm/river/pull/359">further simplified our layout protocol&lt;/a> and cleaned up all of river’s user-facing interfaces.
-The goal was to get a first release out the door, but unfortunately exams got in the way.&lt;/p>
-&lt;p>Throughout August and September I had relatively little time for my open source work as I was busy with exams at my university.
+Around this time I also started to think about a first river release and resumed my effort to &lt;a href="https://github.com/void-linux/void-packages/pull/29288"&gt;properly package zig software for void Linux&lt;/a&gt;.
+This lead to a series of zig patches to allow for cross compilation while linking system libraries and integration into void Linux’s build system.&lt;/p&gt;
+&lt;p&gt;In July I focused on stabilizing and simplifying river’s behavior, aiming for consistency and predictability.
+As part of this, I &lt;a href="https://github.com/riverwm/river/pull/359"&gt;further simplified our layout protocol&lt;/a&gt; and cleaned up all of river’s user-facing interfaces.
+The goal was to get a first release out the door, but unfortunately exams got in the way.&lt;/p&gt;
+&lt;p&gt;Throughout August and September I had relatively little time for my open source work as I was busy with exams at my university.
 I did however manage to keep up with bug reports from river’s small but steadily growing number of users fairly well.
-In retrospect, it was nice to allow bug reports to trickle in for another couple months before tagging the first release as the end result was much more polished.&lt;/p>
-&lt;p>I ended up changing domains for my personal website and email from ifreund.xyz to isaacfreund.com after reading &lt;a href="https://www.spotvirtual.com/blog/the-perils-of-an-xyz-domain/">this post&lt;/a> in October.
+In retrospect, it was nice to allow bug reports to trickle in for another couple months before tagging the first release as the end result was much more polished.&lt;/p&gt;
+&lt;p&gt;I ended up changing domains for my personal website and email from ifreund.xyz to isaacfreund.com after reading &lt;a href="https://www.spotvirtual.com/blog/the-perils-of-an-xyz-domain/"&gt;this post&lt;/a&gt; in October.
 It makes me sad that this is the way things are, but I’d rather die on a different hill.
-I set up &lt;a href="https://github.com/sponsors/ifreund">GitHub Sponsors&lt;/a> and &lt;a href="https://liberapay.com/ifreund">Liberapay&lt;/a> around this time and was pleasantly surprised to immediately see some support.
-Thank you to all my current sponsors, you are helping make my open source work sustainable in the long term!&lt;/p>
-&lt;p>On the river front, I spent October fixing every bug I could and finally tagged the &lt;a href="https://github.com/riverwm/river/releases/tag/v0.1.0">river 0.1.0 release&lt;/a> on November 2nd.
-If you haven’t yet seen my &lt;a href="https://isaacfreund.com/blog/river-intro">blog post introducing river&lt;/a> you may want to check that out.
-Later in November my focus shifted to helping push the new wlroots scene graph API forward, &lt;a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3250">getting tinywl using it&lt;/a>
-as well as &lt;a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3398">other&lt;/a> &lt;a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3403">improvements&lt;/a>.&lt;/p>
-&lt;p>This wlroots work carried on into December, when &lt;a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/0.15.0">wlroots 0.15.0&lt;/a> was released.
-As it so happened, &lt;a href="https://ziglang.org/download/0.9.0/release-notes.html">Zig 0.9.0&lt;/a> was released only a few days later.
-Thus, &lt;a href="https://github.com/riverwm/river/releases/tag/v0.1.1">river 0.1.1&lt;/a> and &lt;a href="https://github.com/riverwm/river/releases/tag/v0.1.2">river 0.1.2&lt;/a> were released in quick succession,
-fixing several bugs and updating the wlroots and Zig version requirements.&lt;/p>
-&lt;p>I also ended up starting and finishing a tiny new project in December, &lt;a href="https://github.com/ifreund/dumb_runtime_dir">dumb_runtime_dir&lt;/a>,
-to replace my older, more complex &lt;a href="https://github.com/ifreund/rundird">rundird&lt;/a> project.
-This is useful on systems that do not run logind, opting for a simpler alternative such as &lt;a href="https://sr.ht/~kennylevinsen/seatd">seatd&lt;/a> instead.&lt;/p>
-&lt;p>2021 was an action packed year for me, I’m very happy looking back on the progress I’ve made on river and the surrounding open source ecosystem.
-Here’s to another year of work towards building my ideal Linux graphical environment in 2022!&lt;/p></content></entry><entry><title>Introducing River, a Dynamic Tiling Wayland Compositor</title><link href="https://isaacfreund.com/blog/river-intro/"/><id>https://isaacfreund.com/blog/river-intro/</id><published>2021-11-03T00:00:00Z</published><updated>2021-11-03T00:00:00Z</updated><content type="html">&lt;p>In the spring of 2020 I found myself hooked on Wayland thanks to
-&lt;a href="https://swaywm.org/">sway&lt;/a> but increasingly frustrated with the
-&lt;a href="https://i3wm.org/">i3&lt;/a> style window management sway implements.
+I set up &lt;a href="https://github.com/sponsors/ifreund"&gt;GitHub Sponsors&lt;/a&gt; and &lt;a href="https://liberapay.com/ifreund"&gt;Liberapay&lt;/a&gt; around this time and was pleasantly surprised to immediately see some support.
+Thank you to all my current sponsors, you are helping make my open source work sustainable in the long term!&lt;/p&gt;
+&lt;p&gt;On the river front, I spent October fixing every bug I could and finally tagged the &lt;a href="https://github.com/riverwm/river/releases/tag/v0.1.0"&gt;river 0.1.0 release&lt;/a&gt; on November 2nd.
+If you haven’t yet seen my &lt;a href="https://isaacfreund.com/blog/river-intro"&gt;blog post introducing river&lt;/a&gt; you may want to check that out.
+Later in November my focus shifted to helping push the new wlroots scene graph API forward, &lt;a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3250"&gt;getting tinywl using it&lt;/a&gt;
+as well as &lt;a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3398"&gt;other&lt;/a&gt; &lt;a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3403"&gt;improvements&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This wlroots work carried on into December, when &lt;a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/0.15.0"&gt;wlroots 0.15.0&lt;/a&gt; was released.
+As it so happened, &lt;a href="https://ziglang.org/download/0.9.0/release-notes.html"&gt;Zig 0.9.0&lt;/a&gt; was released only a few days later.
+Thus, &lt;a href="https://github.com/riverwm/river/releases/tag/v0.1.1"&gt;river 0.1.1&lt;/a&gt; and &lt;a href="https://github.com/riverwm/river/releases/tag/v0.1.2"&gt;river 0.1.2&lt;/a&gt; were released in quick succession,
+fixing several bugs and updating the wlroots and Zig version requirements.&lt;/p&gt;
+&lt;p&gt;I also ended up starting and finishing a tiny new project in December, &lt;a href="https://github.com/ifreund/dumb_runtime_dir"&gt;dumb_runtime_dir&lt;/a&gt;,
+to replace my older, more complex &lt;a href="https://github.com/ifreund/rundird"&gt;rundird&lt;/a&gt; project.
+This is useful on systems that do not run logind, opting for a simpler alternative such as &lt;a href="https://sr.ht/~kennylevinsen/seatd"&gt;seatd&lt;/a&gt; instead.&lt;/p&gt;
+&lt;p&gt;2021 was an action packed year for me, I’m very happy looking back on the progress I’ve made on river and the surrounding open source ecosystem.
+Here’s to another year of work towards building my ideal Linux graphical environment in 2022!&lt;/p&gt;</content></entry><entry><title>Introducing River, a Dynamic Tiling Wayland Compositor</title><link href="https://isaacfreund.com/blog/river-intro/"/><id>https://isaacfreund.com/blog/river-intro/</id><published>2021-11-03T00:00:00Z</published><updated>2021-11-03T00:00:00Z</updated><content type="html">&lt;p&gt;In the spring of 2020 I found myself hooked on Wayland thanks to
+&lt;a href="https://swaywm.org/"&gt;sway&lt;/a&gt; but increasingly frustrated with the
+&lt;a href="https://i3wm.org/"&gt;i3&lt;/a&gt; style window management sway implements.
 I tried several of the other more mature Wayland compositors
-including &lt;a href="https://hub.darcs.net/raichoo/hikari">hikari&lt;/a> and
-&lt;a href="https://wayfire.org">Wayfire&lt;/a> but didn’t enjoy them any more
+including &lt;a href="https://hub.darcs.net/raichoo/hikari"&gt;hikari&lt;/a&gt; and
+&lt;a href="https://wayfire.org"&gt;Wayfire&lt;/a&gt; but didn’t enjoy them any more
 than sway. I wanted dynamic tiling window management similar to
-&lt;a href="https://dwm.suckless.org/">dwm&lt;/a> but on Wayland and without dwm’s configuration
-through patching the source code approach.&lt;/p>
-&lt;p>As I had a newfound abundance of free time at home in front of
+&lt;a href="https://dwm.suckless.org/"&gt;dwm&lt;/a&gt; but on Wayland and without dwm’s configuration
+through patching the source code approach.&lt;/p&gt;
+&lt;p&gt;As I had a newfound abundance of free time at home in front of
 my computer thanks to the global pandemic that was ramping up
 that spring, I decided to write my own Wayland compositor. Thus,
-&lt;a href="https://github.com/riverwm/river">river&lt;/a> was born.&lt;/p>
-&lt;h2>Features&lt;/h2>
-&lt;p>The core guiding principle in river’s design is that its behavior should
+&lt;a href="https://github.com/riverwm/river"&gt;river&lt;/a&gt; was born.&lt;/p&gt;
+&lt;h2&gt;Features&lt;/h2&gt;
+&lt;p&gt;The core guiding principle in river’s design is that its behavior should
 be predictable. This means keeping things as simple as possible, reducing
-implicit state the user must keep in their head while using river.&lt;/p>
-&lt;p>River’s window management is based on a linear stack of windows much like
+implicit state the user must keep in their head while using river.&lt;/p&gt;
+&lt;p&gt;River’s window management is based on a linear stack of windows much like
 dwm. These windows are arranged by a separate program called a layout
 generator. Users are encouraged to write and share their own layout
 generators, they are simply Wayland clients which implement a custom
 river-layout-v3 protocol. You can find links to several nice ones on this
-&lt;a href="https://github.com/riverwm/river/wiki/Community-Layouts">wiki page&lt;/a>. River
+&lt;a href="https://github.com/riverwm/river/wiki/Community-Layouts"&gt;wiki page&lt;/a&gt;. River
 also ships with a layout generator, rivertile, that provides a few simple
-layouts for those who don’t need anything custom or fancy.&lt;/p>
-&lt;p>Instead of traditional workspaces, river supports tags. Each window may be
+layouts for those who don’t need anything custom or fancy.&lt;/p&gt;
+&lt;p&gt;Instead of traditional workspaces, river supports tags. Each window may be
 assigned one or more tags and multiple tags may be displayed at once. Again,
-this behavior is strongly influenced by dwm.&lt;/p>
-&lt;p>All configuration and control of river happens at runtime through the riverctl
+this behavior is strongly influenced by dwm.&lt;/p&gt;
+&lt;p&gt;All configuration and control of river happens at runtime through the riverctl
 tool. It can be used to create keybindings, move focus between windows,
 set the border color, etc. River doesn’t have any traditional configuration
 file, instead it runs an arbitrary executable on startup which is generally
-a shell script invoking riverctl to setup the user’s desired configuration.&lt;/p>
-&lt;h2>River 0.1.0&lt;/h2>
-&lt;p>I’ve been using river as my daily driver for well over a year now, and am
+a shell script invoking riverctl to setup the user’s desired configuration.&lt;/p&gt;
+&lt;h2&gt;River 0.1.0&lt;/h2&gt;
+&lt;p&gt;I’ve been using river as my daily driver for well over a year now, and am
 happy to announce the first release today, river 0.1.0. In recent months
 there has been little churn in river’s codebase and it is currently quite
 stable and bug free. Because of this, people seem to have started using it.
 As I plan to cause a lot more churn on the master branch in the near future
 which will inevitably create new bugs and break people’s configuration,
-this is the perfect time for a release.&lt;/p>
-&lt;p>I’d like to thank everyone who has contributed code, documentation
-and bug reports to river. In particular, thanks to &lt;a href="https://leon_plickat.srht.site/">Leon Henrik
-Plickat&lt;/a> for his consistent, high quality
+this is the perfect time for a release.&lt;/p&gt;
+&lt;p&gt;I’d like to thank everyone who has contributed code, documentation
+and bug reports to river. In particular, thanks to &lt;a href="https://leon_plickat.srht.site/"&gt;Leon Henrik
+Plickat&lt;/a&gt; for his consistent, high quality
 collaboration since the early days of the project. Without all of you this
-release would not have been possible.&lt;/p>
-&lt;h2>The Future of River&lt;/h2>
-&lt;p>Although I consider river useful enough today to tag a first release, it
+release would not have been possible.&lt;/p&gt;
+&lt;h2&gt;The Future of River&lt;/h2&gt;
+&lt;p&gt;Although I consider river useful enough today to tag a first release, it
 is not yet complete. The core functionality and standard use cases are well
 supported but river is not yet nearly as flexible as I would like it to be.
 I have several ideas that I plan to try out to improve river’s flexibility
 and ease of customization, but this will take time. For this reason,
 users should expect widely breaking changes to how river is configured
 and controlled before we approach a stable 1.0 release. Fear not though,
-the core functionality and spirit of river are here to stay!&lt;/p>
-&lt;p>If you’d like to contribute financially to my work on river, please consider
-sponsoring me on &lt;a href="https://github.com/sponsors/ifreund">GitHub Sponsors&lt;/a>
-or &lt;a href="https://liberapay.com/ifreund">Liberapay&lt;/a>. To those already donating,
-thank you so much for your support!&lt;/p></content></entry></feed>
+the core functionality and spirit of river are here to stay!&lt;/p&gt;
+&lt;p&gt;If you’d like to contribute financially to my work on river, please consider
+sponsoring me on &lt;a href="https://github.com/sponsors/ifreund"&gt;GitHub Sponsors&lt;/a&gt;
+or &lt;a href="https://liberapay.com/ifreund"&gt;Liberapay&lt;/a&gt;. To those already donating,
+thank you so much for your support!&lt;/p&gt;</content></entry></feed>
