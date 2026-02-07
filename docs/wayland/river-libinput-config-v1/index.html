@@ -1,0 +1,326 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title></title><link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><input type=checkbox id=toggle><div class=nav-bar><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=menu><label for=toggle class=menu-button><svg class="menu-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="5" height="1"/><rect x="0" y="2" width="5" height="1"/><rect x="0" y="4" width="5" height="1"/></svg>
+<svg class="close-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><line x1="0" y1="0" x2="5" y2="5"/><line x1="0" y1="5" x2="5" y2="0"/></svg></label></div></div></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a>
+<a href=/consulting>consulting</a></div></nav></header><main class=river-libinput-config-v1><div class=title><h1>river-libinput-config-v1</h1></div><div class=content><p>configure libinput devices<p><div class=description><p>This protocol exposes libinput device configuration APIs. The libinput
+documentation should be referred to for detailed information on libinput's
+behavior.<p>This protocol is designed so that (hopefully) any backwards compatible
+change to libinput's API can be matched with a backwards compatible change
+to this protocol.<p>Note: the libinput API uses floating point types (float and double in C)
+which are not (yet?) natively supported by the Wayland protocol. However,
+the Wayland protocol does support sending arbitrary bytes through the array
+argument type. This protocol uses e.g. type="array" summary="double" to
+indicate a native-endian IEEE-754 64-bit double value.<p>The key words "must", "must not", "required", "shall", "shall not",
+"should", "should not", "recommended", "may", and "optional" in this
+document are to be interpreted as described in IETF RFC 2119.</div><h2>river_libinput_config_v1</h2><p>Version: 1<h3>stop
+-
+stop sending events</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request indicates that the client no longer wishes to receive
+events on this object.<p>The Wayland protocol is asynchronous, which means the server may send
+further events until the stop request is processed. The client must wait
+for a river_libinput_config_v1.finished event before destroying this
+object.</div><h3>destroy
+-
+destroy the river_libinput_config_v1 object</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request should be called after the finished event has been received
+to complete destruction of the object.<p>It is a protocol error to make this request before the finished event
+has been received.<p>If a client wishes to destroy this object it should send a
+river_libinput_config_v1.stop request and wait for a
+river_libinput_config_v1.finished event. Once the finished event is
+received it is safe to destroy this object and any other objects created
+through this interface.</div><h3>create_accel_config
+-
+create a acceleration config</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Create a acceleration config which can be applied
+with river_libinput_device_v1.apply_accel_config.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>id<td>new_id<td><tr><td>profile<td>uint<td></table><h3>finished
+-
+the server has finished with the object</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>This event indicates that the server will send no further events on this
+object. The client should destroy the object. See
+river_libinput_config_v1.destroy for more information.</div><h3>libinput_device
+-
+new libinput device</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>A new libinput device has been created. Not every river_input_device_v1
+is necessarily a libinput device as well.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>id<td>new_id<td></table><h2>river_libinput_device_v1</h2><p>Version: 1<h3>destroy
+-
+destroy the libinput device object</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request indicates that the client will no longer use the input
+device object and that it may be safely destroyed.</div><h3>set_send_events
+-
+set send events mode</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set the send events mode for the device.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>mode<td>uint<td></table><h3>set_tap
+-
+enable/disable tap-to-click</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Configure tap-to-click on this device, with a default mapping of
+1, 2, 3 finger tap mapping to left, right, middle click, respectively.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>state<td>uint<td></table><h3>set_tap_button_map
+-
+set tap-to-click button map</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set the finger number to button number mapping for tap-to-click. The
+default mapping on most devices is to have a 1, 2 and 3 finger tap to
+map to the left, right and middle button, respectively.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>button_map<td>uint<td></table><h3>set_drag
+-
+set tap-and-drag state</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Configure tap-and-drag functionality on the device.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>state<td>uint<td></table><h3>set_drag_lock
+-
+set drag lock state</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Configure drag-lock during tapping on this device. When enabled, a
+finger may be lifted and put back on the touchpad and the drag process
+continues. A timeout for lifting the finger is optional. When disabled,
+lifting the finger during a tap-and-drag will immediately stop the drag.
+See the libinput documentation for more details.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>state<td>uint<td></table><h3>set_three_finger_drag
+-
+set three finger drag state</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Configure three finger drag functionality for the device.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>state<td>uint<td></table><h3>set_calibration_matrix
+-
+set calibration matrix</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set calibration matrix.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>matrix<td>array<td></table><h3>set_accel_profile
+-
+set send events mode</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set the acceleration profile.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>profile<td>uint<td></table><h3>set_accel_speed
+-
+set acceleration speed</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set the acceleration speed within a range of [-1, 1], where 0 is
+the default acceleration for this device, -1 is the slowest acceleration
+and 1 is the maximum acceleration available on this device.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>speed<td>array<td></table><h3>apply_accel_config
+-
+apply acceleration config</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Apply a pointer accleration config.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>config<td>object<td></table><h3>set_natural_scroll
+-
+set natural scroll state</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set natural scroll state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>state<td>uint<td></table><h3>set_left_handed
+-
+set left-handed mode state</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set left-handed mode state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>state<td>uint<td></table><h3>set_click_method
+-
+set click method</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set click method.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>method<td>uint<td></table><h3>set_clickfinger_button_map
+-
+set clickfinger button map</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set clickfinger button map.
+Supported if click_methods.clickfinger is supported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>button_map<td>uint<td></table><h3>set_middle_emulation
+-
+set middle mouse button emulation state</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set middle mouse button emulation state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>state<td>uint<td></table><h3>set_scroll_method
+-
+set scroll method</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set scroll method.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>method<td>uint<td></table><h3>set_scroll_button
+-
+set scroll button</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set scroll button.
+Supported if scroll_methods.on_button_down is supported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>button<td>uint<td></table><h3>set_scroll_button_lock
+-
+set scroll button lock state</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set scroll button lock state.
+Supported if scroll_methods.on_button_down is supported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>state<td>uint<td></table><h3>set_dwt
+-
+set disable-while-typing state</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set disable-while-typing state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>state<td>uint<td></table><h3>set_dwtp
+-
+set disable-while-trackpointing state</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set disable-while-trackpointing state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>state<td>uint<td></table><h3>set_rotation
+-
+set rotation angle</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set rotation angle in degrees clockwise off the logical neutral
+position. Angle must be in the range [0-360).</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>angle<td>uint<td></table><h3>removed
+-
+the libinput device is removed</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>This event indicates that the libinput device has been removed.<p>The server will send no further events on this object and ignore any
+request (other than river_libinput_device_v1.destroy) made after this
+event is sent. The client should destroy this object with the
+river_libinput_device_v1.destroy request to free up resources.</div><h3>input_device
+-
+corresponding river input device</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>The river_input_device_v1 corresponding to this libinput device.
+This event will always be the first event sent on the
+river_libinput_device_v1 object, and it will be sent exactly once.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>device<td>object<td></table><h3>send_events_support
+-
+supported send events modes</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Supported send events modes.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>modes<td>uint<td></table><h3>send_events_default
+-
+default send events mode</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default send events mode.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>mode<td>uint<td></table><h3>send_events_current
+-
+current send events mode</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current send events mode.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>mode<td>uint<td></table><h3>tap_support
+-
+tap-to-click/drag support</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>The number of fingers supported for tap-to-click/drag.
+If finger_count is 0, tap-to-click and drag are unsupported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>finger_count<td>int<td></table><h3>tap_default
+-
+default tap-to-click state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default tap-to-click state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>tap_current
+-
+current tap-to-click state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current tap-to-click state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>tap_button_map_default
+-
+default tap-to-click button map</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default tap-to-click button map.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>button_map<td>uint<td></table><h3>tap_button_map_current
+-
+current tap-to-click button map</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current tap-to-click button map.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>button_map<td>uint<td></table><h3>drag_default
+-
+default tap-and-drag state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default tap-and-drag state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>drag_current
+-
+current tap-and-drag state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current tap-and-drag state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>drag_lock_default
+-
+default drag lock state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default drag lock state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>drag_lock_current
+-
+current drag lock state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current drag lock state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>three_finger_drag_support
+-
+three finger drag support</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>The number of fingers supported for three/four finger drag.
+If finger_count is less than 3, three finger drag is unsupported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>finger_count<td>int<td></table><h3>three_finger_drag_default
+-
+default three finger drag state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default three finger drag state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>three_finger_drag_current
+-
+current three finger drag state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current three finger drag state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>calibration_matrix_support
+-
+support for a calibration matrix</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>A calibration matrix is supported if the supported argument is non-zero.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>supported<td>int<td></table><h3>calibration_matrix_default
+-
+default calibration matrix</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default calibration matrix.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>matrix<td>array<td></table><h3>calibration_matrix_current
+-
+current calibration matrix</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current calibration matrix.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>matrix<td>array<td></table><h3>accel_profiles_support
+-
+supported acceleration profiles</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Supported acceleration profiles.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>profiles<td>uint<td></table><h3>accel_profile_default
+-
+default acceleration profile</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default acceleration profile.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>profile<td>uint<td></table><h3>accel_profile_current
+-
+current send events mode</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current acceleration profile.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>profile<td>uint<td></table><h3>accel_speed_default
+-
+default acceleration speed</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default acceleration speed.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>speed<td>array<td></table><h3>accel_speed_current
+-
+current acceleration speed</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current acceleration speed.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>speed<td>array<td></table><h3>natural_scroll_support
+-
+support for natural scroll</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Natural scroll is supported if the supported argument is non-zero.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>supported<td>int<td></table><h3>natural_scroll_default
+-
+default natural scroll</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default natural scroll.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>natural_scroll_current
+-
+current natural scroll state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current natural scroll.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>left_handed_support
+-
+support for left-handed mode</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Left-handed mode is supported if the supported argument is non-zero.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>supported<td>int<td></table><h3>left_handed_default
+-
+default left-handed mode</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default left-handed mode.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>left_handed_current
+-
+current left-handed mode state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current left-handed mode.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>click_method_support
+-
+supported click methods</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>The click methods supported by the device.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>methods<td>uint<td></table><h3>click_method_default
+-
+default click method</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default click method.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>method<td>uint<td></table><h3>click_method_current
+-
+current click method</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current click method.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>method<td>uint<td></table><h3>clickfinger_button_map_default
+-
+default clickfinger button map</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default clickfinger button map.
+Supported if click_methods.clickfinger is supported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>button_map<td>uint<td></table><h3>clickfinger_button_map_current
+-
+current clickfinger button map</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current clickfinger button map.
+Supported if click_methods.clickfinger is supported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>button_map<td>uint<td></table><h3>middle_emulation_support
+-
+support for middle mouse button emulation</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Middle mouse button emulation is supported if the supported argument is
+non-zero.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>supported<td>int<td></table><h3>middle_emulation_default
+-
+default middle mouse button emulation</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default middle mouse button emulation.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>middle_emulation_current
+-
+current middle mouse button emulation state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current middle mouse button emulation.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>scroll_method_support
+-
+supported scroll methods</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>The scroll methods supported by the device.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>methods<td>uint<td></table><h3>scroll_method_default
+-
+default scroll method</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default scroll method.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>method<td>uint<td></table><h3>scroll_method_current
+-
+current scroll method</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current scroll method.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>method<td>uint<td></table><h3>scroll_button_default
+-
+default scroll button</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default scroll button.
+Supported if scroll_methods.on_button_down is supported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>button<td>uint<td></table><h3>scroll_button_current
+-
+current scroll button</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current scroll button.
+Supported if scroll_methods.on_button_down is supported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>button<td>uint<td></table><h3>scroll_button_lock_default
+-
+default scroll button lock state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default scroll button lock state.
+Supported if scroll_methods.on_button_down is supported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>scroll_button_lock_current
+-
+current scroll button lock state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current scroll button lock state.
+Supported if scroll_methods.on_button_down is supported.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>dwt_support
+-
+support for disable-while-typing</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Disable-while-typing is supported if the supported argument is
+non-zero.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>supported<td>int<td></table><h3>dwt_default
+-
+default disable-while-typing state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default disable-while-typing state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>dwt_current
+-
+current disable-while-typing state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current disable-while-typing state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>dwtp_support
+-
+support for disable-while-trackpointing</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Disable-while-trackpointing is supported if the supported argument is
+non-zero.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>supported<td>int<td></table><h3>dwtp_default
+-
+default disable-while-trackpointing state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default disable-while-trackpointing state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>dwtp_current
+-
+current disable-while-trackpointing state</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current disable-while-trackpointing state.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>state<td>uint<td></table><h3>rotation_support
+-
+support for rotation</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Rotation is supported if the supported argument is non-zero.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>supported<td>int<td></table><h3>rotation_default
+-
+default rotation angle</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Default rotation angle.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>angle<td>uint<td></table><h3>rotation_current
+-
+current rotation angle</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>Current rotation angle.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>angle<td>uint<td></table><h2>river_libinput_accel_config_v1</h2><p>Version: 1<h3>destroy
+-
+destroy the accel object</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request indicates that the client will no longer use the accel
+config object and that it may be safely destroyed.</div><h3>set_points
+-
+define custom acceleration function</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Defines the acceleration function for a given movement type
+in an acceleration configuration with custom accel profile.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>result<td>new_id<td><tr><td>type<td>uint<td><tr><td>step<td>array<td><tr><td>points<td>array<td></table><h2>river_libinput_result_v1</h2><p>Version: 1<h3>success
+-
+config success</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>The configuration was successfully applied to the device.</div><h3>unsupported
+-
+config unsupported</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>The configuration is unsupported by the device and was ignored.</div><h3>invalid
+-
+config invalid</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>The configuration is invalid and was ignored.</div><p><div class=copyright><p><br>SPDX-FileCopyrightText: © 2025 Isaac Freund<br>SPDX-License-Identifier: MIT<br><br>Permission is hereby granted, free of charge, to any person obtaining a copy<br>of this software and associated documentation files (the "Software"), to<br>deal in the Software without restriction, including without limitation the<br>rights to use, copy, modify, merge, publish, distribute, sublicense, and/or<br>sell copies of the Software, and to permit persons to whom the Software is<br>furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice shall be included in<br>all copies or substantial portions of the Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<br>AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS<br>IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+<span class=line><a href=/impressum>Impressum</a>,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>

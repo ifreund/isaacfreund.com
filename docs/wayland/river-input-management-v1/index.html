@@ -1,0 +1,90 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title></title><link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><input type=checkbox id=toggle><div class=nav-bar><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=menu><label for=toggle class=menu-button><svg class="menu-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="5" height="1"/><rect x="0" y="2" width="5" height="1"/><rect x="0" y="4" width="5" height="1"/></svg>
+<svg class="close-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><line x1="0" y1="0" x2="5" y2="5"/><line x1="0" y1="5" x2="5" y2="0"/></svg></label></div></div></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a>
+<a href=/consulting>consulting</a></div></nav></header><main class=river-input-management-v1><div class=title><h1>river-input-management-v1</h1></div><div class=content><p>configure input devices<p><div class=description><p>This protocol supports creating/destroying seats, assigning input devices to
+seats, and configuring input devices (e.g. setting keyboard repeat rate).<p>The key words "must", "must not", "required", "shall", "shall not",
+"should", "should not", "recommended", "may", and "optional" in this
+document are to be interpreted as described in IETF RFC 2119.</div><h2>river_input_manager_v1</h2><p>Version: 1<h3>stop
+-
+stop sending events</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request indicates that the client no longer wishes to receive
+events on this object.<p>The Wayland protocol is asynchronous, which means the server may send
+further events until the stop request is processed. The client must wait
+for a river_input_manager_v1.finished event before destroying this
+object.</div><h3>destroy
+-
+destroy the river_input_manager_v1 object</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request should be called after the finished event has been received
+to complete destruction of the object.<p>It is a protocol error to make this request before the finished event
+has been received.<p>If a client wishes to destroy this object it should send a
+river_input_manager_v1.stop request and wait for a
+river_input_manager_v1.finished event. Once the finished event is
+received it is safe to destroy this object and any other objects created
+through this interface.</div><h3>create_seat
+-
+create a new seat</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Create a new seat with the given name. Has no effect if a seat with the
+given name already exists.<p>The default seat with name "default" always exists and does not need to
+be explicitly created.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>name<td>string<td></table><h3>destroy_seat
+-
+destroy a seat</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Destroy the seat with the given name. Has no effect if a seat with the
+given name does not exist.<p>The default seat with name "default" cannot be destroyed and attempting
+to destroy it will have no effect.<p>Any input devices assigned to the destroyed seat at the time of
+destruction are assigned to the default seat.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>name<td>string<td></table><h3>finished
+-
+the server has finished with the input manager</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>This event indicates that the server will send no further events on this
+object. The client should destroy the object. See
+river_input_manager_v1.destroy for more information.</div><h3>input_device
+-
+new input device</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>A new input device has been created.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>id<td>new_id<td></table><h2>river_input_device_v1</h2><p>Version: 1<h3>destroy
+-
+destroy the input device object</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request indicates that the client will no longer use the input
+device object and that it may be safely destroyed.</div><h3>assign_to_seat
+-
+assign the input device to a seat</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Assign the input device to a seat. All input devices not explicitly
+assigned to a seat are considered assigned to the default seat.<p>Has no effect if a seat with the given name does not exist.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>name<td>string<td></table><h3>set_repeat_info
+-
+set keyboard repeat rate and delay</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set repeat rate and delay for a keyboard input device. Has no effect if
+the device is not a keyboard.<p>Negative values for either rate or delay are illegal. A rate of zero
+will disable any repeating (regardless of the value of delay).</div><table><tr><th>Argument<th>Type<th>Description<tr><td>rate<td>int<td><tr><td>delay<td>int<td></table><h3>set_scroll_factor
+-
+set scroll factor</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Set the scroll factor for a pointer input device. Has no effect if the
+device is not a pointer.<p>For example, a factor of 0.5 will make scrolling twice as slow while a
+factor of 3.0 will make scrolling 3 times as fast.<p>Setting a scroll factor less than 0 is a protocol error.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>factor<td>fixed<td></table><h3>map_to_output
+-
+map input device to the given output</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Map the input device to the given output. Has no effect if the device is
+not a pointer, touch, or tablet device.<p>If mapped to both an output and a rectangle, the rectangle has priority.<p>Passing null clears an existing mapping.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>output<td>object<td></table><h3>map_to_rectangle
+-
+map input device to the given rectangle</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Map the input device to the given rectangle in the global compositor
+coordinate space. Has no effect if the device is not a pointer, touch,
+or tablet device.<p>If mapped to both an output and a rectangle, the rectangle has priority.<p>Width and height must be greater than or equal to 0.<p>Passing 0 for width or height clears an existing mapping.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>x<td>int<td><tr><td>y<td>int<td><tr><td>width<td>int<td><tr><td>height<td>int<td></table><h3>removed
+-
+the input device is removed</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>This event indicates that the input device has been removed.<p>The server will send no further events on this object and ignore any
+request (other than river_input_device_v1.destroy) made after this event is
+sent. The client should destroy this object with the
+river_input_device_v1.destroy request to free up resources.</div><h3>type
+-
+the type of the input device</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>The type of the input device. This event is sent once when the
+river_input_device_v1 object is created. The device type cannot
+change during the lifetime of the object.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>type<td>uint<td></table><h3>name
+-
+the name of the input device</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>The name of the input device. This event is sent once when the
+river_input_device_v1 object is created. The device name cannot
+change during the lifetime of the object.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>name<td>string<td></table><p><div class=copyright><p><br>SPDX-FileCopyrightText: © 2025 Isaac Freund<br>SPDX-License-Identifier: MIT<br><br>Permission is hereby granted, free of charge, to any person obtaining a copy<br>of this software and associated documentation files (the "Software"), to<br>deal in the Software without restriction, including without limitation the<br>rights to use, copy, modify, merge, publish, distribute, sublicense, and/or<br>sell copies of the Software, and to permit persons to whom the Software is<br>furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice shall be included in<br>all copies or substantial portions of the Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<br>AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS<br>IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+<span class=line><a href=/impressum>Impressum</a>,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>

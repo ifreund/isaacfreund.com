@@ -1,0 +1,114 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title></title><link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><input type=checkbox id=toggle><div class=nav-bar><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=menu><label for=toggle class=menu-button><svg class="menu-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="5" height="1"/><rect x="0" y="2" width="5" height="1"/><rect x="0" y="4" width="5" height="1"/></svg>
+<svg class="close-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><line x1="0" y1="0" x2="5" y2="5"/><line x1="0" y1="5" x2="5" y2="0"/></svg></label></div></div></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a>
+<a href=/consulting>consulting</a></div></nav></header><main class=river-xkb-bindings-v1><div class=title><h1>river-xkb-bindings-v1</h1></div><div class=content><p>define xkbcommon-based key bindings<p><div class=description><p>This protocol allows the river-window-management-v1 window manager to
+define key bindings in terms of xkbcommon keysyms and other configurable
+properties.<p>The key words "must", "must not", "required", "shall", "shall not",
+"should", "should not", "recommended", "may", and "optional" in this
+document are to be interpreted as described in IETF RFC 2119.</div><h2>river_xkb_bindings_v1</h2><p>Version: 2<h3>destroy
+-
+destroy the river_xkb_bindings_v1 object</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request indicates that the client will no longer use the
+river_xkb_bindings_v1 object.</div><h3>get_xkb_binding
+-
+define a new xkbcommon key binding</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Define a key binding for the given seat in terms of an xkbcommon keysym
+and other configurable properties.<p>The new key binding is not enabled until initial configuration is
+completed and the enable request is made during a manage sequence.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>seat<td>object<td><tr><td>id<td>new_id<td><tr><td>keysym<td>uint<td><tr><td>modifiers<td>uint<td></table><h3>get_seat
+-
+manage seat-specific state</h3><p>Kind: Request,
+Since Version: 2<div class=description><p>Create an object to manage seat-specific xkb bindings state.<p>It is a protocol error to make this request more than once for a given
+river_seat_v1 object.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>id<td>new_id<td><tr><td>seat<td>object<td></table><h2>river_xkb_binding_v1</h2><p>Version: 2<h3>destroy
+-
+destroy the xkb binding object</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request indicates that the client will no longer use the xkb key
+binding object and that it may be safely destroyed.</div><h3>set_layout_override
+-
+override currently active xkb layout</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>Specify an xkb layout that should be used to translate key events for
+the purpose of triggering this key binding irrespective of the currently
+active xkb layout.<p>The layout argument is a 0-indexed xkbcommon layout number for the
+keyboard that generated the key event.<p>If this request is never made, the currently active xkb layout of the
+keyboard that generated the key event will be used.<p>This request modifies window management state and may only be made as
+part of a manage sequence, see the river_window_manager_v1 description.</div><table><tr><th>Argument<th>Type<th>Description<tr><td>layout<td>uint<td></table><h3>enable
+-
+enable the key binding</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request should be made after all initial configuration has been
+completed and the window manager wishes the key binding to be able to be
+triggered.<p>This request modifies window management state and may only be made as
+part of a manage sequence, see the river_window_manager_v1 description.</div><h3>disable
+-
+disable the key binding</h3><p>Kind: Request,
+Since Version: 1<div class=description><p>This request may be used to temporarily disable the key binding. It may
+be later re-enabled with the enable request.<p>This request modifies window management state and may only be made as
+part of a manage sequence, see the river_window_manager_v1 description.</div><h3>pressed
+-
+the key triggering the binding has been pressed</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>This event indicates that the physical key triggering the binding has
+been pressed.<p>This event will be followed by a manage_start event after all other new
+state has been sent by the server.<p>The compositor should wait for the manage sequence to complete before
+processing further input events. This allows the window manager client
+to, for example, modify key bindings and keyboard focus without racing
+against future input events. The window manager should of course respond
+as soon as possible as the capacity of the compositor to buffer incoming
+input events is finite.</div><h3>released
+-
+the key triggering the binding has been released</h3><p>Kind: Event,
+Since Version: 1<div class=description><p>This event indicates that the physical key triggering the binding has
+been released.<p>Releasing the modifiers for the binding without releasing the "main"
+physical key that produces the bound keysym does not trigger the release
+event. This event is sent when the "main" key is released, even if the
+modifiers have changed since the pressed event.<p>This event will be followed by a manage_start event after all other new
+state has been sent by the server.<p>The compositor should wait for the manage sequence to complete before
+processing further input events. This allows the window manager client
+to, for example, modify key bindings and keyboard focus without racing
+against future input events. The window manager should of course respond
+as soon as possible as the capacity of the compositor to buffer incoming
+input events is finite.</div><h3>stop_repeat
+-
+repeating should be stopped</h3><p>Kind: Event,
+Since Version: 2<div class=description><p>This event indicates that repeating should be stopped for the binding if
+the window manager has been repeating some action since the pressed
+event.<p>This event is generally sent when some other (possible unbound) key is
+pressed after the pressed event is sent and before the released event
+is sent for this binding.<p>This event will be followed by a manage_start event after all other new
+state has been sent by the server.</div><h2>river_xkb_bindings_seat_v1</h2><p>Version: 2<h3>destroy
+-
+destroy the object</h3><p>Kind: Request,
+Since Version: 2<div class=description><p>This request indicates that the client will no longer use the object and
+that it may be safely destroyed.</div><h3>ensure_next_key_eaten
+-
+ensure the next key press event is eaten</h3><p>Kind: Request,
+Since Version: 2<div class=description><p>Ensure that the next non-modifier key press and corresponding release
+events for this seat are not sent to the currently focused surface.<p>If the next non-modifier key press triggers a binding, the
+pressed/released events are sent to the river_xkb_binding_v1 object as
+usual.<p>If the next non-modifier key press does not trigger a binding, the
+ate_unbound_key event is sent instead.<p>Rationale: the window manager may wish to implement "chorded"
+keybindings where triggering a binding activates a "submap" with a
+different set of keybindings. Without a way to eat the next key
+press event, there is no good way for the window manager to know that it
+should error out and exit the submap when a key not bound in the submap
+is pressed.<p>This request modifies window management state and may only be made as
+part of a manage sequence, see the river_window_manager_v1 description.</div><h3>cancel_ensure_next_key_eaten
+-
+cancel an ensure_next_key_eaten request</h3><p>Kind: Request,
+Since Version: 2<div class=description><p>This requests cancels the effect of the latest ensure_next_key_eaten
+request if no key has been eaten due to the request yet. This request
+has no effect if a key has already been eaten or no
+ensure_next_key_eaten was made.<p>Rationale: the window manager may wish cancel an uncompleted "chorded"
+keybinding after a timeout of a few seconds. Note that since this
+timeout use-case requires the window manager to trigger a manage sequence
+with the river_window_manager_v1.manage_dirty request it is possible that
+the ate_unbound_key key event may be sent before the window manager has
+a chance to make the cancel_ensure_next_key_eaten request.<p>This request modifies window management state and may only be made as
+part of a manage sequence, see the river_window_manager_v1 description.</div><h3>ate_unbound_key
+-
+an unbound key press event was eaten</h3><p>Kind: Event,
+Since Version: 2<div class=description><p>An unbound key press event was eaten due to the ensure_next_key_eaten
+request.<p>This event will be followed by a manage_start event after all other new
+state has been sent by the server.</div><p><div class=copyright><p><br>SPDX-FileCopyrightText: © 2025 Isaac Freund<br>SPDX-License-Identifier: MIT<br><br>Permission is hereby granted, free of charge, to any person obtaining a copy<br>of this software and associated documentation files (the "Software"), to<br>deal in the Software without restriction, including without limitation the<br>rights to use, copy, modify, merge, publish, distribute, sublicense, and/or<br>sell copies of the Software, and to permit persons to whom the Software is<br>furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice shall be included in<br>all copies or substantial portions of the Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<br>AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS<br>IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+<span class=line><a href=/impressum>Impressum</a>,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>
