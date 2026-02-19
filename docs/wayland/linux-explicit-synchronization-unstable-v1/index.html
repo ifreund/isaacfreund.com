@@ -1,0 +1,90 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title></title><link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><input type=checkbox id=toggle><div class=nav-bar><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=menu><label for=toggle class=menu-button><svg class="menu-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="5" height="1"/><rect x="0" y="2" width="5" height="1"/><rect x="0" y="4" width="5" height="1"/></svg>
+<svg class="close-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><line x1="0" y1="0" x2="5" y2="5"/><line x1="0" y1="5" x2="5" y2="0"/></svg></label></div></div></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a>
+<a href=/consulting>consulting</a></div></nav></header><main class="wayland linux-explicit-synchronization-unstable-v1"><div class=title><h1>linux-explicit-synchronization-unstable-v1</h1><p class=summary></div><div class=content><div class=interface-head><div class=row><div><h2><a id=zwp_linux_explicit_synchronization_v1 href=#zwp_linux_explicit_synchronization_v1>zwp_linux_explicit_synchronization_v1</a></h2><p class=summary>protocol for providing explicit synchronization</div><div><b>Interface</b><br>Version 2</div></div></div><div class=description><p>This global is a factory interface, allowing clients to request
+explicit synchronization for buffers on a per-surface basis.<p>See <b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_surface_synchronization_v1>zwp_linux_surface_synchronization_v1</a></b> for more information.<p>This interface is derived from Chromium's
+zcr_linux_explicit_synchronization_v1.<p>Note: this protocol is superseded by linux-drm-syncobj.<p>Warning! The protocol described in this file is experimental and
+backward incompatible changes may be made. Backward compatible changes
+may be added together with the corresponding interface version bump.
+Backward incompatible changes are done by bumping the version number in
+the protocol and interface names and resetting the interface version.
+Once the protocol is to be declared stable, the 'z' prefix and the
+version number in the protocol and interface names are removed and the
+interface version number is reset.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_explicit_synchronization_v1.destroy href=#zwp_linux_explicit_synchronization_v1.destroy>zwp_linux_explicit_synchronization_v1.destroy</a></h3><p class=summary>destroy explicit synchronization factory object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this explicit synchronization factory object. Other objects,
+including <b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_surface_synchronization_v1>zwp_linux_surface_synchronization_v1</a></b> objects created by this
+factory, shall not be affected by this request.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_explicit_synchronization_v1.get_synchronization href=#zwp_linux_explicit_synchronization_v1.get_synchronization>zwp_linux_explicit_synchronization_v1.get_synchronization</a></h3><p class=summary>extend surface interface for explicit synchronization</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Instantiate an interface extension for the given <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> to provide
+explicit synchronization.<p>If the given <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> already has an explicit synchronization object
+associated, the synchronization_exists protocol error is raised.<p>Graphics APIs, like EGL or Vulkan, that manage the buffer queue and
+commits of a <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> themselves, are likely to be using this
+extension internally. If a client is using such an API for a
+<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>, it should not directly use this extension on that surface,
+to avoid raising a synchronization_exists protocol error.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_surface_synchronization_v1>zwp_linux_surface_synchronization_v1</a></b>><td><p>the new synchronization interface id<tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>the surface</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_explicit_synchronization_v1.enums.error href=#zwp_linux_explicit_synchronization_v1.enums.error>zwp_linux_explicit_synchronization_v1.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>synchronization_exists<td>0<td>1<td><p>the surface already has a synchronization object associated</table><div class=interface-head><div class=row><div><h2><a id=zwp_linux_surface_synchronization_v1 href=#zwp_linux_surface_synchronization_v1>zwp_linux_surface_synchronization_v1</a></h2><p class=summary>per-surface explicit synchronization support</div><div><b>Interface</b><br>Version 2</div></div></div><div class=description><p>This object implements per-surface explicit synchronization.<p>Synchronization refers to co-ordination of pipelined operations performed
+on buffers. Most GPU clients will schedule an asynchronous operation to
+render to the buffer, then immediately send the buffer to the compositor
+to be attached to a surface.<p>In implicit synchronization, ensuring that the rendering operation is
+complete before the compositor displays the buffer is an implementation
+detail handled by either the kernel or userspace graphics driver.<p>By contrast, in explicit synchronization, dma_fence objects mark when the
+asynchronous operations are complete. When submitting a buffer, the
+client provides an acquire fence which will be waited on before the
+compositor accesses the buffer. The Wayland server, through a
+<b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_buffer_release_v1>zwp_linux_buffer_release_v1</a></b> object, will inform the client with an event
+which may be accompanied by a release fence, when the compositor will no
+longer access the buffer contents due to the specific commit that
+requested the release event.<p>Each surface can be associated with only one object of this interface at
+any time.<p>In version 1 of this interface, explicit synchronization is only
+guaranteed to be supported for buffers created with any version of the
+wp_linux_dmabuf buffer factory. Version 2 additionally guarantees
+explicit synchronization support for opaque EGL buffers, which is a type
+of platform specific buffers described in the EGL_WL_bind_wayland_display
+extension. Compositors are free to support explicit synchronization for
+additional buffer types.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_surface_synchronization_v1.destroy href=#zwp_linux_surface_synchronization_v1.destroy>zwp_linux_surface_synchronization_v1.destroy</a></h3><p class=summary>destroy synchronization object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this explicit synchronization object.<p>Any fence set by this object with set_acquire_fence since the last
+commit will be discarded by the server. Any fences set by this object
+before the last commit are not affected.<p><b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_buffer_release_v1>zwp_linux_buffer_release_v1</a></b> objects created by this object are not
+affected by this request.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_surface_synchronization_v1.set_acquire_fence href=#zwp_linux_surface_synchronization_v1.set_acquire_fence>zwp_linux_surface_synchronization_v1.set_acquire_fence</a></h3><p class=summary>set the acquire fence</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set the acquire fence that must be signaled before the compositor
+may sample from the buffer attached with <b><a href=/docs/wayland/wayland/#wl_surface.attach>wl_surface.attach</a></b>. The fence
+is a dma_fence kernel object.<p>The acquire fence is double-buffered state, and will be applied on the
+next <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> request for the associated surface. Thus, it
+applies only to the buffer that is attached to the surface at commit
+time.<p>If the provided fd is not a valid dma_fence fd, then an INVALID_FENCE
+error is raised.<p>If a fence has already been attached during the same commit cycle, a
+DUPLICATE_FENCE error is raised.<p>If the associated <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> was destroyed, a NO_SURFACE error is
+raised.<p>If at surface commit time the attached buffer does not support explicit
+synchronization, an UNSUPPORTED_BUFFER error is raised.<p>If at surface commit time there is no buffer attached, a NO_BUFFER
+error is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>fd<td>fd<td><p>acquire fence fd</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_surface_synchronization_v1.get_release href=#zwp_linux_surface_synchronization_v1.get_release>zwp_linux_surface_synchronization_v1.get_release</a></h3><p class=summary>release fence for last-attached buffer</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Create a listener for the release of the buffer attached by the
+client with <b><a href=/docs/wayland/wayland/#wl_surface.attach>wl_surface.attach</a></b>. See <b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_buffer_release_v1>zwp_linux_buffer_release_v1</a></b>
+documentation for more information.<p>The release object is double-buffered state, and will be associated
+with the buffer that is attached to the surface at <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>
+time.<p>If a <b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_buffer_release_v1>zwp_linux_buffer_release_v1</a></b> object has already been requested for
+the surface in the same commit cycle, a DUPLICATE_RELEASE error is
+raised.<p>If the associated <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> was destroyed, a NO_SURFACE error
+is raised.<p>If at surface commit time there is no buffer attached, a NO_BUFFER
+error is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>release<td>new_id&lt;<b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_buffer_release_v1>zwp_linux_buffer_release_v1</a></b>><td><p>new zwp_linux_buffer_release_v1 object</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_surface_synchronization_v1.enums.error href=#zwp_linux_surface_synchronization_v1.enums.error>zwp_linux_surface_synchronization_v1.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>invalid_fence<td>0<td>1<td><p>the fence specified by the client could not be imported<tr><td>duplicate_fence<td>1<td>1<td><p>multiple fences added for a single surface commit<tr><td>duplicate_release<td>2<td>1<td><p>multiple releases added for a single surface commit<tr><td>no_surface<td>3<td>1<td><p>the associated wl_surface was destroyed<tr><td>unsupported_buffer<td>4<td>1<td><p>the buffer does not support explicit synchronization<tr><td>no_buffer<td>5<td>1<td><p>no buffer was attached</table><div class=interface-head><div class=row><div><h2><a id=zwp_linux_buffer_release_v1 href=#zwp_linux_buffer_release_v1>zwp_linux_buffer_release_v1</a></h2><p class=summary>buffer release explicit synchronization</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>This object is instantiated in response to a
+<b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_surface_synchronization_v1.get_release>zwp_linux_surface_synchronization_v1.get_release</a></b> request.<p>It provides an alternative to <b><a href=/docs/wayland/wayland/#wl_buffer.release>wl_buffer.release</a></b> events, providing a
+unique release from a single <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> request. The release event
+also supports explicit synchronization, providing a fence FD for the
+client to synchronize against.<p>Exactly one event, either a fenced_release or an immediate_release, will
+be emitted for the <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> request. The compositor can choose
+release by release which event it uses.<p>This event does not replace <b><a href=/docs/wayland/wayland/#wl_buffer.release>wl_buffer.release</a></b> events; servers are still
+required to send those events.<p>Once a buffer release object has delivered a 'fenced_release' or an
+'immediate_release' event it is automatically destroyed.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_buffer_release_v1.fenced_release href=#zwp_linux_buffer_release_v1.fenced_release>zwp_linux_buffer_release_v1.fenced_release</a></h3><p class=summary>release buffer with fence</div><div><b>Destructor
+Event</b><br>Since Version 1</div></div></div><div class=description><p>Sent when the compositor has finalised its usage of the associated
+buffer for the relevant commit, providing a dma_fence which will be
+signaled when all operations by the compositor on that buffer for that
+commit have finished.<p>Once the fence has signaled, and assuming the associated buffer is not
+pending release from other <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> requests, no additional
+explicit or implicit synchronization is required to safely reuse or
+destroy the buffer.<p>This event destroys the <b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_buffer_release_v1>zwp_linux_buffer_release_v1</a></b> object.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>fence<td>fd<td><p>fence for last operation on buffer</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_buffer_release_v1.immediate_release href=#zwp_linux_buffer_release_v1.immediate_release>zwp_linux_buffer_release_v1.immediate_release</a></h3><p class=summary>release buffer immediately</div><div><b>Destructor
+Event</b><br>Since Version 1</div></div></div><div class=description><p>Sent when the compositor has finalised its usage of the associated
+buffer for the relevant commit, and either performed no operations
+using it, or has a guarantee that all its operations on that buffer for
+that commit have finished.<p>Once this event is received, and assuming the associated buffer is not
+pending release from other <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> requests, no additional
+explicit or implicit synchronization is required to safely reuse or
+destroy the buffer.<p>This event destroys the <b><a href=/docs/wayland/linux-explicit-synchronization-unstable-v1/#zwp_linux_buffer_release_v1>zwp_linux_buffer_release_v1</a></b> object.</div><div class=interface-head><h2>Copyright</h2></div><div class=copyright><p><br>Copyright 2016 The Chromium Authors.<br>Copyright 2017 Intel Corporation<br>Copyright 2018 Collabora, Ltd<br><br>Permission is hereby granted, free of charge, to any person obtaining a<br>copy of this software and associated documentation files (the "Software"),<br>to deal in the Software without restriction, including without limitation<br>the rights to use, copy, modify, merge, publish, distribute, sublicense,<br>and/or sell copies of the Software, and to permit persons to whom the<br>Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice (including the next<br>paragraph) shall be included in all copies or substantial portions of the<br>Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br>THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br>DEALINGS IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+<span class=line><a href=/impressum>Impressum</a>,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>

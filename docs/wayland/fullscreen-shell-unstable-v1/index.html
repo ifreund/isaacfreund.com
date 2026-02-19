@@ -1,0 +1,109 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title></title><link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><input type=checkbox id=toggle><div class=nav-bar><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=menu><label for=toggle class=menu-button><svg class="menu-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="5" height="1"/><rect x="0" y="2" width="5" height="1"/><rect x="0" y="4" width="5" height="1"/></svg>
+<svg class="close-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><line x1="0" y1="0" x2="5" y2="5"/><line x1="0" y1="5" x2="5" y2="0"/></svg></label></div></div></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a>
+<a href=/consulting>consulting</a></div></nav></header><main class="wayland fullscreen-shell-unstable-v1"><div class=title><h1>fullscreen-shell-unstable-v1</h1><p class=summary></div><div class=content><div class=interface-head><div class=row><div><h2><a id=zwp_fullscreen_shell_v1 href=#zwp_fullscreen_shell_v1>zwp_fullscreen_shell_v1</a></h2><p class=summary>displays a single surface per output</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>Displays a single surface per output.<p>This interface provides a mechanism for a single client to display
+simple full-screen surfaces. While there technically may be multiple
+clients bound to this interface, only one of those clients should be
+shown at a time.<p>To present a surface, the client uses either the present_surface or
+present_surface_for_mode requests. Presenting a surface takes effect
+on the next <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>. See the individual requests for
+details about scaling and mode switches.<p>The client can have at most one surface per output at any time.
+Requesting a surface to be presented on an output that already has a
+surface replaces the previously presented surface. Presenting a null
+surface removes its content and effectively disables the output.
+Exactly what happens when an output is "disabled" is
+compositor-specific. The same surface may be presented on multiple
+outputs simultaneously.<p>Once a surface is presented on an output, it stays on that output
+until either the client removes it or the compositor destroys the
+output. This way, the client can update the output's contents by
+simply attaching a new buffer.<p>Warning! The protocol described in this file is experimental and
+backward incompatible changes may be made. Backward compatible changes
+may be added together with the corresponding interface version bump.
+Backward incompatible changes are done by bumping the version number in
+the protocol and interface names and resetting the interface version.
+Once the protocol is to be declared stable, the 'z' prefix and the
+version number in the protocol and interface names are removed and the
+interface version number is reset.</div><div class=message-head><div class=row><div><h3><a id=zwp_fullscreen_shell_v1.release href=#zwp_fullscreen_shell_v1.release>zwp_fullscreen_shell_v1.release</a></h3><p class=summary>release the wl_fullscreen_shell interface</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Release the binding from the wl_fullscreen_shell interface.<p>This destroys the server-side object and frees this binding. If
+the client binds to wl_fullscreen_shell multiple times, it may wish
+to free some of those bindings.</div><div class=message-head><div class=row><div><h3><a id=zwp_fullscreen_shell_v1.present_surface href=#zwp_fullscreen_shell_v1.present_surface>zwp_fullscreen_shell_v1.present_surface</a></h3><p class=summary>present surface for display</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Present a surface on the given output.<p>If the output is null, the compositor will present the surface on
+whatever display (or displays) it thinks best. In particular, this
+may replace any or all surfaces currently presented so it should
+not be used in combination with placing surfaces on specific
+outputs.<p>The method parameter is a hint to the compositor for how the surface
+is to be presented. In particular, it tells the compositor how to
+handle a size mismatch between the presented surface and the
+output. The compositor is free to ignore this parameter.<p>The "zoom", "zoom_crop", and "stretch" methods imply a scaling
+operation on the surface. This will override any kind of output
+scaling, so the buffer_scale property of the surface is effectively
+ignored.<p>This request gives the surface the role of a fullscreen shell surface.
+If the surface already has another role, it raises a role protocol
+error.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>surface<td>nullable
+object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p><tr><td>method<td>uint&lt;<b><a href=/docs/wayland/fullscreen-shell-unstable-v1/#zwp_fullscreen_shell_v1.enums.present_method>present_method</a></b>><td><p><tr><td>output<td>nullable
+object&lt;<b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_fullscreen_shell_v1.present_surface_for_mode href=#zwp_fullscreen_shell_v1.present_surface_for_mode>zwp_fullscreen_shell_v1.present_surface_for_mode</a></h3><p class=summary>present surface for display at a particular mode</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Presents a surface on the given output for a particular mode.<p>If the current size of the output differs from that of the surface,
+the compositor will attempt to change the size of the output to
+match the surface. The result of the mode-switch operation will be
+returned via the provided wl_fullscreen_shell_mode_feedback object.<p>If the current output mode matches the one requested or if the
+compositor successfully switches the mode to match the surface,
+then the mode_successful event will be sent and the output will
+contain the contents of the given surface. If the compositor
+cannot match the output size to the surface size, the mode_failed
+will be sent and the output will contain the contents of the
+previously presented surface (if any). If another surface is
+presented on the given output before either of these has a chance
+to happen, the present_cancelled event will be sent.<p>Due to race conditions and other issues unknown to the client, no
+mode-switch operation is guaranteed to succeed. However, if the
+mode is one advertised by <b><a href=/docs/wayland/wayland/#wl_output.mode>wl_output.mode</a></b> or if the compositor
+advertises the ARBITRARY_MODES capability, then the client should
+expect that the mode-switch operation will usually succeed.<p>If the size of the presented surface changes, the resulting output
+is undefined. The compositor may attempt to change the output mode
+to compensate. However, there is no guarantee that a suitable mode
+will be found and the client has no way to be notified of success
+or failure.<p>The framerate parameter specifies the desired framerate for the
+output in mHz. The compositor is free to ignore this parameter. A
+value of 0 indicates that the client has no preference.<p>If the value of <b><a href=/docs/wayland/wayland/#wl_output.scale>wl_output.scale</a></b> differs from <b><a href=/docs/wayland/wayland/#></a></b>,
+then the compositor may choose a mode that matches either the buffer
+size or the surface size. In either case, the surface will fill the
+output.<p>This request gives the surface the role of a fullscreen shell surface.
+If the surface already has another role, it raises a role protocol
+error.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p><tr><td>output<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b>><td><p><tr><td>framerate<td>int<td><p><tr><td>feedback<td>new_id&lt;<b><a href=/docs/wayland/fullscreen-shell-unstable-v1/#zwp_fullscreen_shell_mode_feedback_v1>zwp_fullscreen_shell_mode_feedback_v1</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_fullscreen_shell_v1.capability href=#zwp_fullscreen_shell_v1.capability>zwp_fullscreen_shell_v1.capability</a></h3><p class=summary>advertises a capability of the compositor</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Advertises a single capability of the compositor.<p>When the wl_fullscreen_shell interface is bound, this event is emitted
+once for each capability advertised. Valid capabilities are given by
+the wl_fullscreen_shell.capability enum. If clients want to take
+advantage of any of these capabilities, they should use a
+<b><a href=/docs/wayland/wayland/#wl_display.sync>wl_display.sync</a></b> request immediately after binding to ensure that they
+receive all the capability events.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>capability<td>uint&lt;<b><a href=/docs/wayland/fullscreen-shell-unstable-v1/#zwp_fullscreen_shell_v1.enums.capability>capability</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_fullscreen_shell_v1.enums.capability href=#zwp_fullscreen_shell_v1.enums.capability>zwp_fullscreen_shell_v1.capability</a></h3><p class=summary>capabilities advertised by the compositor</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>Various capabilities that can be advertised by the compositor. They
+are advertised one-at-a-time when the wl_fullscreen_shell interface is
+bound. See the wl_fullscreen_shell.capability event for more details.<p>ARBITRARY_MODES:
+This is a hint to the client that indicates that the compositor is
+capable of setting practically any mode on its outputs. If this
+capability is provided, wl_fullscreen_shell.present_surface_for_mode
+will almost never fail and clients should feel free to set whatever
+mode they like. If the compositor does not advertise this, it may
+still support some modes that are not advertised through wl_global.mode
+but it is less likely.<p>CURSOR_PLANE:
+This is a hint to the client that indicates that the compositor can
+handle a cursor surface from the client without actually compositing.
+This may be because of a hardware cursor plane or some other mechanism.
+If the compositor does not advertise this capability then setting
+<b><a href=/docs/wayland/wayland/#></a></b>may degrade performance or be ignored entirely. If
+CURSOR_PLANE is not advertised, it is recommended that the client draw
+its own cursor and set <b><a href=/docs/wayland/wayland/#></a></b>(NULL).</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>arbitrary_modes<td>1<td>1<td><p>compositor is capable of almost any output mode<tr><td>cursor_plane<td>2<td>1<td><p>compositor has a separate cursor plane</table><div class=message-head><div class=row><div><h3><a id=zwp_fullscreen_shell_v1.enums.present_method href=#zwp_fullscreen_shell_v1.enums.present_method>zwp_fullscreen_shell_v1.present_method</a></h3><p class=summary>different method to set the surface fullscreen</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>Hints to indicate to the compositor how to deal with a conflict
+between the dimensions of the surface and the dimensions of the
+output. The compositor is free to ignore this parameter.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>default<td>0<td>1<td><p>no preference, apply default policy<tr><td>center<td>1<td>1<td><p>center the surface on the output<tr><td>zoom<td>2<td>1<td><p>scale the surface, preserving aspect ratio, to the largest size that will fit on the output<tr><td>zoom_crop<td>3<td>1<td><p>scale the surface, preserving aspect ratio, to fully fill the output cropping if needed<tr><td>stretch<td>4<td>1<td><p>scale the surface to the size of the output ignoring aspect ratio</table><div class=message-head><div class=row><div><h3><a id=zwp_fullscreen_shell_v1.enums.error href=#zwp_fullscreen_shell_v1.enums.error>zwp_fullscreen_shell_v1.error</a></h3><p class=summary>wl_fullscreen_shell error values</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>These errors can be emitted in response to wl_fullscreen_shell requests.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>invalid_method<td>0<td>1<td><p>present_method is not known<tr><td>role<td>1<td>1<td><p>given wl_surface has another role</table><div class=interface-head><div class=row><div><h2><a id=zwp_fullscreen_shell_mode_feedback_v1 href=#zwp_fullscreen_shell_mode_feedback_v1>zwp_fullscreen_shell_mode_feedback_v1</a></h2><p class=summary></div><div><b>Interface</b><br>Version 1</div></div></div><div class=message-head><div class=row><div><h3><a id=zwp_fullscreen_shell_mode_feedback_v1.mode_successful href=#zwp_fullscreen_shell_mode_feedback_v1.mode_successful>zwp_fullscreen_shell_mode_feedback_v1.mode_successful</a></h3><p class=summary>mode switch succeeded</div><div><b>Destructor
+Event</b><br>Since Version 1</div></div></div><div class=description><p>This event indicates that the attempted mode switch operation was
+successful. A surface of the size requested in the mode switch
+will fill the output without scaling.<p>Upon receiving this event, the client should destroy the
+wl_fullscreen_shell_mode_feedback object.</div><div class=message-head><div class=row><div><h3><a id=zwp_fullscreen_shell_mode_feedback_v1.mode_failed href=#zwp_fullscreen_shell_mode_feedback_v1.mode_failed>zwp_fullscreen_shell_mode_feedback_v1.mode_failed</a></h3><p class=summary>mode switch failed</div><div><b>Destructor
+Event</b><br>Since Version 1</div></div></div><div class=description><p>This event indicates that the attempted mode switch operation
+failed. This may be because the requested output mode is not
+possible or it may mean that the compositor does not want to allow it.<p>Upon receiving this event, the client should destroy the
+wl_fullscreen_shell_mode_feedback object.</div><div class=message-head><div class=row><div><h3><a id=zwp_fullscreen_shell_mode_feedback_v1.present_cancelled href=#zwp_fullscreen_shell_mode_feedback_v1.present_cancelled>zwp_fullscreen_shell_mode_feedback_v1.present_cancelled</a></h3><p class=summary>mode switch cancelled</div><div><b>Destructor
+Event</b><br>Since Version 1</div></div></div><div class=description><p>This event indicates that the attempted mode switch operation was
+cancelled. Most likely this is because the client requested a
+second mode switch before the first one completed.<p>Upon receiving this event, the client should destroy the
+wl_fullscreen_shell_mode_feedback object.</div><div class=interface-head><h2>Copyright</h2></div><div class=copyright><p><br>Copyright © 2016 Yong Bakos<br>Copyright © 2015 Jason Ekstrand<br>Copyright © 2015 Jonas Ådahl<br><br>Permission is hereby granted, free of charge, to any person obtaining a<br>copy of this software and associated documentation files (the "Software"),<br>to deal in the Software without restriction, including without limitation<br>the rights to use, copy, modify, merge, publish, distribute, sublicense,<br>and/or sell copies of the Software, and to permit persons to whom the<br>Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice (including the next<br>paragraph) shall be included in all copies or substantial portions of the<br>Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br>THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br>DEALINGS IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+<span class=line><a href=/impressum>Impressum</a>,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>

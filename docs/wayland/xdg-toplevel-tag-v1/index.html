@@ -1,0 +1,33 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title></title><link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><input type=checkbox id=toggle><div class=nav-bar><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=menu><label for=toggle class=menu-button><svg class="menu-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="5" height="1"/><rect x="0" y="2" width="5" height="1"/><rect x="0" y="4" width="5" height="1"/></svg>
+<svg class="close-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><line x1="0" y1="0" x2="5" y2="5"/><line x1="0" y1="5" x2="5" y2="0"/></svg></label></div></div></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a>
+<a href=/consulting>consulting</a></div></nav></header><main class="wayland xdg-toplevel-tag-v1"><div class=title><h1>xdg-toplevel-tag-v1</h1><p class=summary></div><div class=content><div class=interface-head><div class=row><div><h2><a id=xdg_toplevel_tag_manager_v1 href=#xdg_toplevel_tag_manager_v1>xdg_toplevel_tag_manager_v1</a></h2><p class=summary>protocol for setting toplevel tags</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>In order to make some window properties like position, size,
+"always on top" or user defined rules for window behavior persistent, the
+compositor needs some way to identify windows even after the application
+has been restarted.
+This protocol allows clients to make this possible by setting a tag for
+toplevels.<p>Warning! The protocol described in this file is currently in the testing
+phase. Backward compatible changes may be added together with the
+corresponding interface version bump. Backward incompatible changes can
+only be done by creating a new major version of the extension.</div><div class=message-head><div class=row><div><h3><a id=xdg_toplevel_tag_manager_v1.destroy href=#xdg_toplevel_tag_manager_v1.destroy>xdg_toplevel_tag_manager_v1.destroy</a></h3><p class=summary>destroy toplevel tag object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this toplevel tag manager object. This request has no other
+effects.</div><div class=message-head><div class=row><div><h3><a id=xdg_toplevel_tag_manager_v1.set_toplevel_tag href=#xdg_toplevel_tag_manager_v1.set_toplevel_tag>xdg_toplevel_tag_manager_v1.set_toplevel_tag</a></h3><p class=summary>set tag</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set a tag for a toplevel. The tag may be shown to the user in UI, so
+it's preferable for it to be human readable, but it must be suitable
+for configuration files and should not be translated.
+Suitable tags would for example be "main window", "settings",
+"e-mail composer" or similar.<p>The tag does not need to be unique across applications, and the client
+may set the same tag for multiple windows, for example if the user has
+opened the same UI twice. How the potentially resulting conflicts are
+handled is compositor policy.<p>The client should set the tag as part of the initial commit on the
+associated toplevel, but it may set it at any time afterwards as well,
+for example if the purpose of the toplevel changes.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>toplevel<td>object&lt;<b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b>><td><p><tr><td>tag<td>string<td><p>untranslated tag</table><div class=message-head><div class=row><div><h3><a id=xdg_toplevel_tag_manager_v1.set_toplevel_description href=#xdg_toplevel_tag_manager_v1.set_toplevel_description>xdg_toplevel_tag_manager_v1.set_toplevel_description</a></h3><p class=summary>set description</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set a description for a toplevel. This description may be shown to the
+user in UI or read by a screen reader for accessibility purposes, and
+should be translated.
+It is recommended to make the description the translation of the tag.<p>The client should set the description as part of the initial commit on
+the associated toplevel, but it may set it at any time afterwards as
+well, for example if the purpose of the toplevel changes.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>toplevel<td>object&lt;<b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b>><td><p><tr><td>description<td>string<td><p>translated description</table><div class=interface-head><h2>Copyright</h2></div><div class=copyright><p><br>Copyright © 2024 Xaver Hugl<br><br>Permission is hereby granted, free of charge, to any person obtaining a<br>copy of this software and associated documentation files (the "Software"),<br>to deal in the Software without restriction, including without limitation<br>the rights to use, copy, modify, merge, publish, distribute, sublicense,<br>and/or sell copies of the Software, and to permit persons to whom the<br>Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice (including the next<br>paragraph) shall be included in all copies or substantial portions of the<br>Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br>THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br>DEALINGS IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+<span class=line><a href=/impressum>Impressum</a>,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>

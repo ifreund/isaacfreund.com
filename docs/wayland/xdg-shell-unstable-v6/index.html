@@ -1,0 +1,361 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title></title><link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><input type=checkbox id=toggle><div class=nav-bar><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=menu><label for=toggle class=menu-button><svg class="menu-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="5" height="1"/><rect x="0" y="2" width="5" height="1"/><rect x="0" y="4" width="5" height="1"/></svg>
+<svg class="close-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><line x1="0" y1="0" x2="5" y2="5"/><line x1="0" y1="5" x2="5" y2="0"/></svg></label></div></div></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a>
+<a href=/consulting>consulting</a></div></nav></header><main class="wayland xdg-shell-unstable-v6"><div class=title><h1>xdg-shell-unstable-v6</h1><p class=summary></div><div class=content><div class=interface-head><div class=row><div><h2><a id=zxdg_shell_v6 href=#zxdg_shell_v6>zxdg_shell_v6</a></h2><p class=summary>create desktop-style surfaces</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p><b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_shell>xdg_shell</a></b> allows clients to turn a <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> into a "real window"
+which can be dragged, resized, stacked, and moved around by the
+user. Everything about this interface is suited towards traditional
+desktop environments.</div><div class=message-head><div class=row><div><h3><a id=zxdg_shell_v6.destroy href=#zxdg_shell_v6.destroy>zxdg_shell_v6.destroy</a></h3><p class=summary>destroy xdg_shell</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_shell>xdg_shell</a></b> object.<p>Destroying a bound <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_shell>xdg_shell</a></b> object while there are surfaces
+still alive created by this <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_shell>xdg_shell</a></b> object instance is illegal
+and will result in a protocol error.</div><div class=message-head><div class=row><div><h3><a id=zxdg_shell_v6.create_positioner href=#zxdg_shell_v6.create_positioner>zxdg_shell_v6.create_positioner</a></h3><p class=summary>create a positioner object</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Create a positioner object. A positioner object is used to position
+surfaces relative to some parent surface. See the interface description
+and <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.get_popup>xdg_surface.get_popup</a></b> for details.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/xdg-shell-unstable-v6/#zxdg_positioner_v6>zxdg_positioner_v6</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_shell_v6.get_xdg_surface href=#zxdg_shell_v6.get_xdg_surface>zxdg_shell_v6.get_xdg_surface</a></h3><p class=summary>create a shell surface from a surface</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>This creates an <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> for the given surface. While <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b>
+itself is not a role, the corresponding surface may only be assigned
+a role extending <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b>, such as <b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b> or <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b>.<p>This creates an <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> for the given surface. An <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> is
+used as basis to define a role to a given surface, such as <b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b>
+or <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b>. It also manages functionality shared between <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b>
+based surface roles.<p>See the documentation of <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> for more details about what an
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> is and how it is used.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/xdg-shell-unstable-v6/#zxdg_surface_v6>zxdg_surface_v6</a></b>><td><p><tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_shell_v6.pong href=#zxdg_shell_v6.pong>zxdg_shell_v6.pong</a></h3><p class=summary>respond to a ping event</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>A client must respond to a ping event with a pong request or
+the client may be deemed unresponsive. See <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_shell.ping>xdg_shell.ping</a></b>.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>serial of the ping event</table><div class=message-head><div class=row><div><h3><a id=zxdg_shell_v6.ping href=#zxdg_shell_v6.ping>zxdg_shell_v6.ping</a></h3><p class=summary>check if the client is alive</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The ping event asks the client if it's still alive. Pass the
+serial specified in the event back to the compositor by sending
+a "pong" request back with the specified serial. See <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_shell.ping>xdg_shell.ping</a></b>.<p>Compositors can use this to determine if the client is still
+alive. It's unspecified what will happen if the client doesn't
+respond to the ping request, or in what timeframe. Clients should
+try to respond in a reasonable amount of time.<p>A compositor is free to ping in any way it wants, but a client must
+always respond to any <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_shell>xdg_shell</a></b> object it created.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>pass this to the pong request</table><div class=message-head><div class=row><div><h3><a id=zxdg_shell_v6.enums.error href=#zxdg_shell_v6.enums.error>zxdg_shell_v6.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>role<td>0<td>1<td><p>given wl_surface has another role<tr><td>defunct_surfaces<td>1<td>1<td><p>xdg_shell was destroyed before children<tr><td>not_the_topmost_popup<td>2<td>1<td><p>the client tried to map or destroy a non-topmost popup<tr><td>invalid_popup_parent<td>3<td>1<td><p>the client specified an invalid popup parent surface<tr><td>invalid_surface_state<td>4<td>1<td><p>the client provided an invalid surface state<tr><td>invalid_positioner<td>5<td>1<td><p>the client provided an invalid positioner</table><div class=interface-head><div class=row><div><h2><a id=zxdg_positioner_v6 href=#zxdg_positioner_v6>zxdg_positioner_v6</a></h2><p class=summary>child surface positioner</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>The <b><a href=/docs/wayland/xdg-shell/#xdg_positioner>xdg_positioner</a></b> provides a collection of rules for the placement of a
+child surface relative to a parent surface. Rules can be defined to ensure
+the child surface remains within the visible area's borders, and to
+specify how the child surface changes its position, such as sliding along
+an axis, or flipping around a rectangle. These positioner-created rules are
+constrained by the requirement that a child surface must intersect with or
+be at least partially adjacent to its parent surface.<p>See the various requests for details about possible rules.<p>At the time of the request, the compositor makes a copy of the rules
+specified by the <b><a href=/docs/wayland/xdg-shell/#xdg_positioner>xdg_positioner</a></b>. Thus, after the request is complete the
+<b><a href=/docs/wayland/xdg-shell/#xdg_positioner>xdg_positioner</a></b> object can be destroyed or reused; further changes to the
+object will have no effect on previous usages.<p>For an <b><a href=/docs/wayland/xdg-shell/#xdg_positioner>xdg_positioner</a></b> object to be considered complete, it must have a
+non-zero size set by set_size, and a non-zero anchor rectangle set by
+set_anchor_rect. Passing an incomplete <b><a href=/docs/wayland/xdg-shell/#xdg_positioner>xdg_positioner</a></b> object when
+positioning a surface raises an error.</div><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.destroy href=#zxdg_positioner_v6.destroy>zxdg_positioner_v6.destroy</a></h3><p class=summary>destroy the xdg_positioner object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Notify the compositor that the <b><a href=/docs/wayland/xdg-shell/#xdg_positioner>xdg_positioner</a></b> will no longer be used.</div><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.set_size href=#zxdg_positioner_v6.set_size>zxdg_positioner_v6.set_size</a></h3><p class=summary>set the size of the to-be positioned rectangle</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set the size of the surface that is to be positioned with the positioner
+object. The size is in surface-local coordinates and corresponds to the
+window geometry. See <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.set_window_geometry>xdg_surface.set_window_geometry</a></b>.<p>If a zero or negative size is set the invalid_input error is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>width<td>int<td><p>width of positioned rectangle<tr><td>height<td>int<td><p>height of positioned rectangle</table><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.set_anchor_rect href=#zxdg_positioner_v6.set_anchor_rect>zxdg_positioner_v6.set_anchor_rect</a></h3><p class=summary>set the anchor rectangle within the parent surface</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Specify the anchor rectangle within the parent surface that the child
+surface will be placed relative to. The rectangle is relative to the
+window geometry as defined by <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.set_window_geometry>xdg_surface.set_window_geometry</a></b> of the
+parent surface. The rectangle must be at least 1x1 large.<p>When the <b><a href=/docs/wayland/xdg-shell/#xdg_positioner>xdg_positioner</a></b> object is used to position a child surface, the
+anchor rectangle may not extend outside the window geometry of the
+positioned child's parent surface.<p>If a zero or negative size is set the invalid_input error is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>x<td>int<td><p>x position of anchor rectangle<tr><td>y<td>int<td><p>y position of anchor rectangle<tr><td>width<td>int<td><p>width of anchor rectangle<tr><td>height<td>int<td><p>height of anchor rectangle</table><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.set_anchor href=#zxdg_positioner_v6.set_anchor>zxdg_positioner_v6.set_anchor</a></h3><p class=summary>set anchor rectangle anchor edges</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Defines a set of edges for the anchor rectangle. These are used to
+derive an anchor point that the child surface will be positioned
+relative to. If two orthogonal edges are specified (e.g. 'top' and
+'left'), then the anchor point will be the intersection of the edges
+(e.g. the top left position of the rectangle); otherwise, the derived
+anchor point will be centered on the specified edge, or in the center of
+the anchor rectangle if no edge is specified.<p>If two parallel anchor edges are specified (e.g. 'left' and 'right'),
+the invalid_input error is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>anchor<td>uint&lt;<b><a href=/docs/wayland/xdg-shell-unstable-v6/#zxdg_positioner_v6.enums.anchor>anchor</a></b>><td><p>bit mask of anchor edges</table><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.set_gravity href=#zxdg_positioner_v6.set_gravity>zxdg_positioner_v6.set_gravity</a></h3><p class=summary>set child surface gravity</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Defines in what direction a surface should be positioned, relative to
+the anchor point of the parent surface. If two orthogonal gravities are
+specified (e.g. 'bottom' and 'right'), then the child surface will be
+placed in the specified direction; otherwise, the child surface will be
+centered over the anchor point on any axis that had no gravity
+specified.<p>If two parallel gravities are specified (e.g. 'left' and 'right'), the
+invalid_input error is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>gravity<td>uint&lt;<b><a href=/docs/wayland/xdg-shell-unstable-v6/#zxdg_positioner_v6.enums.gravity>gravity</a></b>><td><p>bit mask of gravity directions</table><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.set_constraint_adjustment href=#zxdg_positioner_v6.set_constraint_adjustment>zxdg_positioner_v6.set_constraint_adjustment</a></h3><p class=summary>set the adjustment to be done when constrained</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Specify how the window should be positioned if the originally intended
+position caused the surface to be constrained, meaning at least
+partially outside positioning boundaries set by the compositor. The
+adjustment is set by constructing a bitmask describing the adjustment to
+be made when the surface is constrained on that axis.<p>If no bit for one axis is set, the compositor will assume that the child
+surface should not change its position on that axis when constrained.<p>If more than one bit for one axis is set, the order of how adjustments
+are applied is specified in the corresponding adjustment descriptions.<p>The default adjustment is none.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>constraint_adjustment<td>uint<td><p>bit mask of constraint adjustments</table><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.set_offset href=#zxdg_positioner_v6.set_offset>zxdg_positioner_v6.set_offset</a></h3><p class=summary>set surface position offset</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Specify the surface position offset relative to the position of the
+anchor on the anchor rectangle and the anchor on the surface. For
+example if the anchor of the anchor rectangle is at (x, y), the surface
+has the gravity bottom|right, and the offset is (ox, oy), the calculated
+surface position will be (x + ox, y + oy). The offset position of the
+surface is the one used for constraint testing. See
+set_constraint_adjustment.<p>An example use case is placing a popup menu on top of a user interface
+element, while aligning the user interface element of the parent surface
+with some user interface element placed somewhere in the popup surface.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>x<td>int<td><p>surface position x offset<tr><td>y<td>int<td><p>surface position y offset</table><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.enums.error href=#zxdg_positioner_v6.enums.error>zxdg_positioner_v6.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>invalid_input<td>0<td>1<td><p>invalid input provided</table><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.enums.anchor href=#zxdg_positioner_v6.enums.anchor>zxdg_positioner_v6.anchor</a></h3><p class=summary></div><div><b>Bitfield
+Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>none<td>0<td>1<td><p>the center of the anchor rectangle<tr><td>top<td>1<td>1<td><p>the top edge of the anchor rectangle<tr><td>bottom<td>2<td>1<td><p>the bottom edge of the anchor rectangle<tr><td>left<td>4<td>1<td><p>the left edge of the anchor rectangle<tr><td>right<td>8<td>1<td><p>the right edge of the anchor rectangle</table><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.enums.gravity href=#zxdg_positioner_v6.enums.gravity>zxdg_positioner_v6.gravity</a></h3><p class=summary></div><div><b>Bitfield
+Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>none<td>0<td>1<td><p>center over the anchor edge<tr><td>top<td>1<td>1<td><p>position above the anchor edge<tr><td>bottom<td>2<td>1<td><p>position below the anchor edge<tr><td>left<td>4<td>1<td><p>position to the left of the anchor edge<tr><td>right<td>8<td>1<td><p>position to the right of the anchor edge</table><div class=message-head><div class=row><div><h3><a id=zxdg_positioner_v6.enums.constraint_adjustment href=#zxdg_positioner_v6.enums.constraint_adjustment>zxdg_positioner_v6.constraint_adjustment</a></h3><p class=summary>constraint adjustments</div><div><b>Bitfield
+Enum</b><br>Since Version 1</div></div></div><div class=description><p>The constraint adjustment value define ways the compositor will adjust
+the position of the surface, if the unadjusted position would result
+in the surface being partly constrained.<p>Whether a surface is considered 'constrained' is left to the compositor
+to determine. For example, the surface may be partly outside the
+compositor's defined 'work area', thus necessitating the child surface's
+position be adjusted until it is entirely inside the work area.<p>The adjustments can be combined, according to a defined precedence: 1)
+Flip, 2) Slide, 3) Resize.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>none<td>0<td>1<td><p>don't move the child surface when constrained<div class=description><p>Don't alter the surface position even if it is constrained on some
+axis, for example partially outside the edge of a monitor.</div><tr><td>slide_x<td>1<td>1<td><p>move along the x axis until unconstrained<div class=description><p>Slide the surface along the x axis until it is no longer constrained.<p>First try to slide towards the direction of the gravity on the x axis
+until either the edge in the opposite direction of the gravity is
+unconstrained or the edge in the direction of the gravity is
+constrained.<p>Then try to slide towards the opposite direction of the gravity on the
+x axis until either the edge in the direction of the gravity is
+unconstrained or the edge in the opposite direction of the gravity is
+constrained.</div><tr><td>slide_y<td>2<td>1<td><p>move along the y axis until unconstrained<div class=description><p>Slide the surface along the y axis until it is no longer constrained.<p>First try to slide towards the direction of the gravity on the y axis
+until either the edge in the opposite direction of the gravity is
+unconstrained or the edge in the direction of the gravity is
+constrained.<p>Then try to slide towards the opposite direction of the gravity on the
+y axis until either the edge in the direction of the gravity is
+unconstrained or the edge in the opposite direction of the gravity is
+constrained.</div><tr><td>flip_x<td>4<td>1<td><p>invert the anchor and gravity on the x axis<div class=description><p>Invert the anchor and gravity on the x axis if the surface is
+constrained on the x axis. For example, if the left edge of the
+surface is constrained, the gravity is 'left' and the anchor is
+'left', change the gravity to 'right' and the anchor to 'right'.<p>If the adjusted position also ends up being constrained, the resulting
+position of the flip_x adjustment will be the one before the
+adjustment.</div><tr><td>flip_y<td>8<td>1<td><p>invert the anchor and gravity on the y axis<div class=description><p>Invert the anchor and gravity on the y axis if the surface is
+constrained on the y axis. For example, if the bottom edge of the
+surface is constrained, the gravity is 'bottom' and the anchor is
+'bottom', change the gravity to 'top' and the anchor to 'top'.<p>If the adjusted position also ends up being constrained, the resulting
+position of the flip_y adjustment will be the one before the
+adjustment.</div><tr><td>resize_x<td>16<td>1<td><p>horizontally resize the surface<div class=description><p>Resize the surface horizontally so that it is completely
+unconstrained.</div><tr><td>resize_y<td>32<td>1<td><p>vertically resize the surface<div class=description><p>Resize the surface vertically so that it is completely unconstrained.</div></table><div class=interface-head><div class=row><div><h2><a id=zxdg_surface_v6 href=#zxdg_surface_v6>zxdg_surface_v6</a></h2><p class=summary>desktop user interface surface base interface</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>An interface that may be implemented by a <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>, for
+implementations that provide a desktop-style user interface.<p>It provides a base set of functionality required to construct user
+interface elements requiring management by the compositor, such as
+toplevel windows, menus, etc. The types of functionality are split into
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> roles.<p>Creating an <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> does not set the role for a <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>. In order
+to map an <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b>, the client must create a role-specific object
+using, e.g., get_toplevel, get_popup. The <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> for any given
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> can have at most one role, and may not be assigned any role
+not based on <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b>.<p>A role must be assigned before any other requests are made to the
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> object.<p>The client must call <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> on the corresponding <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>
+for the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> state to take effect.<p>Creating an <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> from a <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> which has a buffer attached or
+committed is a client error, and any attempts by a client to attach or
+manipulate a buffer prior to the first <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.configure>xdg_surface.configure</a></b> call must
+also be treated as errors.<p>For a surface to be mapped by the compositor, the following conditions
+must be met: (1) the client has assigned an <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> based role to the
+surface, (2) the client has set and committed the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> state and
+the role dependent state to the surface and (3) the client has committed a
+buffer to the surface.</div><div class=message-head><div class=row><div><h3><a id=zxdg_surface_v6.destroy href=#zxdg_surface_v6.destroy>zxdg_surface_v6.destroy</a></h3><p class=summary>destroy the xdg_surface</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> object. An <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> must only be destroyed
+after its role object has been destroyed. If the role object still
+exists when this request is issued, the <b><a href=/docs/wayland/xdg-shell-unstable-v6/#></a></b>is raised.</div><div class=message-head><div class=row><div><h3><a id=zxdg_surface_v6.get_toplevel href=#zxdg_surface_v6.get_toplevel>zxdg_surface_v6.get_toplevel</a></h3><p class=summary>assign the xdg_toplevel surface role</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>This creates an <b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b> object for the given <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> and gives
+the associated <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> the <b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b> role. If the surface already
+had a role, the <b><a href=/docs/wayland/xdg-shell-unstable-v6/#></a></b>error is raised.<p>See the documentation of <b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b> for more details about what an
+<b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b> is and how it is used.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/xdg-shell-unstable-v6/#zxdg_toplevel_v6>zxdg_toplevel_v6</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_surface_v6.get_popup href=#zxdg_surface_v6.get_popup>zxdg_surface_v6.get_popup</a></h3><p class=summary>assign the xdg_popup surface role</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>This creates an <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> object for the given <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> and gives the
+associated <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> role. If the surface already
+had a role, the <b><a href=/docs/wayland/xdg-shell-unstable-v6/#></a></b>error is raised.<p>See the documentation of <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> for more details about what an
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> is and how it is used.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/xdg-shell-unstable-v6/#zxdg_popup_v6>zxdg_popup_v6</a></b>><td><p><tr><td>parent<td>object&lt;<b><a href=/docs/wayland/xdg-shell-unstable-v6/#zxdg_surface_v6>zxdg_surface_v6</a></b>><td><p><tr><td>positioner<td>object&lt;<b><a href=/docs/wayland/xdg-shell-unstable-v6/#zxdg_positioner_v6>zxdg_positioner_v6</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_surface_v6.set_window_geometry href=#zxdg_surface_v6.set_window_geometry>zxdg_surface_v6.set_window_geometry</a></h3><p class=summary>set the new window geometry</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>The window geometry of a surface is its "visible bounds" from the
+user's perspective. Client-side decorations often have invisible
+portions like drop-shadows which should be ignored for the
+purposes of aligning, placing and constraining windows.<p>The window geometry is double-buffered state, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.<p>Once the window geometry of the surface is set, it is not possible to
+unset it, and it will remain the same until set_window_geometry is
+called again, even if a new subsurface or buffer is attached.<p>If never set, the value is the full bounds of the surface,
+including any subsurfaces. This updates dynamically on every
+commit. This unset is meant for extremely simple clients.<p>The arguments are given in the surface-local coordinate space of
+the <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> associated with this <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b>.<p>The width and height must be greater than zero. Setting an invalid size
+will raise an error. When applied, the effective window geometry will be
+the set window geometry clamped to the bounding rectangle of the
+combined geometry of the surface of the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> and the associated
+subsurfaces.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>x<td>int<td><p><tr><td>y<td>int<td><p><tr><td>width<td>int<td><p><tr><td>height<td>int<td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_surface_v6.ack_configure href=#zxdg_surface_v6.ack_configure>zxdg_surface_v6.ack_configure</a></h3><p class=summary>ack a configure event</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>When a configure event is received, if a client commits the
+surface in response to the configure event, then the client
+must make an ack_configure request sometime before the commit
+request, passing along the serial of the configure event.<p>For instance, for toplevel surfaces the compositor might use this
+information to move a surface to the top left only when the client has
+drawn itself for the maximized or fullscreen state.<p>If the client receives multiple configure events before it
+can respond to one, it only has to ack the last configure event.<p>A client is not required to commit immediately after sending
+an ack_configure request - it may even ack_configure several times
+before its next surface commit.<p>A client may send multiple ack_configure requests before committing, but
+only the last request sent before a commit indicates which configure
+event the client really is responding to.<p>If an invalid serial is used, the <b><a href=/docs/wayland/xdg-shell-unstable-v6/#></a></b>error is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>the serial from the configure event</table><div class=message-head><div class=row><div><h3><a id=zxdg_surface_v6.configure href=#zxdg_surface_v6.configure>zxdg_surface_v6.configure</a></h3><p class=summary>suggest a surface change</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The configure event marks the end of a configure sequence. A configure
+sequence is a set of one or more events configuring the state of the
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b>, including the final <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.configure>xdg_surface.configure</a></b> event.<p>Where applicable, <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> surface roles will during a configure
+sequence extend this event as a latched state sent as events before the
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.configure>xdg_surface.configure</a></b> event. Such events should be considered to make up
+a set of atomically applied configuration states, where the
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.configure>xdg_surface.configure</a></b> commits the accumulated state.<p>Clients should arrange their surface for the new states, and then send
+an ack_configure request with the serial sent in this configure event at
+some point before committing the new surface.<p>If the client receives multiple configure events before it can respond
+to one, it is free to discard all but the last event it received.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>serial of the configure event</table><div class=message-head><div class=row><div><h3><a id=zxdg_surface_v6.enums.error href=#zxdg_surface_v6.enums.error>zxdg_surface_v6.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>not_constructed<td>1<td>1<td><p><tr><td>already_constructed<td>2<td>1<td><p><tr><td>unconfigured_buffer<td>3<td>1<td><p></table><div class=interface-head><div class=row><div><h2><a id=zxdg_toplevel_v6 href=#zxdg_toplevel_v6>zxdg_toplevel_v6</a></h2><p class=summary>toplevel surface</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>This interface defines an <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b> role which allows a surface to,
+among other things, set window-like properties such as maximize,
+fullscreen, and minimize, set application-specific metadata like title and
+id, and well as trigger user interactive operations such as interactive
+resize and move.</div><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.destroy href=#zxdg_toplevel_v6.destroy>zxdg_toplevel_v6.destroy</a></h3><p class=summary>destroy the xdg_toplevel</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Unmap and destroy the window. The window will be effectively
+hidden from the user's point of view, and all state like
+maximization, fullscreen, and so on, will be lost.</div><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.set_parent href=#zxdg_toplevel_v6.set_parent>zxdg_toplevel_v6.set_parent</a></h3><p class=summary>set the parent of this surface</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set the "parent" of this surface. This window should be stacked
+above a parent. The parent surface must be mapped as long as this
+surface is mapped.<p>Parent windows should be set on dialogs, toolboxes, or other
+"auxiliary" surfaces, so that the parent is raised when the dialog
+is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>parent<td>nullable
+object&lt;<b><a href=/docs/wayland/xdg-shell-unstable-v6/#zxdg_toplevel_v6>zxdg_toplevel_v6</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.set_title href=#zxdg_toplevel_v6.set_title>zxdg_toplevel_v6.set_title</a></h3><p class=summary>set surface title</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set a short title for the surface.<p>This string may be used to identify the surface in a task bar,
+window list, or other user interface elements provided by the
+compositor.<p>The string must be encoded in UTF-8.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>title<td>string<td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.set_app_id href=#zxdg_toplevel_v6.set_app_id>zxdg_toplevel_v6.set_app_id</a></h3><p class=summary>set application ID</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set an application identifier for the surface.<p>The app ID identifies the general class of applications to which
+the surface belongs. The compositor can use this to group multiple
+surfaces together, or to determine how to launch a new application.<p>For D-Bus activatable applications, the app ID is used as the D-Bus
+service name.<p>The compositor shell will try to group application surfaces together
+by their app ID. As a best practice, it is suggested to select app
+ID's that match the basename of the application's .desktop file.
+For example, "org.freedesktop.FooViewer" where the .desktop file is
+"org.freedesktop.FooViewer.desktop".<p>See the desktop-entry specification [0] for more details on
+application identifiers and how they relate to well-known D-Bus
+names and .desktop files.<p>[0] http://standards.freedesktop.org/desktop-entry-spec/</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>app_id<td>string<td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.show_window_menu href=#zxdg_toplevel_v6.show_window_menu>zxdg_toplevel_v6.show_window_menu</a></h3><p class=summary>show the window menu</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Clients implementing client-side decorations might want to show
+a context menu when right-clicking on the decorations, giving the
+user a menu that they can use to maximize or minimize the window.<p>This request asks the compositor to pop up such a window menu at
+the given position, relative to the local surface coordinates of
+the parent surface. There are no guarantees as to what menu items
+the window menu contains.<p>This request must be used in response to some sort of user action
+like a button press, key press, or touch down event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>seat<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_seat>wl_seat</a></b>><td><p>the wl_seat of the user event<tr><td>serial<td>uint<td><p>the serial of the user event<tr><td>x<td>int<td><p>the x position to pop up the window menu at<tr><td>y<td>int<td><p>the y position to pop up the window menu at</table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.move href=#zxdg_toplevel_v6.move>zxdg_toplevel_v6.move</a></h3><p class=summary>start an interactive move</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Start an interactive, user-driven move of the surface.<p>This request must be used in response to some sort of user action
+like a button press, key press, or touch down event. The passed
+serial is used to determine the type of interactive move (touch,
+pointer, etc).<p>The server may ignore move requests depending on the state of
+the surface (e.g. fullscreen or maximized), or if the passed serial
+is no longer valid.<p>If triggered, the surface will lose the focus of the device
+(<b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b>, <b><a href=/docs/wayland/wayland/#wl_touch>wl_touch</a></b>, etc) used for the move. It is up to the
+compositor to visually indicate that the move is taking place, such as
+updating a pointer cursor, during the move. There is no guarantee
+that the device focus will return when the move is completed.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>seat<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_seat>wl_seat</a></b>><td><p>the wl_seat of the user event<tr><td>serial<td>uint<td><p>the serial of the user event</table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.resize href=#zxdg_toplevel_v6.resize>zxdg_toplevel_v6.resize</a></h3><p class=summary>start an interactive resize</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Start a user-driven, interactive resize of the surface.<p>This request must be used in response to some sort of user action
+like a button press, key press, or touch down event. The passed
+serial is used to determine the type of interactive resize (touch,
+pointer, etc).<p>The server may ignore resize requests depending on the state of
+the surface (e.g. fullscreen or maximized).<p>If triggered, the client will receive configure events with the
+"resize" state enum value and the expected sizes. See the "resize"
+enum value for more details about what is required. The client
+must also acknowledge configure events using "ack_configure". After
+the resize is completed, the client will receive another "configure"
+event without the resize state.<p>If triggered, the surface also will lose the focus of the device
+(<b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b>, <b><a href=/docs/wayland/wayland/#wl_touch>wl_touch</a></b>, etc) used for the resize. It is up to the
+compositor to visually indicate that the resize is taking place,
+such as updating a pointer cursor, during the resize. There is no
+guarantee that the device focus will return when the resize is
+completed.<p>The edges parameter specifies how the surface should be resized,
+and is one of the values of the resize_edge enum. The compositor
+may use this information to update the surface position for
+example when dragging the top left corner. The compositor may also
+use this information to adapt its behavior, e.g. choose an
+appropriate cursor image.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>seat<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_seat>wl_seat</a></b>><td><p>the wl_seat of the user event<tr><td>serial<td>uint<td><p>the serial of the user event<tr><td>edges<td>uint<td><p>which edge or corner is being dragged</table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.set_max_size href=#zxdg_toplevel_v6.set_max_size>zxdg_toplevel_v6.set_max_size</a></h3><p class=summary>set the maximum size</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set a maximum size for the window.<p>The client can specify a maximum size so that the compositor does
+not try to configure the window beyond this size.<p>The width and height arguments are in window geometry coordinates.
+See <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.set_window_geometry>xdg_surface.set_window_geometry</a></b>.<p>Values set in this way are double-buffered, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.<p>The compositor can use this information to allow or disallow
+different states like maximize or fullscreen and draw accurate
+animations.<p>Similarly, a tiling window manager may use this information to
+place and resize client windows in a more effective way.<p>The client should not rely on the compositor to obey the maximum
+size. The compositor may decide to ignore the values set by the
+client and request a larger size.<p>If never set, or a value of zero in the request, means that the
+client has no expected maximum size in the given dimension.
+As a result, a client wishing to reset the maximum size
+to an unspecified state can use zero for width and height in the
+request.<p>Requesting a maximum size to be smaller than the minimum size of
+a surface is illegal and will result in a protocol error.<p>The width and height must be greater than or equal to zero. Using
+strictly negative values for width and height will result in the
+<b><a href=/docs/wayland/xdg-shell-unstable-v6/#></a></b>error being raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>width<td>int<td><p><tr><td>height<td>int<td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.set_min_size href=#zxdg_toplevel_v6.set_min_size>zxdg_toplevel_v6.set_min_size</a></h3><p class=summary>set the minimum size</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set a minimum size for the window.<p>The client can specify a minimum size so that the compositor does
+not try to configure the window below this size.<p>The width and height arguments are in window geometry coordinates.
+See <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.set_window_geometry>xdg_surface.set_window_geometry</a></b>.<p>Values set in this way are double-buffered, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.<p>The compositor can use this information to allow or disallow
+different states like maximize or fullscreen and draw accurate
+animations.<p>Similarly, a tiling window manager may use this information to
+place and resize client windows in a more effective way.<p>The client should not rely on the compositor to obey the minimum
+size. The compositor may decide to ignore the values set by the
+client and request a smaller size.<p>If never set, or a value of zero in the request, means that the
+client has no expected minimum size in the given dimension.
+As a result, a client wishing to reset the minimum size
+to an unspecified state can use zero for width and height in the
+request.<p>Requesting a minimum size to be larger than the maximum size of
+a surface is illegal and will result in a protocol error.<p>The width and height must be greater than or equal to zero. Using
+strictly negative values for width and height will result in the
+<b><a href=/docs/wayland/xdg-shell-unstable-v6/#></a></b>error being raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>width<td>int<td><p><tr><td>height<td>int<td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.set_maximized href=#zxdg_toplevel_v6.set_maximized>zxdg_toplevel_v6.set_maximized</a></h3><p class=summary>maximize the window</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Maximize the surface.<p>After requesting that the surface should be maximized, the compositor
+will respond by emitting a configure event with the "maximized" state
+and the required window geometry. The client should then update its
+content, drawing it in a maximized state, i.e. without shadow or other
+decoration outside of the window geometry. The client must also
+acknowledge the configure when committing the new content (see
+ack_configure).<p>It is up to the compositor to decide how and where to maximize the
+surface, for example which output and what region of the screen should
+be used.<p>If the surface was already maximized, the compositor will still emit
+a configure event with the "maximized" state.<p>Note that unrelated compositor side state changes may cause
+configure events to be emitted at any time, meaning trying to
+match this request to a specific future configure event is
+futile.</div><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.unset_maximized href=#zxdg_toplevel_v6.unset_maximized>zxdg_toplevel_v6.unset_maximized</a></h3><p class=summary>unmaximize the window</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Unmaximize the surface.<p>After requesting that the surface should be unmaximized, the compositor
+will respond by emitting a configure event without the "maximized"
+state. If available, the compositor will include the window geometry
+dimensions the window had prior to being maximized in the configure
+request. The client must then update its content, drawing it in a
+regular state, i.e. potentially with shadow, etc. The client must also
+acknowledge the configure when committing the new content (see
+ack_configure).<p>It is up to the compositor to position the surface after it was
+unmaximized; usually the position the surface had before maximizing, if
+applicable.<p>If the surface was already not maximized, the compositor will still
+emit a configure event without the "maximized" state.<p>Note that unrelated changes in the state of compositor may cause
+configure events to be emitted by the compositor between processing
+this request and emitting corresponding configure event, so trying
+to match the request with the event is futile.</div><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.set_fullscreen href=#zxdg_toplevel_v6.set_fullscreen>zxdg_toplevel_v6.set_fullscreen</a></h3><p class=summary>set the window as fullscreen on a monitor</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Make the surface fullscreen.<p>You can specify an output that you would prefer to be fullscreen.
+If this value is NULL, it's up to the compositor to choose which
+display will be used to map this surface.<p>If the surface doesn't cover the whole output, the compositor will
+position the surface in the center of the output and compensate with
+black borders filling the rest of the output.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>output<td>nullable
+object&lt;<b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.unset_fullscreen href=#zxdg_toplevel_v6.unset_fullscreen>zxdg_toplevel_v6.unset_fullscreen</a></h3><p class=summary></div><div><b>Request</b><br>Since Version 1</div></div></div><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.set_minimized href=#zxdg_toplevel_v6.set_minimized>zxdg_toplevel_v6.set_minimized</a></h3><p class=summary>set the window as minimized</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Request that the compositor minimize your surface. There is no
+way to know if the surface is currently minimized, nor is there
+any way to unset minimization on this surface.<p>If you are looking to throttle redrawing when minimized, please
+instead use the <b><a href=/docs/wayland/wayland/#wl_surface.frame>wl_surface.frame</a></b> event for this, as this will
+also work with live previews on windows in Alt-Tab, Expose or
+similar compositor features.</div><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.configure href=#zxdg_toplevel_v6.configure>zxdg_toplevel_v6.configure</a></h3><p class=summary>suggest a surface change</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This configure event asks the client to resize its toplevel surface or
+to change its state. The configured state should not be applied
+immediately. See <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.configure>xdg_surface.configure</a></b> for details.<p>The width and height arguments specify a hint to the window
+about how its surface should be resized in window geometry
+coordinates. See set_window_geometry.<p>If the width or height arguments are zero, it means the client
+should decide its own window dimension. This may happen when the
+compositor needs to configure the state of the surface but doesn't
+have any information about any previous or expected dimension.<p>The states listed in the event specify how the width/height
+arguments should be interpreted, and possibly how it should be
+drawn.<p>Clients must send an ack_configure in response to this event. See
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.configure>xdg_surface.configure</a></b> and <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.ack_configure>xdg_surface.ack_configure</a></b> for details.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>width<td>int<td><p><tr><td>height<td>int<td><p><tr><td>states<td>array<td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.close href=#zxdg_toplevel_v6.close>zxdg_toplevel_v6.close</a></h3><p class=summary>surface wants to be closed</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The close event is sent by the compositor when the user
+wants the surface to be closed. This should be equivalent to
+the user clicking the close button in client-side decorations,
+if your application has any.<p>This is only a request that the user intends to close the
+window. The client may choose to ignore this request, or show
+a dialog to ask the user to save their data, etc.</div><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.enums.resize_edge href=#zxdg_toplevel_v6.enums.resize_edge>zxdg_toplevel_v6.resize_edge</a></h3><p class=summary>edge values for resizing</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>These values are used to indicate which edge of a surface
+is being dragged in a resize operation.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>none<td>0<td>1<td><p><tr><td>top<td>1<td>1<td><p><tr><td>bottom<td>2<td>1<td><p><tr><td>left<td>4<td>1<td><p><tr><td>top_left<td>5<td>1<td><p><tr><td>bottom_left<td>6<td>1<td><p><tr><td>right<td>8<td>1<td><p><tr><td>top_right<td>9<td>1<td><p><tr><td>bottom_right<td>10<td>1<td><p></table><div class=message-head><div class=row><div><h3><a id=zxdg_toplevel_v6.enums.state href=#zxdg_toplevel_v6.enums.state>zxdg_toplevel_v6.state</a></h3><p class=summary>types of state on the surface</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>The different state values used on the surface. This is designed for
+state values like maximized, fullscreen. It is paired with the
+configure event to ensure that both the client and the compositor
+setting the state can be synchronized.<p>States set in this way are double-buffered, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>maximized<td>1<td>1<td><p>the surface is maximized<div class=description><p>The surface is maximized. The window geometry specified in the configure
+event must be obeyed by the client. If the window geometry is not obyed,
+the <b><a href=/docs/wayland/xdg-shell-unstable-v6/#></a></b>error is raised.</div><tr><td>fullscreen<td>2<td>1<td><p>the surface is fullscreen<div class=description><p>The surface is fullscreen. See set_fullscreen for more information.</div><tr><td>resizing<td>3<td>1<td><p>the surface is being resized<div class=description><p>The surface is being resized. The window geometry specified in the
+configure event is a maximum; the client cannot resize beyond it. If the
+client attempts to resize above it, the <b><a href=/docs/wayland/xdg-shell-unstable-v6/#></a></b>error is raised.
+Clients that have aspect ratio or cell sizing configuration can use
+a smaller size, however.</div><tr><td>activated<td>4<td>1<td><p>the surface is now activated<div class=description><p>Client window decorations should be painted as if the window is
+active. Do not assume this means that the window actually has
+keyboard or pointer focus.</div></table><div class=interface-head><div class=row><div><h2><a id=zxdg_popup_v6 href=#zxdg_popup_v6>zxdg_popup_v6</a></h2><p class=summary>short-lived, popup surfaces for menus</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>A popup surface is a short-lived, temporary surface. It can be used to
+implement for example menus, popovers, tooltips and other similar user
+interface concepts.<p>A popup can be made to take an explicit grab. See <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup.grab>xdg_popup.grab</a></b> for
+details.<p>When the popup is dismissed, a popup_done event will be sent out, and at
+the same time the surface will be unmapped. See the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup.popup_done>xdg_popup.popup_done</a></b>
+event for details.<p>Explicitly destroying the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> object will also dismiss the popup and
+unmap the surface. Clients that want to dismiss the popup when another
+surface of their own is clicked should dismiss the popup using the destroy
+request.<p>The parent surface must have either the <b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b> or <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> surface
+role.<p>A newly created <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> will be stacked on top of all previously created
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> surfaces associated with the same <b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b>.<p>The parent of an <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> must be mapped (see the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b>
+description) before the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> itself.<p>The x and y arguments passed when creating the popup object specify
+where the top left of the popup should be placed, relative to the
+local surface coordinates of the parent surface. See
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.get_popup>xdg_surface.get_popup</a></b>. An <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> must intersect with or be at least
+partially adjacent to its parent surface.<p>The client must call <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> on the corresponding <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>
+for the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> state to take effect.</div><div class=message-head><div class=row><div><h3><a id=zxdg_popup_v6.destroy href=#zxdg_popup_v6.destroy>zxdg_popup_v6.destroy</a></h3><p class=summary>remove xdg_popup interface</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>This destroys the popup. Explicitly destroying the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b>
+object will also dismiss the popup, and unmap the surface.<p>If this <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> is not the "topmost" popup, a protocol error
+will be sent.</div><div class=message-head><div class=row><div><h3><a id=zxdg_popup_v6.grab href=#zxdg_popup_v6.grab>zxdg_popup_v6.grab</a></h3><p class=summary>make the popup take an explicit grab</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>This request makes the created popup take an explicit grab. An explicit
+grab will be dismissed when the user dismisses the popup, or when the
+client destroys the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b>. This can be done by the user clicking
+outside the surface, using the keyboard, or even locking the screen
+through closing the lid or a timeout.<p>If the compositor denies the grab, the popup will be immediately
+dismissed.<p>This request must be used in response to some sort of user action like a
+button press, key press, or touch down event. The serial number of the
+event should be passed as 'serial'.<p>The parent of a grabbing popup must either be an <b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b> surface or
+another <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> with an explicit grab. If the parent is another
+<b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> it means that the popups are nested, with this popup now being
+the topmost popup.<p>Nested popups must be destroyed in the reverse order they were created
+in, e.g. the only popup you are allowed to destroy at all times is the
+topmost one.<p>When compositors choose to dismiss a popup, they may dismiss every
+nested grabbing popup as well. When a compositor dismisses popups, it
+will follow the same dismissing order as required from the client.<p>The parent of a grabbing popup must either be another <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> with an
+active explicit grab, or an <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> or <b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b>, if there are no
+explicit grabs already taken.<p>If the topmost grabbing popup is destroyed, the grab will be returned to
+the parent of the popup, if that parent previously had an explicit grab.<p>If the parent is a grabbing popup which has already been dismissed, this
+popup will be immediately dismissed. If the parent is a popup that did
+not take an explicit grab, an error will be raised.<p>During a popup grab, the client owning the grab will receive pointer
+and touch events for all their surfaces as normal (similar to an
+"owner-events" grab in X11 parlance), while the top most grabbing popup
+will always have keyboard focus.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>seat<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_seat>wl_seat</a></b>><td><p>the wl_seat of the user event<tr><td>serial<td>uint<td><p>the serial of the user event</table><div class=message-head><div class=row><div><h3><a id=zxdg_popup_v6.configure href=#zxdg_popup_v6.configure>zxdg_popup_v6.configure</a></h3><p class=summary>configure the popup surface</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event asks the popup surface to configure itself given the
+configuration. The configured state should not be applied immediately.
+See <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface.configure>xdg_surface.configure</a></b> for details.<p>The x and y arguments represent the position the popup was placed at
+given the <b><a href=/docs/wayland/xdg-shell/#xdg_positioner>xdg_positioner</a></b> rule, relative to the upper left corner of the
+window geometry of the parent surface.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>x<td>int<td><p>x position relative to parent surface window geometry<tr><td>y<td>int<td><p>y position relative to parent surface window geometry<tr><td>width<td>int<td><p>window geometry width<tr><td>height<td>int<td><p>window geometry height</table><div class=message-head><div class=row><div><h3><a id=zxdg_popup_v6.popup_done href=#zxdg_popup_v6.popup_done>zxdg_popup_v6.popup_done</a></h3><p class=summary>popup interaction is done</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The popup_done event is sent out when a popup is dismissed by the
+compositor. The client should destroy the <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_popup>xdg_popup</a></b> object at this
+point.</div><div class=message-head><div class=row><div><h3><a id=zxdg_popup_v6.enums.error href=#zxdg_popup_v6.enums.error>zxdg_popup_v6.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>invalid_grab<td>0<td>1<td><p>tried to grab after being mapped</table><div class=interface-head><h2>Copyright</h2></div><div class=copyright><p><br>Copyright © 2008-2013 Kristian Høgsberg<br>Copyright © 2013 Rafael Antognolli<br>Copyright © 2013 Jasper St. Pierre<br>Copyright © 2010-2013 Intel Corporation<br><br>Permission is hereby granted, free of charge, to any person obtaining a<br>copy of this software and associated documentation files (the "Software"),<br>to deal in the Software without restriction, including without limitation<br>the rights to use, copy, modify, merge, publish, distribute, sublicense,<br>and/or sell copies of the Software, and to permit persons to whom the<br>Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice (including the next<br>paragraph) shall be included in all copies or substantial portions of the<br>Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br>THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br>DEALINGS IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+<span class=line><a href=/impressum>Impressum</a>,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>

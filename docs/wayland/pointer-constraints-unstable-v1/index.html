@@ -1,0 +1,122 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title></title><link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><input type=checkbox id=toggle><div class=nav-bar><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=menu><label for=toggle class=menu-button><svg class="menu-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="5" height="1"/><rect x="0" y="2" width="5" height="1"/><rect x="0" y="4" width="5" height="1"/></svg>
+<svg class="close-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><line x1="0" y1="0" x2="5" y2="5"/><line x1="0" y1="5" x2="5" y2="0"/></svg></label></div></div></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a>
+<a href=/consulting>consulting</a></div></nav></header><main class="wayland pointer-constraints-unstable-v1"><div class=title><h1>pointer-constraints-unstable-v1</h1><p class=summary>protocol for constraining pointer motions</div><div class=content><div class=description><p>This protocol specifies a set of interfaces used for adding constraints to
+the motion of a pointer. Possible constraints include confining pointer
+motions to a given region, or locking it to its current position.<p>In order to constrain the pointer, a client must first bind the global
+interface "wp_pointer_constraints" which, if a compositor supports pointer
+constraints, is exposed by the registry. Using the bound global object, the
+client uses the request that corresponds to the type of constraint it wants
+to make. See wp_pointer_constraints for more details.<p>Warning! The protocol described in this file is experimental and backward
+incompatible changes may be made. Backward compatible changes may be added
+together with the corresponding interface version bump. Backward
+incompatible changes are done by bumping the version number in the protocol
+and interface names and resetting the interface version. Once the protocol
+is to be declared stable, the 'z' prefix and the version number in the
+protocol and interface names are removed and the interface version number is
+reset.</div><div class=interface-head><div class=row><div><h2><a id=zwp_pointer_constraints_v1 href=#zwp_pointer_constraints_v1>zwp_pointer_constraints_v1</a></h2><p class=summary>constrain the movement of a pointer</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>The global interface exposing pointer constraining functionality. It
+exposes two requests: lock_pointer for locking the pointer to its
+position, and confine_pointer for locking the pointer to a region.<p>The lock_pointer and confine_pointer requests create the objects
+wp_locked_pointer and wp_confined_pointer respectively, and the client can
+use these objects to interact with the lock.<p>For any surface, only one lock or confinement may be active across all
+<b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b> objects of the same seat. If a lock or confinement is requested
+when another lock or confinement is active or requested on the same surface
+and with any of the <b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b> objects of the same seat, an
+'already_constrained' error will be raised.</div><div class=message-head><div class=row><div><h3><a id=zwp_pointer_constraints_v1.destroy href=#zwp_pointer_constraints_v1.destroy>zwp_pointer_constraints_v1.destroy</a></h3><p class=summary>destroy the pointer constraints manager object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Used by the client to notify the server that it will no longer use this
+pointer constraints object.</div><div class=message-head><div class=row><div><h3><a id=zwp_pointer_constraints_v1.lock_pointer href=#zwp_pointer_constraints_v1.lock_pointer>zwp_pointer_constraints_v1.lock_pointer</a></h3><p class=summary>lock pointer to a position</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>The lock_pointer request lets the client request to disable movements of
+the virtual pointer (i.e. the cursor), effectively locking the pointer
+to a position. This request may not take effect immediately; in the
+future, when the compositor deems implementation-specific constraints
+are satisfied, the pointer lock will be activated and the compositor
+sends a locked event.<p>The protocol provides no guarantee that the constraints are ever
+satisfied, and does not require the compositor to send an error if the
+constraints cannot ever be satisfied. It is thus possible to request a
+lock that will never activate.<p>There may not be another pointer constraint of any kind requested or
+active on the surface for any of the <b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b> objects of the seat of
+the passed pointer when requesting a lock. If there is, an error will be
+raised. See general pointer lock documentation for more details.<p>The intersection of the region passed with this request and the input
+region of the surface is used to determine where the pointer must be
+in order for the lock to activate. It is up to the compositor whether to
+warp the pointer or require some kind of user interaction for the lock
+to activate. If the region is null the surface input region is used.<p>A surface may receive pointer focus without the lock being activated.<p>The request creates a new object wp_locked_pointer which is used to
+interact with the lock as well as receive updates about its state. See
+the the description of wp_locked_pointer for further information.<p>Note that while a pointer is locked, the <b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b> objects of the
+corresponding seat will not emit any <b><a href=/docs/wayland/wayland/#wl_pointer.motion>wl_pointer.motion</a></b> events, but
+relative motion events will still be emitted via wp_relative_pointer
+objects of the same seat. <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> and <b><a href=/docs/wayland/wayland/#wl_pointer.button>wl_pointer.button</a></b> events
+are unaffected.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/pointer-constraints-unstable-v1/#zwp_locked_pointer_v1>zwp_locked_pointer_v1</a></b>><td><p><tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>surface to lock pointer to<tr><td>pointer<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b>><td><p>the pointer that should be locked<tr><td>region<td>nullable
+object&lt;<b><a href=/docs/wayland/wayland/#wl_region>wl_region</a></b>><td><p>region of surface<tr><td>lifetime<td>uint&lt;<b><a href=/docs/wayland/pointer-constraints-unstable-v1/#zwp_pointer_constraints_v1.enums.lifetime>lifetime</a></b>><td><p>lock lifetime</table><div class=message-head><div class=row><div><h3><a id=zwp_pointer_constraints_v1.confine_pointer href=#zwp_pointer_constraints_v1.confine_pointer>zwp_pointer_constraints_v1.confine_pointer</a></h3><p class=summary>confine pointer to a region</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>The confine_pointer request lets the client request to confine the
+pointer cursor to a given region. This request may not take effect
+immediately; in the future, when the compositor deems implementation-
+specific constraints are satisfied, the pointer confinement will be
+activated and the compositor sends a confined event.<p>The intersection of the region passed with this request and the input
+region of the surface is used to determine where the pointer must be
+in order for the confinement to activate. It is up to the compositor
+whether to warp the pointer or require some kind of user interaction for
+the confinement to activate. If the region is null the surface input
+region is used.<p>The request will create a new object wp_confined_pointer which is used
+to interact with the confinement as well as receive updates about its
+state. See the the description of wp_confined_pointer for further
+information.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/pointer-constraints-unstable-v1/#zwp_confined_pointer_v1>zwp_confined_pointer_v1</a></b>><td><p><tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>surface to lock pointer to<tr><td>pointer<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b>><td><p>the pointer that should be confined<tr><td>region<td>nullable
+object&lt;<b><a href=/docs/wayland/wayland/#wl_region>wl_region</a></b>><td><p>region of surface<tr><td>lifetime<td>uint&lt;<b><a href=/docs/wayland/pointer-constraints-unstable-v1/#zwp_pointer_constraints_v1.enums.lifetime>lifetime</a></b>><td><p>confinement lifetime</table><div class=message-head><div class=row><div><h3><a id=zwp_pointer_constraints_v1.enums.error href=#zwp_pointer_constraints_v1.enums.error>zwp_pointer_constraints_v1.error</a></h3><p class=summary>wp_pointer_constraints error values</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>These errors can be emitted in response to wp_pointer_constraints
+requests.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>already_constrained<td>1<td>1<td><p>pointer constraint already requested on that surface</table><div class=message-head><div class=row><div><h3><a id=zwp_pointer_constraints_v1.enums.lifetime href=#zwp_pointer_constraints_v1.enums.lifetime>zwp_pointer_constraints_v1.lifetime</a></h3><p class=summary>constraint lifetime</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>These values represent different lifetime semantics. They are passed
+as arguments to the factory requests to specify how the constraint
+lifetimes should be managed.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>oneshot<td>1<td>1<td><p>the pointer constraint is defunct once deactivated<div class=description><p>A oneshot pointer constraint will never reactivate once it has been
+deactivated. See the corresponding deactivation event
+(wp_locked_pointer.unlocked and wp_confined_pointer.unconfined) for
+details.</div><tr><td>persistent<td>2<td>1<td><p>the pointer constraint may reactivate<div class=description><p>A persistent pointer constraint may again reactivate once it has
+been deactivated. See the corresponding deactivation event
+(wp_locked_pointer.unlocked and wp_confined_pointer.unconfined) for
+details.</div></table><div class=interface-head><div class=row><div><h2><a id=zwp_locked_pointer_v1 href=#zwp_locked_pointer_v1>zwp_locked_pointer_v1</a></h2><p class=summary>receive relative pointer motion events</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>The wp_locked_pointer interface represents a locked pointer state.<p>While the lock of this object is active, the <b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b> objects of the
+associated seat will not emit any <b><a href=/docs/wayland/wayland/#wl_pointer.motion>wl_pointer.motion</a></b> events.<p>This object will send the event 'locked' when the lock is activated.
+Whenever the lock is activated, it is guaranteed that the locked surface
+will already have received pointer focus and that the pointer will be
+within the region passed to the request creating this object.<p>To unlock the pointer, send the destroy request. This will also destroy
+the wp_locked_pointer object.<p>If the compositor decides to unlock the pointer the unlocked event is
+sent. See wp_locked_pointer.unlock for details.<p>When unlocking, the compositor may warp the cursor position to the set
+cursor position hint. If it does, it will not result in any relative
+motion events emitted via wp_relative_pointer.<p>If the surface the lock was requested on is destroyed and the lock is not
+yet activated, the wp_locked_pointer object is now defunct and must be
+destroyed.</div><div class=message-head><div class=row><div><h3><a id=zwp_locked_pointer_v1.destroy href=#zwp_locked_pointer_v1.destroy>zwp_locked_pointer_v1.destroy</a></h3><p class=summary>destroy the locked pointer object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy the locked pointer object. If applicable, the compositor will
+unlock the pointer.</div><div class=message-head><div class=row><div><h3><a id=zwp_locked_pointer_v1.set_cursor_position_hint href=#zwp_locked_pointer_v1.set_cursor_position_hint>zwp_locked_pointer_v1.set_cursor_position_hint</a></h3><p class=summary>set the pointer cursor position hint</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set the cursor position hint relative to the top left corner of the
+surface.<p>If the client is drawing its own cursor, it should update the position
+hint to the position of its own cursor. A compositor may use this
+information to warp the pointer upon unlock in order to avoid pointer
+jumps.<p>The cursor position hint is double-buffered state, see
+<b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>surface_x<td>fixed<td><p>surface-local x coordinate<tr><td>surface_y<td>fixed<td><p>surface-local y coordinate</table><div class=message-head><div class=row><div><h3><a id=zwp_locked_pointer_v1.set_region href=#zwp_locked_pointer_v1.set_region>zwp_locked_pointer_v1.set_region</a></h3><p class=summary>set a new lock region</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set a new region used to lock the pointer.<p>The new lock region is double-buffered, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.<p>For details about the lock region, see wp_locked_pointer.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>region<td>nullable
+object&lt;<b><a href=/docs/wayland/wayland/#wl_region>wl_region</a></b>><td><p>region of surface</table><div class=message-head><div class=row><div><h3><a id=zwp_locked_pointer_v1.locked href=#zwp_locked_pointer_v1.locked>zwp_locked_pointer_v1.locked</a></h3><p class=summary>lock activation event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that the pointer lock of the seat's pointer is activated.</div><div class=message-head><div class=row><div><h3><a id=zwp_locked_pointer_v1.unlocked href=#zwp_locked_pointer_v1.unlocked>zwp_locked_pointer_v1.unlocked</a></h3><p class=summary>lock deactivation event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that the pointer lock of the seat's pointer is no longer
+active. If this is a oneshot pointer lock (see
+wp_pointer_constraints.lifetime) this object is now defunct and should
+be destroyed. If this is a persistent pointer lock (see
+wp_pointer_constraints.lifetime) this pointer lock may again
+reactivate in the future.</div><div class=interface-head><div class=row><div><h2><a id=zwp_confined_pointer_v1 href=#zwp_confined_pointer_v1>zwp_confined_pointer_v1</a></h2><p class=summary>confined pointer object</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>The wp_confined_pointer interface represents a confined pointer state.<p>This object will send the event 'confined' when the confinement is
+activated. Whenever the confinement is activated, it is guaranteed that
+the surface the pointer is confined to will already have received pointer
+focus and that the pointer will be within the region passed to the request
+creating this object. It is up to the compositor to decide whether this
+requires some user interaction and if the pointer will warp to within the
+passed region if outside.<p>To unconfine the pointer, send the destroy request. This will also destroy
+the wp_confined_pointer object.<p>If the compositor decides to unconfine the pointer the unconfined event is
+sent. The wp_confined_pointer object is at this point defunct and should
+be destroyed.</div><div class=message-head><div class=row><div><h3><a id=zwp_confined_pointer_v1.destroy href=#zwp_confined_pointer_v1.destroy>zwp_confined_pointer_v1.destroy</a></h3><p class=summary>destroy the confined pointer object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy the confined pointer object. If applicable, the compositor will
+unconfine the pointer.</div><div class=message-head><div class=row><div><h3><a id=zwp_confined_pointer_v1.set_region href=#zwp_confined_pointer_v1.set_region>zwp_confined_pointer_v1.set_region</a></h3><p class=summary>set a new confine region</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set a new region used to confine the pointer.<p>The new confine region is double-buffered, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.<p>If the confinement is active when the new confinement region is applied
+and the pointer ends up outside of newly applied region, the pointer may
+warped to a position within the new confinement region. If warped, a
+<b><a href=/docs/wayland/wayland/#wl_pointer.motion>wl_pointer.motion</a></b> event will be emitted, but no
+wp_relative_pointer.relative_motion event.<p>The compositor may also, instead of using the new region, unconfine the
+pointer.<p>For details about the confine region, see wp_confined_pointer.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>region<td>nullable
+object&lt;<b><a href=/docs/wayland/wayland/#wl_region>wl_region</a></b>><td><p>region of surface</table><div class=message-head><div class=row><div><h3><a id=zwp_confined_pointer_v1.confined href=#zwp_confined_pointer_v1.confined>zwp_confined_pointer_v1.confined</a></h3><p class=summary>pointer confined</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that the pointer confinement of the seat's pointer is
+activated.</div><div class=message-head><div class=row><div><h3><a id=zwp_confined_pointer_v1.unconfined href=#zwp_confined_pointer_v1.unconfined>zwp_confined_pointer_v1.unconfined</a></h3><p class=summary>pointer unconfined</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that the pointer confinement of the seat's pointer is no
+longer active. If this is a oneshot pointer confinement (see
+wp_pointer_constraints.lifetime) this object is now defunct and should
+be destroyed. If this is a persistent pointer confinement (see
+wp_pointer_constraints.lifetime) this pointer confinement may again
+reactivate in the future.</div><div class=interface-head><h2>Copyright</h2></div><div class=copyright><p><br>Copyright © 2014 Jonas Ådahl<br>Copyright © 2015 Red Hat Inc.<br><br>Permission is hereby granted, free of charge, to any person obtaining a<br>copy of this software and associated documentation files (the "Software"),<br>to deal in the Software without restriction, including without limitation<br>the rights to use, copy, modify, merge, publish, distribute, sublicense,<br>and/or sell copies of the Software, and to permit persons to whom the<br>Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice (including the next<br>paragraph) shall be included in all copies or substantial portions of the<br>Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br>THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br>DEALINGS IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+<span class=line><a href=/impressum>Impressum</a>,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>

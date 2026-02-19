@@ -1,0 +1,67 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title></title><link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><input type=checkbox id=toggle><div class=nav-bar><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=menu><label for=toggle class=menu-button><svg class="menu-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="5" height="1"/><rect x="0" y="2" width="5" height="1"/><rect x="0" y="4" width="5" height="1"/></svg>
+<svg class="close-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><line x1="0" y1="0" x2="5" y2="5"/><line x1="0" y1="5" x2="5" y2="0"/></svg></label></div></div></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a>
+<a href=/consulting>consulting</a></div></nav></header><main class="wayland xdg-foreign-unstable-v1"><div class=title><h1>xdg-foreign-unstable-v1</h1><p class=summary>Protocol for exporting xdg surface handles</div><div class=content><div class=description><p>This protocol specifies a way for making it possible to reference a surface
+of a different client. With such a reference, a client can, by using the
+interfaces provided by this protocol, manipulate the relationship between
+its own surfaces and the surface of some other client. For example, stack
+some of its own surface above the other clients surface.<p>In order for a client A to get a reference of a surface of client B, client
+B must first export its surface using xdg_exporter.export. Upon doing this,
+client B will receive a handle (a unique string) that it may share with
+client A in some way (for example D-Bus). After client A has received the
+handle from client B, it may use xdg_importer.import to create a reference
+to the surface client B just exported. See the corresponding requests for
+details.<p>A possible use case for this is out-of-process dialogs. For example when a
+sandboxed client without file system access needs the user to select a file
+on the file system, given sandbox environment support, it can export its
+surface, passing the exported surface handle to an unsandboxed process that
+can show a file browser dialog and stack it above the sandboxed client's
+surface.<p>Warning! The protocol described in this file is experimental and backward
+incompatible changes may be made. Backward compatible changes may be added
+together with the corresponding interface version bump. Backward
+incompatible changes are done by bumping the version number in the protocol
+and interface names and resetting the interface version. Once the protocol
+is to be declared stable, the 'z' prefix and the version number in the
+protocol and interface names are removed and the interface version number is
+reset.</div><div class=interface-head><div class=row><div><h2><a id=zxdg_exporter_v1 href=#zxdg_exporter_v1>zxdg_exporter_v1</a></h2><p class=summary>interface for exporting surfaces</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>A global interface used for exporting surfaces that can later be imported
+using xdg_importer.</div><div class=message-head><div class=row><div><h3><a id=zxdg_exporter_v1.destroy href=#zxdg_exporter_v1.destroy>zxdg_exporter_v1.destroy</a></h3><p class=summary>destroy the xdg_exporter object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Notify the compositor that the xdg_exporter object will no longer be
+used.</div><div class=message-head><div class=row><div><h3><a id=zxdg_exporter_v1.export href=#zxdg_exporter_v1.export>zxdg_exporter_v1.export</a></h3><p class=summary>export a surface</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>The export request exports the passed surface so that it can later be
+imported via xdg_importer. When called, a new xdg_exported object will
+be created and xdg_exported.handle will be sent immediately. See the
+corresponding interface and event for details.<p>A surface may be exported multiple times, and each exported handle may
+be used to create an xdg_imported multiple times. Only <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b>
+surfaces may be exported.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/xdg-foreign-unstable-v1/#zxdg_exported_v1>zxdg_exported_v1</a></b>><td><p>the new xdg_exported object<tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>the surface to export</table><div class=interface-head><div class=row><div><h2><a id=zxdg_importer_v1 href=#zxdg_importer_v1>zxdg_importer_v1</a></h2><p class=summary>interface for importing surfaces</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>A global interface used for importing surfaces exported by xdg_exporter.
+With this interface, a client can create a reference to a surface of
+another client.</div><div class=message-head><div class=row><div><h3><a id=zxdg_importer_v1.destroy href=#zxdg_importer_v1.destroy>zxdg_importer_v1.destroy</a></h3><p class=summary>destroy the xdg_importer object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Notify the compositor that the xdg_importer object will no longer be
+used.</div><div class=message-head><div class=row><div><h3><a id=zxdg_importer_v1.import href=#zxdg_importer_v1.import>zxdg_importer_v1.import</a></h3><p class=summary>import a surface</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>The import request imports a surface from any client given a handle
+retrieved by exporting said surface using xdg_exporter.export. When
+called, a new xdg_imported object will be created. This new object
+represents the imported surface, and the importing client can
+manipulate its relationship using it. See xdg_imported for details.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/xdg-foreign-unstable-v1/#zxdg_imported_v1>zxdg_imported_v1</a></b>><td><p>the new xdg_imported object<tr><td>handle<td>string<td><p>the exported surface handle</table><div class=interface-head><div class=row><div><h2><a id=zxdg_exported_v1 href=#zxdg_exported_v1>zxdg_exported_v1</a></h2><p class=summary>an exported surface handle</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>An xdg_exported object represents an exported reference to a surface. The
+exported surface may be referenced as long as the xdg_exported object not
+destroyed. Destroying the xdg_exported invalidates any relationship the
+importer may have established using xdg_imported.</div><div class=message-head><div class=row><div><h3><a id=zxdg_exported_v1.destroy href=#zxdg_exported_v1.destroy>zxdg_exported_v1.destroy</a></h3><p class=summary>unexport the exported surface</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Revoke the previously exported surface. This invalidates any
+relationship the importer may have set up using the xdg_imported created
+given the handle sent via xdg_exported.handle.</div><div class=message-head><div class=row><div><h3><a id=zxdg_exported_v1.handle href=#zxdg_exported_v1.handle>zxdg_exported_v1.handle</a></h3><p class=summary>the exported surface handle</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The handle event contains the unique handle of this exported surface
+reference. It may be shared with any client, which then can use it to
+import the surface by calling xdg_importer.import. A handle may be
+used to import the surface multiple times.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>handle<td>string<td><p>the exported surface handle</table><div class=interface-head><div class=row><div><h2><a id=zxdg_imported_v1 href=#zxdg_imported_v1>zxdg_imported_v1</a></h2><p class=summary>an imported surface handle</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>An xdg_imported object represents an imported reference to surface exported
+by some client. A client can use this interface to manipulate
+relationships between its own surfaces and the imported surface.</div><div class=message-head><div class=row><div><h3><a id=zxdg_imported_v1.destroy href=#zxdg_imported_v1.destroy>zxdg_imported_v1.destroy</a></h3><p class=summary>destroy the xdg_imported object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Notify the compositor that it will no longer use the xdg_imported
+object. Any relationship that may have been set up will at this point
+be invalidated.</div><div class=message-head><div class=row><div><h3><a id=zxdg_imported_v1.set_parent_of href=#zxdg_imported_v1.set_parent_of>zxdg_imported_v1.set_parent_of</a></h3><p class=summary>set as the parent of some surface</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set the imported surface as the parent of some surface of the client.
+The passed surface must be a toplevel <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_surface>xdg_surface</a></b>. Calling this function
+sets up a surface to surface relation with the same stacking and positioning
+semantics as <b><a href=/docs/wayland/xdg-shell-unstable-v5/#></a></b>.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>the child surface</table><div class=message-head><div class=row><div><h3><a id=zxdg_imported_v1.destroyed href=#zxdg_imported_v1.destroyed>zxdg_imported_v1.destroyed</a></h3><p class=summary>the imported surface handle has been destroyed</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The imported surface handle has been destroyed and any relationship set
+up has been invalidated. This may happen for various reasons, for
+example if the exported surface or the exported surface handle has been
+destroyed, if the handle used for importing was invalid.</div><div class=interface-head><h2>Copyright</h2></div><div class=copyright><p><br>Copyright © 2015-2016 Red Hat Inc.<br><br>Permission is hereby granted, free of charge, to any person obtaining a<br>copy of this software and associated documentation files (the "Software"),<br>to deal in the Software without restriction, including without limitation<br>the rights to use, copy, modify, merge, publish, distribute, sublicense,<br>and/or sell copies of the Software, and to permit persons to whom the<br>Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice (including the next<br>paragraph) shall be included in all copies or substantial portions of the<br>Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br>THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br>DEALINGS IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+<span class=line><a href=/impressum>Impressum</a>,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>

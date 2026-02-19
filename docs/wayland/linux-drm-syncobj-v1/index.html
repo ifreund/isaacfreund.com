@@ -1,0 +1,92 @@
+<!doctype html><html lang=en><meta name=viewport content="width=device-width,initial-scale=1"><title></title><link rel=icon href=/if.png><link rel=stylesheet href=/style.css><link rel=alternate href=/blog/feed.xml type=application/atom+xml title="Isaac Freund's Blog"><link rel=alternate href=/poetry/feed.xml type=application/atom+xml title="Isaac Freund's Poetry"><link rel=me href=https://hachyderm.io/@ifreund><header><nav><input type=checkbox id=toggle><div class=nav-bar><div class=nav-home><a href=/><svg viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="2" width="1" height="3"/><path d="M2 0h3v1H3v1h2v1H3v2H2V0z"/><rect x="4" y="4" width="1" height="1"/></svg></a></div><div class=menu><label for=toggle class=menu-button><svg class="menu-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><rect x="0" y="0" width="5" height="1"/><rect x="0" y="2" width="5" height="1"/><rect x="0" y="4" width="5" height="1"/></svg>
+<svg class="close-icon" viewBox="0 0 5 5" shape-rendering="crispEdges"><line x1="0" y1="0" x2="5" y2="5"/><line x1="0" y1="5" x2="5" y2="0"/></svg></label></div></div></div><div class=nav-items><a href=/about>about</a>
+<a href=/blog>blog</a>
+<a href=/software>software</a>
+<a href=/poetry>poetry</a>
+<a href=/consulting>consulting</a></div></nav></header><main class="wayland linux-drm-syncobj-v1"><div class=title><h1>linux-drm-syncobj-v1</h1><p class=summary>protocol for providing explicit synchronization</div><div class=content><div class=description><p>This protocol allows clients to request explicit synchronization for
+buffers. It is tied to the Linux DRM synchronization object framework.<p>Synchronization refers to co-ordination of pipelined operations performed
+on buffers. Most GPU clients will schedule an asynchronous operation to
+render to the buffer, then immediately send the buffer to the compositor
+to be attached to a surface.<p>With implicit synchronization, ensuring that the rendering operation is
+complete before the compositor displays the buffer is an implementation
+detail handled by either the kernel or userspace graphics driver.<p>By contrast, with explicit synchronization, DRM synchronization object
+timeline points mark when the asynchronous operations are complete. When
+submitting a buffer, the client provides a timeline point which will be
+waited on before the compositor accesses the buffer, and another timeline
+point that the compositor will signal when it no longer needs to access the
+buffer contents for the purposes of the surface commit.<p>Linux DRM synchronization objects are documented at:
+https://dri.freedesktop.org/docs/drm/gpu/drm-mm.html#drm-sync-objects<p>Warning! The protocol described in this file is currently in the testing
+phase. Backward compatible changes may be added together with the
+corresponding interface version bump. Backward incompatible changes can
+only be done by creating a new major version of the extension.</div><div class=interface-head><div class=row><div><h2><a id=wp_linux_drm_syncobj_manager_v1 href=#wp_linux_drm_syncobj_manager_v1>wp_linux_drm_syncobj_manager_v1</a></h2><p class=summary>global for providing explicit synchronization</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>This global is a factory interface, allowing clients to request
+explicit synchronization for buffers on a per-surface basis.<p>See <b><a href=/docs/wayland/linux-drm-syncobj-v1/#wp_linux_drm_syncobj_surface_v1>wp_linux_drm_syncobj_surface_v1</a></b> for more information.</div><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_manager_v1.destroy href=#wp_linux_drm_syncobj_manager_v1.destroy>wp_linux_drm_syncobj_manager_v1.destroy</a></h3><p class=summary>destroy explicit synchronization factory object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this explicit synchronization factory object. Other objects
+shall not be affected by this request.</div><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_manager_v1.get_surface href=#wp_linux_drm_syncobj_manager_v1.get_surface>wp_linux_drm_syncobj_manager_v1.get_surface</a></h3><p class=summary>extend surface interface for explicit synchronization</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Instantiate an interface extension for the given <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> to provide
+explicit synchronization.<p>If the given <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> already has an explicit synchronization object
+associated, the surface_exists protocol error is raised.<p>Graphics APIs, like EGL or Vulkan, that manage the buffer queue and
+commits of a <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> themselves, are likely to be using this
+extension internally. If a client is using such an API for a
+<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>, it should not directly use this extension on that surface,
+to avoid raising a surface_exists protocol error.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/linux-drm-syncobj-v1/#wp_linux_drm_syncobj_surface_v1>wp_linux_drm_syncobj_surface_v1</a></b>><td><p>the new synchronization surface object id<tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>the surface</table><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_manager_v1.import_timeline href=#wp_linux_drm_syncobj_manager_v1.import_timeline>wp_linux_drm_syncobj_manager_v1.import_timeline</a></h3><p class=summary>import a DRM syncobj timeline</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Import a DRM synchronization object timeline.<p>If the FD cannot be imported, the invalid_timeline error is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/linux-drm-syncobj-v1/#wp_linux_drm_syncobj_timeline_v1>wp_linux_drm_syncobj_timeline_v1</a></b>><td><p><tr><td>fd<td>fd<td><p>drm_syncobj file descriptor</table><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_manager_v1.enums.error href=#wp_linux_drm_syncobj_manager_v1.enums.error>wp_linux_drm_syncobj_manager_v1.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>surface_exists<td>0<td>1<td><p>the surface already has a synchronization object associated<tr><td>invalid_timeline<td>1<td>1<td><p>the timeline object could not be imported</table><div class=interface-head><div class=row><div><h2><a id=wp_linux_drm_syncobj_timeline_v1 href=#wp_linux_drm_syncobj_timeline_v1>wp_linux_drm_syncobj_timeline_v1</a></h2><p class=summary>synchronization object timeline</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>This object represents an explicit synchronization object timeline
+imported by the client to the compositor.</div><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_timeline_v1.destroy href=#wp_linux_drm_syncobj_timeline_v1.destroy>wp_linux_drm_syncobj_timeline_v1.destroy</a></h3><p class=summary>destroy the timeline</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy the synchronization object timeline. Other objects are not
+affected by this request, in particular timeline points set by
+set_acquire_point and set_release_point are not unset.</div><div class=interface-head><div class=row><div><h2><a id=wp_linux_drm_syncobj_surface_v1 href=#wp_linux_drm_syncobj_surface_v1>wp_linux_drm_syncobj_surface_v1</a></h2><p class=summary>per-surface explicit synchronization</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>This object is an add-on interface for <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> to enable explicit
+synchronization.<p>Each surface can be associated with only one object of this interface at
+any time.<p>Explicit synchronization is guaranteed to be supported for buffers
+created with any version of the linux-dmabuf protocol. Compositors are
+free to support explicit synchronization for additional buffer types.
+If at surface commit time the attached buffer does not support explicit
+synchronization, an unsupported_buffer error is raised.<p>As long as the <b><a href=/docs/wayland/linux-drm-syncobj-v1/#wp_linux_drm_syncobj_surface_v1>wp_linux_drm_syncobj_surface_v1</a></b> object is alive, the
+compositor may ignore implicit synchronization for buffers attached and
+committed to the <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>. The delivery of <b><a href=/docs/wayland/wayland/#wl_buffer.release>wl_buffer.release</a></b> events
+for buffers attached to the surface becomes undefined.<p>Clients must set both acquire and release points if and only if a
+non-null buffer is attached in the same surface commit. See the
+no_buffer, no_acquire_point and no_release_point protocol errors.<p>If at surface commit time the acquire and release DRM syncobj timelines
+are identical, the acquire point value must be strictly less than the
+release point value, or else the conflicting_points protocol error is
+raised.</div><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_surface_v1.destroy href=#wp_linux_drm_syncobj_surface_v1.destroy>wp_linux_drm_syncobj_surface_v1.destroy</a></h3><p class=summary>destroy the surface synchronization object</div><div><b>Destructor
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this surface synchronization object.<p>Any timeline point set by this object with set_acquire_point or
+set_release_point since the last commit may be discarded by the
+compositor. Any timeline point set by this object before the last
+commit will not be affected.</div><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_surface_v1.set_acquire_point href=#wp_linux_drm_syncobj_surface_v1.set_acquire_point>wp_linux_drm_syncobj_surface_v1.set_acquire_point</a></h3><p class=summary>set the acquire timeline point</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set the timeline point that must be signalled before the compositor may
+sample from the buffer attached with <b><a href=/docs/wayland/wayland/#wl_surface.attach>wl_surface.attach</a></b>.<p>The 64-bit unsigned value combined from point_hi and point_lo is the
+point value.<p>The acquire point is double-buffered state, and will be applied on the
+next <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> request for the associated surface. Thus, it
+applies only to the buffer that is attached to the surface at commit
+time.<p>If an acquire point has already been attached during the same commit
+cycle, the new point replaces the old one.<p>If the associated <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> was destroyed, a no_surface error is
+raised.<p>If at surface commit time there is a pending acquire timeline point set
+but no pending buffer attached, a no_buffer error is raised. If at
+surface commit time there is a pending buffer attached but no pending
+acquire timeline point set, the no_acquire_point protocol error is
+raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>timeline<td>object&lt;<b><a href=/docs/wayland/linux-drm-syncobj-v1/#wp_linux_drm_syncobj_timeline_v1>wp_linux_drm_syncobj_timeline_v1</a></b>><td><p><tr><td>point_hi<td>uint<td><p>high 32 bits of the point value<tr><td>point_lo<td>uint<td><p>low 32 bits of the point value</table><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_surface_v1.set_release_point href=#wp_linux_drm_syncobj_surface_v1.set_release_point>wp_linux_drm_syncobj_surface_v1.set_release_point</a></h3><p class=summary>set the release timeline point</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set the timeline point that must be signalled by the compositor when it
+has finished its usage of the buffer attached with <b><a href=/docs/wayland/wayland/#wl_surface.attach>wl_surface.attach</a></b>
+for the relevant commit.<p>Once the timeline point is signaled, and assuming the associated buffer
+is not pending release from other <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> requests, no
+additional explicit or implicit synchronization with the compositor is
+required to safely re-use the buffer.<p>Note that clients cannot rely on the release point being always
+signaled after the acquire point: compositors may release buffers
+without ever reading from them. In addition, the compositor may use
+different presentation paths for different commits, which may have
+different release behavior. As a result, the compositor may signal the
+release points in a different order than the client committed them.<p>Because signaling a timeline point also signals every previous point,
+it is generally not safe to use the same timeline object for the
+release points of multiple buffers. The out-of-order signaling
+described above may lead to a release point being signaled before the
+compositor has finished reading. To avoid this, it is strongly
+recommended that each buffer should use a separate timeline for its
+release points.<p>The 64-bit unsigned value combined from point_hi and point_lo is the
+point value.<p>The release point is double-buffered state, and will be applied on the
+next <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> request for the associated surface. Thus, it
+applies only to the buffer that is attached to the surface at commit
+time.<p>If a release point has already been attached during the same commit
+cycle, the new point replaces the old one.<p>If the associated <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> was destroyed, a no_surface error is
+raised.<p>If at surface commit time there is a pending release timeline point set
+but no pending buffer attached, a no_buffer error is raised. If at
+surface commit time there is a pending buffer attached but no pending
+release timeline point set, the no_release_point protocol error is
+raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>timeline<td>object&lt;<b><a href=/docs/wayland/linux-drm-syncobj-v1/#wp_linux_drm_syncobj_timeline_v1>wp_linux_drm_syncobj_timeline_v1</a></b>><td><p><tr><td>point_hi<td>uint<td><p>high 32 bits of the point value<tr><td>point_lo<td>uint<td><p>low 32 bits of the point value</table><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_surface_v1.enums.error href=#wp_linux_drm_syncobj_surface_v1.enums.error>wp_linux_drm_syncobj_surface_v1.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>no_surface<td>1<td>1<td><p>the associated wl_surface was destroyed<tr><td>unsupported_buffer<td>2<td>1<td><p>the buffer does not support explicit synchronization<tr><td>no_buffer<td>3<td>1<td><p>no buffer was attached<tr><td>no_acquire_point<td>4<td>1<td><p>no acquire timeline point was set<tr><td>no_release_point<td>5<td>1<td><p>no release timeline point was set<tr><td>conflicting_points<td>6<td>1<td><p>acquire and release timeline points are in conflict</table><div class=interface-head><h2>Copyright</h2></div><div class=copyright><p><br>Copyright 2016 The Chromium Authors.<br>Copyright 2017 Intel Corporation<br>Copyright 2018 Collabora, Ltd<br>Copyright 2021 Simon Ser<br><br>Permission is hereby granted, free of charge, to any person obtaining a<br>copy of this software and associated documentation files (the "Software"),<br>to deal in the Software without restriction, including without limitation<br>the rights to use, copy, modify, merge, publish, distribute, sublicense,<br>and/or sell copies of the Software, and to permit persons to whom the<br>Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice (including the next<br>paragraph) shall be included in all copies or substantial portions of the<br>Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br>THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br>DEALINGS IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+<span class=line><a href=/impressum>Impressum</a>,</span>
+<span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
+<span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>
