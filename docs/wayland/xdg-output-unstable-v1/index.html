@@ -34,7 +34,7 @@ the global compositor space.<p>The logical_position event is sent after creating
 (see xdg_output_manager.get_xdg_output) and whenever the location
 of the output changes within the global compositor space.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>x<td>int<td><p>x position within the global compositor space<tr><td>y<td>int<td><p>y position within the global compositor space</table><div class=message-head><div class=row><div><h3><a id=zxdg_output_v1.logical_size href=#zxdg_output_v1.logical_size>zxdg_output_v1.logical_size</a></h3><p class=summary>size of the output in the global compositor space</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The logical_size event describes the size of the output in the
 global compositor space.<p>Most regular Wayland clients should not pay attention to the
-logical size and would rather rely on <b><a href=/docs/wayland/xdg-shell-unstable-v5/#xdg_shell>xdg_shell</a></b> interfaces.<p>Some clients such as Xwayland, however, need this to configure
+logical size and would rather rely on xdg_shell interfaces.<p>Some clients such as Xwayland, however, need this to configure
 their surfaces in the global compositor space as the compositor
 may apply a different scale from what is advertised by the output
 scaling property (to achieve fractional scaling, for example).<p>For example, for a <b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b> mode 3840×2160 and a scale factor 2:<p>- A compositor not scaling the monitor viewport in its compositing space
