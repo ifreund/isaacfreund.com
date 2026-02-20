@@ -137,11 +137,11 @@ perform an initial commit without any buffer attached. The compositor
 will reply with initial <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> state such as
 <b><a href=/docs/wayland/wayland/#wl_surface.preferred_buffer_scale>wl_surface.preferred_buffer_scale</a></b> followed by an <b><a href=/docs/wayland/xdg-shell/#xdg_surface.configure>xdg_surface.configure</a></b>
 event. The client must acknowledge it and is then allowed to attach a
-buffer to map the surface.<p>Mapping an <b><a href=/docs/wayland/xdg-shell/#xdg_surface>xdg_surface</a></b>-based role surface is defined as making it
+buffer to map the surface.<p>Mapping an xdg_surface-based role surface is defined as making it
 possible for the surface to be shown by the compositor. Note that
 a mapped surface is not guaranteed to be visible once it is mapped.<p>For an <b><a href=/docs/wayland/xdg-shell/#xdg_surface>xdg_surface</a></b> to be mapped by the compositor, the following
 conditions must be met:
-(1) the client has assigned an <b><a href=/docs/wayland/xdg-shell/#xdg_surface>xdg_surface</a></b>-based role to the surface
+(1) the client has assigned an xdg_surface-based role to the surface
 (2) the client has set and committed the <b><a href=/docs/wayland/xdg-shell/#xdg_surface>xdg_surface</a></b> state and the
 role-dependent state to the surface
 (3) the client has committed a buffer to the surface<p>A newly-unmapped surface is considered to have met condition (1) out

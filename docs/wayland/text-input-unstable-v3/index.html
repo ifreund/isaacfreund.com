@@ -56,7 +56,7 @@ incoming text-input events as well as changes caused by other
 mechanisms like keyboard typing.<p>If the client is unaware of the text around the cursor, it should not
 issue this request, to signify lack of support to the compositor.<p>Text is UTF-8 encoded, and should include the cursor position, the
 complete selection and additional characters before and after them.
-There is a maximum length of wayland messages, so text can not be
+There is a maximum length of <b><a href=/docs/wayland/wayland>wayland</a></b> messages, so text can not be
 longer than 4000 bytes.<p>Cursor is the byte offset of the cursor within text buffer.<p>Anchor is the byte offset of the selection anchor within text buffer.
 If there is no selected text, anchor is the same as cursor.<p>If any preedit text is present, it is replaced with a cursor for the
 purpose of this event.<p>Values set with this request are double-buffered. They will get applied

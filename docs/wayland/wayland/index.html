@@ -890,7 +890,7 @@ willing to retrieve the output size in the global compositor
 space should use xdg_output.logical_size instead.<p>The vertical refresh rate can be set to zero if it doesn't make
 sense for this output (e.g. for virtual outputs).<p>The mode event will be followed by a done event (starting from
 version 2).<p>Clients should not use the refresh rate to schedule frames. Instead,
-they should use the <b><a href=/docs/wayland/wayland/#wl_surface.frame>wl_surface.frame</a></b> event or the presentation-time
+they should use the <b><a href=/docs/wayland/wayland/#wl_surface.frame>wl_surface.frame</a></b> event or the <b><a href=/docs/wayland/presentation-time>presentation-time</a></b>
 protocol.<p>Note: this information is not always meaningful for all outputs. Some
 compositors, such as those exposing virtual outputs, might fake the
 refresh rate or the size.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>flags<td>uint&lt;<b><a href=/docs/wayland/wayland/#wl_output.enums.mode>mode</a></b>><td><p>bitfield of mode flags<tr><td>width<td>int<td><p>width of the mode in hardware units<tr><td>height<td>int<td><p>height of the mode in hardware units<tr><td>refresh<td>int<td><p>vertical refresh rate in mHz</table><div class=message-head><div class=row><div><h3><a id=wl_output.done href=#wl_output.done>wl_output.done</a></h3><p class=summary>sent all information about output</div><div><b>Event</b><br>Since Version 2</div></div></div><div class=description><p>This event is sent after all other properties have been
