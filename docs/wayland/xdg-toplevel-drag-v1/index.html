@@ -7,15 +7,15 @@
 window at the same time. This allows having detachable parts of a window
 that when dragged out of it become a new window and can be dragged over
 an existing window to be reattached.<p>A typical workflow would be when the user starts dragging on top of a
-detachable part of a window, the client would create a <b><a href=/docs/wayland/wayland/)])))#wl_data_source>wl_data_source</a></b> and
-a <b><a href=/docs/wayland/xdg-toplevel-drag-v1/)])))#xdg_toplevel_drag_v1>xdg_toplevel_drag_v1</a></b> object and start the drag as normal via
-<b><a href=/docs/wayland/wayland/)])))#wl_data_device.start_drag>wl_data_device.start_drag</a></b>. Once the client determines that the detachable
+detachable part of a window, the client would create a <b><a href=/docs/wayland/wayland/#wl_data_source>wl_data_source</a></b> and
+a <b><a href=/docs/wayland/xdg-toplevel-drag-v1/#xdg_toplevel_drag_v1>xdg_toplevel_drag_v1</a></b> object and start the drag as normal via
+<b><a href=/docs/wayland/wayland/#wl_data_device.start_drag>wl_data_device.start_drag</a></b>. Once the client determines that the detachable
 window contents should be detached from the originating window, it creates
-a new <b><a href=/docs/wayland/xdg-shell/)])))#xdg_toplevel>xdg_toplevel</a></b> with these contents and issues a
-<b><a href=/docs/wayland/xdg-toplevel-drag-v1/)])))#xdg_toplevel_drag_v1.attach>xdg_toplevel_drag_v1.attach</a></b> request before mapping it. From now on the new
+a new <b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b> with these contents and issues a
+<b><a href=/docs/wayland/xdg-toplevel-drag-v1/#xdg_toplevel_drag_v1.attach>xdg_toplevel_drag_v1.attach</a></b> request before mapping it. From now on the new
 window is moved by the compositor during the drag as if the client called
-<b><a href=/docs/wayland/xdg-shell/)])))#xdg_toplevel.move>xdg_toplevel.move</a></b>.<p>Dragging an existing window is similar. The client creates a
-<b><a href=/docs/wayland/xdg-toplevel-drag-v1/)])))#xdg_toplevel_drag_v1>xdg_toplevel_drag_v1</a></b> object and attaches the existing toplevel before
+<b><a href=/docs/wayland/xdg-shell/#xdg_toplevel.move>xdg_toplevel.move</a></b>.<p>Dragging an existing window is similar. The client creates a
+<b><a href=/docs/wayland/xdg-toplevel-drag-v1/#xdg_toplevel_drag_v1>xdg_toplevel_drag_v1</a></b> object and attaches the existing toplevel before
 starting the drag.<p>Clients use the existing drag and drop mechanism to detect when a window
 can be docked or undocked. If the client wants to snap a window into a
 parent window it should delete or unmap the dragged top-level. If the
@@ -23,27 +23,27 @@ contents should be detached again it attaches a new toplevel as described
 above. If a drag operation is cancelled without being dropped, clients
 should revert to the previous state, deleting any newly created windows
 as appropriate. When a drag operation ends as indicated by
-<b><a href=/docs/wayland/wayland/)])))#wl_data_source.dnd_drop_performed>wl_data_source.dnd_drop_performed</a></b> the dragged toplevel window's final
+<b><a href=/docs/wayland/wayland/#wl_data_source.dnd_drop_performed>wl_data_source.dnd_drop_performed</a></b> the dragged toplevel window's final
 position is determined as if a xdg_toplevel_move operation ended.<p>Warning! The protocol described in this file is currently in the testing
 phase. Backward compatible changes may be added together with the
 corresponding interface version bump. Backward incompatible changes can
 only be done by creating a new major version of the extension.</div><div class=message-head><div class=row><div><h3><a id=xdg_toplevel_drag_manager_v1.destroy href=#xdg_toplevel_drag_manager_v1.destroy>xdg_toplevel_drag_manager_v1.destroy</a></h3><p class=summary>destroy the xdg_toplevel_drag_manager_v1 object</div><div><b>Destructor
-Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this <b><a href=/docs/wayland/xdg-toplevel-drag-v1/)])))#xdg_toplevel_drag_manager_v1>xdg_toplevel_drag_manager_v1</a></b> object. Other objects,
-including <b><a href=/docs/wayland/xdg-toplevel-drag-v1/)])))#xdg_toplevel_drag_v1>xdg_toplevel_drag_v1</a></b> objects created by this factory, are not
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this <b><a href=/docs/wayland/xdg-toplevel-drag-v1/#xdg_toplevel_drag_manager_v1>xdg_toplevel_drag_manager_v1</a></b> object. Other objects,
+including <b><a href=/docs/wayland/xdg-toplevel-drag-v1/#xdg_toplevel_drag_v1>xdg_toplevel_drag_v1</a></b> objects created by this factory, are not
 affected by this request.</div><div class=message-head><div class=row><div><h3><a id=xdg_toplevel_drag_manager_v1.get_xdg_toplevel_drag href=#xdg_toplevel_drag_manager_v1.get_xdg_toplevel_drag>xdg_toplevel_drag_manager_v1.get_xdg_toplevel_drag</a></h3><p class=summary>get an xdg_toplevel_drag for a wl_data_source</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Create an xdg_toplevel_drag for a drag and drop operation that is going
 to be started with data_source.<p>This request can only be made on sources used in drag-and-drop, so it
-must be performed before <b><a href=/docs/wayland/wayland/)])))#wl_data_device.start_drag>wl_data_device.start_drag</a></b>. Attempting to use
+must be performed before <b><a href=/docs/wayland/wayland/#wl_data_device.start_drag>wl_data_device.start_drag</a></b>. Attempting to use
 the source other than for drag-and-drop such as in
-<b><a href=/docs/wayland/wayland/)])))#wl_data_device.set_selection>wl_data_device.set_selection</a></b> will raise an invalid_source error.<p>Destroying data_source while a toplevel is attached to the
+<b><a href=/docs/wayland/wayland/#wl_data_device.set_selection>wl_data_device.set_selection</a></b> will raise an invalid_source error.<p>Destroying data_source while a toplevel is attached to the
 xdg_toplevel_drag is undefined.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/xdg-toplevel-drag-v1/#xdg_toplevel_drag_v1>xdg_toplevel_drag_v1</a></b>><td><p><tr><td>data_source<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_data_source>wl_data_source</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=xdg_toplevel_drag_manager_v1.enums.error href=#xdg_toplevel_drag_manager_v1.enums.error>xdg_toplevel_drag_manager_v1.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>invalid_source<td>0<td>1<td><p>data_source already used for toplevel drag</table><div class=interface-head><div class=row><div><h2><a id=xdg_toplevel_drag_v1 href=#xdg_toplevel_drag_v1>xdg_toplevel_drag_v1</a></h2><p class=summary>Object representing a toplevel move during a drag</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p></div><div class=message-head><div class=row><div><h3><a id=xdg_toplevel_drag_v1.destroy href=#xdg_toplevel_drag_v1.destroy>xdg_toplevel_drag_v1.destroy</a></h3><p class=summary>destroy an xdg_toplevel_drag_v1 object</div><div><b>Destructor
-Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this <b><a href=/docs/wayland/xdg-toplevel-drag-v1/)])))#xdg_toplevel_drag_v1>xdg_toplevel_drag_v1</a></b> object. This request must only be
-called after the underlying <b><a href=/docs/wayland/wayland/)])))#wl_data_source>wl_data_source</a></b> drag has ended, as indicated
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this <b><a href=/docs/wayland/xdg-toplevel-drag-v1/#xdg_toplevel_drag_v1>xdg_toplevel_drag_v1</a></b> object. This request must only be
+called after the underlying <b><a href=/docs/wayland/wayland/#wl_data_source>wl_data_source</a></b> drag has ended, as indicated
 by the dnd_drop_performed or cancelled events. In any other case an
 ongoing_drag error is raised.</div><div class=message-head><div class=row><div><h3><a id=xdg_toplevel_drag_v1.attach href=#xdg_toplevel_drag_v1.attach>xdg_toplevel_drag_v1.attach</a></h3><p class=summary>Move a toplevel with the drag operation</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Request that the window will be moved with the cursor during the drag
 operation. The offset is a hint to the compositor how the toplevel
 should be positioned relative to the cursor hotspot in surface local
 coordinates and relative to the geometry of the toplevel being attached.
-See <b><a href=/docs/wayland/xdg-shell/)])))#xdg_surface.set_window_geometry>xdg_surface.set_window_geometry</a></b>. For example it might only
+See <b><a href=/docs/wayland/xdg-shell/#xdg_surface.set_window_geometry>xdg_surface.set_window_geometry</a></b>. For example it might only
 be used when an unmapped window is attached. The attached window
 does not participate in the selection of the drag target.<p>If the toplevel is unmapped while it is attached, it is automatically
 detached from the drag. In this case this request has to be called again

@@ -44,14 +44,14 @@ event, the new wp_primary_selection_offer object will send
 wp_primary_selection_offer.offer events to describe the offered mime
 types.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>offer<td>new_id&lt;<b><a href=/docs/wayland/primary-selection-unstable-v1/#zwp_primary_selection_offer_v1>zwp_primary_selection_offer_v1</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_primary_selection_device_v1.selection href=#zwp_primary_selection_device_v1.selection>zwp_primary_selection_device_v1.selection</a></h3><p class=summary>advertise a new primary selection</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The wp_primary_selection_device.selection event is sent to notify the
 client of a new primary selection. This event is sent after the
-wp_primary_selection.<b><a href=/docs/wayland/primary-selection-unstable-v1/))))#zwp_primary_selection_device_v1.data_offer>data_offer</a></b> event introducing this object, and after
+wp_primary_selection.<b><a href=/docs/wayland/primary-selection-unstable-v1/#zwp_primary_selection_device_v1.data_offer>data_offer</a></b> event introducing this object, and after
 the offer has announced its mimetypes through
-wp_primary_selection_offer.offer.<p>The <b><a href=/docs/wayland/primary-selection-unstable-v1/))))#zwp_primary_selection_device_v1.data_offer>data_offer</a></b> is valid until a new offer or NULL is received
+wp_primary_selection_offer.offer.<p>The <b><a href=/docs/wayland/primary-selection-unstable-v1/#zwp_primary_selection_device_v1.data_offer>data_offer</a></b> is valid until a new offer or NULL is received
 or until the client loses keyboard focus. The client must destroy the
-previous selection <b><a href=/docs/wayland/primary-selection-unstable-v1/))))#zwp_primary_selection_device_v1.data_offer>data_offer</a></b>, if any, upon receiving this event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>nullable
+previous selection <b><a href=/docs/wayland/primary-selection-unstable-v1/#zwp_primary_selection_device_v1.data_offer>data_offer</a></b>, if any, upon receiving this event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>nullable
 object&lt;<b><a href=/docs/wayland/primary-selection-unstable-v1/#zwp_primary_selection_offer_v1>zwp_primary_selection_offer_v1</a></b>><td><p></table><div class=interface-head><div class=row><div><h2><a id=zwp_primary_selection_offer_v1 href=#zwp_primary_selection_offer_v1>zwp_primary_selection_offer_v1</a></h2><p class=summary>offer to transfer primary selection contents</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>A wp_primary_selection_offer represents an offer to transfer the contents
 of the primary selection clipboard to the client. Similar to
-<b><a href=/docs/wayland/wayland/)])))#wl_data_offer>wl_data_offer</a></b>, the offer also describes the mime types that the data can
+<b><a href=/docs/wayland/wayland/#wl_data_offer>wl_data_offer</a></b>, the offer also describes the mime types that the data can
 be converted to and provides the mechanisms for transferring the data
 directly to the client.</div><div class=message-head><div class=row><div><h3><a id=zwp_primary_selection_offer_v1.receive href=#zwp_primary_selection_offer_v1.receive>zwp_primary_selection_offer_v1.receive</a></h3><p class=summary>request that the data is transferred</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>To transfer the contents of the primary selection clipboard, the client
 issues this request and indicates the mime type that it wants to

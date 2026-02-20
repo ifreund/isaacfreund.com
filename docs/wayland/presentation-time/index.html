@@ -7,9 +7,9 @@
 timing feedback to ensure smooth video playback while maintaining
 audio/video synchronization. Some features use the concept of a
 presentation clock, which is defined in the
-presentation.<b><a href=/docs/wayland/presentation-time/))))#wp_presentation.clock_id>clock_id</a></b> event.<p>A content update for a <b><a href=/docs/wayland/wayland/)])))#wl_surface>wl_surface</a></b> is submitted by a
-<b><a href=/docs/wayland/wayland/)])))#wl_surface.commit>wl_surface.commit</a></b> request. Request 'feedback' associates with
-the <b><a href=/docs/wayland/wayland/)])))#wl_surface.commit>wl_surface.commit</a></b> and provides feedback on the content
+presentation.<b><a href=/docs/wayland/presentation-time/#wp_presentation.clock_id>clock_id</a></b> event.<p>A content update for a <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> is submitted by a
+<b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> request. Request 'feedback' associates with
+the <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> and provides feedback on the content
 update, particularly the final realized presentation time.<p>When the final realized presentation time is available, e.g.
 after a framebuffer flip completes, the requested
 presentation_feedback.presented events are sent. The final
@@ -34,7 +34,7 @@ tv_sec_lo, tv_nsec triples, each component being an unsigned
 32-bit value. Whole seconds are in tv_sec which is a 64-bit
 value combined from tv_sec_hi and tv_sec_lo, and the
 additional fractional part in tv_nsec as nanoseconds. Hence,
-for valid timestamps tv_nsec must be in [0, 999999999].<p>Note that <b><a href=/docs/wayland/presentation-time/))))#wp_presentation.clock_id>clock_id</a></b> applies only to the presentation clock,
+for valid timestamps tv_nsec must be in [0, 999999999].<p>Note that <b><a href=/docs/wayland/presentation-time/#wp_presentation.clock_id>clock_id</a></b> applies only to the presentation clock,
 and implies nothing about e.g. the timestamps used in the
 Wayland core protocol input events.<p>Compositors should prefer a clock which does not jump and is
 not slewed e.g. by NTP. The absolute value of the clock is
@@ -42,30 +42,30 @@ irrelevant. Precision of one millisecond or better is
 recommended. Clients must be able to query the current clock
 value directly, not by asking the compositor.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>clk_id<td>uint<td><p>platform clock identifier</table><div class=message-head><div class=row><div><h3><a id=wp_presentation.enums.error href=#wp_presentation.enums.error>wp_presentation.error</a></h3><p class=summary>fatal presentation errors</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>These fatal protocol errors may be emitted in response to
 illegal presentation requests.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>invalid_timestamp<td>0<td>1<td><p>invalid value in tv_nsec<tr><td>invalid_flag<td>1<td>1<td><p>invalid flag</table><div class=interface-head><div class=row><div><h2><a id=wp_presentation_feedback href=#wp_presentation_feedback>wp_presentation_feedback</a></h2><p class=summary>presentation time feedback event</div><div><b>Interface</b><br>Version 2</div></div></div><div class=description><p>A presentation_feedback object returns an indication that a
-<b><a href=/docs/wayland/wayland/)])))#wl_surface>wl_surface</a></b> content update has become visible to the user.
+<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> content update has become visible to the user.
 One object corresponds to one content update submission
-(<b><a href=/docs/wayland/wayland/)])))#wl_surface.commit>wl_surface.commit</a></b>). There are two possible outcomes: the
+(<b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>). There are two possible outcomes: the
 content update is presented to the user, and a presentation
 timestamp delivered; or, the user did not see the content
 update because it was superseded or its surface destroyed,
 and the content update is discarded.<p>Once a presentation_feedback object has delivered a 'presented'
 or 'discarded' event it is automatically destroyed.</div><div class=message-head><div class=row><div><h3><a id=wp_presentation_feedback.sync_output href=#wp_presentation_feedback.sync_output>wp_presentation_feedback.sync_output</a></h3><p class=summary>presentation synchronized to this output</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>As presentation can be synchronized to only one output at a
 time, this event tells which output it was. This event is only
-sent prior to the presented event.<p>As clients may bind to the same global <b><a href=/docs/wayland/wayland/)])))#wl_output>wl_output</a></b> multiple
+sent prior to the presented event.<p>As clients may bind to the same global <b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b> multiple
 times, this event is sent for each bound instance that matches
 the synchronized output. If a client has not bound to the
-right <b><a href=/docs/wayland/wayland/)])))#wl_output>wl_output</a></b> global at all, this event is not sent.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>output<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b>><td><p>presentation output</table><div class=message-head><div class=row><div><h3><a id=wp_presentation_feedback.presented href=#wp_presentation_feedback.presented>wp_presentation_feedback.presented</a></h3><p class=summary>the content update was displayed</div><div><b>Destructor
+right <b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b> global at all, this event is not sent.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>output<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b>><td><p>presentation output</table><div class=message-head><div class=row><div><h3><a id=wp_presentation_feedback.presented href=#wp_presentation_feedback.presented>wp_presentation_feedback.presented</a></h3><p class=summary>the content update was displayed</div><div><b>Destructor
 Event</b><br>Since Version 1</div></div></div><div class=description><p>The associated content update was displayed to the user at the
 indicated time (tv_sec_hi/lo, tv_nsec). For the interpretation of
 the timestamp, see presentation.clock_id event.<p>The timestamp corresponds to the time when the content update
 turned into light the first time on the surface's main output.
 Compositors may approximate this from the framebuffer flip
 completion events from the system, and the latency of the
-physical display path if known.<p>This event is preceded by all related <b><a href=/docs/wayland/presentation-time/))))#wp_presentation_feedback.sync_output>sync_output</a></b> events
+physical display path if known.<p>This event is preceded by all related <b><a href=/docs/wayland/presentation-time/#wp_presentation_feedback.sync_output>sync_output</a></b> events
 telling which output's refresh cycle the feedback corresponds
 to, i.e. the main output for the surface. Compositors are
 recommended to choose the output containing the largest part
-of the <b><a href=/docs/wayland/wayland/)])))#wl_surface>wl_surface</a></b>, or keeping the output they previously
+of the <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>, or keeping the output they previously
 chose. Having a stable presentation output association helps
 clients predict future output refreshes (vblank).<p>The 'refresh' argument gives the compositor's prediction of how
 many nanoseconds after tv_sec, tv_nsec the very next output
