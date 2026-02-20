@@ -3,7 +3,7 @@
 <a href=/blog>blog</a>
 <a href=/software>software</a>
 <a href=/poetry>poetry</a>
-<a href=/consulting>consulting</a></div></nav></header><main class="wayland-protocol xdg-activation-v1"><div class=title><h1>xdg-activation-v1</h1><p class=summary>Protocol for requesting activation of surfaces</div><div class=content><div class=description><p>The way for a client to pass focus to another toplevel is as follows.<p>The client that intends to activate another toplevel uses the
+<a href=/consulting>consulting</a></div></nav></header><main class="wayland-protocol xdg-activation-v1"><div class=title><div class=row><div><h1>xdg-activation-v1</h1><p class=summary>Protocol for requesting activation of surfaces</div><div><p>(<a href=/docs/wayland>back</a>)<p></div></div></div><div class=content><div class=description><p>The way for a client to pass focus to another toplevel is as follows.<p>The client that intends to activate another toplevel uses the
 <b><a href=/docs/wayland/xdg-activation-v1/#xdg_activation_v1.get_activation_token>xdg_activation_v1.get_activation_token</a></b> request to get an activation token.
 This token is then forwarded to the client, which is supposed to activate
 one of its surfaces, through a separate band of communication.<p>One established way of doing this is through the XDG_ACTIVATION_TOKEN

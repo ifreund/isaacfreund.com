@@ -3,7 +3,7 @@
 <a href=/blog>blog</a>
 <a href=/software>software</a>
 <a href=/poetry>poetry</a>
-<a href=/consulting>consulting</a></div></nav></header><main class="wayland-protocol wayland"><div class=title><h1>wayland</h1><p class=summary></div><div class=content><div class=interface-head><div class=row><div><h2><a id=wl_display href=#wl_display>wl_display</a></h2><p class=summary>core global object</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>The core global object. This is a special singleton object. It
+<a href=/consulting>consulting</a></div></nav></header><main class="wayland-protocol wayland"><div class=title><div class=row><div><h1>wayland</h1><p class=summary></div><div><p>(<a href=/docs/wayland>back</a>)<p></div></div></div><div class=content><div class=interface-head><div class=row><div><h2><a id=wl_display href=#wl_display>wl_display</a></h2><p class=summary>core global object</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>The core global object. This is a special singleton object. It
 is used for internal Wayland protocol features.</div><div class=message-head><div class=row><div><h3><a id=wl_display.sync href=#wl_display.sync>wl_display.sync</a></h3><p class=summary>asynchronous roundtrip</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>The sync request asks the server to emit the 'done' event
 on the returned <b><a href=/docs/wayland/wayland/#wl_callback>wl_callback</a></b> object. Since requests are
 handled in-order and events are delivered in-order, this can
