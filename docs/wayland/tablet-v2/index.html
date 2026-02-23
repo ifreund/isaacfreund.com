@@ -6,9 +6,9 @@
 <a href=/consulting>consulting</a></div></nav></header><main class="wayland-protocol tablet-v2"><div class=title><div class=row><div><h1>tablet-v2</h1><p class=summary>Wayland protocol for graphics tablets</div><div><p>(<a href=/docs/wayland>index</a>)<p></div></div></div><div class=content><div class=description><p>This description provides a high-level overview of the interplay between
 the interfaces defined this protocol. For details, see the protocol
 specification.<p>More than one tablet may exist, and device-specifics matter. Tablets are
-not represented by a single virtual device like <b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b>. A client
+not represented by a single virtual device like wl_pointer. A client
 binds to the tablet manager object which is just a proxy object. From
-that, the client requests <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_manager_v2.get_tablet_seat>zwp_tablet_manager_v2.get_tablet_seat</a></b>(<b><a href=/docs/wayland/wayland/#wl_seat>wl_seat</a></b>)
+that, the client requests zwp_tablet_manager_v2.get_tablet_seat(wl_seat)
 and that returns the actual interface that has all the tablets. With
 this indirection, we can avoid merging <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b> into the actual Wayland
 protocol, a long-term benefit.<p>The <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_seat_v2>zwp_tablet_seat_v2</a></b> sends a "tablet added" event for each tablet
@@ -56,7 +56,7 @@ compositor-specific policy when a tool can be removed. Common approaches
 will likely include some form of removing a tool when all tablets the
 tool was used on are removed.</div><div class=interface-head><div class=row><div><h2><a id=zwp_tablet_manager_v2 href=#zwp_tablet_manager_v2>zwp_tablet_manager_v2</a></h2><p class=summary>controller object for graphic tablet devices</div><div><b>Interface</b><br>Version 2</div></div></div><div class=description><p>An object that provides access to the graphics tablets available on this
 system. All tablets are associated with a seat, to get access to the
-actual tablets, use <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_manager_v2.get_tablet_seat>zwp_tablet_manager_v2.get_tablet_seat</a></b>.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_manager_v2.get_tablet_seat href=#zwp_tablet_manager_v2.get_tablet_seat>zwp_tablet_manager_v2.get_tablet_seat</a></h3><p class=summary>get the tablet seat</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Get the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_seat_v2>zwp_tablet_seat_v2</a></b> object for the given seat. This object
+actual tablets, use zwp_tablet_manager_v2.get_tablet_seat.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_manager_v2.get_tablet_seat href=#zwp_tablet_manager_v2.get_tablet_seat>zwp_tablet_manager_v2.get_tablet_seat</a></h3><p class=summary>get the tablet seat</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Get the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_seat_v2>zwp_tablet_seat_v2</a></b> object for the given seat. This object
 provides access to all graphics tablets in this seat.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>tablet_seat<td>new_id&lt;<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_seat_v2>zwp_tablet_seat_v2</a></b>><td><p><tr><td>seat<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_seat>wl_seat</a></b>><td><p>The wl_seat object to retrieve the tablets for</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_manager_v2.destroy href=#zwp_tablet_manager_v2.destroy>zwp_tablet_manager_v2.destroy</a></h3><p class=summary>release the memory for the tablet manager object</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_manager_v2>zwp_tablet_manager_v2</a></b> object. Objects created from this
 object are unaffected and should be destroyed separately.</div><div class=interface-head><div class=row><div><h2><a id=zwp_tablet_seat_v2 href=#zwp_tablet_seat_v2>zwp_tablet_seat_v2</a></h2><p class=summary>controller object for graphic tablet devices of a seat</div><div><b>Interface</b><br>Version 2</div></div></div><div class=description><p>An object that provides access to the graphics tablets available on this
@@ -70,8 +70,8 @@ sent through the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2
 with a tablet comes into use. This event only provides the object id
 of the tool; any static information about the tool (capabilities,
 type, etc.) is sent through the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2>zwp_tablet_tool_v2</a></b> interface.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2>zwp_tablet_tool_v2</a></b>><td><p>the newly added tablet tool</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_seat_v2.pad_added href=#zwp_tablet_seat_v2.pad_added>zwp_tablet_seat_v2.pad_added</a></h3><p class=summary>new pad notification</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event is sent whenever a new pad is known to the system. Typically,
-pads are physically attached to tablets and a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_seat_v2.pad_added>pad_added</a></b> event is
-sent immediately after the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_seat_v2.tablet_added>zwp_tablet_seat_v2.tablet_added</a></b>.
+pads are physically attached to tablets and a <b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_seat_v2.pad_added>pad_added</a></b> event is
+sent immediately after the zwp_tablet_seat_v2.tablet_added.
 However, some standalone pad devices logically attach to tablets at
 runtime, and the client must wait for <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_v2.enter>zwp_tablet_pad_v2.enter</a></b> to know
 the tablet a pad is attached to.<p>This event only provides the object id of the pad. All further
@@ -84,7 +84,7 @@ respective physical tool has come into proximity of a tablet again.<p>A <b><a hr
 tablet's ability to report serial numbers. If the tablet supports
 this capability, then the object represents a specific physical tool
 and can be identified even when used on multiple tablets.<p>A tablet tool has a number of static characteristics, e.g. tool type,
-<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.hardware_serial>hardware_serial</a></b> and capabilities. These capabilities are sent in an
+<b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_tool_v2.hardware_serial>hardware_serial</a></b> and capabilities. These capabilities are sent in an
 event sequence after the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_seat_v2.tool_added>zwp_tablet_seat_v2.tool_added</a></b> event before any
 actual events from this tool. This initial event sequence is
 terminated by a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.done>zwp_tablet_tool_v2.done</a></b> event.<p>Tablet tool events are grouped by <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.frame>zwp_tablet_tool_v2.frame</a></b> events.
@@ -106,7 +106,7 @@ longer used as the cursor. When the use as a cursor ends, the current
 and pending input regions become undefined, and the <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> is
 unmapped.<p>This request gives the surface the role of a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2>zwp_tablet_tool_v2</a></b> cursor. A
 surface may only ever be used as the cursor surface for one
-<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2>zwp_tablet_tool_v2</a></b>. If the surface already has another role or has
+zwp_tablet_tool_v2. If the surface already has another role or has
 previously been used as cursor surface for a different tool, a
 protocol error is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>serial of the proximity_in event<tr><td>surface<td>nullable
 object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p><tr><td>hotspot_x<td>int<td><p>surface-local x coordinate<tr><td>hotspot_y<td>int<td><p>surface-local y coordinate</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.destroy href=#zwp_tablet_tool_v2.destroy>zwp_tablet_tool_v2.destroy</a></h3><p class=summary>destroy the tool object</div><div><b>Destructor
@@ -133,18 +133,18 @@ be complete and finalize initialization of the tool.</div><div class=message-hea
 send no further events. Should the physical tool come back into
 proximity later, a new <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2>zwp_tablet_tool_v2</a></b> object will be created.<p>It is compositor-dependent when a tool is removed. A compositor may
 remove a tool on proximity out, tablet removal or any other reason.
-A compositor may also keep a tool alive until shutdown.<p>If the tool is currently in proximity, a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_out>proximity_out</a></b> event will be
+A compositor may also keep a tool alive until shutdown.<p>If the tool is currently in proximity, a <b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_tool_v2.proximity_out>proximity_out</a></b> event will be
 sent before the removed event. See <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_out>zwp_tablet_tool_v2.proximity_out</a></b> for
 the handling of any buttons logically down.<p>When this event is received, the client must <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.destroy>zwp_tablet_tool_v2.destroy</a></b>
 the object.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.proximity_in href=#zwp_tablet_tool_v2.proximity_in>zwp_tablet_tool_v2.proximity_in</a></h3><p class=summary>proximity in event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that this tool is focused on a certain surface.<p>This event can be received when the tool has moved from one surface to
 another, or when the tool has come back into proximity above the
 surface.<p>If any button is logically down when the tool comes into proximity,
-the respective button event is sent after the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_in>proximity_in</a></b> event but
-within the same frame as the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_in>proximity_in</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p><tr><td>tablet<td>object&lt;<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>><td><p>The tablet the tool is in proximity of<tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>The current surface the tablet tool is over</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.proximity_out href=#zwp_tablet_tool_v2.proximity_out>zwp_tablet_tool_v2.proximity_out</a></h3><p class=summary>proximity out event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that this tool has either left proximity, or is no
+the respective button event is sent after the <b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_tool_v2.proximity_in>proximity_in</a></b> event but
+within the same frame as the <b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_tool_v2.proximity_in>proximity_in</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p><tr><td>tablet<td>object&lt;<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>><td><p>The tablet the tool is in proximity of<tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>The current surface the tablet tool is over</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.proximity_out href=#zwp_tablet_tool_v2.proximity_out>zwp_tablet_tool_v2.proximity_out</a></h3><p class=summary>proximity out event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that this tool has either left proximity, or is no
 longer focused on a certain surface.<p>When the tablet tool leaves proximity of the tablet, button release
 events are sent for each button that was held down at the time of
-leaving proximity. These events are sent before the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_out>proximity_out</a></b>
-event but within the same <b><a href=/docs/wayland/tablet-v2/#></a></b>.<p>If the tool stays within proximity of the tablet, but the focus
+leaving proximity. These events are sent before the <b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_tool_v2.proximity_out>proximity_out</a></b>
+event but within the same zwp_tablet_v2.frame.<p>If the tool stays within proximity of the tablet, but the focus
 changes from one surface to another, a button release event may not
 be sent until the button is actually released or the tool leaves the
 proximity of the tablet.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.down href=#zwp_tablet_tool_v2.down>zwp_tablet_tool_v2.down</a></h3><p class=summary>tablet tool is making contact</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Sent whenever the tablet tool comes in contact with the surface of the
@@ -201,13 +201,13 @@ pid/vid. These capabilities are sent in an event sequence after the
 <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_seat_v2.tablet_added>zwp_tablet_seat_v2.tablet_added</a></b> event. This initial event sequence is
 terminated by a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2.done>zwp_tablet_v2.done</a></b> event.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_v2.destroy href=#zwp_tablet_v2.destroy>zwp_tablet_v2.destroy</a></h3><p class=summary>destroy the tablet object</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><div class=description><p>This destroys the client's resource for this tablet object.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_v2.name href=#zwp_tablet_v2.name>zwp_tablet_v2.name</a></h3><p class=summary>tablet device name</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>A descriptive name for the tablet device.<p>If the device has no descriptive name, this event is not sent.<p>This event is sent in the initial burst of events before the
-<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2.done>zwp_tablet_v2.done</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>name<td>string<td><p>the device name</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_v2.id href=#zwp_tablet_v2.id>zwp_tablet_v2.id</a></h3><p class=summary>tablet device vendor/product id</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The vendor and product IDs for the tablet device.<p>The interpretation of the id depends on the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2.bustype>zwp_tablet_v2.bustype</a></b>.
+<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2.done>zwp_tablet_v2.done</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>name<td>string<td><p>the device name</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_v2.id href=#zwp_tablet_v2.id>zwp_tablet_v2.id</a></h3><p class=summary>tablet device vendor/product id</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The vendor and product IDs for the tablet device.<p>The interpretation of the id depends on the zwp_tablet_v2.bustype.
 Prior to version v2 of this protocol, the id was implied to be a USB
 vendor and product ID. If no <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2.bustype>zwp_tablet_v2.bustype</a></b> is sent, the ID
 is to be interpreted as USB vendor and product ID.<p>If the device has no vendor/product ID, this event is not sent.
 This can happen for virtual devices or non-USB devices, for instance.<p>This event is sent in the initial burst of events before the
 <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2.done>zwp_tablet_v2.done</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>vid<td>uint<td><p>vendor id<tr><td>pid<td>uint<td><p>product id</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_v2.path href=#zwp_tablet_v2.path>zwp_tablet_v2.path</a></h3><p class=summary>path to the device</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>A system-specific device path that indicates which device is behind
-this <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>. This information may be used to gather additional
+this zwp_tablet_v2. This information may be used to gather additional
 information about the device, e.g. through libwacom.<p>A device may have more than one device path. If so, multiple
 <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2.path>zwp_tablet_v2.path</a></b> events are sent. A device may be emulated and not
 have a device path, and in that case this event will not be sent.<p>The format of the path is unspecified, it may be a device node, a
@@ -239,7 +239,7 @@ ignored.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<t
 Request</b><br>Since Version 1</div></div></div><div class=description><p>This destroys the client's resource for this ring object.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_ring_v2.source href=#zwp_tablet_pad_ring_v2.source>zwp_tablet_pad_ring_v2.source</a></h3><p class=summary>ring event source</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Source information for ring events.<p>This event does not occur on its own. It is sent before a
 <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_ring_v2.frame>zwp_tablet_pad_ring_v2.frame</a></b> event and carries the source information
 for all events within that frame.<p>The source specifies how this event was generated. If the source is
-<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_ring_v2.source>zwp_tablet_pad_ring_v2.source</a></b>.finger, a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_ring_v2.stop>zwp_tablet_pad_ring_v2.stop</a></b> event
+zwp_tablet_pad_ring_v2.source.finger, a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_ring_v2.stop>zwp_tablet_pad_ring_v2.stop</a></b> event
 will be sent when the user lifts the finger off the device.<p>This event is optional. If the source is unknown for an interaction,
 no event is sent.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>source<td>uint&lt;<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_ring_v2.enums.source>source</a></b>><td><p>the event source</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_ring_v2.angle href=#zwp_tablet_pad_ring_v2.angle>zwp_tablet_pad_ring_v2.angle</a></h3><p class=summary>angle changed</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Sent whenever the angle on a ring changes.<p>The angle is provided in degrees clockwise from the logical
 north of the ring in the pad's current rotation.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>degrees<td>fixed<td><p>the current angle in degrees</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_ring_v2.stop href=#zwp_tablet_pad_ring_v2.stop>zwp_tablet_pad_ring_v2.stop</a></h3><p class=summary>interaction stopped</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Stop notification for ring events.<p>For some <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_ring_v2.source>zwp_tablet_pad_ring_v2.source</a></b> types, a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_ring_v2.stop>zwp_tablet_pad_ring_v2.stop</a></b>
@@ -276,7 +276,7 @@ ignored.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<t
 Request</b><br>Since Version 1</div></div></div><div class=description><p>This destroys the client's resource for this strip object.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_strip_v2.source href=#zwp_tablet_pad_strip_v2.source>zwp_tablet_pad_strip_v2.source</a></h3><p class=summary>strip event source</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Source information for strip events.<p>This event does not occur on its own. It is sent before a
 <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_strip_v2.frame>zwp_tablet_pad_strip_v2.frame</a></b> event and carries the source information
 for all events within that frame.<p>The source specifies how this event was generated. If the source is
-<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_strip_v2.source>zwp_tablet_pad_strip_v2.source</a></b>.finger, a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_strip_v2.stop>zwp_tablet_pad_strip_v2.stop</a></b> event
+zwp_tablet_pad_strip_v2.source.finger, a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_strip_v2.stop>zwp_tablet_pad_strip_v2.stop</a></b> event
 will be sent when the user lifts their finger off the device.<p>This event is optional. If the source is unknown for an interaction,
 no event is sent.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>source<td>uint&lt;<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_strip_v2.enums.source>source</a></b>><td><p>the event source</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_strip_v2.position href=#zwp_tablet_pad_strip_v2.position>zwp_tablet_pad_strip_v2.position</a></h3><p class=summary>position changed</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Sent whenever the position on a strip changes.<p>The position is normalized to a range of [0, 65535], the 0-value
 represents the top-most and/or left-most position of the strip in
@@ -302,13 +302,13 @@ present in the tablet. The criteria of this grouping is usually positional,
 eg. if a tablet has buttons on the left and right side, 2 groups will be
 presented. The physical arrangement of groups is undisclosed and may
 change on the fly.<p>Pad groups will announce their features during pad initialization. Between
-the corresponding <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_v2.group>zwp_tablet_pad_v2.group</a></b> event and <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2.done>zwp_tablet_pad_group_v2.done</a></b>, the
+the corresponding <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_v2.group>zwp_tablet_pad_v2.group</a></b> event and zwp_tablet_pad_group_v2.done, the
 pad group will announce the buttons, rings and strips contained in it,
 plus the number of supported modes.<p>Modes are a mechanism to allow multiple groups of actions for every element
 in the pad group. The number of groups and available modes in each is
 persistent across device plugs. The current mode is user-switchable, it
 will be announced through the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2.mode_switch>zwp_tablet_pad_group_v2.mode_switch</a></b> event both
-whenever it is switched, and after <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_v2.enter>zwp_tablet_pad_v2.enter</a></b>.<p>The current mode logically applies to all elements in the pad group,
+whenever it is switched, and after zwp_tablet_pad_v2.enter.<p>The current mode logically applies to all elements in the pad group,
 although it is at clients' discretion whether to actually perform different
 actions, and/or issue the respective .set_feedback requests to notify the
 compositor. See the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2.mode_switch>zwp_tablet_pad_group_v2.mode_switch</a></b> event for more details.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_group_v2.destroy href=#zwp_tablet_pad_group_v2.destroy>zwp_tablet_pad_group_v2.destroy</a></h3><p class=summary>destroy the pad object</div><div><b>Destructor
@@ -317,7 +317,7 @@ are unaffected and should be destroyed separately.</div><div class=message-head>
 buttons in the group. Button indices start at 0, a button may only be
 in one group at a time.<p>This event is first sent in the initial burst of events before the
 <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2.done>zwp_tablet_pad_group_v2.done</a></b> event.<p>Some buttons are reserved by the compositor. These buttons may not be
-assigned to any <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2>zwp_tablet_pad_group_v2</a></b>. Compositors may broadcast this
+assigned to any zwp_tablet_pad_group_v2. Compositors may broadcast this
 event in the case of changes to the mapping of these reserved buttons.
 If the compositor happens to reserve all buttons in a group, this event
 will be sent with an empty array.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>buttons<td>array<td><p>buttons in this group</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_group_v2.ring href=#zwp_tablet_pad_group_v2.ring>zwp_tablet_pad_group_v2.ring</a></h3><p class=summary>ring announced</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Sent on <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2>zwp_tablet_pad_group_v2</a></b> initialization to announce available rings.
@@ -363,7 +363,7 @@ This initial event sequence is terminated by a <b><a href=/docs/wayland/tablet-v
 event.<p>All pad features (buttons, rings, strips and dials) are logically divided into
 groups and all pads have at least one group. The available groups are
 notified through the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_v2.group>zwp_tablet_pad_v2.group</a></b> event; the compositor will
-emit one event per group before emitting <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_v2.done>zwp_tablet_pad_v2.done</a></b>.<p>Groups may have multiple modes. Modes allow clients to map multiple
+emit one event per group before emitting zwp_tablet_pad_v2.done.<p>Groups may have multiple modes. Modes allow clients to map multiple
 actions to a single pad feature. Only one mode can be active per group,
 although different groups may have different active modes.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_v2.set_feedback href=#zwp_tablet_pad_v2.set_feedback>zwp_tablet_pad_v2.set_feedback</a></h3><p class=summary>set compositor feedback</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Requests the compositor to use the provided feedback string
 associated with this button. This request should be issued immediately
@@ -374,7 +374,7 @@ the actions associated with each button, and compositors may use
 this information to offer visual feedback on the button layout
 (e.g. on-screen displays).<p>Button indices start at 0. Setting the feedback string on a button
 that is reserved by the compositor (i.e. not belonging to any
-<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2>zwp_tablet_pad_group_v2</a></b>) does not generate an error but the compositor
+zwp_tablet_pad_group_v2) does not generate an error but the compositor
 is free to ignore the request.<p>The provided string 'description' is a UTF-8 encoded string to be
 associated with this ring, and is considered user-visible; general
 internationalization rules apply.<p>The serial argument will be that of the last
@@ -385,7 +385,7 @@ Request</b><br>Since Version 1</div></div></div><div class=description><p>Destro
 are unaffected and should be destroyed separately.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_v2.group href=#zwp_tablet_pad_v2.group>zwp_tablet_pad_v2.group</a></h3><p class=summary>group announced</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Sent on <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_v2>zwp_tablet_pad_v2</a></b> initialization to announce available groups.
 One event is sent for each pad group available.<p>This event is sent in the initial burst of events before the
 <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_v2.done>zwp_tablet_pad_v2.done</a></b> event. At least one group will be announced.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>pad_group<td>new_id&lt;<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2>zwp_tablet_pad_group_v2</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_v2.path href=#zwp_tablet_pad_v2.path>zwp_tablet_pad_v2.path</a></h3><p class=summary>path to the device</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>A system-specific device path that indicates which device is behind
-this <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_v2>zwp_tablet_pad_v2</a></b>. This information may be used to gather additional
+this zwp_tablet_pad_v2. This information may be used to gather additional
 information about the device, e.g. through libwacom.<p>The format of the path is unspecified, it may be a device node, a
 sysfs path, or some other identifier. It is up to the client to
 identify the string provided.<p>This event is sent in the initial burst of events before the

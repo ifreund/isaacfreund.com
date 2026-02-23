@@ -56,7 +56,7 @@ Request</b><br>Since Version 1</div></div></div><div class=description><p>This i
 used. Existing objects created through this interface remain valid.<p>After this request is made, lock surfaces created through this object
 should be destroyed by the client as they will no longer be used by
 the compositor.<p>It is a protocol error to make this request if the locked event was
-sent, the <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_v1.unlock_and_destroy>unlock_and_destroy</a></b> request must be used instead.</div><div class=message-head><div class=row><div><h3><a id=ext_session_lock_v1.get_lock_surface href=#ext_session_lock_v1.get_lock_surface>ext_session_lock_v1.get_lock_surface</a></h3><p class=summary>create a lock surface for a given output</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>The client is expected to create lock surfaces for all outputs
+sent, the <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_v1.unlock_and_destroy>unlock_and_destroy</a></b> request must be used instead.</div><div class=message-head><div class=row><div><h3><a id=ext_session_lock_v1.get_lock_surface href=#ext_session_lock_v1.get_lock_surface>ext_session_lock_v1.get_lock_surface</a></h3><p class=summary>create a lock surface for a given output</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>The client is expected to create lock surfaces for all outputs
 currently present and any new outputs as they are advertised. These
 won't be displayed by the compositor unless the lock is successful
 and the locked event is sent.<p>Providing a <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> which already has a role or already has a buffer
@@ -73,15 +73,15 @@ the compositor.<p>It is a protocol error to make this request if the locked even
 not been sent. In that case, the lock object must be destroyed using
 the destroy request.<p>Note that a correct client that wishes to exit directly after unlocking
 the session must use the <b><a href=/docs/wayland/wayland/#wl_display.sync>wl_display.sync</a></b> request to ensure the server
-receives and processes the <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_v1.unlock_and_destroy>unlock_and_destroy</a></b> request. Otherwise
+receives and processes the <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_v1.unlock_and_destroy>unlock_and_destroy</a></b> request. Otherwise
 there is no guarantee that the server has unlocked the session due
 to the asynchronous nature of the Wayland protocol. For example,
 the server might terminate the client with a protocol error before
-it processes the <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_v1.unlock_and_destroy>unlock_and_destroy</a></b> request.</div><div class=message-head><div class=row><div><h3><a id=ext_session_lock_v1.locked href=#ext_session_lock_v1.locked>ext_session_lock_v1.locked</a></h3><p class=summary>session successfully locked</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This client is now responsible for displaying graphics while the
+it processes the <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_v1.unlock_and_destroy>unlock_and_destroy</a></b> request.</div><div class=message-head><div class=row><div><h3><a id=ext_session_lock_v1.locked href=#ext_session_lock_v1.locked>ext_session_lock_v1.locked</a></h3><p class=summary>session successfully locked</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This client is now responsible for displaying graphics while the
 session is locked and deciding when to unlock the session.<p>The locked event must not be sent until a new "locked" frame has been
 presented on all outputs and no security sensitive normal/unlocked
 content is possibly visible.<p>If this event is sent, making the destroy request is a protocol error,
-the lock object must be destroyed using the <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_v1.unlock_and_destroy>unlock_and_destroy</a></b> request.</div><div class=message-head><div class=row><div><h3><a id=ext_session_lock_v1.finished href=#ext_session_lock_v1.finished>ext_session_lock_v1.finished</a></h3><p class=summary>the session lock object should be destroyed</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The compositor has decided that the session lock should be destroyed
+the lock object must be destroyed using the <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_v1.unlock_and_destroy>unlock_and_destroy</a></b> request.</div><div class=message-head><div class=row><div><h3><a id=ext_session_lock_v1.finished href=#ext_session_lock_v1.finished>ext_session_lock_v1.finished</a></h3><p class=summary>the session lock object should be destroyed</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The compositor has decided that the session lock should be destroyed
 as it will no longer be used by the compositor. Exactly when this
 event is sent is compositor policy, but it must never be sent more
 than once for a given session lock object.<p>This might be sent because there is already another <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_v1>ext_session_lock_v1</a></b>
@@ -93,11 +93,11 @@ object if the compositor decides that the locked event will not
 be sent.<p>If the locked event is sent on creation of this object the finished
 event may still be sent at some later time in this object's
 lifetime. This is compositor policy.<p>Upon receiving this event, the client should make either the destroy
-request or the <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_v1.unlock_and_destroy>unlock_and_destroy</a></b> request, depending on whether or
+request or the <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_v1.unlock_and_destroy>unlock_and_destroy</a></b> request, depending on whether or
 not the locked event was received on this object.</div><div class=message-head><div class=row><div><h3><a id=ext_session_lock_v1.enums.error href=#ext_session_lock_v1.enums.error>ext_session_lock_v1.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>invalid_destroy<td>0<td>1<td><p>attempted to destroy session lock while locked<tr><td>invalid_unlock<td>1<td>1<td><p>unlock requested but locked event was never sent<tr><td>role<td>2<td>1<td><p>given wl_surface already has a role<tr><td>duplicate_output<td>3<td>1<td><p>given output already has a lock surface<tr><td>already_constructed<td>4<td>1<td><p>given wl_surface has a buffer attached or committed</table><div class=interface-head><div class=row><div><h2><a id=ext_session_lock_surface_v1 href=#ext_session_lock_surface_v1>ext_session_lock_surface_v1</a></h2><p class=summary>a surface displayed while the session is locked</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>The client may use lock surfaces to display a screensaver, render a
 dialog to enter a password and unlock the session, or however else it
 sees fit.<p>On binding this interface the compositor will immediately send the
-first configure event. After making the <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> request in
+first configure event. After making the <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> request in
 response to this event the client should attach and commit the first
 buffer. Committing the surface before acking the first configure is a
 protocol error. Committing the surface with a null buffer at any time
@@ -111,16 +111,16 @@ their corresponding <b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b
 <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_v1.unlock_and_destroy>ext_session_lock_v1.unlock_and_destroy</a></b> event is sent, the compositor
 must fall back to rendering a solid color.</div><div class=message-head><div class=row><div><h3><a id=ext_session_lock_surface_v1.ack_configure href=#ext_session_lock_surface_v1.ack_configure>ext_session_lock_surface_v1.ack_configure</a></h3><p class=summary>ack a configure event</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>When a configure event is received, if a client commits the surface
 in response to the configure event, then the client must make an
-<b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> request sometime before the commit request, passing
+<b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> request sometime before the commit request, passing
 along the serial of the configure event.<p>If the client receives multiple configure events before it can
 respond to one, it only has to ack the last configure event.<p>A client is not required to commit immediately after sending an
-<b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> request - it may even <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> several times
-before its next surface commit.<p>A client may send multiple <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> requests before committing,
+<b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> request - it may even <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> several times
+before its next surface commit.<p>A client may send multiple <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> requests before committing,
 but only the last request sent before a commit indicates which
-configure event the client really is responding to.<p>Sending an <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> request consumes the configure event
+configure event the client really is responding to.<p>Sending an <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> request consumes the configure event
 referenced by the given serial, as well as all older configure events
-sent on this object.<p>It is a protocol error to issue multiple <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> requests
-referencing the same configure event or to issue an <b><a href=/docs/wayland/ext-session-lock-v1/#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b>
+sent on this object.<p>It is a protocol error to issue multiple <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b> requests
+referencing the same configure event or to issue an <b><a href=/docs/wayland/ext-session-lock-v1/))#ext_session_lock_surface_v1.ack_configure>ack_configure</a></b>
 request referencing a configure event older than the last configure
 event acked for a given lock surface.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>serial from the configure event</table><div class=message-head><div class=row><div><h3><a id=ext_session_lock_surface_v1.configure href=#ext_session_lock_surface_v1.configure>ext_session_lock_surface_v1.configure</a></h3><p class=summary>the client should resize its surface</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event is sent once on binding the interface and may be sent again
 at the compositor's discretion, for example if output geometry changes.<p>The width and height are in surface-local coordinates and are exact

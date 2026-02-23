@@ -4,16 +4,16 @@
 <a href=/software>software</a>
 <a href=/poetry>poetry</a>
 <a href=/consulting>consulting</a></div></nav></header><main class="wayland-protocol linux-dmabuf-v1"><div class=title><div class=row><div><h1>linux-dmabuf-v1</h1><p class=summary></div><div><p>(<a href=/docs/wayland>index</a>)<p></div></div></div><div class=content><div class=interface-head><div class=row><div><h2><a id=zwp_linux_dmabuf_v1 href=#zwp_linux_dmabuf_v1>zwp_linux_dmabuf_v1</a></h2><p class=summary>factory for creating dmabuf-based wl_buffers</div><div><b>Interface</b><br>Version 5</div></div></div><div class=description><p>This interface offers ways to create generic dmabuf-based wl_buffers.<p>For more information about dmabuf, see:
-https://www.kernel.org/doc/html/next/userspace-api/dma-buf-alloc-exchange.html<p>Clients can use the <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_v1.get_surface_feedback>get_surface_feedback</a></b> request to get dmabuf feedback
+https://www.kernel.org/doc/html/next/userspace-api/dma-buf-alloc-exchange.html<p>Clients can use the <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_v1.get_surface_feedback>get_surface_feedback</a></b> request to get dmabuf feedback
 for a particular surface. If the client wants to retrieve feedback not
-tied to a surface, they can use the <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_v1.get_default_feedback>get_default_feedback</a></b> request.<p>The following are required from clients:<p>- Clients must ensure that either all data in the dma-buf is
+tied to a surface, they can use the <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_v1.get_default_feedback>get_default_feedback</a></b> request.<p>The following are required from clients:<p>- Clients must ensure that either all data in the dma-buf is
 coherent for all subsequent read access or that coherency is
 correctly handled by the underlying kernel-side dma-buf
 implementation.<p>- Don't make any more attachments after sending the buffer to the
 compositor. Making more attachments later increases the risk of
 the compositor not being able to use (re-import) an existing
-dmabuf-based <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b>.<p>The underlying graphics stack must ensure the following:<p>- The dmabuf file descriptors relayed to the server will stay valid
-for the whole lifetime of the <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b>. This means the server may
+dmabuf-based wl_buffer.<p>The underlying graphics stack must ensure the following:<p>- The dmabuf file descriptors relayed to the server will stay valid
+for the whole lifetime of the wl_buffer. This means the server may
 at any time use those fds to import the dmabuf into any kernel
 sub-system that might accept it.<p>However, when the underlying graphics stack fails to deliver the
 promise, because of e.g. a device hot-unplug which raises internal
@@ -29,7 +29,7 @@ issued, which has the following outcome depending on the import success.<p>The '
 - on failure, triggers a 'failed' event to convey that the server
 cannot use the dmabufs received from the client.<p>For the 'create_immed' request,
 - on success, the server immediately imports the added dmabufs to
-create a <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b>. No event is sent from the server in this case.
+create a wl_buffer. No event is sent from the server in this case.
 - on failure, the server can choose to either:
 - terminate the client by raising a fatal error.
 - mark the <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> as failed, and send a 'failed' event to the
@@ -41,21 +41,21 @@ wait and signal fences implicitly passed via the DMA-BUF's reservation
 mechanism.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_v1.destroy href=#zwp_linux_dmabuf_v1.destroy>zwp_linux_dmabuf_v1.destroy</a></h3><p class=summary>unbind the factory</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><div class=description><p>Objects created through this interface, especially wl_buffers, will
 remain valid.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_v1.create_params href=#zwp_linux_dmabuf_v1.create_params>zwp_linux_dmabuf_v1.create_params</a></h3><p class=summary>create a temporary object for buffer parameters</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>This temporary object is used to collect multiple dmabuf handles into
-a single batch to create a <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b>. It can only be used once and
+a single batch to create a wl_buffer. It can only be used once and
 should be destroyed after a 'created' or 'failed' event has been
 received.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>params_id<td>new_id&lt;<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_buffer_params_v1>zwp_linux_buffer_params_v1</a></b>><td><p>the new temporary</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_v1.get_default_feedback href=#zwp_linux_dmabuf_v1.get_default_feedback>zwp_linux_dmabuf_v1.get_default_feedback</a></h3><p class=summary>get default feedback</div><div><b>Request</b><br>Since Version 4</div></div></div><div class=description><p>This request creates a new wp_linux_dmabuf_feedback object not bound
 to a particular surface. This object will deliver feedback about dmabuf
 parameters to use if the client doesn't support per-surface feedback
-(see <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_v1.get_surface_feedback>get_surface_feedback</a></b>).</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1>zwp_linux_dmabuf_feedback_v1</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_v1.get_surface_feedback href=#zwp_linux_dmabuf_v1.get_surface_feedback>zwp_linux_dmabuf_v1.get_surface_feedback</a></h3><p class=summary>get feedback for a surface</div><div><b>Request</b><br>Since Version 4</div></div></div><div class=description><p>This request creates a new wp_linux_dmabuf_feedback object for the
-specified <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>. This object will deliver feedback about dmabuf
+(see get_surface_feedback).</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1>zwp_linux_dmabuf_feedback_v1</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_v1.get_surface_feedback href=#zwp_linux_dmabuf_v1.get_surface_feedback>zwp_linux_dmabuf_v1.get_surface_feedback</a></h3><p class=summary>get feedback for a surface</div><div><b>Request</b><br>Since Version 4</div></div></div><div class=description><p>This request creates a new wp_linux_dmabuf_feedback object for the
+specified wl_surface. This object will deliver feedback about dmabuf
 parameters to use for buffers attached to this surface.<p>If the surface is destroyed before the wp_linux_dmabuf_feedback object,
 the feedback object becomes inert.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1>zwp_linux_dmabuf_feedback_v1</a></b>><td><p><tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_v1.format href=#zwp_linux_dmabuf_v1.format>zwp_linux_dmabuf_v1.format</a></h3><p class=summary>supported buffer format</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event advertises one buffer format that the server supports.
 All the supported formats are advertised once when the client
 binds to this interface. A roundtrip after binding guarantees
 that the client has received all supported formats.<p>For the definition of the format codes, see the
-<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_buffer_params_v1>zwp_linux_buffer_params_v1</a></b>::create request.<p>Starting version 4, the format event is deprecated and must not be
-sent by compositors. Instead, use <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_v1.get_default_feedback>get_default_feedback</a></b> or
-<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_v1.get_surface_feedback>get_surface_feedback</a></b>.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>format<td>uint<td><p>DRM_FORMAT code</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_v1.modifier href=#zwp_linux_dmabuf_v1.modifier>zwp_linux_dmabuf_v1.modifier</a></h3><p class=summary>supported buffer format modifier</div><div><b>Event</b><br>Since Version 3</div></div></div><div class=description><p>This event advertises the formats that the server supports, along with
+zwp_linux_buffer_params_v1::create request.<p>Starting version 4, the format event is deprecated and must not be
+sent by compositors. Instead, use <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_v1.get_default_feedback>get_default_feedback</a></b> or
+get_surface_feedback.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>format<td>uint<td><p>DRM_FORMAT code</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_v1.modifier href=#zwp_linux_dmabuf_v1.modifier>zwp_linux_dmabuf_v1.modifier</a></h3><p class=summary>supported buffer format modifier</div><div><b>Event</b><br>Since Version 3</div></div></div><div class=description><p>This event advertises the formats that the server supports, along with
 the modifiers supported for each format. All the supported modifiers
 for all the supported formats are advertised once when the client
 binds to this interface. A roundtrip after binding guarantees that
@@ -66,10 +66,10 @@ modifier. When a plane has DRM_FORMAT_MOD_INVALID as its modifier, it
 is as if no explicit modifier is specified. The effective modifier
 will be derived from the dmabuf.<p>A compositor that sends valid modifiers and DRM_FORMAT_MOD_INVALID for
 a given format supports both explicit modifiers and implicit modifiers.<p>For the definition of the format and modifier codes, see the
-<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_buffer_params_v1>zwp_linux_buffer_params_v1</a></b>::create and <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_buffer_params_v1>zwp_linux_buffer_params_v1</a></b>::add
+zwp_linux_buffer_params_v1::create and zwp_linux_buffer_params_v1::add
 requests.<p>Starting version 4, the modifier event is deprecated and must not be
-sent by compositors. Instead, use <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_v1.get_default_feedback>get_default_feedback</a></b> or
-<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_v1.get_surface_feedback>get_surface_feedback</a></b>.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>format<td>uint<td><p>DRM_FORMAT code<tr><td>modifier_hi<td>uint<td><p>high 32 bits of layout modifier<tr><td>modifier_lo<td>uint<td><p>low 32 bits of layout modifier</table><div class=interface-head><div class=row><div><h2><a id=zwp_linux_buffer_params_v1 href=#zwp_linux_buffer_params_v1>zwp_linux_buffer_params_v1</a></h2><p class=summary>parameters for creating a dmabuf-based wl_buffer</div><div><b>Interface</b><br>Version 5</div></div></div><div class=description><p>This temporary object is a collection of dmabufs and other
+sent by compositors. Instead, use <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_v1.get_default_feedback>get_default_feedback</a></b> or
+get_surface_feedback.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>format<td>uint<td><p>DRM_FORMAT code<tr><td>modifier_hi<td>uint<td><p>high 32 bits of layout modifier<tr><td>modifier_lo<td>uint<td><p>low 32 bits of layout modifier</table><div class=interface-head><div class=row><div><h2><a id=zwp_linux_buffer_params_v1 href=#zwp_linux_buffer_params_v1>zwp_linux_buffer_params_v1</a></h2><p class=summary>parameters for creating a dmabuf-based wl_buffer</div><div><b>Interface</b><br>Version 5</div></div></div><div class=description><p>This temporary object is a collection of dmabufs and other
 parameters that together form a single logical buffer. The temporary
 object may eventually create one <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> unless cancelled by
 destroying it before requesting 'create'.<p>Single-planar formats only require one dmabuf, however
@@ -83,7 +83,7 @@ calls with a plane index which has already been set will result in a
 plane_set error being generated.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_buffer_params_v1.destroy href=#zwp_linux_buffer_params_v1.destroy>zwp_linux_buffer_params_v1.destroy</a></h3><p class=summary>delete this object, used or not</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><div class=description><p>Cleans up the temporary data sent to the server for dmabuf-based
 <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> creation.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_buffer_params_v1.add href=#zwp_linux_buffer_params_v1.add>zwp_linux_buffer_params_v1.add</a></h3><p class=summary>add a dmabuf to the temporary set</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>This request adds one dmabuf to the set in this
-<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_buffer_params_v1>zwp_linux_buffer_params_v1</a></b>.<p>The 64-bit unsigned value combined from modifier_hi and modifier_lo
+zwp_linux_buffer_params_v1.<p>The 64-bit unsigned value combined from modifier_hi and modifier_lo
 is the dmabuf layout modifier. DRM AddFB2 ioctl calls this the
 fb modifier, which is defined in drm_mode.h of Linux UAPI.
 This is an opaque token. Drivers use this token to express tiling,
@@ -145,7 +145,7 @@ of planes and the format, bad format, non-positive width or
 height, or bad offset or stride.
 - INVALID_WL_BUFFER, in case the cause for failure is unknown or
 platform specific.
-- the server creates an invalid <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b>, marks it as failed and
+- the server creates an invalid wl_buffer, marks it as failed and
 sends a 'failed' event to the client. The result of using this
 invalid <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> as an argument in any request by the client is
 defined by the compositor implementation.<p>This takes the same arguments as a 'create' request, and obeys the
@@ -164,14 +164,14 @@ compositor.<p>Compositors can re-send the parameters when the current client buf
 allocations are sub-optimal. Compositors should not re-send the
 parameters if re-allocating the buffers would not result in a more optimal
 configuration. In particular, compositors should avoid sending the exact
-same parameters multiple times in a row.<p>The <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b> and <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_formats>tranche_formats</a></b> events are grouped by
-tranches of preference. For each tranche, a <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b>, one
-<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_flags>tranche_flags</a></b> and one or more <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_formats>tranche_formats</a></b> events are sent, followed
-by a <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_done>tranche_done</a></b> event finishing the list. The tranches are sent in
+same parameters multiple times in a row.<p>The <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b> and <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_formats>tranche_formats</a></b> events are grouped by
+tranches of preference. For each tranche, a tranche_target_device, one
+<b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_flags>tranche_flags</a></b> and one or more <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_formats>tranche_formats</a></b> events are sent, followed
+by a <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_done>tranche_done</a></b> event finishing the list. The tranches are sent in
 descending order of preference. All formats and modifiers in the same
-tranche have the same preference.<p>To send parameters, the compositor sends one <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.main_device>main_device</a></b> event, tranches
-(each consisting of one <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b> event, one <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_flags>tranche_flags</a></b>
-event, <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_formats>tranche_formats</a></b> events and then a <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_done>tranche_done</a></b> event), then one
+tranche have the same preference.<p>To send parameters, the compositor sends one <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.main_device>main_device</a></b> event, tranches
+(each consisting of one <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b> event, one <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_flags>tranche_flags</a></b>
+event, <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_formats>tranche_formats</a></b> events and then a <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_done>tranche_done</a></b> event), then one
 done event.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_feedback_v1.destroy href=#zwp_linux_dmabuf_feedback_v1.destroy>zwp_linux_dmabuf_feedback_v1.destroy</a></h3><p class=summary>destroy the feedback object</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><div class=description><p>Using this request a client can tell the server that it is not going to
 use the wp_linux_dmabuf_feedback object anymore.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_feedback_v1.done href=#zwp_linux_dmabuf_feedback_v1.done>zwp_linux_dmabuf_feedback_v1.done</a></h3><p class=summary>all feedback has been sent</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event is sent after all parameters of a wp_linux_dmabuf_feedback
@@ -187,7 +187,7 @@ store duplicate format + modifier pairs in the table.</div><table class=args><th
 when direct scan-out to the target device isn't possible. The
 advertised main device may be different for each
 wp_linux_dmabuf_feedback object, and may change over time.<p>There is exactly one main device. The compositor must send at least
-one preference tranche with <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b> equal to <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.main_device>main_device</a></b>.<p>Clients need to create buffers that the main device can import and
+one preference tranche with <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b> equal to main_device.<p>Clients need to create buffers that the main device can import and
 read from, otherwise creating the dmabuf <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> will fail (see the
 wp_linux_buffer_params.create and create_immed requests for details).
 The main device will also likely be kept active by the compositor,
@@ -197,9 +197,9 @@ render) is unspecified. Clients must not rely on the compositor sending
 a particular node type. Clients cannot check two devices for equality
 by comparing the dev_t value.<p>If explicit modifiers are not supported and the client performs buffer
 allocations on a different device than the main device, then the client
-must force the buffer to have a linear layout.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>device<td>array<td><p>device dev_t value</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_feedback_v1.tranche_done href=#zwp_linux_dmabuf_feedback_v1.tranche_done>zwp_linux_dmabuf_feedback_v1.tranche_done</a></h3><p class=summary>a preference tranche has been sent</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event splits <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b> and <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_formats>tranche_formats</a></b> events in
-preference tranches. It is sent after a set of <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b>
-and <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_formats>tranche_formats</a></b> events; it represents the end of a tranche. The
+must force the buffer to have a linear layout.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>device<td>array<td><p>device dev_t value</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_feedback_v1.tranche_done href=#zwp_linux_dmabuf_feedback_v1.tranche_done>zwp_linux_dmabuf_feedback_v1.tranche_done</a></h3><p class=summary>a preference tranche has been sent</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event splits <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b> and <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_formats>tranche_formats</a></b> events in
+preference tranches. It is sent after a set of <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_target_device>tranche_target_device</a></b>
+and <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_formats>tranche_formats</a></b> events; it represents the end of a tranche. The
 next tranche will have a lower preference.</div><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_feedback_v1.tranche_target_device href=#zwp_linux_dmabuf_feedback_v1.tranche_target_device>zwp_linux_dmabuf_feedback_v1.tranche_target_device</a></h3><p class=summary>target device</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event advertises the target device that the server prefers to use
 for a buffer created given this tranche. The advertised target device
 may be different for each preference tranche, and may change over time.<p>There is exactly one target device per tranche.<p>The target device may be a scan-out device, for example if the
@@ -215,9 +215,9 @@ prepared for the compositor changing the tranche priority or making
 create_immed requests for details).<p>If the device is a DRM node, the DRM node type (primary vs. render) is
 unspecified. Clients must not rely on the compositor sending a
 particular node type. Clients cannot check two devices for equality by
-comparing the dev_t value.<p>This event is tied to a preference tranche, see the <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_done>tranche_done</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>device<td>array<td><p>device dev_t value</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_feedback_v1.tranche_formats href=#zwp_linux_dmabuf_feedback_v1.tranche_formats>zwp_linux_dmabuf_feedback_v1.tranche_formats</a></h3><p class=summary>supported buffer format modifier</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event advertises the format + modifier combinations that the
+comparing the dev_t value.<p>This event is tied to a preference tranche, see the <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_done>tranche_done</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>device<td>array<td><p>device dev_t value</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_feedback_v1.tranche_formats href=#zwp_linux_dmabuf_feedback_v1.tranche_formats>zwp_linux_dmabuf_feedback_v1.tranche_formats</a></h3><p class=summary>supported buffer format modifier</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event advertises the format + modifier combinations that the
 compositor supports.<p>It carries an array of indices, each referring to a format + modifier
-pair in the last received format table (see the <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.format_table>format_table</a></b> event).
+pair in the last received format table (see the <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.format_table>format_table</a></b> event).
 Each index is a 16-bit unsigned integer in native endianness.<p>For legacy support, DRM_FORMAT_MOD_INVALID is an allowed modifier.
 It indicates that the server can support the format with an implicit
 modifier. When a buffer has DRM_FORMAT_MOD_INVALID as its modifier, it
@@ -225,11 +225,11 @@ is as if no explicit modifier is specified. The effective modifier
 will be derived from the dmabuf.<p>A compositor that sends valid modifiers and DRM_FORMAT_MOD_INVALID for
 a given format supports both explicit modifiers and implicit modifiers.<p>Compositors must not send duplicate format + modifier pairs within the
 same tranche or across two different tranches with the same target
-device and flags.<p>This event is tied to a preference tranche, see the <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_done>tranche_done</a></b> event.<p>For the definition of the format and modifier codes, see the
+device and flags.<p>This event is tied to a preference tranche, see the <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_done>tranche_done</a></b> event.<p>For the definition of the format and modifier codes, see the
 wp_linux_buffer_params.create request.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>indices<td>array<td><p>array of 16-bit indexes</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_feedback_v1.tranche_flags href=#zwp_linux_dmabuf_feedback_v1.tranche_flags>zwp_linux_dmabuf_feedback_v1.tranche_flags</a></h3><p class=summary>tranche flags</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event sets tranche-specific flags.<p>The scanout flag is a hint that direct scan-out may be attempted by the
 compositor on the target device if the client appropriately allocates a
 buffer. How to allocate a buffer that can be scanned out on the target
-device is implementation-defined.<p>This event is tied to a preference tranche, see the <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.tranche_done>tranche_done</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>flags<td>uint&lt;<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.enums.tranche_flags>tranche_flags</a></b>><td><p>tranche flags</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_feedback_v1.enums.tranche_flags href=#zwp_linux_dmabuf_feedback_v1.enums.tranche_flags>zwp_linux_dmabuf_feedback_v1.tranche_flags</a></h3><p class=summary></div><div><b>Bitfield
+device is implementation-defined.<p>This event is tied to a preference tranche, see the <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_feedback_v1.tranche_done>tranche_done</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>flags<td>uint&lt;<b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1.enums.tranche_flags>tranche_flags</a></b>><td><p>tranche flags</table><div class=message-head><div class=row><div><h3><a id=zwp_linux_dmabuf_feedback_v1.enums.tranche_flags href=#zwp_linux_dmabuf_feedback_v1.enums.tranche_flags>zwp_linux_dmabuf_feedback_v1.tranche_flags</a></h3><p class=summary></div><div><b>Bitfield
 Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>scanout<td>1<td>1<td><p>direct scan-out tranche</table><div class=interface-head><h2>Copyright</h2></div><div class=copyright><p><br>Copyright © 2014, 2015 Collabora, Ltd.<br><br>Permission is hereby granted, free of charge, to any person obtaining a<br>copy of this software and associated documentation files (the "Software"),<br>to deal in the Software without restriction, including without limitation<br>the rights to use, copy, modify, merge, publish, distribute, sublicense,<br>and/or sell copies of the Software, and to permit persons to whom the<br>Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice (including the next<br>paragraph) shall be included in all copies or substantial portions of the<br>Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br>THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br>DEALINGS IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
 <span class=line><a href=/impressum>Impressum</a>,</span>
 <span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>

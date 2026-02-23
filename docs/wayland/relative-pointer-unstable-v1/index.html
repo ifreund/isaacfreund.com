@@ -10,7 +10,7 @@ global interface "wp_relative_pointer_manager" which, if a compositor
 supports relative pointer motion events, is exposed by the registry. After
 having created the relative pointer manager proxy object, the client uses
 it to create the actual relative pointer object using the
-"get_relative_pointer" request given a <b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b>. The relative pointer
+"get_relative_pointer" request given a wl_pointer. The relative pointer
 motion events will then, when applicable, be transmitted via the proxy of
 the newly created relative pointer object. See the documentation of the
 relative pointer interface for more details.<p>Warning! The protocol described in this file is experimental and backward

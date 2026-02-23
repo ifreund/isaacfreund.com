@@ -7,7 +7,7 @@
 Rendering Manager (DRM) masters to lease DRM resources to Wayland
 clients.<p>The compositor will advertise one <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1>wp_drm_lease_device_v1</a></b> global for each
 DRM node. Some time after a client binds to the <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1>wp_drm_lease_device_v1</a></b>
-global, the compositor will send a <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1.drm_fd>drm_fd</a></b> event followed by zero, one or
+global, the compositor will send a <b><a href=/docs/wayland/drm-lease-v1/))#wp_drm_lease_device_v1.drm_fd>drm_fd</a></b> event followed by zero, one or
 more connector events. After all currently available connectors have been
 sent, the compositor will send a <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1.done>wp_drm_lease_device_v1.done</a></b> event.<p>When the list of connectors available for lease changes the compositor
 will send <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1.connector>wp_drm_lease_device_v1.connector</a></b> events for added connectors and
@@ -17,7 +17,7 @@ via a <b><a href=/docs/wayland/wayland/#wl_registry.global_remove>wl_registry.gl
 client should destroy any matching <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1>wp_drm_lease_device_v1</a></b> object.<p>To destroy a <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1>wp_drm_lease_device_v1</a></b> object, the client must first issue
 a release request. Upon receiving this request, the compositor will
 immediately send a released event and destroy the object. The client must
-continue to process and discard <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1.drm_fd>drm_fd</a></b> and connector events until it
+continue to process and discard <b><a href=/docs/wayland/drm-lease-v1/))#wp_drm_lease_device_v1.drm_fd>drm_fd</a></b> and connector events until it
 receives the released event. Upon receiving the released event, the
 client can safely cleanup any client-side resources.<p>Warning! The protocol described in this file is currently in the testing
 phase. Backward compatible changes may be added together with the
@@ -39,8 +39,8 @@ lease by clients. This object may be passed into a lease request to
 indicate the client would like to lease that connector, see
 <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_request_v1.request_connector>wp_drm_lease_request_v1.request_connector</a></b> for details. While the
 compositor will make a best effort to not send disconnected connectors,
-no guarantees can be made.<p>The compositor must send the <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1.drm_fd>drm_fd</a></b> event before sending connectors.
-After the <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1.drm_fd>drm_fd</a></b> event it will send all available connectors but may
+no guarantees can be made.<p>The compositor must send the <b><a href=/docs/wayland/drm-lease-v1/))#wp_drm_lease_device_v1.drm_fd>drm_fd</a></b> event before sending connectors.
+After the <b><a href=/docs/wayland/drm-lease-v1/))#wp_drm_lease_device_v1.drm_fd>drm_fd</a></b> event it will send all available connectors but may
 send additional connectors at any time.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_connector_v1>wp_drm_lease_connector_v1</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=wp_drm_lease_device_v1.done href=#wp_drm_lease_device_v1.done>wp_drm_lease_device_v1.done</a></h3><p class=summary>signals grouping of connectors</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The compositor will send this event to indicate that it has sent all
 currently available connectors after the client binds to the global or
 when it updates the connector list, for example on hotplug, drm master
@@ -53,9 +53,9 @@ The compositor will destroy this object immediately after sending the
 event and it will become invalid. The client should release any
 resources associated with this device after receiving this event.</div><div class=interface-head><div class=row><div><h2><a id=wp_drm_lease_connector_v1 href=#wp_drm_lease_connector_v1>wp_drm_lease_connector_v1</a></h2><p class=summary>a leasable DRM connector</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>Represents a DRM connector which is available for lease. These objects are
 created via <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_device_v1.connector>wp_drm_lease_device_v1.connector</a></b> events, and should be passed
-to lease requests via <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_request_v1.request_connector>wp_drm_lease_request_v1.request_connector</a></b>.
+to lease requests via wp_drm_lease_request_v1.request_connector.
 Immediately after the <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_connector_v1>wp_drm_lease_connector_v1</a></b> object is created the
-compositor will send a name, a description, a <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_connector_v1.connector_id>connector_id</a></b> and a done
+compositor will send a name, a description, a <b><a href=/docs/wayland/drm-lease-v1/))#wp_drm_lease_connector_v1.connector_id>connector_id</a></b> and a done
 event. When the description is updated the compositor will send a
 description event followed by a done event.</div><div class=message-head><div class=row><div><h3><a id=wp_drm_lease_connector_v1.destroy href=#wp_drm_lease_connector_v1.destroy>wp_drm_lease_connector_v1.destroy</a></h3><p class=summary>destroy connector</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><div class=description><p>The client may send this request to indicate that it will not use this
@@ -66,8 +66,8 @@ nor leases will be affected.</div><div class=message-head><div class=row><div><h
 indicate the name of this connector. This will not change for the
 duration of the Wayland session, but is not guaranteed to be consistent
 between sessions.<p>If the compositor supports <b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b> version 4 and this connector
-corresponds to a <b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b>, the compositor should use the same name as
-for the <b><a href=/docs/wayland/wayland/#wl_output>wl_output</a></b>.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>name<td>string<td><p>connector name</table><div class=message-head><div class=row><div><h3><a id=wp_drm_lease_connector_v1.description href=#wp_drm_lease_connector_v1.description>wp_drm_lease_connector_v1.description</a></h3><p class=summary>description</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The compositor sends this event once the connector is created to provide
+corresponds to a wl_output, the compositor should use the same name as
+for the wl_output.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>name<td>string<td><p>connector name</table><div class=message-head><div class=row><div><h3><a id=wp_drm_lease_connector_v1.description href=#wp_drm_lease_connector_v1.description>wp_drm_lease_connector_v1.description</a></h3><p class=summary>description</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The compositor sends this event once the connector is created to provide
 a human-readable description for this connector, which may be presented
 to the user. The compositor may send this event multiple times over the
 lifetime of this object to reflect changes in the description.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>description<td>string<td><p>connector description</table><div class=message-head><div class=row><div><h3><a id=wp_drm_lease_connector_v1.connector_id href=#wp_drm_lease_connector_v1.connector_id>wp_drm_lease_connector_v1.connector_id</a></h3><p class=summary>connector_id</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The compositor sends this event once the connector is created to
@@ -103,8 +103,8 @@ Not requesting any connectors before submitting the lease request
 will raise the empty_lease error.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_v1>wp_drm_lease_v1</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=wp_drm_lease_request_v1.enums.error href=#wp_drm_lease_request_v1.enums.error>wp_drm_lease_request_v1.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>wrong_device<td>0<td>1<td><p>requested a connector from a different lease device<tr><td>duplicate_connector<td>1<td>1<td><p>requested a connector twice<tr><td>empty_lease<td>2<td>1<td><p>requested a lease without requesting a connector</table><div class=interface-head><div class=row><div><h2><a id=wp_drm_lease_v1 href=#wp_drm_lease_v1>wp_drm_lease_v1</a></h2><p class=summary>a DRM lease</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>A DRM lease object is used to transfer the DRM file descriptor to the
 client and manage the lifetime of the lease.<p>Some time after the <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_v1>wp_drm_lease_v1</a></b> object is created, the compositor
 will reply with the lease request's result. If the lease request is
-granted, the compositor will send a <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_v1.lease_fd>lease_fd</a></b> event. If the lease request
-is denied, the compositor will send a finished event without a <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_v1.lease_fd>lease_fd</a></b>
+granted, the compositor will send a <b><a href=/docs/wayland/drm-lease-v1/))#wp_drm_lease_v1.lease_fd>lease_fd</a></b> event. If the lease request
+is denied, the compositor will send a finished event without a <b><a href=/docs/wayland/drm-lease-v1/))#wp_drm_lease_v1.lease_fd>lease_fd</a></b>
 event.</div><div class=message-head><div class=row><div><h3><a id=wp_drm_lease_v1.destroy href=#wp_drm_lease_v1.destroy>wp_drm_lease_v1.destroy</a></h3><p class=summary>destroys the lease object</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><div class=description><p>The client should send this to indicate that it no longer wishes to use
 this lease. The compositor should use drmModeRevokeLease on the
@@ -118,7 +118,7 @@ event. If the compositor cannot or will not grant a lease for the
 requested connectors, it will not send this event, instead sending the
 finished event.<p>The compositor will send this event at most once during this objects
 lifetime.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>leased_fd<td>fd<td><p>leased DRM file descriptor</table><div class=message-head><div class=row><div><h3><a id=wp_drm_lease_v1.finished href=#wp_drm_lease_v1.finished>wp_drm_lease_v1.finished</a></h3><p class=summary>sent when the lease has been revoked</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The compositor uses this event to either reject a lease request, or if
-it previously sent a <b><a href=/docs/wayland/drm-lease-v1/#wp_drm_lease_v1.lease_fd>lease_fd</a></b>, to notify the client that the lease has
+it previously sent a lease_fd, to notify the client that the lease has
 been revoked. If the client requires a new lease, they should destroy
 this object and submit a new lease request. The compositor will send
 no further events for this object after sending the finish event.

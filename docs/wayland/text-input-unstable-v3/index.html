@@ -18,7 +18,7 @@ associated with a seat. It provides enter/leave events to follow the
 text input focus for a seat.<p>Requests are used to enable/disable the text-input object and set
 state information like surrounding and selected text or the content type.
 The information about the entered text is sent to the text-input object
-via the <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.preedit_string>preedit_string</a></b> and <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.commit_string>commit_string</a></b> events.<p>Text is valid UTF-8 encoded, indices and lengths are in bytes. Indices
+via the <b><a href=/docs/wayland/text-input-unstable-v3/))#zwp_text_input_v3.preedit_string>preedit_string</a></b> and <b><a href=/docs/wayland/text-input-unstable-v3/))#zwp_text_input_v3.commit_string>commit_string</a></b> events.<p>Text is valid UTF-8 encoded, indices and lengths are in bytes. Indices
 must not point to middle bytes inside a code point: they must either
 point to the first byte of a code point or to the end of the buffer.
 Lengths must be measured between two valid indices.<p>Focus moving throughout surfaces will result in the emission of
@@ -27,8 +27,8 @@ surface must commit <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_in
 <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.disable>zwp_text_input_v3.disable</a></b> requests as the keyboard focus moves across
 editable and non-editable elements of the UI. Those two requests are not
 expected to be paired with each other, the compositor must be able to
-handle consecutive series of the same request.<p>State is sent by the state requests (<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_surrounding_text>set_surrounding_text</a></b>,
-<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_content_type>set_content_type</a></b> and <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_cursor_rectangle>set_cursor_rectangle</a></b>) and a commit request. After an
+handle consecutive series of the same request.<p>State is sent by the state requests (set_surrounding_text,
+<b><a href=/docs/wayland/text-input-unstable-v3/))#zwp_text_input_v3.set_content_type>set_content_type</a></b> and set_cursor_rectangle) and a commit request. After an
 enter event or disable request all state information is invalidated and
 needs to be resent by the client.</div><div class=message-head><div class=row><div><h3><a id=zwp_text_input_v3.destroy href=#zwp_text_input_v3.destroy>zwp_text_input_v3.destroy</a></h3><p class=summary>Destroy the wp_text_input</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy the wp_text_input object. Also disables all surfaces enabled
@@ -40,9 +40,9 @@ the current surface.<p>Clients must not enable more than one text input on the s
 and should disable the current text input before enabling the new one.
 Requests to enable a text input when another text input is enabled
 on the same seat must be ignored by compositor.<p>This request resets all state associated with previous enable, disable,
-<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_surrounding_text>set_surrounding_text</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_text_change_cause>set_text_change_cause</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_content_type>set_content_type</a></b>, and
-<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_cursor_rectangle>set_cursor_rectangle</a></b> requests, as well as the state associated with
-<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.preedit_string>preedit_string</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.commit_string>commit_string</a></b>, and <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.delete_surrounding_text>delete_surrounding_text</a></b> events.<p>The <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_surrounding_text>set_surrounding_text</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_content_type>set_content_type</a></b> and <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_cursor_rectangle>set_cursor_rectangle</a></b>
+set_surrounding_text, set_text_change_cause, set_content_type, and
+<b><a href=/docs/wayland/text-input-unstable-v3/))#zwp_text_input_v3.set_cursor_rectangle>set_cursor_rectangle</a></b> requests, as well as the state associated with
+preedit_string, commit_string, and <b><a href=/docs/wayland/text-input-unstable-v3/))#zwp_text_input_v3.delete_surrounding_text>delete_surrounding_text</a></b> events.<p>The set_surrounding_text, <b><a href=/docs/wayland/text-input-unstable-v3/))#zwp_text_input_v3.set_content_type>set_content_type</a></b> and <b><a href=/docs/wayland/text-input-unstable-v3/))#zwp_text_input_v3.set_cursor_rectangle>set_cursor_rectangle</a></b>
 requests must follow if the text input supports the necessary
 functionality.<p>State set with this request is double-buffered. It will get applied on
 the next <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.commit>zwp_text_input_v3.commit</a></b> request, and stay valid until the
@@ -56,7 +56,7 @@ incoming text-input events as well as changes caused by other
 mechanisms like keyboard typing.<p>If the client is unaware of the text around the cursor, it should not
 issue this request, to signify lack of support to the compositor.<p>Text is UTF-8 encoded, and should include the cursor position, the
 complete selection and additional characters before and after them.
-There is a maximum length of <b><a href=/docs/wayland/wayland>wayland</a></b> messages, so text can not be
+There is a maximum length of wayland messages, so text can not be
 longer than 4000 bytes.<p>Cursor is the byte offset of the cursor within text buffer.<p>Anchor is the byte offset of the selection anchor within text buffer.
 If there is no selected text, anchor is the same as cursor.<p>If any preedit text is present, it is replaced with a cursor for the
 purpose of this event.<p>Values set with this request are double-buffered. They will get applied
@@ -119,7 +119,7 @@ the current cursor index (excluding the selection) to delete.<p>If a preedit tex
 the beginning of it, and after_length from its end (see done event
 sequence).<p>Values set with this event are double-buffered. They must be applied
 and reset to initial on the next <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.done>zwp_text_input_v3.done</a></b> event.<p>The initial values of both before_length and after_length are 0.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>before_length<td>uint<td><p>length of text before current cursor position<tr><td>after_length<td>uint<td><p>length of text after current cursor position</table><div class=message-head><div class=row><div><h3><a id=zwp_text_input_v3.done href=#zwp_text_input_v3.done>zwp_text_input_v3.done</a></h3><p class=summary>apply changes</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Instruct the application to apply changes to state requested by the
-<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.preedit_string>preedit_string</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.commit_string>commit_string</a></b> and <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.delete_surrounding_text>delete_surrounding_text</a></b> events. The
+preedit_string, <b><a href=/docs/wayland/text-input-unstable-v3/))#zwp_text_input_v3.commit_string>commit_string</a></b> and <b><a href=/docs/wayland/text-input-unstable-v3/))#zwp_text_input_v3.delete_surrounding_text>delete_surrounding_text</a></b> events. The
 state relating to these events is double-buffered, and each one
 modifies the pending state. This event replaces the current state with
 the pending state.<p>The application must proceed by evaluating the changes in the following
@@ -134,7 +134,7 @@ be equal to the number of commit requests already issued on that object.<p>When 
 number of past commit requests, it must proceed with evaluating and
 applying the changes as normal, except it should not change the current
 state of the <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3>zwp_text_input_v3</a></b> object. All pending state requests
-(<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_surrounding_text>set_surrounding_text</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_content_type>set_content_type</a></b> and <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_cursor_rectangle>set_cursor_rectangle</a></b>) on
+(set_surrounding_text, <b><a href=/docs/wayland/text-input-unstable-v3/))#zwp_text_input_v3.set_content_type>set_content_type</a></b> and set_cursor_rectangle) on
 the <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3>zwp_text_input_v3</a></b> object should be sent and committed after
 receiving a <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.done>zwp_text_input_v3.done</a></b> event with a matching serial.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_text_input_v3.enums.change_cause href=#zwp_text_input_v3.enums.change_cause>zwp_text_input_v3.change_cause</a></h3><p class=summary>text change reason</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>Reason for the change of surrounding text or cursor posision.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>input_method<td>0<td>1<td><p>input method caused the change<tr><td>other<td>1<td>1<td><p>something else than the input method caused the change</table><div class=message-head><div class=row><div><h3><a id=zwp_text_input_v3.enums.content_hint href=#zwp_text_input_v3.enums.content_hint>zwp_text_input_v3.content_hint</a></h3><p class=summary>content hint</div><div><b>Bitfield
 Enum</b><br>Since Version 1</div></div></div><div class=description><p>Content hint is a bitmask to allow to modify the behavior of the text
