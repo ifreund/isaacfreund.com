@@ -4,7 +4,7 @@
 <a href=/software>software</a>
 <a href=/poetry>poetry</a>
 <a href=/consulting>consulting</a></div></nav></header><main class="wayland-protocol linux-dmabuf-v1"><div class=title><div class=row><div><h1>linux-dmabuf-v1</h1><p class=summary></div><div><p>(<a href=/docs/wayland>index</a>)<p></div></div></div><div class=content><div class=interface-head><div class=row><div><h2><a id=zwp_linux_dmabuf_v1 href=#zwp_linux_dmabuf_v1>zwp_linux_dmabuf_v1</a></h2><p class=summary>factory for creating dmabuf-based wl_buffers</div><div><b>Interface</b><br>Version 5</div></div></div><div class=description><p>This interface offers ways to create generic dmabuf-based wl_buffers.<p>For more information about dmabuf, see:
-https://www.kernel.org/doc/html/next/userspace-api/dma-buf-alloc-exchange.html<p>Clients can use the <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_v1.get_surface_feedback>get_surface_feedback</a></b> request to get dmabuf feedback
+<a href=https://www.kernel.org/doc/html/next/userspace-api/dma-buf-alloc-exchange.html>https://www.kernel.org/doc/html/next/userspace-api/dma-buf-alloc-exchange.html</a><p>Clients can use the <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_v1.get_surface_feedback>get_surface_feedback</a></b> request to get dmabuf feedback
 for a particular surface. If the client wants to retrieve feedback not
 tied to a surface, they can use the <b><a href=/docs/wayland/linux-dmabuf-v1/))#zwp_linux_dmabuf_v1.get_default_feedback>get_default_feedback</a></b> request.<p>The following are required from clients:<p>- Clients must ensure that either all data in the dma-buf is
 coherent for all subsequent read access or that coherency is

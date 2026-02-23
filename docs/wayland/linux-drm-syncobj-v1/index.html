@@ -15,7 +15,7 @@ submitting a buffer, the client provides a timeline point which will be
 waited on before the compositor accesses the buffer, and another timeline
 point that the compositor will signal when it no longer needs to access the
 buffer contents for the purposes of the surface commit.<p>Linux DRM synchronization objects are documented at:
-https://dri.freedesktop.org/docs/drm/gpu/drm-mm.html#drm-sync-objects<p>Warning! The protocol described in this file is currently in the testing
+<a href=https://dri.freedesktop.org/docs/drm/gpu/drm-mm.html>https://dri.freedesktop.org/docs/drm/gpu/drm-mm.html</a>#drm-sync-objects<p>Warning! The protocol described in this file is currently in the testing
 phase. Backward compatible changes may be added together with the
 corresponding interface version bump. Backward incompatible changes can
 only be done by creating a new major version of the extension.</div><div class=interface-head><div class=row><div><h2><a id=wp_linux_drm_syncobj_manager_v1 href=#wp_linux_drm_syncobj_manager_v1>wp_linux_drm_syncobj_manager_v1</a></h2><p class=summary>global for providing explicit synchronization</div><div><b>Interface</b><br>Version 1</div></div></div><div class=description><p>This global is a factory interface, allowing clients to request
