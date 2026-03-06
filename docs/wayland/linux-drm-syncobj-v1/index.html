@@ -46,8 +46,8 @@ no_buffer, no_acquire_point and no_release_point protocol errors.<p>If at surfac
 are identical, the acquire point value must be strictly less than the
 release point value, or else the conflicting_points protocol error is
 raised.</div><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_surface_v1.destroy href=#wp_linux_drm_syncobj_surface_v1.destroy>wp_linux_drm_syncobj_surface_v1.destroy</a></h3><p class=summary>destroy the surface synchronization object</div><div><b>Destructor
-Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this surface synchronization object.<p>Any timeline point set by this object with <b><a href=/docs/wayland/linux-drm-syncobj-v1/))#wp_linux_drm_syncobj_surface_v1.set_acquire_point>set_acquire_point</a></b> or
-<b><a href=/docs/wayland/linux-drm-syncobj-v1/))#wp_linux_drm_syncobj_surface_v1.set_release_point>set_release_point</a></b> since the last commit may be discarded by the
+Request</b><br>Since Version 1</div></div></div><div class=description><p>Destroy this surface synchronization object.<p>Any timeline point set by this object with <b><a href=/docs/wayland/linux-drm-syncobj-v1/#wp_linux_drm_syncobj_surface_v1.set_acquire_point>set_acquire_point</a></b> or
+<b><a href=/docs/wayland/linux-drm-syncobj-v1/#wp_linux_drm_syncobj_surface_v1.set_release_point>set_release_point</a></b> since the last commit may be discarded by the
 compositor. Any timeline point set by this object before the last
 commit will not be affected.</div><div class=message-head><div class=row><div><h3><a id=wp_linux_drm_syncobj_surface_v1.set_acquire_point href=#wp_linux_drm_syncobj_surface_v1.set_acquire_point>wp_linux_drm_syncobj_surface_v1.set_acquire_point</a></h3><p class=summary>set the acquire timeline point</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Set the timeline point that must be signalled before the compositor may
 sample from the buffer attached with wl_surface.attach.<p>The 64-bit unsigned value combined from point_hi and point_lo is the

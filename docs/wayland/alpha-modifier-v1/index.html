@@ -17,7 +17,7 @@ a surface, which can be used to offload such operations to the compositor.
 The default factor is UINT32_MAX.<p>This object has to be destroyed before the associated wl_surface. Once the
 <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> is destroyed, all request on this object will raise the
 no_surface error.</div><div class=message-head><div class=row><div><h3><a id=wp_alpha_modifier_surface_v1.destroy href=#wp_alpha_modifier_surface_v1.destroy>wp_alpha_modifier_surface_v1.destroy</a></h3><p class=summary>destroy the alpha modifier object</div><div><b>Destructor
-Request</b><br>Since Version 1</div></div></div><div class=description><p>This destroys the object, and is equivalent to <b><a href=/docs/wayland/alpha-modifier-v1/))#wp_alpha_modifier_surface_v1.set_multiplier>set_multiplier</a></b> with
+Request</b><br>Since Version 1</div></div></div><div class=description><p>This destroys the object, and is equivalent to <b><a href=/docs/wayland/alpha-modifier-v1/#wp_alpha_modifier_surface_v1.set_multiplier>set_multiplier</a></b> with
 a value of UINT32_MAX, with the same double-buffered semantics as
 set_multiplier.</div><div class=message-head><div class=row><div><h3><a id=wp_alpha_modifier_surface_v1.set_multiplier href=#wp_alpha_modifier_surface_v1.set_multiplier>wp_alpha_modifier_surface_v1.set_multiplier</a></h3><p class=summary>specify the alpha multiplier</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Sets the alpha multiplier for the surface. The alpha multiplier is
 double-buffered state, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> for details.<p>This factor is applied in the compositor's blending space, as an

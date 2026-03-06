@@ -13,9 +13,9 @@ compositor after the callback is fired and as such the client must not
 attempt to use it after that point.<p>The callback_data passed in the callback is undefined and should be ignored.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>callback<td>new_id&lt;<b><a href=/docs/wayland/wayland/#wl_callback>wl_callback</a></b>><td><p>callback object for the sync request</table><div class=message-head><div class=row><div><h3><a id=wl_display.get_registry href=#wl_display.get_registry>wl_display.get_registry</a></h3><p class=summary>get global registry object</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>This request creates a registry object that allows the client
 to list and bind the global objects available from the
 compositor.<p>It should be noted that the server side resources consumed in
-response to a <b><a href=/docs/wayland/wayland/))#wl_display.get_registry>get_registry</a></b> request can only be released when the
+response to a <b><a href=/docs/wayland/wayland/#wl_display.get_registry>get_registry</a></b> request can only be released when the
 client disconnects, not when the client side proxy is destroyed.
-Therefore, clients should invoke <b><a href=/docs/wayland/wayland/))#wl_display.get_registry>get_registry</a></b> as infrequently as
+Therefore, clients should invoke <b><a href=/docs/wayland/wayland/#wl_display.get_registry>get_registry</a></b> as infrequently as
 possible to avoid wasting memory.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>registry<td>new_id&lt;<b><a href=/docs/wayland/wayland/#wl_registry>wl_registry</a></b>><td><p>global registry object</table><div class=message-head><div class=row><div><h3><a id=wl_display.error href=#wl_display.error>wl_display.error</a></h3><p class=summary>fatal error event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The error event is sent out when a fatal (non-recoverable)
 error has occurred. The object_id argument is the object
 where the error occurred, most often in response to a request
@@ -35,7 +35,7 @@ extension functionality.<p>When a client creates a registry object, the registry
 will emit a global event for each global currently in the
 registry. Globals come and go as a result of device or
 monitor hotplugs, reconfiguration or other events, and the
-registry will send out global and <b><a href=/docs/wayland/wayland/))#wl_registry.global_remove>global_remove</a></b> events to
+registry will send out global and <b><a href=/docs/wayland/wayland/#wl_registry.global_remove>global_remove</a></b> events to
 keep the client up to date with the changes. To mark the end
 of the initial burst of events, the client can use the
 <b><a href=/docs/wayland/wayland/#wl_display.sync>wl_display.sync</a></b> request immediately after calling
@@ -79,7 +79,7 @@ by the server and does not touch the file corresponding to the
 file descriptor passed at creation time. It is the client's
 responsibility to ensure that the file is at least as big as
 the new pool size.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>size<td>int<td><p>new size of the pool, in bytes</table><div class=interface-head><div class=row><div><h2><a id=wl_shm href=#wl_shm>wl_shm</a></h2><p class=summary>shared memory support</div><div><b>Interface</b><br>Version 2</div></div></div><div class=description><p>A singleton global object that provides support for shared
-memory.<p>Clients can create <b><a href=/docs/wayland/wayland/#wl_shm_pool>wl_shm_pool</a></b> objects using the <b><a href=/docs/wayland/wayland/))#wl_shm.create_pool>create_pool</a></b>
+memory.<p>Clients can create <b><a href=/docs/wayland/wayland/#wl_shm_pool>wl_shm_pool</a></b> objects using the <b><a href=/docs/wayland/wayland/#wl_shm.create_pool>create_pool</a></b>
 request.<p>On binding the <b><a href=/docs/wayland/wayland/#wl_shm>wl_shm</a></b> object one or more format events
 are emitted to inform clients about the valid pixel formats
 that can be used for buffers.</div><div class=message-head><div class=row><div><h3><a id=wl_shm.create_pool href=#wl_shm.create_pool>wl_shm.create_pool</a></h3><p class=summary>create a shm pool</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Create a new <b><a href=/docs/wayland/wayland/#wl_shm_pool>wl_shm_pool</a></b> object.<p>The pool can be used to create shared memory based buffer
@@ -264,21 +264,21 @@ relative position. Attach requests must be confirmed with
 <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> as usual. The icon surface is given the role of
 a drag-and-drop icon. If the icon surface already has another role,
 it raises a protocol error.<p>The input region is ignored for wl_surfaces with the role of a
-drag-and-drop icon.<p>The given source may not be used in any further <b><a href=/docs/wayland/wayland/))#wl_data_device.set_selection>set_selection</a></b> or
-<b><a href=/docs/wayland/wayland/))#wl_data_device.start_drag>start_drag</a></b> requests. Attempting to reuse a previously-used source
+drag-and-drop icon.<p>The given source may not be used in any further <b><a href=/docs/wayland/wayland/#wl_data_device.set_selection>set_selection</a></b> or
+<b><a href=/docs/wayland/wayland/#wl_data_device.start_drag>start_drag</a></b> requests. Attempting to reuse a previously-used source
 may send a used_source error.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>source<td>nullable
 object&lt;<b><a href=/docs/wayland/wayland/#wl_data_source>wl_data_source</a></b>><td><p>data source for the eventual transfer<tr><td>origin<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>surface where the drag originates<tr><td>icon<td>nullable
 object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>drag-and-drop icon surface<tr><td>serial<td>uint<td><p>serial number of the implicit grab on the origin</table><div class=message-head><div class=row><div><h3><a id=wl_data_device.set_selection href=#wl_data_device.set_selection>wl_data_device.set_selection</a></h3><p class=summary>copy data to the selection</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>This request asks the compositor to set the selection
-to the data from the source on behalf of the client.<p>To unset the selection, set the source to NULL.<p>The given source may not be used in any further <b><a href=/docs/wayland/wayland/))#wl_data_device.set_selection>set_selection</a></b> or
-<b><a href=/docs/wayland/wayland/))#wl_data_device.start_drag>start_drag</a></b> requests. Attempting to reuse a previously-used source
+to the data from the source on behalf of the client.<p>To unset the selection, set the source to NULL.<p>The given source may not be used in any further <b><a href=/docs/wayland/wayland/#wl_data_device.set_selection>set_selection</a></b> or
+<b><a href=/docs/wayland/wayland/#wl_data_device.start_drag>start_drag</a></b> requests. Attempting to reuse a previously-used source
 may send a used_source error.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>source<td>nullable
 object&lt;<b><a href=/docs/wayland/wayland/#wl_data_source>wl_data_source</a></b>><td><p>data source for the selection<tr><td>serial<td>uint<td><p>serial number of the event that triggered this request</table><div class=message-head><div class=row><div><h3><a id=wl_data_device.release href=#wl_data_device.release>wl_data_device.release</a></h3><p class=summary>destroy data device</div><div><b>Destructor
-Request</b><br>Since Version 2</div></div></div><div class=description><p>This request destroys the data device.</div><div class=message-head><div class=row><div><h3><a id=wl_data_device.data_offer href=#wl_data_device.data_offer>wl_data_device.data_offer</a></h3><p class=summary>introduce a new wl_data_offer</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The <b><a href=/docs/wayland/wayland/))#wl_data_device.data_offer>data_offer</a></b> event introduces a new <b><a href=/docs/wayland/wayland/#wl_data_offer>wl_data_offer</a></b> object,
+Request</b><br>Since Version 2</div></div></div><div class=description><p>This request destroys the data device.</div><div class=message-head><div class=row><div><h3><a id=wl_data_device.data_offer href=#wl_data_device.data_offer>wl_data_device.data_offer</a></h3><p class=summary>introduce a new wl_data_offer</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The <b><a href=/docs/wayland/wayland/#wl_data_device.data_offer>data_offer</a></b> event introduces a new <b><a href=/docs/wayland/wayland/#wl_data_offer>wl_data_offer</a></b> object,
 which will subsequently be used in either the
 data_device.enter event (for drag-and-drop) or the
 data_device.selection event (for selections). Immediately
-following the data_device.data_offer event, the new <b><a href=/docs/wayland/wayland/))#wl_data_device.data_offer>data_offer</a></b>
-object will send out <b><a href=/docs/wayland/wayland/))#wl_data_device.data_offer>data_offer</a></b> events to describe the
+following the data_device.data_offer event, the new <b><a href=/docs/wayland/wayland/#wl_data_device.data_offer>data_offer</a></b>
+object will send out <b><a href=/docs/wayland/wayland/#wl_data_device.data_offer>data_offer</a></b> events to describe the
 mime types it offers.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/wayland/#wl_data_offer>wl_data_offer</a></b>><td><p>the new data_offer object</table><div class=message-head><div class=row><div><h3><a id=wl_data_device.enter href=#wl_data_device.enter>wl_data_device.enter</a></h3><p class=summary>initiate drag-and-drop session</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event is sent when an active drag-and-drop pointer enters
 a surface owned by the client. The position of the pointer at
 enter time is provided by the x and y arguments, in surface-local
@@ -298,12 +298,12 @@ final. The drag-and-drop destination is expected to perform one last
 <b><a href=/docs/wayland/wayland/#wl_data_offer.set_actions>wl_data_offer.set_actions</a></b> request, or <b><a href=/docs/wayland/wayland/#wl_data_offer.destroy>wl_data_offer.destroy</a></b> in order
 to cancel the operation.</div><div class=message-head><div class=row><div><h3><a id=wl_data_device.selection href=#wl_data_device.selection>wl_data_device.selection</a></h3><p class=summary>advertise new selection</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>The selection event is sent out to notify the client of a new
 <b><a href=/docs/wayland/wayland/#wl_data_offer>wl_data_offer</a></b> for the selection for this device. The
-data_device.data_offer and the <b><a href=/docs/wayland/wayland/))#wl_data_device.data_offer>data_offer</a></b> events are
+data_device.data_offer and the <b><a href=/docs/wayland/wayland/#wl_data_device.data_offer>data_offer</a></b> events are
 sent out immediately before this event to introduce the data
 offer object. The selection event is sent to a client
 immediately before receiving keyboard focus and when a new
 selection is set while the client has keyboard focus. The
-<b><a href=/docs/wayland/wayland/))#wl_data_device.data_offer>data_offer</a></b> is valid until a new <b><a href=/docs/wayland/wayland/))#wl_data_device.data_offer>data_offer</a></b> or NULL is received
+<b><a href=/docs/wayland/wayland/#wl_data_device.data_offer>data_offer</a></b> is valid until a new <b><a href=/docs/wayland/wayland/#wl_data_device.data_offer>data_offer</a></b> or NULL is received
 or until the client loses keyboard focus. Switching surface with
 keyboard focus within the same client doesn't mean a new selection
 will be sent. The client must destroy the previous selection
@@ -645,7 +645,7 @@ use the pointer object anymore.<p>This request destroys the pointer proxy object
 wl_pointer_destroy() after using this request.</div><div class=message-head><div class=row><div><h3><a id=wl_pointer.enter href=#wl_pointer.enter>wl_pointer.enter</a></h3><p class=summary>enter event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that this seat's pointer is focused on a certain
 surface.<p>When a seat's focus enters a surface, the pointer image
 is undefined and a client should respond to this event by setting
-an appropriate pointer image with the <b><a href=/docs/wayland/wayland/))#wl_pointer.set_cursor>set_cursor</a></b> request.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>serial number of the enter event<tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>surface entered by the pointer<tr><td>surface_x<td>fixed<td><p>surface-local x coordinate<tr><td>surface_y<td>fixed<td><p>surface-local y coordinate</table><div class=message-head><div class=row><div><h3><a id=wl_pointer.leave href=#wl_pointer.leave>wl_pointer.leave</a></h3><p class=summary>leave event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that this seat's pointer is no longer focused on
+an appropriate pointer image with the <b><a href=/docs/wayland/wayland/#wl_pointer.set_cursor>set_cursor</a></b> request.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>serial number of the enter event<tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>surface entered by the pointer<tr><td>surface_x<td>fixed<td><p>surface-local x coordinate<tr><td>surface_y<td>fixed<td><p>surface-local y coordinate</table><div class=message-head><div class=row><div><h3><a id=wl_pointer.leave href=#wl_pointer.leave>wl_pointer.leave</a></h3><p class=summary>leave event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that this seat's pointer is no longer focused on
 a certain surface.<p>The leave notification is sent before the enter notification
 for the new focus.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>serial number of the leave event<tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>surface left by the pointer</table><div class=message-head><div class=row><div><h3><a id=wl_pointer.motion href=#wl_pointer.motion>wl_pointer.motion</a></h3><p class=summary>pointer motion event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification of pointer location change. The arguments
 surface_x and surface_y are the location relative to the
@@ -695,9 +695,9 @@ wl_pointer.axis_source.finger, a <b><a href=/docs/wayland/wayland/#wl_pointer.ax
 sent when the user lifts the finger off the device.<p>If the source is wl_pointer.axis_source.wheel,
 wl_pointer.axis_source.wheel_tilt or
 wl_pointer.axis_source.continuous, a <b><a href=/docs/wayland/wayland/#wl_pointer.axis_stop>wl_pointer.axis_stop</a></b> event may
-or may not be sent. Whether a compositor sends an <b><a href=/docs/wayland/wayland/))#wl_pointer.axis_stop>axis_stop</a></b> event
+or may not be sent. Whether a compositor sends an <b><a href=/docs/wayland/wayland/#wl_pointer.axis_stop>axis_stop</a></b> event
 for these sources is hardware-specific and implementation-dependent;
-clients must not rely on receiving an <b><a href=/docs/wayland/wayland/))#wl_pointer.axis_stop>axis_stop</a></b> event for these
+clients must not rely on receiving an <b><a href=/docs/wayland/wayland/#wl_pointer.axis_stop>axis_stop</a></b> event for these
 scroll sources and should treat scroll sequences from these scroll
 sources as unterminated by default.<p>This event is optional. If the source is unknown for a particular
 axis event sequence, no event is sent.
@@ -706,19 +706,19 @@ not guaranteed.</div><table class=args><thead><tr><th>Argument<th>Type<th>Descri
 is sent to notify a client that the axis sequence has terminated.
 This enables the client to implement kinetic scrolling.
 See the <b><a href=/docs/wayland/wayland/#wl_pointer.axis_source>wl_pointer.axis_source</a></b> documentation for information on when
-this event may be generated.<p>Any <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> events with the same <b><a href=/docs/wayland/wayland/))#wl_pointer.axis_source>axis_source</a></b> after this
+this event may be generated.<p>Any <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> events with the same <b><a href=/docs/wayland/wayland/#wl_pointer.axis_source>axis_source</a></b> after this
 event should be considered as the start of a new axis motion.<p>The timestamp is to be interpreted identical to the timestamp in the
 <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> event. The timestamp value may be the same as a
 preceding <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>time<td>uint<td><p>timestamp with millisecond granularity<tr><td>axis<td>uint&lt;<b><a href=/docs/wayland/wayland/#wl_pointer.enums.axis>axis</a></b>><td><p>the axis stopped with this event</table><div class=message-head><div class=row><div><h3><a id=wl_pointer.axis_discrete href=#wl_pointer.axis_discrete>wl_pointer.axis_discrete</a></h3><p class=summary>axis click event</div><div><b>Event</b><br>Since Version 5</div></div></div><div class=description><p>Discrete step information for scroll and other axes.<p>This event carries the axis value of the <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> event in
 discrete steps (e.g. mouse wheel clicks).<p>This event is deprecated with <b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b> version 8 - this event is not
 sent to clients supporting version 8 or later.<p>This event does not occur on its own, it is coupled with a
 <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> event that represents this axis value on a
-continuous scale. The protocol guarantees that each <b><a href=/docs/wayland/wayland/))#wl_pointer.axis_discrete>axis_discrete</a></b>
+continuous scale. The protocol guarantees that each <b><a href=/docs/wayland/wayland/#wl_pointer.axis_discrete>axis_discrete</a></b>
 event is always followed by exactly one axis event with the same
 axis number within the same wl_pointer.frame. Note that the protocol
-allows for other events to occur between the <b><a href=/docs/wayland/wayland/))#wl_pointer.axis_discrete>axis_discrete</a></b> and
-its coupled axis event, including other <b><a href=/docs/wayland/wayland/))#wl_pointer.axis_discrete>axis_discrete</a></b> or axis
-events. A <b><a href=/docs/wayland/wayland/#wl_pointer.frame>wl_pointer.frame</a></b> must not contain more than one <b><a href=/docs/wayland/wayland/))#wl_pointer.axis_discrete>axis_discrete</a></b>
+allows for other events to occur between the <b><a href=/docs/wayland/wayland/#wl_pointer.axis_discrete>axis_discrete</a></b> and
+its coupled axis event, including other <b><a href=/docs/wayland/wayland/#wl_pointer.axis_discrete>axis_discrete</a></b> or axis
+events. A <b><a href=/docs/wayland/wayland/#wl_pointer.frame>wl_pointer.frame</a></b> must not contain more than one <b><a href=/docs/wayland/wayland/#wl_pointer.axis_discrete>axis_discrete</a></b>
 event per axis type.<p>This event is optional; continuous scrolling devices
 like two-finger scrolling on touchpads do not have discrete
 steps and do not generate this event.<p>The discrete value carries the directional information. e.g. a value
@@ -726,7 +726,7 @@ of -2 is two steps towards the negative direction of this axis.<p>The axis numbe
 axis event.<p>The order of <b><a href=/docs/wayland/wayland/#wl_pointer.axis_discrete>wl_pointer.axis_discrete</a></b> and <b><a href=/docs/wayland/wayland/#wl_pointer.axis_source>wl_pointer.axis_source</a></b> is
 not guaranteed.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>axis<td>uint&lt;<b><a href=/docs/wayland/wayland/#wl_pointer.enums.axis>axis</a></b>><td><p>axis type<tr><td>discrete<td>int<td><p>number of steps</table><div class=message-head><div class=row><div><h3><a id=wl_pointer.axis_value120 href=#wl_pointer.axis_value120>wl_pointer.axis_value120</a></h3><p class=summary>axis high-resolution scroll event</div><div><b>Event</b><br>Since Version 8</div></div></div><div class=description><p>Discrete high-resolution scroll information.<p>This event carries high-resolution wheel scroll information,
 with each multiple of 120 representing one logical scroll step
-(a wheel detent). For example, an <b><a href=/docs/wayland/wayland/))#wl_pointer.axis_value120>axis_value120</a></b> of 30 is one quarter of
+(a wheel detent). For example, an <b><a href=/docs/wayland/wayland/#wl_pointer.axis_value120>axis_value120</a></b> of 30 is one quarter of
 a logical scroll step in the positive direction, a value120 of
 -240 are two logical scroll steps in the negative direction within the
 same hardware event.
@@ -751,10 +751,10 @@ physical direction regardless of whether natural scrolling is
 active. This event enables clients to match the scroll direction of
 a widget to the physical direction.<p>This event does not occur on its own, it is coupled with a
 <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> event that represents this axis value.
-The protocol guarantees that each <b><a href=/docs/wayland/wayland/))#wl_pointer.axis_relative_direction>axis_relative_direction</a></b> event is
+The protocol guarantees that each <b><a href=/docs/wayland/wayland/#wl_pointer.axis_relative_direction>axis_relative_direction</a></b> event is
 always followed by exactly one axis event with the same
 axis number within the same wl_pointer.frame. Note that the protocol
-allows for other events to occur between the <b><a href=/docs/wayland/wayland/))#wl_pointer.axis_relative_direction>axis_relative_direction</a></b>
+allows for other events to occur between the <b><a href=/docs/wayland/wayland/#wl_pointer.axis_relative_direction>axis_relative_direction</a></b>
 and its coupled axis event.<p>The axis number is identical to the axis number in the associated
 axis event.<p>The order of wl_pointer.axis_relative_direction,
 <b><a href=/docs/wayland/wayland/#wl_pointer.axis_discrete>wl_pointer.axis_discrete</a></b> and <b><a href=/docs/wayland/wayland/#wl_pointer.axis_source>wl_pointer.axis_source</a></b> is not
@@ -1003,7 +1003,7 @@ state of the parent surface (wl_subsurface.set_position, .place_above and
 synchronize the removal of a sub-surface to the parent surface update,
 unmap the sub-surface first by attaching a NULL wl_buffer, update parent,
 and then destroy the sub-surface.<p>If the parent <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> object is destroyed, the sub-surface is
-unmapped.<p>A sub-surface never has the keyboard focus of any seat.<p>The <b><a href=/docs/wayland/wayland/#wl_surface.offset>wl_surface.offset</a></b> request is ignored: clients must use <b><a href=/docs/wayland/wayland/))#wl_subsurface.set_position>set_position</a></b>
+unmapped.<p>A sub-surface never has the keyboard focus of any seat.<p>The <b><a href=/docs/wayland/wayland/#wl_surface.offset>wl_surface.offset</a></b> request is ignored: clients must use <b><a href=/docs/wayland/wayland/#wl_subsurface.set_position>set_position</a></b>
 instead to move the sub-surface.</div><div class=message-head><div class=row><div><h3><a id=wl_subsurface.destroy href=#wl_subsurface.destroy>wl_subsurface.destroy</a></h3><p class=summary>remove sub-surface interface</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><div class=description><p>The sub-surface interface is removed from the <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> object
 that was turned into a sub-surface with a

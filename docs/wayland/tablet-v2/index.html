@@ -70,7 +70,7 @@ sent through the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2
 with a tablet comes into use. This event only provides the object id
 of the tool; any static information about the tool (capabilities,
 type, etc.) is sent through the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2>zwp_tablet_tool_v2</a></b> interface.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2>zwp_tablet_tool_v2</a></b>><td><p>the newly added tablet tool</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_seat_v2.pad_added href=#zwp_tablet_seat_v2.pad_added>zwp_tablet_seat_v2.pad_added</a></h3><p class=summary>new pad notification</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event is sent whenever a new pad is known to the system. Typically,
-pads are physically attached to tablets and a <b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_seat_v2.pad_added>pad_added</a></b> event is
+pads are physically attached to tablets and a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_seat_v2.pad_added>pad_added</a></b> event is
 sent immediately after the zwp_tablet_seat_v2.tablet_added.
 However, some standalone pad devices logically attach to tablets at
 runtime, and the client must wait for <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_v2.enter>zwp_tablet_pad_v2.enter</a></b> to know
@@ -84,7 +84,7 @@ respective physical tool has come into proximity of a tablet again.<p>A <b><a hr
 tablet's ability to report serial numbers. If the tablet supports
 this capability, then the object represents a specific physical tool
 and can be identified even when used on multiple tablets.<p>A tablet tool has a number of static characteristics, e.g. tool type,
-<b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_tool_v2.hardware_serial>hardware_serial</a></b> and capabilities. These capabilities are sent in an
+<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.hardware_serial>hardware_serial</a></b> and capabilities. These capabilities are sent in an
 event sequence after the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_seat_v2.tool_added>zwp_tablet_seat_v2.tool_added</a></b> event before any
 actual events from this tool. This initial event sequence is
 terminated by a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.done>zwp_tablet_tool_v2.done</a></b> event.<p>Tablet tool events are grouped by <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.frame>zwp_tablet_tool_v2.frame</a></b> events.
@@ -133,17 +133,17 @@ be complete and finalize initialization of the tool.</div><div class=message-hea
 send no further events. Should the physical tool come back into
 proximity later, a new <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2>zwp_tablet_tool_v2</a></b> object will be created.<p>It is compositor-dependent when a tool is removed. A compositor may
 remove a tool on proximity out, tablet removal or any other reason.
-A compositor may also keep a tool alive until shutdown.<p>If the tool is currently in proximity, a <b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_tool_v2.proximity_out>proximity_out</a></b> event will be
+A compositor may also keep a tool alive until shutdown.<p>If the tool is currently in proximity, a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_out>proximity_out</a></b> event will be
 sent before the removed event. See <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_out>zwp_tablet_tool_v2.proximity_out</a></b> for
 the handling of any buttons logically down.<p>When this event is received, the client must <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.destroy>zwp_tablet_tool_v2.destroy</a></b>
 the object.</div><div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.proximity_in href=#zwp_tablet_tool_v2.proximity_in>zwp_tablet_tool_v2.proximity_in</a></h3><p class=summary>proximity in event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that this tool is focused on a certain surface.<p>This event can be received when the tool has moved from one surface to
 another, or when the tool has come back into proximity above the
 surface.<p>If any button is logically down when the tool comes into proximity,
-the respective button event is sent after the <b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_tool_v2.proximity_in>proximity_in</a></b> event but
-within the same frame as the <b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_tool_v2.proximity_in>proximity_in</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p><tr><td>tablet<td>object&lt;<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>><td><p>The tablet the tool is in proximity of<tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>The current surface the tablet tool is over</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.proximity_out href=#zwp_tablet_tool_v2.proximity_out>zwp_tablet_tool_v2.proximity_out</a></h3><p class=summary>proximity out event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that this tool has either left proximity, or is no
+the respective button event is sent after the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_in>proximity_in</a></b> event but
+within the same frame as the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_in>proximity_in</a></b> event.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p><tr><td>tablet<td>object&lt;<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>><td><p>The tablet the tool is in proximity of<tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>The current surface the tablet tool is over</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.proximity_out href=#zwp_tablet_tool_v2.proximity_out>zwp_tablet_tool_v2.proximity_out</a></h3><p class=summary>proximity out event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that this tool has either left proximity, or is no
 longer focused on a certain surface.<p>When the tablet tool leaves proximity of the tablet, button release
 events are sent for each button that was held down at the time of
-leaving proximity. These events are sent before the <b><a href=/docs/wayland/tablet-v2/))#zwp_tablet_tool_v2.proximity_out>proximity_out</a></b>
+leaving proximity. These events are sent before the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_out>proximity_out</a></b>
 event but within the same zwp_tablet_v2.frame.<p>If the tool stays within proximity of the tablet, but the focus
 changes from one surface to another, a button release event may not
 be sent until the button is actually released or the tool leaves the

@@ -39,8 +39,8 @@ the current cursor index (excluding the preedit text) to delete.<p>If any preedi
 purpose of this event. In effect before_length is counted from the
 beginning of preedit text, and after_length from its end (see commit
 event sequence).<p>Values set with this event are double-buffered. They must be applied
-and reset to initial on the next <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.commit>zwp_input_method_v2.commit</a></b> request.<p>The initial values of both before_length and after_length are 0.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>before_length<td>uint<td><p><tr><td>after_length<td>uint<td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_input_method_v2.commit href=#zwp_input_method_v2.commit>zwp_input_method_v2.commit</a></h3><p class=summary>apply state</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Apply state changes from commit_string, <b><a href=/docs/wayland/input-method-unstable-v2/))#zwp_input_method_v2.set_preedit_string>set_preedit_string</a></b> and
-<b><a href=/docs/wayland/input-method-unstable-v2/))#zwp_input_method_v2.delete_surrounding_text>delete_surrounding_text</a></b> requests.<p>The state relating to these events is double-buffered, and each one
+and reset to initial on the next <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.commit>zwp_input_method_v2.commit</a></b> request.<p>The initial values of both before_length and after_length are 0.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>before_length<td>uint<td><p><tr><td>after_length<td>uint<td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_input_method_v2.commit href=#zwp_input_method_v2.commit>zwp_input_method_v2.commit</a></h3><p class=summary>apply state</div><div><b>Request</b><br>Since Version 1</div></div></div><div class=description><p>Apply state changes from commit_string, <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.set_preedit_string>set_preedit_string</a></b> and
+<b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.delete_surrounding_text>delete_surrounding_text</a></b> requests.<p>The state relating to these events is double-buffered, and each one
 modifies the pending state. This request replaces the current state
 with the pending state.<p>The connected text input is expected to proceed by evaluating the
 changes in the following order:<p>1. Replace existing preedit string with the cursor.
@@ -69,11 +69,11 @@ objects, i.e. <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_popup
 zwp_input_method_keyboard_grab_v2.</div><div class=message-head><div class=row><div><h3><a id=zwp_input_method_v2.activate href=#zwp_input_method_v2.activate>zwp_input_method_v2.activate</a></h3><p class=summary>input method has been requested</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that a text input focused on this seat requested the input
 method to be activated.<p>This event serves the purpose of providing the compositor with an
 active input method.<p>This event resets all state associated with previous
-surrounding_text, text_change_cause, and <b><a href=/docs/wayland/input-method-unstable-v2/))#zwp_input_method_v2.content_type>content_type</a></b> events, as well
+surrounding_text, text_change_cause, and <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.content_type>content_type</a></b> events, as well
 as the state associated with set_preedit_string, commit_string, and
-<b><a href=/docs/wayland/input-method-unstable-v2/))#zwp_input_method_v2.delete_surrounding_text>delete_surrounding_text</a></b> requests. In addition, it marks the
+<b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.delete_surrounding_text>delete_surrounding_text</a></b> requests. In addition, it marks the
 <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2>zwp_input_method_v2</a></b> object as active, and makes any existing
-<b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_popup_surface_v2>zwp_input_popup_surface_v2</a></b> objects visible.<p>The surrounding_text, and <b><a href=/docs/wayland/input-method-unstable-v2/))#zwp_input_method_v2.content_type>content_type</a></b> events must follow before the
+<b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_popup_surface_v2>zwp_input_popup_surface_v2</a></b> objects visible.<p>The surrounding_text, and <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.content_type>content_type</a></b> events must follow before the
 next done event if the text input supports the respective
 functionality.<p>State set with this event is double-buffered. It will get applied on
 the next <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.done>zwp_input_method_v2.done</a></b> event, and stay valid until changed.</div><div class=message-head><div class=row><div><h3><a id=zwp_input_method_v2.deactivate href=#zwp_input_method_v2.deactivate>zwp_input_method_v2.deactivate</a></h3><p class=summary>deactivate event</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Notification that no focused text input currently needs an active
@@ -90,7 +90,7 @@ bytes.<p>cursor is the byte offset of the cursor within the text buffer.<p>ancho
 buffer. If there is no selected text, anchor must be the same as
 cursor.<p>If this event does not arrive before the first done event, the input
 method may assume that the text input does not support this
-functionality and ignore following <b><a href=/docs/wayland/input-method-unstable-v2/))#zwp_input_method_v2.surrounding_text>surrounding_text</a></b> events.<p>Values set with this event are double-buffered. They will get applied
+functionality and ignore following <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.surrounding_text>surrounding_text</a></b> events.<p>Values set with this event are double-buffered. They will get applied
 and set to initial values on the next <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.done>zwp_input_method_v2.done</a></b>
 event.<p>The initial state for affected fields is empty, meaning that the text
 input does not support sending surrounding text. If the empty values
