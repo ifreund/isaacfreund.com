@@ -18,7 +18,7 @@ compositor process:<ol><li><p>Display Server: Route input events from the kernel
 kernel buffers to display.<li><p>Compositor: Combine all buffers from visible windows into a single buffer to be
 displayed by the kernel.<li><p>Window Manager: Arrange windows, define keybindings, other user-facing behavior.</ol><p>To understand why Wayland compositors thus far have chosen to combine these
 roles, it is first necessary to understand some of the fundamental problems with
-X11’s architecture that Wayland was designed to solved.<p>With the X11 protocol, the display server is a separate process from the
+X11’s architecture that Wayland was designed to solve.<p>With the X11 protocol, the display server is a separate process from the
 compositor and window manager:</p><img src=/blog/river-window-management/x11.svg width=60%><p>Following the steps taken from a user clicking on a button in a window to the
 change in the window’s displayed content is quite informative. Referring to the
 numbers in the diagram above:<ol start=0><li><p>The user clicks on a button in a window.<li><p>The kernel sends an input event to the display server.<li><p>The display server decides which window to route the input event to.
