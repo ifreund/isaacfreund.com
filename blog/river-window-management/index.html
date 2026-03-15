@@ -11,7 +11,7 @@ entire Wayland compositor as well.<p>The new 0.4.0 release of <a href=/software/
 from this traditional architecture and splits the window manager into a separate
 program. There are already <a href=https://codeberg.org/river/wiki/src/branch/main/pages/wm-list.md>many window managers</a> compatible with river.<p>The stable <a href=/docs/wayland/river-window-management-v1/>river-window-management-v1</a> protocol gives window managers full
 control over window position, keybindings, and all other window management
-policy while the river itself provides frame-perfect rendering, good performance,
+policy while river itself provides frame-perfect rendering, good performance,
 and all the low-level plumbing required.<p>This blog post gives a high level overview of the design decisions behind this
 protocol. This is roughly the same information I presented in my <a href=https://fosdem.org/2026/schedule/event/GR8BFE-separating_the_wayland_compositor_and_window_manager/>FOSDEM 2026 Talk</a>.<h2>Display Server, Compositor, Window Manager</h2><p>The traditional Wayland architecture combines three separate roles in the
 compositor process:<ol><li><p>Display Server: Route input events from the kernel to windows and give the

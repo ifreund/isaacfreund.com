@@ -7,7 +7,7 @@ from this traditional architecture and splits the window manager into a separate
 program. There are already &lt;a href="https://codeberg.org/river/wiki/src/branch/main/pages/wm-list.md"&gt;many window managers&lt;/a&gt; compatible with river.&lt;/p&gt;
 &lt;p&gt;The stable &lt;a href="/docs/wayland/river-window-management-v1/"&gt;river-window-management-v1&lt;/a&gt; protocol gives window managers full
 control over window position, keybindings, and all other window management
-policy while the river itself provides frame-perfect rendering, good performance,
+policy while river itself provides frame-perfect rendering, good performance,
 and all the low-level plumbing required.&lt;/p&gt;
 &lt;p&gt;This blog post gives a high level overview of the design decisions behind this
 protocol. This is roughly the same information I presented in my &lt;a href="https://fosdem.org/2026/schedule/event/GR8BFE-separating_the_wayland_compositor_and_window_manager/"&gt;FOSDEM 2026 Talk&lt;/a&gt;.&lt;/p&gt;
