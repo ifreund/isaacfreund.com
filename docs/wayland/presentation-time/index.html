@@ -65,7 +65,7 @@ physical display path if known.<p>This event is preceded by all related <b><a hr
 telling which output's refresh cycle the feedback corresponds
 to, i.e. the main output for the surface. Compositors are
 recommended to choose the output containing the largest part
-of the wl_surface, or keeping the output they previously
+of the <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>, or keeping the output they previously
 chose. Having a stable presentation output association helps
 clients predict future output refreshes (vblank).<p>The 'refresh' argument gives the compositor's prediction of how
 many nanoseconds after tv_sec, tv_nsec the very next output

@@ -23,7 +23,7 @@ display refresh constraints to content updates.<div class=message-head><div clas
 it sets a "fifo_barrier" condition on the surface associated with
 the fifo object. The condition is cleared immediately after the
 following latching deadline for non-tearing presentation.<p>The compositor may clear the condition early if it must do so to
-ensure client forward progress assumptions.<p>To wait for this condition to clear, use the "wait_barrier" request.<p>"set_barrier" is double-buffered state, see wl_surface.commit.<p>Requesting <b><a href=/docs/wayland/fifo-v1/#wp_fifo_v1.set_barrier>set_barrier</a></b> after the fifo object's surface is
+ensure client forward progress assumptions.<p>To wait for this condition to clear, use the "wait_barrier" request.<p>"set_barrier" is double-buffered state, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.<p>Requesting <b><a href=/docs/wayland/fifo-v1/#wp_fifo_v1.set_barrier>set_barrier</a></b> after the fifo object's surface is
 destroyed will generate a "surface_destroyed" error.<div class=message-head><div class=row><div><h3><a id=wp_fifo_v1.wait_barrier href=#wp_fifo_v1.wait_barrier>wp_fifo_v1.wait_barrier</a></h3><p class=summary>adds a fifo constraint to a content update</div><div><b>Request</b><br>Since Version 1</div></div></div><p>Indicate that this content update is not ready while a
 "fifo_barrier" condition is present on the surface.<p>This means that when the content update containing "set_barrier"
 was made active at a latching deadline, it will be active for
@@ -34,7 +34,7 @@ synchronized mode. If the surface is not being updated by the
 compositor (off-screen, occluded) the compositor may ignore the
 constraint. Clients must use an additional mechanism such as
 frame callbacks or timestamps to ensure throttling occurs under
-all conditions.<p>"wait_barrier" is double-buffered state, see wl_surface.commit.<p>Requesting "wait_barrier" after the fifo object's surface is
+all conditions.<p>"wait_barrier" is double-buffered state, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.<p>Requesting "wait_barrier" after the fifo object's surface is
 destroyed will generate a "surface_destroyed" error.<div class=message-head><div class=row><div><h3><a id=wp_fifo_v1.destroy href=#wp_fifo_v1.destroy>wp_fifo_v1.destroy</a></h3><p class=summary>destroy the fifo interface</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><p>Informs the server that the client will no longer be using
 this protocol object.<p>Surface state changes previously made by this protocol are

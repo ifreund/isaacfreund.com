@@ -40,9 +40,9 @@ the current surface.<p>Clients must not enable more than one text input on the s
 and should disable the current text input before enabling the new one.
 Requests to enable a text input when another text input is enabled
 on the same seat must be ignored by compositor.<p>This request resets all state associated with previous enable, disable,
-set_surrounding_text, set_text_change_cause, set_content_type, and
+<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_surrounding_text>set_surrounding_text</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_text_change_cause>set_text_change_cause</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_content_type>set_content_type</a></b>, and
 <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_cursor_rectangle>set_cursor_rectangle</a></b> requests, as well as the state associated with
-preedit_string, commit_string, and <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.delete_surrounding_text>delete_surrounding_text</a></b> events.<p>The set_surrounding_text, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_content_type>set_content_type</a></b> and <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_cursor_rectangle>set_cursor_rectangle</a></b>
+<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.preedit_string>preedit_string</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.commit_string>commit_string</a></b>, and <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.delete_surrounding_text>delete_surrounding_text</a></b> events.<p>The <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_surrounding_text>set_surrounding_text</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_content_type>set_content_type</a></b> and <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.set_cursor_rectangle>set_cursor_rectangle</a></b>
 requests must follow if the text input supports the necessary
 functionality.<p>State set with this request is double-buffered. It will get applied on
 the next <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.commit>zwp_text_input_v3.commit</a></b> request, and stay valid until the
@@ -132,7 +132,7 @@ the current cursor index (excluding the selection) to delete.<p>If a preedit tex
 the beginning of it, and after_length from its end (see done event
 sequence).<p>Values set with this event are double-buffered. They must be applied
 and reset to initial on the next <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.done>zwp_text_input_v3.done</a></b> event.<p>The initial values of both before_length and after_length are 0.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>before_length<td>uint<td><p>length of text before current cursor position<tr><td>after_length<td>uint<td><p>length of text after current cursor position</table><div class=message-head><div class=row><div><h3><a id=zwp_text_input_v3.done href=#zwp_text_input_v3.done>zwp_text_input_v3.done</a></h3><p class=summary>apply changes</div><div><b>Event</b><br>Since Version 1</div></div></div><p>Instruct the application to apply changes to state requested by the
-preedit_string, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.commit_string>commit_string</a></b> delete_surrounding_text, and action
+<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.preedit_string>preedit_string</a></b>, <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.commit_string>commit_string</a></b> delete_surrounding_text, and action
 events.<p>The state relating to these events is double-buffered, and each one
 modifies the pending state. This event replaces the current state with
 the pending state.<p>The application must proceed by evaluating the changes in the following
@@ -156,7 +156,7 @@ Setting an empty string will reset any known language back to the default unknow
 event is always sent together with a <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.preedit_string>zwp_text_input_v3.preedit_string</a></b>
 event.<p>The parameters start and end are counted in bytes relative to the
 beginning of the text buffer submitted through
-zwp_text_input_v3.preedit_string, and represent the substring in the
+<b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.preedit_string>zwp_text_input_v3.preedit_string</a></b>, and represent the substring in the
 pre-edit text affected by the hint.<p>Multiple events may be submitted if the preedit string has different
 sections. The extent of hints may overlap. The parts of the preedit
 string that are not covered by any <b><a href=/docs/wayland/text-input-unstable-v3/#zwp_text_input_v3.preedit_hint>zwp_text_input_v3.preedit_hint</a></b> event,
