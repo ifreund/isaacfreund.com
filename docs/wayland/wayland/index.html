@@ -158,7 +158,7 @@ drag-and-drop operation, typically in response to <b><a href=/docs/wayland/wayla
 or <b><a href=/docs/wayland/wayland/#wl_data_device.motion>wl_data_device.motion</a></b> events.<p>This request determines the final result of the drag-and-drop
 operation. If the end result is that no action is accepted,
 the drag source will receive <b><a href=/docs/wayland/wayland/#wl_data_source.cancelled>wl_data_source.cancelled</a></b>.<p>The dnd_actions argument must contain only values expressed in the
-<b><a href=/docs/wayland/wayland/#></a></b>enum, and the preferred_action
+<b><a href=/docs/wayland/wayland/#wl_data_device_manager>wl_data_device_manager</a></b>.dnd_actions enum, and the preferred_action
 argument must only contain one of those values set, otherwise it
 will result in a protocol error.<p>While managing an "ask" action, the destination drag-and-drop client
 may perform further <b><a href=/docs/wayland/wayland/#wl_data_offer.receive>wl_data_offer.receive</a></b> requests, and is expected
@@ -204,7 +204,7 @@ Request</b><br>Since Version 1</div></div></div><p>Destroy the data source.<div 
 operation. This request may trigger <b><a href=/docs/wayland/wayland/#wl_data_source.action>wl_data_source.action</a></b> and
 <b><a href=/docs/wayland/wayland/#wl_data_offer.action>wl_data_offer.action</a></b> events if the compositor needs to change the
 selected action.<p>The dnd_actions argument must contain only values expressed in the
-<b><a href=/docs/wayland/wayland/#></a></b>enum, otherwise it will result
+<b><a href=/docs/wayland/wayland/#wl_data_device_manager>wl_data_device_manager</a></b>.dnd_actions enum, otherwise it will result
 in a protocol error.<p>This request must be made once only, and can only be made on sources
 used in drag-and-drop, so it must be performed before
 <b><a href=/docs/wayland/wayland/#wl_data_device.start_drag>wl_data_device.start_drag</a></b>. Attempting to use the source other than
@@ -241,7 +241,7 @@ in response to keyboard modifier changes during the drag-and-drop
 operation.<p>The most recent action received is always the valid one. The chosen
 action may change alongside negotiation (e.g. an "ask" action can turn
 into a "move" operation), so the effects of the final action must
-always be applied in <b><a href=/docs/wayland/wayland/#></a></b>.<p>Clients can trigger cursor surface changes from this point, so
+always be applied in <b><a href=/docs/wayland/wayland/#wl_data_offer>wl_data_offer</a></b>.dnd_finished.<p>Clients can trigger cursor surface changes from this point, so
 they reflect the current action.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>dnd_action<td>uint&lt;<b><a href=/docs/wayland/wayland/#wl_data_device_manager.enums.dnd_action>wl_data_device_manager.dnd_action</a></b>><td><p>action selected by the compositor</table><div class=message-head><div class=row><div><h3><a id=wl_data_source.enums.error href=#wl_data_source.enums.error>wl_data_source.error</a></h3><p class=summary></div><div><b>Enum</b><br>Since Version 1</div></div></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>invalid_action_mask<td>0<td>1<td><p>action mask contains invalid values<tr><td>invalid_source<td>1<td>1<td><p>source doesn't accept this request</table><div class=interface-head><div class=row><div><h2><a id=wl_data_device href=#wl_data_device>wl_data_device</a></h2><p class=summary>data transfer device</div><div><b>Interface</b><br>Version 4</div></div></div><p>There is one <b><a href=/docs/wayland/wayland/#wl_data_device>wl_data_device</a></b> per seat which can be obtained
 from the global <b><a href=/docs/wayland/wayland/#wl_data_device_manager>wl_data_device_manager</a></b> singleton.<p>A <b><a href=/docs/wayland/wayland/#wl_data_device>wl_data_device</a></b> provides access to inter-client data transfer
 mechanisms such as copy-and-paste and drag-and-drop.<div class=message-head><div class=row><div><h3><a id=wl_data_device.start_drag href=#wl_data_device.start_drag>wl_data_device.start_drag</a></h3><p class=summary>start drag-and-drop operation</div><div><b>Request</b><br>Since Version 1</div></div></div><p>This request asks the compositor to start a drag-and-drop
@@ -485,7 +485,7 @@ the newly attached wl_buffers, except for <b><a href=/docs/wayland/wayland/#wl_s
 there is no newly attached <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b>, the coordinates are relative to
 the previous content update.<div class=message-head><div class=row><div><h3><a id=wl_surface.set_buffer_transform href=#wl_surface.set_buffer_transform>wl_surface.set_buffer_transform</a></h3><p class=summary>sets the buffer transformation</div><div><b>Request</b><br>Since Version 2</div></div></div><p>This request sets the transformation that the client has already applied
 to the content of the buffer. The accepted values for the transform
-parameter are the values for <b><a href=/docs/wayland/wayland/#wl_output.enums.transform>wl_output.enums.transform</a></b>.<p>The compositor applies the inverse of this transformation whenever it
+parameter are the values for <b><a href=/docs/wayland/wayland/#wl_output.enums.transform>wl_output.transform</a></b>.<p>The compositor applies the inverse of this transformation whenever it
 uses the buffer contents.<p>Buffer transform is double-buffered state, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.<p>A newly created surface has its buffer transformation set to normal.<p><b><a href=/docs/wayland/wayland/#wl_surface.set_buffer_transform>wl_surface.set_buffer_transform</a></b> changes the pending buffer
 transformation. <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> copies the pending buffer
 transformation to the current one. Otherwise, the pending and current
@@ -498,7 +498,7 @@ highly dependent on the compositor implementation, so the use of this
 request should be considered on a case-by-case basis.<p>Note that if the transform value includes 90 or 270 degree rotation,
 the width of the buffer will become the surface height and the height
 of the buffer will become the surface width.<p>If transform is not one of the values from the
-<b><a href=/docs/wayland/wayland/#wl_output.enums.transform>wl_output.enums.transform</a></b> enum the invalid_transform protocol error
+<b><a href=/docs/wayland/wayland/#wl_output.enums.transform>wl_output.transform</a></b> enum the invalid_transform protocol error
 is raised.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>transform<td>int&lt;<b><a href=/docs/wayland/wayland/#wl_output.enums.transform>wl_output.transform</a></b>><td><p>transform for interpreting buffer contents</table><div class=message-head><div class=row><div><h3><a id=wl_surface.set_buffer_scale href=#wl_surface.set_buffer_scale>wl_surface.set_buffer_scale</a></h3><p class=summary>sets the buffer scaling factor</div><div><b>Request</b><br>Since Version 3</div></div></div><p>This request sets an optional scaling factor on how the compositor
 interprets the contents of the buffer attached to the window.<p>Buffer scale is double-buffered state, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.<p>A newly created surface has its buffer scale set to 1.<p><b><a href=/docs/wayland/wayland/#wl_surface.set_buffer_scale>wl_surface.set_buffer_scale</a></b> changes the pending buffer scale.
 <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b> copies the pending buffer scale to the current one.
@@ -847,7 +847,7 @@ minor axis length. The major axis length describes the longer diameter
 of the ellipse, while the minor axis length describes the shorter
 diameter. Major and minor are orthogonal and both are specified in
 surface-local coordinates. The center of the ellipse is always at the
-touchpoint location as reported by <b><a href=/docs/wayland/wayland/#wl_touch.down>wl_touch.down</a></b> or <b><a href=/docs/wayland/wayland/#></a></b>.<p>This event is only sent by the compositor if the touch device supports
+touchpoint location as reported by <b><a href=/docs/wayland/wayland/#wl_touch.down>wl_touch.down</a></b> or <b><a href=/docs/wayland/wayland/#wl_touch>wl_touch</a></b>.move.<p>This event is only sent by the compositor if the touch device supports
 shape reports. The client has to make reasonable assumptions about the
 shape if it did not receive this event.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>int<td><p>the unique ID of this touch point<tr><td>major<td>fixed<td><p>length of the major axis in surface-local coordinates<tr><td>minor<td>fixed<td><p>length of the minor axis in surface-local coordinates</table><div class=message-head><div class=row><div><h3><a id=wl_touch.orientation href=#wl_touch.orientation>wl_touch.orientation</a></h3><p class=summary>update orientation of touch point</div><div><b>Event</b><br>Since Version 6</div></div></div><p>Sent when a touchpoint has changed its orientation.<p>This event does not occur on its own. It is sent before a
 <b><a href=/docs/wayland/wayland/#wl_touch.frame>wl_touch.frame</a></b> event and carries the new shape information for
@@ -891,7 +891,7 @@ should not rely on non-current modes.<p>The size of a mode is given in physical 
 the output device. This is not necessarily the same as
 the output size in the global compositor space. For instance,
 the output may be scaled, as described in <b><a href=/docs/wayland/wayland/#wl_output.scale>wl_output.scale</a></b>,
-or transformed, as described in <b><a href=/docs/wayland/wayland/#wl_output.enums.transform>wl_output.enums.transform</a></b>. Clients
+or transformed, as described in <b><a href=/docs/wayland/wayland/#wl_output.enums.transform>wl_output.transform</a></b>. Clients
 willing to retrieve the output size in the global compositor
 space should use xdg_output.logical_size instead.<p>The vertical refresh rate can be set to zero if it doesn't make
 sense for this output (e.g. for virtual outputs).<p>The mode event will be followed by a done event (starting from
@@ -1017,7 +1017,7 @@ request.<p>The compositor will emit a <b><a href=/docs/wayland/wayland/#wl_displ
 of the registry and will no longer emit any events on the registry. The
 client should re-use the object ID once it receives the
 <b><a href=/docs/wayland/wayland/#wl_display.delete_id>wl_display.delete_id</a></b> event.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>registry<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_registry>wl_registry</a></b>><td><p>the registry to destroy</table><div class=message-head><div class=row><div><h3><a id=wl_fixes.ack_global_remove href=#wl_fixes.ack_global_remove>wl_fixes.ack_global_remove</a></h3><p class=summary>acknowledge global removal</div><div><b>Request</b><br>Since Version 2</div></div></div><p>Acknowledge the removal of the specified global.<p>If no global with the specified name exists or the global is not removed,
-the <b><a href=/docs/wayland/wayland/#></a></b>protocol error will be posted.<p>Due to the Wayland protocol being asynchronous, the wl_global objects
+the <b><a href=/docs/wayland/wayland/#wl_fixes>wl_fixes</a></b>.invalid_ack_remove protocol error will be posted.<p>Due to the Wayland protocol being asynchronous, the wl_global objects
 cannot be destroyed immediately. For example, if a wl_global is removed
 and a client attempts to bind that global around same time, it can
 result in a protocol error due to an unknown global name in the bind

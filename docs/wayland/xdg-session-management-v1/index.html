@@ -80,7 +80,7 @@ will be raised.<p>This request must be called prior to the first commit on the a
 error is raised.<p>As part of the initial configure sequence, if the toplevel was
 successfully restored, a <b><a href=/docs/wayland/xdg-session-management-v1/#xdg_toplevel_session_v1.restored>xdg_toplevel_session_v1.restored</a></b> event is
 emitted. If the toplevel name was not known in the session, this request
-will be equivalent to the <b><a href=/docs/wayland/xdg-session-management-v1/#></a></b>request,
+will be equivalent to the <b><a href=/docs/wayland/xdg-session-management-v1/#xdg_toplevel_session_v1>xdg_toplevel_session_v1</a></b>.add_toplevel request,
 and no such event will be emitted. See the <b><a href=/docs/wayland/xdg-session-management-v1/#xdg_toplevel_session_v1.restored>xdg_toplevel_session_v1.restored</a></b>
 event for further details.<p>The name string must be UTF-8 encoded. It is also limited by the maximum
 length of wayland messages (around 4KB). The 'invalid_name' protocol

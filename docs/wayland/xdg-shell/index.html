@@ -22,7 +22,7 @@ or <b><a href=/docs/wayland/xdg-shell/#xdg_popup>xdg_popup</a></b>. It also mana
 based surface roles.<p>See the documentation of <b><a href=/docs/wayland/xdg-shell/#xdg_surface>xdg_surface</a></b> for more details about what an
 <b><a href=/docs/wayland/xdg-shell/#xdg_surface>xdg_surface</a></b> is and how it is used.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/xdg-shell/#xdg_surface>xdg_surface</a></b>><td><p><tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=xdg_wm_base.pong href=#xdg_wm_base.pong>xdg_wm_base.pong</a></h3><p class=summary>respond to a ping event</div><div><b>Request</b><br>Since Version 1</div></div></div><p>A client must respond to a ping event with a pong request or
 the client may be deemed unresponsive. See <b><a href=/docs/wayland/xdg-shell/#xdg_wm_base.ping>xdg_wm_base.ping</a></b>
-and <b><a href=/docs/wayland/xdg-shell/#xdg_wm_base.enums.error>xdg_wm_base.enums.error</a></b>.unresponsive.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>serial of the ping event</table><div class=message-head><div class=row><div><h3><a id=xdg_wm_base.ping href=#xdg_wm_base.ping>xdg_wm_base.ping</a></h3><p class=summary>check if the client is alive</div><div><b>Event</b><br>Since Version 1</div></div></div><p>The ping event asks the client if it's still alive. Pass the
+and <b><a href=/docs/wayland/xdg-shell/#xdg_wm_base.enums.error>xdg_wm_base.error</a></b>.unresponsive.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p>serial of the ping event</table><div class=message-head><div class=row><div><h3><a id=xdg_wm_base.ping href=#xdg_wm_base.ping>xdg_wm_base.ping</a></h3><p class=summary>check if the client is alive</div><div><b>Event</b><br>Since Version 1</div></div></div><p>The ping event asks the client if it's still alive. Pass the
 serial specified in the event back to the compositor by sending
 a "pong" request back with the specified serial. See <b><a href=/docs/wayland/xdg-shell/#xdg_wm_base.pong>xdg_wm_base.pong</a></b>.<p>Compositors can use this to determine if the client is still
 alive. It's unspecified what will happen if the client doesn't
@@ -401,7 +401,8 @@ is being dragged in a resize operation.<table class=enum><thead><tr><th>Entry<th
 state values like maximized, fullscreen. It is paired with the
 configure event to ensure that both the client and the compositor
 setting the state can be synchronized.<p>States set in this way are double-buffered, see <b><a href=/docs/wayland/wayland/#wl_surface.commit>wl_surface.commit</a></b>.<table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>maximized<td>1<td>1<td><p>the surface is maximized<p>The surface is maximized. The window geometry specified in the configure
-event must be obeyed by the client, or the <b><a href=/docs/wayland/xdg-shell/#></a></b>error is raised.<p>The client should draw without shadow or other
+event must be obeyed by the client, or the <b><a href=/docs/wayland/xdg-shell/#xdg_wm_base>xdg_wm_base</a></b>.invalid_surface_state
+error is raised.<p>The client should draw without shadow or other
 decoration outside of the window geometry.<tr><td>fullscreen<td>2<td>1<td><p>the surface is fullscreen<p>The surface is fullscreen. The window geometry specified in the
 configure event is a maximum; the client cannot resize beyond it. For
 a surface to cover the whole fullscreened area, the geometry
@@ -447,7 +448,7 @@ description) before the <b><a href=/docs/wayland/xdg-shell/#xdg_popup>xdg_popup<
 for the <b><a href=/docs/wayland/xdg-shell/#xdg_popup>xdg_popup</a></b> state to take effect.<div class=message-head><div class=row><div><h3><a id=xdg_popup.destroy href=#xdg_popup.destroy>xdg_popup.destroy</a></h3><p class=summary>remove xdg_popup interface</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><p>This destroys the popup. Explicitly destroying the <b><a href=/docs/wayland/xdg-shell/#xdg_popup>xdg_popup</a></b>
 object will also dismiss the popup, and unmap the surface.<p>If this <b><a href=/docs/wayland/xdg-shell/#xdg_popup>xdg_popup</a></b> is not the "topmost" popup, the
-<b><a href=/docs/wayland/xdg-shell/#></a></b>protocol error will be sent.<div class=message-head><div class=row><div><h3><a id=xdg_popup.grab href=#xdg_popup.grab>xdg_popup.grab</a></h3><p class=summary>make the popup take an explicit grab</div><div><b>Request</b><br>Since Version 1</div></div></div><p>This request makes the created popup take an explicit grab. An explicit
+<b><a href=/docs/wayland/xdg-shell/#xdg_wm_base>xdg_wm_base</a></b>.not_the_topmost_popup protocol error will be sent.<div class=message-head><div class=row><div><h3><a id=xdg_popup.grab href=#xdg_popup.grab>xdg_popup.grab</a></h3><p class=summary>make the popup take an explicit grab</div><div><b>Request</b><br>Since Version 1</div></div></div><p>This request makes the created popup take an explicit grab. An explicit
 grab will be dismissed when the user dismisses the popup, or when the
 client destroys the <b><a href=/docs/wayland/xdg-shell/#xdg_popup>xdg_popup</a></b>. This can be done by the user clicking
 outside the surface, using the keyboard, or even locking the screen

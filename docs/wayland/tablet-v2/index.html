@@ -144,13 +144,14 @@ within the same frame as the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool
 longer focused on a certain surface.<p>When the tablet tool leaves proximity of the tablet, button release
 events are sent for each button that was held down at the time of
 leaving proximity. These events are sent before the <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_tool_v2.proximity_out>proximity_out</a></b>
-event but within the same <b><a href=/docs/wayland/tablet-v2/#></a></b>.<p>If the tool stays within proximity of the tablet, but the focus
+event but within the same <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>.frame.<p>If the tool stays within proximity of the tablet, but the focus
 changes from one surface to another, a button release event may not
 be sent until the button is actually released or the tool leaves the
 proximity of the tablet.<div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.down href=#zwp_tablet_tool_v2.down>zwp_tablet_tool_v2.down</a></h3><p class=summary>tablet tool is making contact</div><div><b>Event</b><br>Since Version 1</div></div></div><p>Sent whenever the tablet tool comes in contact with the surface of the
 tablet.<p>If the tool is already in contact with the tablet when entering the
 input region, the client owning said region will receive a
-<b><a href=/docs/wayland/tablet-v2/#></a></b>event, followed by a <b><a href=/docs/wayland/tablet-v2/#></a></b>event and a <b><a href=/docs/wayland/tablet-v2/#></a></b>event.<p>Note that this event describes logical contact, not physical
+<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>.proximity_in event, followed by a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>.down
+event and a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>.frame event.<p>Note that this event describes logical contact, not physical
 contact. On some devices, a compositor may not consider a tool in
 logical contact until a minimum physical pressure threshold is
 exceeded.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>serial<td>uint<td><p></table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.up href=#zwp_tablet_tool_v2.up>zwp_tablet_tool_v2.up</a></h3><p class=summary>tablet tool is no longer making contact</div><div><b>Event</b><br>Since Version 1</div></div></div><p>Sent whenever the tablet tool stops making contact with the surface of
@@ -158,7 +159,8 @@ the tablet, or when the tablet tool moves out of the input region
 and the compositor grab (if any) is dismissed.<p>If the tablet tool moves out of the input region while in contact
 with the surface of the tablet and the compositor does not have an
 ongoing grab on the surface, the client owning said region will
-receive a <b><a href=/docs/wayland/tablet-v2/#></a></b>event, followed by a <b><a href=/docs/wayland/tablet-v2/#></a></b>event and a <b><a href=/docs/wayland/tablet-v2/#></a></b>event. If the compositor has an ongoing
+receive a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>.up event, followed by a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>.proximity_out
+event and a <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_v2>zwp_tablet_v2</a></b>.frame event. If the compositor has an ongoing
 grab on this device, this event sequence is sent whenever the grab
 is dismissed in the future.<p>Note that this event describes logical contact, not physical
 contact. On some devices, a compositor may not consider a tool out
@@ -176,7 +178,7 @@ logical neutral position.<table class=args><thead><tr><th>Argument<th>Type<th>De
 value is normalized between -65535 and 65535, with 0 as the logical
 neutral position of the slider.<p>The slider is available on e.g. the Wacom Airbrush tool.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>position<td>int<td><p>The current position of slider</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_tool_v2.wheel href=#zwp_tablet_tool_v2.wheel>zwp_tablet_tool_v2.wheel</a></h3><p class=summary>Wheel delta event</div><div><b>Event</b><br>Since Version 1</div></div></div><p>Sent whenever the wheel on the tool emits an event. This event
 contains two values for the same axis change. The degrees value is
-in the same orientation as the <b><a href=/docs/wayland/wayland/#></a></b>axis. The
+in the same orientation as the <b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b>.vertical_scroll axis. The
 clicks value is in discrete logical clicks of the mouse wheel. This
 value may be zero if the movement of the wheel was less
 than one logical click.<p>Clients should choose either value and avoid mixing degrees and

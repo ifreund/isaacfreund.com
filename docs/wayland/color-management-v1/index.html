@@ -49,12 +49,12 @@ details.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><
 properties initially unset. The client can then use the object's
 interface to define all the required properties for an image description
 and finally create a <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1>wp_image_description_v1</a></b> object.<p>This request can be used when the compositor advertises
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.enums.feature</a></b>.icc_v2_v4.
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></b>.icc_v2_v4.
 Otherwise this request raises the protocol error unsupported_feature.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>obj<td>new_id&lt;<b><a href=/docs/wayland/color-management-v1/#wp_image_description_creator_icc_v1>wp_image_description_creator_icc_v1</a></b>><td><p>the new creator object</table><div class=message-head><div class=row><div><h3><a id=wp_color_manager_v1.create_parametric_creator href=#wp_color_manager_v1.create_parametric_creator>wp_color_manager_v1.create_parametric_creator</a></h3><p class=summary>make a new parametric image description creator object</div><div><b>Request</b><br>Since Version 1</div></div></div><p>Makes a new parametric image description creator object with all
 properties initially unset. The client can then use the object's
 interface to define all the required properties for an image description
 and finally create a <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1>wp_image_description_v1</a></b> object.<p>This request can be used when the compositor advertises
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.enums.feature</a></b>.parametric.
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></b>.parametric.
 Otherwise this request raises the protocol error unsupported_feature.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>obj<td>new_id&lt;<b><a href=/docs/wayland/color-management-v1/#wp_image_description_creator_params_v1>wp_image_description_creator_params_v1</a></b>><td><p>the new creator object</table><div class=message-head><div class=row><div><h3><a id=wp_color_manager_v1.create_windows_scrgb href=#wp_color_manager_v1.create_windows_scrgb>wp_color_manager_v1.create_windows_scrgb</a></h3><p class=summary>create Windows-scRGB image description object</div><div><b>Request</b><br>Since Version 1</div></div></div><p>This creates a pre-defined image description for the so-called
 Windows-scRGB stimulus encoding. This comes from the Windows 10 handling
 of its own definition of an scRGB color space for an HDR screen
@@ -78,7 +78,7 @@ Windows-scRGB reference white level is unknown or varies. However,
 it seems probable that Windows implements both
 EGL_EXT_gl_colorspace_scrgb_linear and Vulkan
 VK_COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT as Windows-scRGB.<p>This request can be used when the compositor advertises
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.enums.feature</a></b>.windows_scrgb.
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></b>.windows_scrgb.
 Otherwise this request raises the protocol error unsupported_feature.<p>The resulting image description object does not allow get_information
 request. The <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1.ready>wp_image_description_v1.ready</a></b> event shall be sent.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>image_description<td>new_id&lt;<b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1>wp_image_description_v1</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=wp_color_manager_v1.get_image_description href=#wp_color_manager_v1.get_image_description>wp_color_manager_v1.get_image_description</a></h3><p class=summary>create an image description from a reference</div><div><b>Request</b><br>Since Version 2</div></div></div><p>This request retrieves the image description backing a reference.<p>The get_information request can be used if and only if the request that
 creates the reference allows it.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>image_description<td>new_id&lt;<b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1>wp_image_description_v1</a></b>><td><p><tr><td>reference<td>object&lt;<b><a href=/docs/wayland/color-management-v1/#wp_image_description_reference_v1>wp_image_description_reference_v1</a></b>><td><p></table><div class=message-head><div class=row><div><h3><a id=wp_color_manager_v1.supported_intent href=#wp_color_manager_v1.supported_intent>wp_color_manager_v1.supported_intent</a></h3><p class=summary>supported rendering intent</div><div><b>Event</b><br>Since Version 1</div></div></div><p>When this object is created, it shall immediately send this event once
@@ -174,7 +174,7 @@ description creator interfaces for the conditions. Non-finite
 floating-point values (NaN, Inf) always have an undefined colorimetry.<p>A rendering intent provides the client's preference on how surface
 colorimetry should be mapped to each output. The render_intent value
 must be one advertised by the compositor with
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.render_intent>wp_color_manager_v1.enums.render_intent</a></b> event, otherwise the protocol error
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.render_intent>wp_color_manager_v1.render_intent</a></b> event, otherwise the protocol error
 render_intent is raised.<p>By default, a surface does not have an associated image description
 nor a rendering intent. The handling of color on such surfaces is
 compositor implementation defined. Compositors should handle such
@@ -307,7 +307,7 @@ the conversion from electrical to optical color channel values.<p>The curve expo
 value to carry the precision of 4 decimals.<p>The curve exponent must be at least 1.0 and at most 10.0. Otherwise the
 protocol error invalid_tf is raised.<p>If transfer characteristic has already been set on this object, the
 protocol error already_set is raised.<p>This request can be used when the compositor advertises
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.enums.feature</a></b>.set_tf_power. Otherwise this request raises
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></b>.set_tf_power. Otherwise this request raises
 the protocol error unsupported_feature.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>eexp<td>uint<td><p>the exponent * 10000</table><div class=message-head><div class=row><div><h3><a id=wp_image_description_creator_params_v1.set_primaries_named href=#wp_image_description_creator_params_v1.set_primaries_named>wp_image_description_creator_params_v1.set_primaries_named</a></h3><p class=summary>named primaries</div><div><b>Request</b><br>Since Version 1</div></div></div><p>Sets the color primaries and white point using explicitly named sets.
 This describes the primary color volume which is the basis for color
 value encoding.<p>Only names advertised with <b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1>wp_color_manager_v1</a></b> event
@@ -318,7 +318,7 @@ coordinates. This describes the primary color volume which is the basis
 for color value encoding.<p>Each coordinate value is multiplied by 1 million to get the argument
 value to carry precision of 6 decimals.<p>If primaries have already been set on this object, the protocol error
 already_set is raised.<p>This request can be used if the compositor advertises
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.enums.feature</a></b>.set_primaries. Otherwise this request raises
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></b>.set_primaries. Otherwise this request raises
 the protocol error unsupported_feature.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>r_x<td>int<td><p>Red x * 1M<tr><td>r_y<td>int<td><p>Red y * 1M<tr><td>g_x<td>int<td><p>Green x * 1M<tr><td>g_y<td>int<td><p>Green y * 1M<tr><td>b_x<td>int<td><p>Blue x * 1M<tr><td>b_y<td>int<td><p>Blue y * 1M<tr><td>w_x<td>int<td><p>White x * 1M<tr><td>w_y<td>int<td><p>White y * 1M</table><div class=message-head><div class=row><div><h3><a id=wp_image_description_creator_params_v1.set_luminances href=#wp_image_description_creator_params_v1.set_luminances>wp_image_description_creator_params_v1.set_luminances</a></h3><p class=summary>primary color volume luminance range and reference white</div><div><b>Request</b><br>Since Version 1</div></div></div><p>Sets the primary color volume luminance range and the reference white
 luminance level. These values include the minimum display emission, but
 not external flare. The minimum display emission is assumed to have
@@ -341,7 +341,7 @@ the protocol error invalid_luminance is raised.<p>The minimum luminance is multi
 luminance and reference white luminance values are unscaled.<p>If the primary color volume luminance range and the reference white
 luminance level have already been set on this object, the protocol error
 already_set is raised.<p>This request can be used if the compositor advertises
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.enums.feature</a></b>.set_luminances. Otherwise this request
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></b>.set_luminances. Otherwise this request
 raises the protocol error unsupported_feature.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>min_lum<td>uint<td><p>minimum luminance (cd/m²) * 10000<tr><td>max_lum<td>uint<td><p>maximum luminance (cd/m²)<tr><td>reference_lum<td>uint<td><p>reference white luminance (cd/m²)</table><div class=message-head><div class=row><div><h3><a id=wp_image_description_creator_params_v1.set_mastering_display_primaries href=#wp_image_description_creator_params_v1.set_mastering_display_primaries>wp_image_description_creator_params_v1.set_mastering_display_primaries</a></h3><p class=summary>mastering display primaries as chromaticity coordinates</div><div><b>Request</b><br>Since Version 1</div></div></div><p>Provides the color primaries and white point of the mastering display
 using CIE 1931 xy chromaticity coordinates. This is compatible with the
 SMPTE ST 2086 definition of HDR static metadata.<p>The mastering display primaries and mastering display luminances define
@@ -360,12 +360,12 @@ has to be chosen (e.g. floating point to exceed the primary color
 volume, or abusing limited quantization range as with xvYCC).<p>Each coordinate value is multiplied by 1 million to get the argument
 value to carry precision of 6 decimals.<p>If mastering display primaries have already been set on this object, the
 protocol error already_set is raised.<p>This request can be used if the compositor advertises
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.enums.feature</a></b>.set_mastering_display_primaries. Otherwise
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></b>.set_mastering_display_primaries. Otherwise
 this request raises the protocol error unsupported_feature. The
 advertisement implies support only for target color volumes fully
 contained within the primary color volume.<p>If a compositor additionally supports target color volume exceeding the
 primary color volume, it must advertise
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.enums.feature</a></b>.extended_target_volume. If a client uses
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></b>.extended_target_volume. If a client uses
 target color volume exceeding the primary color volume and the
 compositor does not support it, the result is implementation defined.
 Compositors are recommended to detect this case and fail the image
@@ -380,12 +380,12 @@ is assumed to have the same min and max luminances as the primary color
 volume.<p>If max L is less than or equal to min L, the protocol error
 invalid_luminance is raised.<p>Min L value is multiplied by 10000 to get the argument min_lum value
 and carry precision of 4 decimals. Max L value is unscaled for max_lum.<p>This request can be used if the compositor advertises
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.enums.feature</a></b>.set_mastering_display_primaries. Otherwise
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></b>.set_mastering_display_primaries. Otherwise
 this request raises the protocol error unsupported_feature. The
 advertisement implies support only for target color volumes fully
 contained within the primary color volume.<p>If a compositor additionally supports target color volume exceeding the
 primary color volume, it must advertise
-<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.enums.feature</a></b>.extended_target_volume. If a client uses
+<b><a href=/docs/wayland/color-management-v1/#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></b>.extended_target_volume. If a client uses
 target color volume exceeding the primary color volume and the
 compositor does not support it, the result is implementation defined.
 Compositors are recommended to detect this case and fail the image
