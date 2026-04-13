@@ -101,75 +101,27 @@ chromatic adaptation between surface and display is done.
 This can be useful for color proofing applications.</div></table><div class=message-head><div class=row><div><h3><a id=wp_color_manager_v1.enums.feature href=#wp_color_manager_v1.enums.feature>wp_color_manager_v1.feature</a></h3><p class=summary>compositor supported features</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>icc_v2_v4<td>0<td>1<td><p>create_icc_creator request<tr><td>parametric<td>1<td>1<td><p>create_parametric_creator request<tr><td>set_primaries<td>2<td>1<td><p>parametric set_primaries request<tr><td>set_tf_power<td>3<td>1<td><p>parametric set_tf_power request<tr><td>set_luminances<td>4<td>1<td><p>parametric set_luminances request<tr><td>set_mastering_display_primaries<td>5<td>1<td><p>parametric set_mastering_display_primaries request<div class=description><p>The compositor supports set_mastering_display_primaries request with a
 target color volume fully contained inside the primary color volume.</div><tr><td>extended_target_volume<td>6<td>1<td><p>parametric target exceeds primary color volume<div class=description><p>The compositor additionally supports target color volumes that
 extend outside of the primary color volume.<p>This can only be advertised if feature set_mastering_display_primaries
-is supported as well.</div><tr><td>windows_scrgb<td>7<td>1<td><p>create_windows_scrgb request</table><div class=message-head><div class=row><div><h3><a id=wp_color_manager_v1.enums.primaries href=#wp_color_manager_v1.enums.primaries>wp_color_manager_v1.primaries</a></h3><p class=summary>named color primaries</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>Named color primaries used to encode well-known sets of primaries.<p>A value of 0 is invalid and will never be present in the list of enums.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>srgb<td>1<td>1<td><p>Color primaries for the sRGB color space as defined by the BT.709 standard<div class=description><p>Color primaries as defined by
-- Rec. ITU-R BT.709-6
-- Rec. ITU-R BT.1361-0 conventional colour gamut system and extended
-colour gamut system (historical)
-- IEC 61966-2-1 sRGB or sYCC
-- IEC 61966-2-4
-- Society of Motion Picture and Television Engineers (SMPTE) RP 177
-(1993) Annex B</div><tr><td>pal_m<td>2<td>1<td><p>Color primaries for PAL-M as defined by the BT.470 standard<div class=description><p>Color primaries as defined by
-- Rec. ITU-R BT.470-6 System M (historical)
-- United States National Television System Committee 1953
-Recommendation for transmission standards for color television
-- United States Federal Communications Commission (2003) Title 47 Code
-of Federal Regulations 73.682 (a)(20)</div><tr><td>pal<td>3<td>1<td><p>Color primaries for PAL as defined by the BT.601 standard<div class=description><p>Color primaries as defined by
-- Rec. ITU-R BT.470-6 System B, G (historical)
-- Rec. ITU-R BT.601-7 625
-- Rec. ITU-R BT.1358-0 625 (historical)
-- Rec. ITU-R BT.1700-0 625 PAL and 625 SECAM</div><tr><td>ntsc<td>4<td>1<td><p>Color primaries for NTSC as defined by the BT.601 standard<div class=description><p>Color primaries as defined by
-- Rec. ITU-R BT.601-7 525
-- Rec. ITU-R BT.1358-1 525 or 625 (historical)
-- Rec. ITU-R BT.1700-0 NTSC
-- SMPTE 170M (2004)
-- SMPTE 240M (1999) (historical)</div><tr><td>generic_film<td>5<td>1<td><p>Generic film with colour filters using Illuminant C<div class=description><p>Color primaries as defined by Recommendation ITU-T H.273
+is supported as well.</div><tr><td>windows_scrgb<td>7<td>1<td><p>create_windows_scrgb request</table><div class=message-head><div class=row><div><h3><a id=wp_color_manager_v1.enums.primaries href=#wp_color_manager_v1.enums.primaries>wp_color_manager_v1.primaries</a></h3><p class=summary>named color primaries</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>Named color primaries used to encode well-known sets of primaries.<p>A value of 0 is invalid and will never be present in the list of enums.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>srgb<td>1<td>1<td><p>Color primaries for the sRGB color space as defined by the BT.709 standard<div class=description><p>Color primaries as defined by<p>- Rec. ITU-R BT.709-6<p>- Rec. ITU-R BT.1361-0 conventional colour gamut system and extended
+colour gamut system (historical)<p>- IEC 61966-2-1 sRGB or sYCC<p>- IEC 61966-2-4<p>- Society of Motion Picture and Television Engineers (SMPTE) RP 177
+(1993) Annex B</div><tr><td>pal_m<td>2<td>1<td><p>Color primaries for PAL-M as defined by the BT.470 standard<div class=description><p>Color primaries as defined by<p>- Rec. ITU-R BT.470-6 System M (historical)<p>- United States National Television System Committee 1953
+Recommendation for transmission standards for color television<p>- United States Federal Communications Commission (2003) Title 47 Code
+of Federal Regulations 73.682 (a)(20)</div><tr><td>pal<td>3<td>1<td><p>Color primaries for PAL as defined by the BT.601 standard<div class=description><p>Color primaries as defined by<p>- Rec. ITU-R BT.470-6 System B, G (historical)<p>- Rec. ITU-R BT.601-7 625<p>- Rec. ITU-R BT.1358-0 625 (historical)<p>- Rec. ITU-R BT.1700-0 625 PAL and 625 SECAM</div><tr><td>ntsc<td>4<td>1<td><p>Color primaries for NTSC as defined by the BT.601 standard<div class=description><p>Color primaries as defined by<p>- Rec. ITU-R BT.601-7 525<p>- Rec. ITU-R BT.1358-1 525 or 625 (historical)<p>- Rec. ITU-R BT.1700-0 NTSC<p>- SMPTE 170M (2004)<p>- SMPTE 240M (1999) (historical)</div><tr><td>generic_film<td>5<td>1<td><p>Generic film with colour filters using Illuminant C<div class=description><p>Color primaries as defined by Recommendation ITU-T H.273
 "Coding-independent code points for video signal type identification"
-for "generic film".</div><tr><td>bt2020<td>6<td>1<td><p>Color primaries as defined by the BT.2020 and BT.2100 standard<div class=description><p>Color primaries as defined by
-- Rec. ITU-R BT.2020-2
-- Rec. ITU-R BT.2100-0</div><tr><td>cie1931_xyz<td>7<td>1<td><p>Color primaries of the full CIE 1931 XYZ color space<div class=description><p>Color primaries as defined as the maximum of the CIE 1931 XYZ color
-space by
-- SMPTE ST 428-1
-- (CIE 1931 XYZ as in ISO 11664-1)</div><tr><td>dci_p3<td>8<td>1<td><p>Color primaries of the DCI P3 color space as defined by the SMPTE RP 431 standard<div class=description><p>Color primaries as defined by Digital Cinema System and published in
+for "generic film".</div><tr><td>bt2020<td>6<td>1<td><p>Color primaries as defined by the BT.2020 and BT.2100 standard<div class=description><p>Color primaries as defined by<p>- Rec. ITU-R BT.2020-2<p>- Rec. ITU-R BT.2100-0</div><tr><td>cie1931_xyz<td>7<td>1<td><p>Color primaries of the full CIE 1931 XYZ color space<div class=description><p>Color primaries as defined as the maximum of the CIE 1931 XYZ color
+space by<p>- SMPTE ST 428-1<p>- (CIE 1931 XYZ as in ISO 11664-1)</div><tr><td>dci_p3<td>8<td>1<td><p>Color primaries of the DCI P3 color space as defined by the SMPTE RP 431 standard<div class=description><p>Color primaries as defined by Digital Cinema System and published in
 SMPTE RP 431-2 (2011).</div><tr><td>display_p3<td>9<td>1<td><p>Color primaries of Display P3 variant of the DCI-P3 color space as defined by the SMPTE EG 432 standard<div class=description><p>Color primaries as defined by Digital Cinema System and published in
 SMPTE EG 432-1 (2010).</div><tr><td>adobe_rgb<td>10<td>1<td><p>Color primaries of the Adobe RGB color space as defined by the ISO 12640 standard<div class=description><p>Color primaries as defined by Adobe as "Adobe RGB" and later published
 by ISO 12640-4 (2011).</div></table><div class=message-head><div class=row><div><h3><a id=wp_color_manager_v1.enums.transfer_function href=#wp_color_manager_v1.enums.transfer_function>wp_color_manager_v1.transfer_function</a></h3><p class=summary>named transfer functions</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>Named transfer functions used to represent well-known transfer
-characteristics of displays.<p>A value of 0 is invalid and will never be present in the list of enums.<p>See appendix.md for the formulae.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>bt1886<td>1<td>1<td><p>BT.1886 display transfer characteristic<div class=description><p>Rec. ITU-R BT.1886 is the display transfer characteristic assumed by
-- Rec. ITU-R BT.601-7 525 and 625
-- Rec. ITU-R BT.709-6
-- Rec. ITU-R BT.2020-2<p>This TF implies these default luminances from Rec. ITU-R BT.2035:
-- primary color volume minimum: 0.01 cd/m²
-- primary color volume maximum: 100 cd/m²
-- reference white: 100 cd/m²</div><tr><td>gamma22<td>2<td>1<td><p>Assumed display gamma 2.2 transfer function<div class=description><p>Transfer characteristics as defined by
-- Rec. ITU-R BT.470-6 System M (historical)
-- United States National Television System Committee 1953
-Recommendation for transmission standards for color television
-- United States Federal Communications Commission (2003) Title 47 Code
-of Federal Regulations 73.682 (a) (20)
-- Rec. ITU-R BT.1700-0 625 PAL and 625 SECAM
-- IEC 61966-2-1 (reference display)</div><tr><td>gamma28<td>3<td>1<td><p>Assumed display gamma 2.8 transfer function<div class=description><p>Transfer characteristics as defined by
-- Rec. ITU-R BT.470-6 System B, G (historical)</div><tr><td>st240<td>4<td>1<td><p>SMPTE ST 240 transfer function<div class=description><p>Transfer characteristics as defined by
-- SMPTE ST 240 (1999)</div><tr><td>ext_linear<td>5<td>1<td><p>extended linear transfer function<div class=description><p>Linear transfer function defined over all real numbers.
-Normalised electrical values are equal the normalised optical values.</div><tr><td>log_100<td>6<td>1<td><p>logarithmic 100:1 transfer function<div class=description><p>Logarithmic transfer characteristic (100:1 range).</div><tr><td>log_316<td>7<td>1<td><p>logarithmic (100*Sqrt(10) : 1) transfer function<div class=description><p>Logarithmic transfer characteristic (100 * Sqrt(10) : 1 range).</div><tr><td>xvycc<td>8<td>1<td><p>IEC 61966-2-4 transfer function<div class=description><p>Transfer characteristics as defined by
-- IEC 61966-2-4</div><tr><td>srgb<td>9<td>1<td><p>Deprecated (ambiguous sRGB transfer function)<div class=description><p>Transfer characteristics as defined by
-- IEC 61966-2-1 sRGB<p>As a rule of thumb, use gamma22 for video, motion picture and
+characteristics of displays.<p>A value of 0 is invalid and will never be present in the list of enums.<p>See appendix.md for the formulae.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>bt1886<td>1<td>1<td><p>BT.1886 display transfer characteristic<div class=description><p>Rec. ITU-R BT.1886 is the display transfer characteristic assumed by<p>- Rec. ITU-R BT.601-7 525 and 625<p>- Rec. ITU-R BT.709-6<p>- Rec. ITU-R BT.2020-2<p>This TF implies these default luminances from Rec. ITU-R BT.2035:<p>- primary color volume minimum: 0.01 cd/m²<p>- primary color volume maximum: 100 cd/m²<p>- reference white: 100 cd/m²</div><tr><td>gamma22<td>2<td>1<td><p>Assumed display gamma 2.2 transfer function<div class=description><p>Transfer characteristics as defined by<p>- Rec. ITU-R BT.470-6 System M (historical)<p>- United States National Television System Committee 1953
+Recommendation for transmission standards for color television<p>- United States Federal Communications Commission (2003) Title 47 Code
+of Federal Regulations 73.682 (a) (20)<p>- Rec. ITU-R BT.1700-0 625 PAL and 625 SECAM<p>- IEC 61966-2-1 (reference display)</div><tr><td>gamma28<td>3<td>1<td><p>Assumed display gamma 2.8 transfer function<div class=description><p>Transfer characteristics as defined by<p>- Rec. ITU-R BT.470-6 System B, G (historical)</div><tr><td>st240<td>4<td>1<td><p>SMPTE ST 240 transfer function<div class=description><p>Transfer characteristics as defined by<p>- SMPTE ST 240 (1999)</div><tr><td>ext_linear<td>5<td>1<td><p>extended linear transfer function<div class=description><p>Linear transfer function defined over all real numbers.
+Normalised electrical values are equal the normalised optical values.</div><tr><td>log_100<td>6<td>1<td><p>logarithmic 100:1 transfer function<div class=description><p>Logarithmic transfer characteristic (100:1 range).</div><tr><td>log_316<td>7<td>1<td><p>logarithmic (100*Sqrt(10) : 1) transfer function<div class=description><p>Logarithmic transfer characteristic (100 * Sqrt(10) : 1 range).</div><tr><td>xvycc<td>8<td>1<td><p>IEC 61966-2-4 transfer function<div class=description><p>Transfer characteristics as defined by<p>- IEC 61966-2-4</div><tr><td>srgb<td>9<td>1<td><p>Deprecated (ambiguous sRGB transfer function)<div class=description><p>Transfer characteristics as defined by<p>- IEC 61966-2-1 sRGB<p>As a rule of thumb, use gamma22 for video, motion picture and
 computer graphics, or compound_power_2_4 for ICC calibrated print
-workflows.</div><tr><td>ext_srgb<td>10<td>1<td><p>Deprecated (Extended sRGB piece-wise transfer function)<div class=description><p>Transfer characteristics as defined by
-- IEC 61966-2-1 sYCC</div><tr><td>st2084_pq<td>11<td>1<td><p>perceptual quantizer transfer function<div class=description><p>Transfer characteristics as defined by
-- SMPTE ST 2084 (2014) for 10-, 12-, 14- and 16-bit systems
-- Rec. ITU-R BT.2100-2 perceptual quantization (PQ) system<p>This TF implies these default luminances
-- primary color volume minimum: 0.005 cd/m²
-- primary color volume maximum: 10000 cd/m²
-- reference white: 203 cd/m²<p>The difference between the primary color volume minimum and maximum
+workflows.</div><tr><td>ext_srgb<td>10<td>1<td><p>Deprecated (Extended sRGB piece-wise transfer function)<div class=description><p>Transfer characteristics as defined by<p>- IEC 61966-2-1 sYCC</div><tr><td>st2084_pq<td>11<td>1<td><p>perceptual quantizer transfer function<div class=description><p>Transfer characteristics as defined by<p>- SMPTE ST 2084 (2014) for 10-, 12-, 14- and 16-bit systems<p>- Rec. ITU-R BT.2100-2 perceptual quantization (PQ) system<p>This TF implies these default luminances<p>- primary color volume minimum: 0.005 cd/m²<p>- primary color volume maximum: 10000 cd/m²<p>- reference white: 203 cd/m²<p>The difference between the primary color volume minimum and maximum
 must be approximately 10000 cd/m² as that is the swing of the EOTF
 defined by ST 2084 and BT.2100. The default value for the
 reference white is a protocol addition: it is suggested by
-Report ITU-R BT.2408-7 and is not part of ST 2084 or BT.2100.</div><tr><td>st428<td>12<td>1<td><p>SMPTE ST 428 transfer function<div class=description><p>Transfer characteristics as defined by
-- SMPTE ST 428-1 (2019)</div><tr><td>hlg<td>13<td>1<td><p>hybrid log-gamma transfer function<div class=description><p>Transfer characteristics as defined by
-- ARIB STD-B67 (2015)
-- Rec. ITU-R BT.2100-2 hybrid log-gamma (HLG) system<p>This TF implies these default luminances
-- primary color volume minimum: 0.005 cd/m²
-- primary color volume maximum: 1000 cd/m²
-- reference white: 203 cd/m²<p>HLG is a relative display-referred signal with a specified
+Report ITU-R BT.2408-7 and is not part of ST 2084 or BT.2100.</div><tr><td>st428<td>12<td>1<td><p>SMPTE ST 428 transfer function<div class=description><p>Transfer characteristics as defined by<p>- SMPTE ST 428-1 (2019)</div><tr><td>hlg<td>13<td>1<td><p>hybrid log-gamma transfer function<div class=description><p>Transfer characteristics as defined by<p>- ARIB STD-B67 (2015)<p>- Rec. ITU-R BT.2100-2 hybrid log-gamma (HLG) system<p>This TF implies these default luminances<p>- primary color volume minimum: 0.005 cd/m²<p>- primary color volume maximum: 1000 cd/m²<p>- reference white: 203 cd/m²<p>HLG is a relative display-referred signal with a specified
 non-linear mapping to the display peak luminance (the HLG OOTF).
 All absolute luminance values used here for HLG assume a 1000 cd/m²
 peak display.<p>The default value for the reference white is a protocol addition:
@@ -272,8 +224,7 @@ improvements by providing the <b><a href=/docs/wayland/wayland/#wl_surface>wl_su
 image description. Therefore clients that can, should render according
 to the preferred image description</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>identity_hi<td>uint<td><p>high 32 bits of the 64-bit image description id number<tr><td>identity_lo<td>uint<td><p>low 32 bits of the 64-bit image description id number</table><div class=message-head><div class=row><div><h3><a id=wp_color_management_surface_feedback_v1.enums.error href=#wp_color_management_surface_feedback_v1.enums.error>wp_color_management_surface_feedback_v1.error</a></h3><p class=summary>protocol errors</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>inert<td>0<td>1<td><p>forbidden request on inert object<tr><td>unsupported_feature<td>1<td>1<td><p>attempted to use an unsupported feature</table><div class=interface-head><div class=row><div><h2><a id=wp_image_description_creator_icc_v1 href=#wp_image_description_creator_icc_v1>wp_image_description_creator_icc_v1</a></h2><p class=summary>holder of image description ICC information</div><div><b>Interface</b><br>Version 2</div></div></div><div class=description><p>This type of object is used for collecting all the information required
 to create a <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1>wp_image_description_v1</a></b> object from an ICC file. A complete
-set of required parameters consists of these properties:
-- ICC file<p>Each required property must be set exactly once if the client is to create
+set of required parameters consists of these properties:<p>- ICC file<p>Each required property must be set exactly once if the client is to create
 an image description. The set requests verify that a property was not
 already set. The create request verifies that all required properties are
 set. There may be several alternative requests for setting each property,
@@ -300,10 +251,8 @@ compositor shall send the <b><a href=/docs/wayland/color-management-v1/#wp_image
 created <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1>wp_image_description_v1</a></b> with the 'operating_system' cause.<p>The maximum size of the ICC profile is 32 MB. If length is greater than
 that or zero, the protocol error bad_size is raised. If offset + length
 exceeds the file size, the protocol error out_of_file is raised.<p>A compositor may read the file at any time starting from this request
-and only until whichever happens first:
-- If create request was issued, the <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1>wp_image_description_v1</a></b> object
-delivers either failed or ready event; or
-- if create request was not issued, this
+and only until whichever happens first:<p>- If create request was issued, the <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1>wp_image_description_v1</a></b> object
+delivers either failed or ready event; or<p>- if create request was not issued, this
 <b><a href=/docs/wayland/color-management-v1/#wp_image_description_creator_icc_v1>wp_image_description_creator_icc_v1</a></b> object is destroyed.<p>A compositor shall not modify the contents of the file, and the fd may
 be sealed for writes and size changes. The client must ensure to its
 best ability that the data does not change while the compositor is
@@ -316,17 +265,9 @@ protocol error, but will eventually send the
 details about ICC profiles.<p>If ICC file has already been set on this object, the protocol error
 already_set is raised.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>icc_profile<td>fd<td><p>ICC profile<tr><td>offset<td>uint<td><p>byte offset in fd to start of ICC data<tr><td>length<td>uint<td><p>length of ICC data in bytes</table><div class=message-head><div class=row><div><h3><a id=wp_image_description_creator_icc_v1.enums.error href=#wp_image_description_creator_icc_v1.enums.error>wp_image_description_creator_icc_v1.error</a></h3><p class=summary>protocol errors</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>incomplete_set<td>0<td>1<td><p>incomplete parameter set<tr><td>already_set<td>1<td>1<td><p>property already set<tr><td>bad_fd<td>2<td>1<td><p>fd not seekable and readable<tr><td>bad_size<td>3<td>1<td><p>no or too much data<tr><td>out_of_file<td>4<td>1<td><p>offset + length exceeds file size</table><div class=interface-head><div class=row><div><h2><a id=wp_image_description_creator_params_v1 href=#wp_image_description_creator_params_v1>wp_image_description_creator_params_v1</a></h2><p class=summary>holder of image description parameters</div><div><b>Interface</b><br>Version 2</div></div></div><div class=description><p>This type of object is used for collecting all the parameters required
 to create a <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1>wp_image_description_v1</a></b> object. A complete set of required
-parameters consists of these properties:
-- transfer characteristic function (tf)
-- chromaticities of primaries and white point (primary color volume)<p>The following properties are optional and have a well-defined default
-if not explicitly set:
-- primary color volume luminance range
-- reference white luminance level
-- mastering display primaries and white point (target color volume)
-- mastering luminance range<p>The following properties are optional and will be ignored
-if not explicitly set:
-- maximum content light level
-- maximum frame-average light level<p>Each required property must be set exactly once if the client is to create
+parameters consists of these properties:<p>- transfer characteristic function (tf)<p>- chromaticities of primaries and white point (primary color volume)<p>The following properties are optional and have a well-defined default
+if not explicitly set:<p>- primary color volume luminance range<p>- reference white luminance level<p>- mastering display primaries and white point (target color volume)<p>- mastering luminance range<p>The following properties are optional and will be ignored
+if not explicitly set:<p>- maximum content light level<p>- maximum frame-average light level<p>Each required property must be set exactly once if the client is to create
 an image description. The set requests verify that a property was not
 already set. The create request verifies that all required properties are
 set. There may be several alternative requests for setting each property,
@@ -335,10 +276,7 @@ create the image description object, destroying the creator in the
 process.<p>A viewer, who is viewing the display defined by the resulting image
 description (the viewing environment included), is assumed to be fully
 adapted to the primary color volume's white point.<p>Any of the following conditions will cause the colorimetry of a pixel
-to become undefined:
-- Values outside of the defined range of the transfer characteristic.
-- Tristimulus that exceeds the target color volume.
-- If extended_target_volume is not supported: tristimulus that exceeds
+to become undefined:<p>- Values outside of the defined range of the transfer characteristic.<p>- Tristimulus that exceeds the target color volume.<p>- If extended_target_volume is not supported: tristimulus that exceeds
 the primary color volume.<p>The closest correspondence to an image description created through this
 interface is the Display class of profiles in ICC.</div><div class=message-head><div class=row><div><h3><a id=wp_image_description_creator_params_v1.create href=#wp_image_description_creator_params_v1.create>wp_image_description_creator_params_v1.create</a></h3><p class=summary>Create the image description object using params</div><div><b>Destructor
 Request</b><br>Since Version 1</div></div></div><div class=description><p>Create an image description object based on the parameters previously
@@ -347,10 +285,8 @@ complete, the protocol error incomplete_set is raised. For the
 definition of a complete set, see the description of this interface.<p>When both max_cll and max_fall are set, max_fall must be less or equal
 to max_cll otherwise the invalid_luminance protocol error is raised.<p>In version 1, these following conditions also result in the
 invalid_luminance protocol error. Version 2 and later do not have this
-requirement.
-- When max_cll is set, it must be greater than min L and less or equal
-to max L of the mastering luminance range.
-- When max_fall is set, it must be greater than min L and less or equal
+requirement.<p>- When max_cll is set, it must be greater than min L and less or equal
+to max L of the mastering luminance range.<p>- When max_fall is set, it must be greater than min L and less or equal
 to max L of the mastering luminance range.<p>If the particular combination of the parameter set is not supported
 by the compositor, the resulting image description object shall
 immediately deliver the <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1.failed>wp_image_description_v1.failed</a></b> event with the
@@ -387,10 +323,7 @@ the protocol error unsupported_feature.</div><table class=args><thead><tr><th>Ar
 luminance level. These values include the minimum display emission, but
 not external flare. The minimum display emission is assumed to have
 the chromaticity of the primary color volume white point.<p>The default luminances from
-<a href=https://www.color.org/chardata/rgb/srgb.xalter>https://www.color.org/chardata/rgb/srgb.xalter</a> are
-- primary color volume minimum: 0.2 cd/m²
-- primary color volume maximum: 80 cd/m²
-- reference white: 80 cd/m²<p>Setting a named transfer characteristic can imply other default
+<a href=https://www.color.org/chardata/rgb/srgb.xalter>https://www.color.org/chardata/rgb/srgb.xalter</a> are<p>- primary color volume minimum: 0.2 cd/m²<p>- primary color volume maximum: 80 cd/m²<p>- reference white: 80 cd/m²<p>Setting a named transfer characteristic can imply other default
 luminances.<p>The default luminances get overwritten when this request is used.
 With transfer_function.st2084_pq the given 'max_lum' value is ignored,
 and 'max_lum' is taken as 'min_lum' + 10000 cd/m².<p>'min_lum' and 'max_lum' specify the minimum and maximum luminances of
@@ -504,18 +437,7 @@ numbers might not be portable between Wayland connections. A compositor
 shall not send an invalid id number.<p>Compositors must not recycle image description id numbers.<p>This identity allows clients to de-duplicate image description records
 and avoid <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1.get_information>get_information</a></b> request if they already have the image
 description information.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>identity_hi<td>uint<td><p>high 32 bits of the 64-bit image description id number<tr><td>identity_lo<td>uint<td><p>low 32 bits of the 64-bit image description id number</table><div class=message-head><div class=row><div><h3><a id=wp_image_description_v1.enums.error href=#wp_image_description_v1.enums.error>wp_image_description_v1.error</a></h3><p class=summary>protocol errors</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>not_ready<td>0<td>1<td><p>attempted to use an object which is not ready<tr><td>no_information<td>1<td>1<td><p>get_information not allowed</table><div class=message-head><div class=row><div><h3><a id=wp_image_description_v1.enums.cause href=#wp_image_description_v1.enums.cause>wp_image_description_v1.cause</a></h3><p class=summary>generic reason for failure</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p></div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>low_version<td>0<td>1<td><p>interface version too low<tr><td>unsupported<td>1<td>1<td><p>unsupported image description data<tr><td>operating_system<td>2<td>1<td><p>error independent of the client<tr><td>no_output<td>3<td>1<td><p>the relevant output no longer exists</table><div class=interface-head><div class=row><div><h2><a id=wp_image_description_info_v1 href=#wp_image_description_info_v1>wp_image_description_info_v1</a></h2><p class=summary>Colorimetric image description information</div><div><b>Interface</b><br>Version 2</div></div></div><div class=description><p>Sends all matching events describing an image description object exactly
-once and finally sends the 'done' event.<p>This means
-- if the image description is parametric, it must send
-- primaries
-- named_primaries, if applicable
-- at least one of <b><a href=/docs/wayland/color-management-v1/#wp_image_description_info_v1.tf_power>tf_power</a></b> and tf_named, as applicable
-- luminances
-- <b><a href=/docs/wayland/color-management-v1/#wp_image_description_info_v1.target_primaries>target_primaries</a></b>
-- <b><a href=/docs/wayland/color-management-v1/#wp_image_description_info_v1.target_luminance>target_luminance</a></b>
-- if the image description is parametric, it may send, if applicable,
-- <b><a href=/docs/wayland/color-management-v1/#wp_image_description_info_v1.target_max_cll>target_max_cll</a></b>
-- <b><a href=/docs/wayland/color-management-v1/#wp_image_description_info_v1.target_max_fall>target_max_fall</a></b>
-- if the image description contains an ICC profile, it must send the
+once and finally sends the 'done' event.<p>This means<p>- if the image description is parametric, it must send<p>- primaries<p>- named_primaries, if applicable<p>- at least one of <b><a href=/docs/wayland/color-management-v1/#wp_image_description_info_v1.tf_power>tf_power</a></b> and tf_named, as applicable<p>- luminances<p>- target_primaries<p>- target_luminance<p>- if the image description is parametric, it may send, if applicable,<p>- target_max_cll<p>- target_max_fall<p>- if the image description contains an ICC profile, it must send the
 <b><a href=/docs/wayland/color-management-v1/#wp_image_description_info_v1.icc_file>icc_file</a></b> event<p>Once a <b><a href=/docs/wayland/color-management-v1/#wp_image_description_info_v1>wp_image_description_info_v1</a></b> object has delivered a 'done' event it
 is automatically destroyed.<p>Every <b><a href=/docs/wayland/color-management-v1/#wp_image_description_info_v1>wp_image_description_info_v1</a></b> created from the same
 <b><a href=/docs/wayland/color-management-v1/#wp_image_description_v1>wp_image_description_v1</a></b> shall always return the exact same data.</div><div class=message-head><div class=row><div><h3><a id=wp_image_description_info_v1.done href=#wp_image_description_info_v1.done>wp_image_description_info_v1.done</a></h3><p class=summary>end of information</div><div><b>Destructor

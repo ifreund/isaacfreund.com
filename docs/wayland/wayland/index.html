@@ -213,16 +213,12 @@ a target does not accept any of the offered types, type is NULL.<p>Used for feed
 string<td><p>mime type accepted by the target</table><div class=message-head><div class=row><div><h3><a id=wl_data_source.send href=#wl_data_source.send>wl_data_source.send</a></h3><p class=summary>send the data</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>Request for data from the client. Send the data as the
 specified mime type over the passed file descriptor, then
 close it.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>mime_type<td>string<td><p>mime type for the data<tr><td>fd<td>fd<td><p>file descriptor for the data</table><div class=message-head><div class=row><div><h3><a id=wl_data_source.cancelled href=#wl_data_source.cancelled>wl_data_source.cancelled</a></h3><p class=summary>selection was cancelled</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This data source is no longer valid. There are several reasons why
-this could happen:<p>- The data source has been replaced by another data source.
-- The drag-and-drop operation was performed, but the drop destination
+this could happen:<p>- The data source has been replaced by another data source.<p>- The drag-and-drop operation was performed, but the drop destination
 did not accept any of the mime types offered through
-wl_data_source.target.
-- The drag-and-drop operation was performed, but the drop destination
+wl_data_source.target.<p>- The drag-and-drop operation was performed, but the drop destination
 did not select any of the actions present in the mask offered through
-wl_data_source.action.
-- The drag-and-drop operation was performed but didn't happen over a
-surface.
-- The compositor cancelled the drag-and-drop operation (e.g. compositor
+wl_data_source.action.<p>- The drag-and-drop operation was performed but didn't happen over a
+surface.<p>- The compositor cancelled the drag-and-drop operation (e.g. compositor
 dependent timeouts to avoid stale drag-and-drop transfers).<p>The client should clean up and destroy this data source.<p>For objects of version 2 or older, <b><a href=/docs/wayland/wayland/#wl_data_source.cancelled>wl_data_source.cancelled</a></b> will
 only be emitted if the data source was replaced by another data
 source.</div><div class=message-head><div class=row><div><h3><a id=wl_data_source.dnd_drop_performed href=#wl_data_source.dnd_drop_performed>wl_data_source.dnd_drop_performed</a></h3><p class=summary>the drag-and-drop operation physically finished</div><div><b>Event</b><br>Since Version 3</div></div></div><div class=description><p>The user performed the drop action. This event does not indicate
@@ -327,9 +323,7 @@ there is no match. All further checks will effectively happen on
 reaction to key modifiers being pressed. One common design that
 is used in major toolkits (and the behavior recommended for
 compositors) is:<p>- If no modifiers are pressed, the first match (in bit order)
-will be used.
-- Pressing Shift selects "move", if enabled in the mask.
-- Pressing Control selects "copy", if enabled in the mask.<p>Behavior beyond that is considered implementation-dependent.
+will be used.<p>- Pressing Shift selects "move", if enabled in the mask.<p>- Pressing Control selects "copy", if enabled in the mask.<p>Behavior beyond that is considered implementation-dependent.
 Compositors may for example bind other modifiers (like Alt/Meta)
 or drags initiated with other buttons than BTN_LEFT to specific
 actions (e.g. "ask").</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>none<td>0<td>1<td><p>no action<tr><td>copy<td>1<td>1<td><p>copy action<tr><td>move<td>2<td>1<td><p>move action<tr><td>ask<td>4<td>1<td><p>ask action</table><div class=interface-head><div class=row><div><h2><a id=wl_surface href=#wl_surface>wl_surface</a></h2><p class=summary>an onscreen surface</div><div><b>Interface</b><br>Version 7</div></div></div><div class=description><p>A surface is a rectangular area that may be displayed on zero
@@ -737,11 +731,9 @@ wl_pointer.frame, the axis source applies to this event.<p>The order of <b><a hr
 not guaranteed.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>axis<td>uint&lt;<b><a href=/docs/wayland/wayland/#wl_pointer.enums.axis>axis</a></b>><td><p>axis type<tr><td>value120<td>int<td><p>scroll distance as fraction of 120</table><div class=message-head><div class=row><div><h3><a id=wl_pointer.axis_relative_direction href=#wl_pointer.axis_relative_direction>wl_pointer.axis_relative_direction</a></h3><p class=summary>axis relative physical direction event</div><div><b>Event</b><br>Since Version 9</div></div></div><div class=description><p>Relative directional information of the entity causing the axis
 motion.<p>For a <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> event, the <b><a href=/docs/wayland/wayland/#wl_pointer.axis_relative_direction>wl_pointer.axis_relative_direction</a></b>
 event specifies the movement direction of the entity causing the
-<b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> event. For example:
-- if a user's fingers on a touchpad move down and this
+<b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> event. For example:<p>- if a user's fingers on a touchpad move down and this
 causes a <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> vertical_scroll down event, the physical
-direction is 'identical'
-- if a user's fingers on a touchpad move down and this causes a
+direction is 'identical'<p>- if a user's fingers on a touchpad move down and this causes a
 <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> vertical_scroll up scroll up event ('natural
 scrolling'), the physical direction is 'inverted'.<p>A client may use this information to adjust scroll motion of
 components. Specifically, enabling natural scrolling causes the
@@ -772,10 +764,7 @@ a button is held down.<p>The "wheel tilt" axis source indicates that the actual 
 wheel but the scroll event is not caused by a rotation but a
 (usually sideways) tilt of the wheel.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>wheel<td>0<td>1<td><p>a physical wheel rotation<tr><td>finger<td>1<td>1<td><p>finger on a touch surface<tr><td>continuous<td>2<td>1<td><p>continuous coordinate space<tr><td>wheel_tilt<td>3<td>6<td><p>a physical wheel tilt</table><div class=message-head><div class=row><div><h3><a id=wl_pointer.enums.axis_relative_direction href=#wl_pointer.enums.axis_relative_direction>wl_pointer.axis_relative_direction</a></h3><p class=summary>axis relative direction</div><div><b>Enum</b><br>Since Version 1</div></div></div><div class=description><p>This specifies the direction of the physical motion that caused a
 <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> event, relative to the <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> direction.</div><table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>identical<td>0<td>1<td><p>physical motion matches axis direction<tr><td>inverted<td>1<td>1<td><p>physical motion is the inverse of the axis direction</table><div class=interface-head><div class=row><div><h2><a id=wl_keyboard href=#wl_keyboard>wl_keyboard</a></h2><p class=summary>keyboard input device</div><div><b>Interface</b><br>Version 10</div></div></div><div class=description><p>The <b><a href=/docs/wayland/wayland/#wl_keyboard>wl_keyboard</a></b> interface represents one or more keyboards
-associated with a seat.<p>Each <b><a href=/docs/wayland/wayland/#wl_keyboard>wl_keyboard</a></b> has the following logical state:<p>- an active surface (possibly null),
-- the keys currently logically down,
-- the active modifiers,
-- the active group.<p>By default, the active surface is null, the keys currently logically down
+associated with a seat.<p>Each <b><a href=/docs/wayland/wayland/#wl_keyboard>wl_keyboard</a></b> has the following logical state:<p>- an active surface (possibly null),<p>- the keys currently logically down,<p>- the active modifiers,<p>- the active group.<p>By default, the active surface is null, the keys currently logically down
 are empty, the active modifiers and the active group are 0.</div><div class=message-head><div class=row><div><h3><a id=wl_keyboard.release href=#wl_keyboard.release>wl_keyboard.release</a></h3><p class=summary>release the keyboard object</div><div><b>Destructor
 Request</b><br>Since Version 3</div></div></div><div class=description><p></div><div class=message-head><div class=row><div><h3><a id=wl_keyboard.keymap href=#wl_keyboard.keymap>wl_keyboard.keymap</a></h3><p class=summary>keyboard mapping</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event provides a file descriptor to the client which can be
 memory-mapped in read-only mode to provide a keyboard mapping

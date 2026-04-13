@@ -23,16 +23,10 @@ import later fails.<p>To create a <b><a href=/docs/wayland/wayland/#wl_buffer>wl
 zwp_linux_dmabuf_params_v1 object with a <b><a href=/docs/wayland/linux-dmabuf-v1/#zwp_linux_dmabuf_v1.create_params>zwp_linux_dmabuf_v1.create_params</a></b>
 request. All planes required by the intended format are added with
 the 'add' request. Finally, a 'create' or 'create_immed' request is
-issued, which has the following outcome depending on the import success.<p>The 'create' request,
-- on success, triggers a 'created' event which provides the final
-<b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> to the client.
-- on failure, triggers a 'failed' event to convey that the server
-cannot use the dmabufs received from the client.<p>For the 'create_immed' request,
-- on success, the server immediately imports the added dmabufs to
-create a wl_buffer. No event is sent from the server in this case.
-- on failure, the server can choose to either:
-- terminate the client by raising a fatal error.
-- mark the <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> as failed, and send a 'failed' event to the
+issued, which has the following outcome depending on the import success.<p>The 'create' request,<p>- on success, triggers a 'created' event which provides the final
+<b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> to the client.<p>- on failure, triggers a 'failed' event to convey that the server
+cannot use the dmabufs received from the client.<p>For the 'create_immed' request,<p>- on success, the server immediately imports the added dmabufs to
+create a wl_buffer. No event is sent from the server in this case.<p>- on failure, the server can choose to either:<p>- terminate the client by raising a fatal error.<p>- mark the <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> as failed, and send a 'failed' event to the
 client. If the client uses a failed <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> as an argument to any
 request, the behaviour is compositor implementation-defined.<p>For all DRM formats and unless specified in another protocol extension,
 pre-multiplied alpha is used for pixel values.<p>Unless specified otherwise in another protocol extension, implicit
@@ -136,16 +130,12 @@ cancel the buffer creation, it can just destroy this object.</div><table class=a
 dmabufs</div><div><b>Request</b><br>Since Version 2</div></div></div><div class=description><p>This asks for immediate creation of a <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> by importing the
 added dmabufs.<p>In case of import success, no event is sent from the server, and the
 <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> is ready to be used by the client.<p>Upon import failure, either of the following may happen, as seen fit
-by the implementation:
-- the client is terminated with one of the following fatal protocol
-errors:
-- INCOMPLETE, INVALID_FORMAT, INVALID_DIMENSIONS, OUT_OF_BOUNDS,
+by the implementation:<p>- the client is terminated with one of the following fatal protocol
+errors:<p>- INCOMPLETE, INVALID_FORMAT, INVALID_DIMENSIONS, OUT_OF_BOUNDS,
 in case of argument errors such as mismatch between the number
 of planes and the format, bad format, non-positive width or
-height, or bad offset or stride.
-- INVALID_WL_BUFFER, in case the cause for failure is unknown or
-platform specific.
-- the server creates an invalid wl_buffer, marks it as failed and
+height, or bad offset or stride.<p>- INVALID_WL_BUFFER, in case the cause for failure is unknown or
+platform specific.<p>- the server creates an invalid wl_buffer, marks it as failed and
 sends a 'failed' event to the client. The result of using this
 invalid <b><a href=/docs/wayland/wayland/#wl_buffer>wl_buffer</a></b> as an argument in any request by the client is
 defined by the compositor implementation.<p>This takes the same arguments as a 'create' request, and obeys the
