@@ -29,7 +29,7 @@ already attached depends on whether a xdg_toplevel_decoration object
 has been associated with the surface or not prior to this request.<p>If an xdg_toplevel_decoration was associated with the surface, then
 destroyed without a surface commit, the previous decoration mode is
 retained.<p>If no xdg_toplevel_decoration was associated with the surface prior to
-this request, or if a surface commit has been perfomed after a previous
+this request, or if a surface commit has been performed after a previous
 xdg_toplevel_decoration object associated with the surface was
 destroyed, the decoration mode is assumed to be client-side.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/xdg-decoration-unstable-v1/#zxdg_toplevel_decoration_v1>zxdg_toplevel_decoration_v1</a></b>><td><p><tr><td>toplevel<td>object&lt;<b><a href=/docs/wayland/xdg-shell/#xdg_toplevel>xdg_toplevel</a></b>><td><p></table><div class=interface-head><div class=row><div><h2><a id=zxdg_toplevel_decoration_v1 href=#zxdg_toplevel_decoration_v1>zxdg_toplevel_decoration_v1</a></h2><p class=summary>decoration object for a toplevel surface</div><div><b>Interface</b><br>Version 2</div></div></div><div class=description><p>The decoration object allows the compositor to toggle server-side window
 decorations for a toplevel surface. The client can request to switch to

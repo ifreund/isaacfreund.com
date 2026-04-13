@@ -330,7 +330,7 @@ specific configuration for buttons, rings and strips and use the
 <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2.mode_switch>zwp_tablet_pad_group_v2.mode_switch</a></b> event to toggle between these
 configurations. Mode indices start at 0.<p>Switching modes is compositor-dependent. See the
 <b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2.mode_switch>zwp_tablet_pad_group_v2.mode_switch</a></b> event for more details.<p>This event is sent in the initial burst of events before the
-<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2.done>zwp_tablet_pad_group_v2.done</a></b> event. This event is only sent when more than
+<b><a href=/docs/wayland/tablet-v2/#zwp_tablet_pad_group_v2.done>zwp_tablet_pad_group_v2.done</a></b> event. This event is only sent when
 more than one mode is available.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>modes<td>uint<td><p>the number of modes</table><div class=message-head><div class=row><div><h3><a id=zwp_tablet_pad_group_v2.done href=#zwp_tablet_pad_group_v2.done>zwp_tablet_pad_group_v2.done</a></h3><p class=summary>tablet group description events sequence complete</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This event is sent immediately to signal the end of the initial
 burst of descriptive events. A client may consider the static
 description of the tablet to be complete and finalize initialization

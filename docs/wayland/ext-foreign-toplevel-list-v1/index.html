@@ -60,7 +60,7 @@ event.</div><div class=message-head><div class=row><div><h3><a id=ext_foreign_to
 <b><a href=/docs/wayland/ext-foreign-toplevel-list-v1/#ext_foreign_toplevel_handle_v1.done>ext_foreign_toplevel_handle_v1.done</a></b> for details.</div><table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>app_id<td>string<td><p></table><div class=message-head><div class=row><div><h3><a id=ext_foreign_toplevel_handle_v1.identifier href=#ext_foreign_toplevel_handle_v1.identifier>ext_foreign_toplevel_handle_v1.identifier</a></h3><p class=summary>a stable identifier for a toplevel</div><div><b>Event</b><br>Since Version 1</div></div></div><div class=description><p>This identifier is used to check if two or more toplevel handles belong
 to the same toplevel.<p>The identifier is useful for command line tools or privileged clients
 which may need to reference an exact toplevel across processes or
-instances of the <b><a href=/docs/wayland/ext-foreign-toplevel-list-v1/#ext_foreign_toplevel_list_v1>ext_foreign_toplevel_list_v1</a></b> global.<p>The compositor must only send this event when the handle is created.<p>The identifier must be unique per toplevel and it's handles. Two different
+instances of the <b><a href=/docs/wayland/ext-foreign-toplevel-list-v1/#ext_foreign_toplevel_list_v1>ext_foreign_toplevel_list_v1</a></b> global.<p>The compositor must only send this event when the handle is created.<p>The identifier must be unique per toplevel and its handles. Two different
 toplevels must not have the same identifier. The identifier is only valid
 as long as the toplevel is mapped. If the toplevel is unmapped the identifier
 must not be reused. An identifier must not be reused by the compositor to
