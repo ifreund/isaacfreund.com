@@ -54,7 +54,7 @@ against future input events. The window manager should of course respond
 as soon as possible as the capacity of the compositor to buffer incoming
 input events is finite.<div class=message-head><div class=row><div><h3><a id=river_xkb_binding_v1.stop_repeat href=#river_xkb_binding_v1.stop_repeat>river_xkb_binding_v1.stop_repeat</a></h3><p class=summary>repeating should be stopped</div><div><b>Event</b><br>Since Version 2</div></div></div><p>This event indicates that repeating should be stopped for the binding if
 the window manager has been repeating some action since the pressed
-event.<p>This event is generally sent when some other (possible unbound) key is
+event.<p>This event is generally sent when some other (possibly unbound) key is
 pressed after the pressed event is sent and before the released event
 is sent for this binding.<p>This event will be followed by a manage_start event after all other new
 state has been sent by the server.<div class=interface-head><div class=row><div><h2><a id=river_xkb_bindings_seat_v1 href=#river_xkb_bindings_seat_v1>river_xkb_bindings_seat_v1</a></h2><p class=summary>xkb bindings seat</div><div><b>Interface</b><br>Version 3</div></div></div><p>This object manages xkb bindings state associated with a specific seat.<div class=message-head><div class=row><div><h3><a id=river_xkb_bindings_seat_v1.destroy href=#river_xkb_bindings_seat_v1.destroy>river_xkb_bindings_seat_v1.destroy</a></h3><p class=summary>destroy the object</div><div><b>Destructor

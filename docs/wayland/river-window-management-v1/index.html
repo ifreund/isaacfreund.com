@@ -144,7 +144,8 @@ content.<p>Corners are drawn only between borders on adjacent edges. If e.g. the
 left edge has a border and the top edge does not, the border drawn on
 the left edge will not extend vertically beyond the top edge of the
 window.<p>Borders are not drawn while the window is fullscreen.<p>The color is defined by four 32-bit RGBA values. Unless specified in
-another protocol extension, the RGBA values use pre-multiplied alpha.<p>Setting the edges to none or the width to 0 disables the borders.
+another protocol extension, the RGBA values use pre-multiplied alpha.<p>The valid range for the RGBA values is from 0x00000000 to 0xffffffff.
+These values are interpreted as a percentage:<p>- 0x00000000 means 0% of the given color component<p>- 0xffffffff means 100% of the given color component<p>Setting the edges to none or the width to 0 disables the borders.
 Setting a negative width is a protocol error.<p>This request completely overrides all previous <b><a href=/docs/wayland/river-window-management-v1/#river_window_v1.set_borders>set_borders</a></b> requests.
 Only the most recent <b><a href=/docs/wayland/river-window-management-v1/#river_window_v1.set_borders>set_borders</a></b> request has an effect.<p>Note that the position/dimensions of a <b><a href=/docs/wayland/river-window-management-v1/#river_window_v1>river_window_v1</a></b> refer to the
 position/dimensions of the window content and are unaffected by the
