@@ -36,10 +36,7 @@ surface size becomes the source rectangle size. This results in cropping
 without scaling. If src_width or src_height are not integers and
 destination size is not set, the bad_size protocol error is raised when
 the surface state is applied.<p>The coordinate transformations from buffer pixel coordinates up to
-the surface-local coordinates happen in the following order:
-1. buffer_transform (wl_surface.set_buffer_transform)
-2. buffer_scale (wl_surface.set_buffer_scale)
-3. crop and scale (wp_viewport.set*)
+the surface-local coordinates happen in the following order:<p>1. buffer_transform (wl_surface.set_buffer_transform)<p>2. buffer_scale (wl_surface.set_buffer_scale)<p>3. crop and scale (wp_viewport.set*)
 This means, that the source rectangle coordinates of crop and scale
 are given in the coordinates after the buffer transform and scale,
 i.e. in the coordinates that would be the surface-local coordinates

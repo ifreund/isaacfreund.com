@@ -43,12 +43,7 @@ and reset to initial on the next <b><a href=/docs/wayland/input-method-unstable-
 <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2.delete_surrounding_text>delete_surrounding_text</a></b> requests.<p>The state relating to these events is double-buffered, and each one
 modifies the pending state. This request replaces the current state
 with the pending state.<p>The connected text input is expected to proceed by evaluating the
-changes in the following order:<p>1. Replace existing preedit string with the cursor.
-2. Delete requested surrounding text.
-3. Insert commit string with the cursor at its end.
-4. Calculate surrounding text to send.
-5. Insert new preedit text in cursor position.
-6. Place cursor inside preedit text.<p>The serial number reflects the last state of the <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2>zwp_input_method_v2</a></b>
+changes in the following order:<p>1. Replace existing preedit string with the cursor.<p>2. Delete requested surrounding text.<p>3. Insert commit string with the cursor at its end.<p>4. Calculate surrounding text to send.<p>5. Insert new preedit text in cursor position.<p>6. Place cursor inside preedit text.<p>The serial number reflects the last state of the <b><a href=/docs/wayland/input-method-unstable-v2/#zwp_input_method_v2>zwp_input_method_v2</a></b>
 object known to the client. The value of the serial argument must be
 equal to the number of done events already issued by that object. When
 the compositor receives a commit request with a serial different than
