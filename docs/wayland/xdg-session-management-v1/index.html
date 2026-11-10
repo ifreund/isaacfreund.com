@@ -34,7 +34,7 @@ unaffected.<div class=message-head><div class=row><div><h3><a id=xdg_session_man
 identified by the given session identifier string or a new session.
 While the session object exists, the session is considered to be "in
 use".<p>If an identifier string represents a session that is currently actively
-in use by the the same client, an 'in_use' error is raised. If some
+in use by the same client, an 'in_use' error is raised. If some
 other client is currently using the same session, the new session will
 replace managing the associated state.<p>If the reason is not a valid enum entry, the 'invalid_reason' protocol
 error is raised.<p>NULL is passed to initiate a new session. If a session_id is passed
@@ -47,7 +47,7 @@ string<td><p>the session to restore</table><div class=message-head><div class=ro
 management state of associated toplevels.<p>For example newly launched applications might be launched on the active
 workspace with restored size and position, while a recovered
 application might restore additional state such as active workspace and
-stacking order.<table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>launch<td>1<td>1<td><p>an app is newly launched<p>A new app instance is launched, for example from an app launcher.<tr><td>recover<td>2<td>1<td><p>an app recovered<p>A app instance is recovering from for example a compositor or app crash.<tr><td>session_restore<td>3<td>1<td><p>an app restored<p>A app instance is restored, for example part of a restored session, or
+stacking order.<table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>launch<td>1<td>1<td><p>an app is newly launched<p>A new app instance is launched, for example from an app launcher.<tr><td>recover<td>2<td>1<td><p>an app recovered<p>An app instance is recovering from for example a compositor or app crash.<tr><td>session_restore<td>3<td>1<td><p>an app restored<p>An app instance is restored, for example part of a restored session, or
 restored from having been temporarily terminated due to resource
 constraints.</table><div class=interface-head><div class=row><div><h2><a id=xdg_session_v1 href=#xdg_session_v1>xdg_session_v1</a></h2><p class=summary>A session for an application</div><div><b>Interface</b><br>Version 1</div></div></div><p>A <b><a href=/docs/wayland/xdg-session-management-v1/#xdg_session_v1>xdg_session_v1</a></b> object represents a session for an application. While the
 object exists, all surfaces which have been added to the session will

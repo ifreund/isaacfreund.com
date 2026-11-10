@@ -3,7 +3,7 @@
 <a href=/blog>blog</a>
 <a href=/software>software</a>
 <a href=/poetry>poetry</a>
-<a href=/consulting>consulting</a></div></nav></header><main class="wayland-protocol presentation-time"><div class=title><div class=row><div><h1>presentation-time</h1><p class=summary></div><div><p>(<a href=/docs/wayland>index</a>)<p></div></div></div><div class=content><div class=interface-head><div class=row><div><h2><a id=wp_presentation href=#wp_presentation>wp_presentation</a></h2><p class=summary>timed presentation related wl_surface requests</div><div><b>Interface</b><br>Version 2</div></div></div><p><p>The main feature of this interface is accurate presentation
+<a href=/consulting>consulting</a></div></nav></header><main class="wayland-protocol presentation-time"><div class=title><div class=row><div><h1>presentation-time</h1><p class=summary></div><div><p>(<a href=/docs/wayland>index</a>)<p></div></div></div><div class=content><div class=interface-head><div class=row><div><h2><a id=wp_presentation href=#wp_presentation>wp_presentation</a></h2><p class=summary>timed presentation related wl_surface requests</div><div><b>Interface</b><br>Version 3</div></div></div><p><p>The main feature of this interface is accurate presentation
 timing feedback to ensure smooth video playback while maintaining
 audio/video synchronization. Some features use the concept of a
 presentation clock, which is defined in the
@@ -41,7 +41,7 @@ not slewed e.g. by NTP. The absolute value of the clock is
 irrelevant. Precision of one millisecond or better is
 recommended. Clients must be able to query the current clock
 value directly, not by asking the compositor.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>clk_id<td>uint<td><p>platform clock identifier</table><div class=message-head><div class=row><div><h3><a id=wp_presentation.enums.error href=#wp_presentation.enums.error>wp_presentation.error</a></h3><p class=summary>fatal presentation errors</div><div><b>Enum</b><br>Since Version 1</div></div></div><p>These fatal protocol errors may be emitted in response to
-illegal presentation requests.<table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>invalid_timestamp<td>0<td>1<td><p>invalid value in tv_nsec<tr><td>invalid_flag<td>1<td>1<td><p>invalid flag</table><div class=interface-head><div class=row><div><h2><a id=wp_presentation_feedback href=#wp_presentation_feedback>wp_presentation_feedback</a></h2><p class=summary>presentation time feedback event</div><div><b>Interface</b><br>Version 2</div></div></div><p>A presentation_feedback object returns an indication that a
+illegal presentation requests.<table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>invalid_timestamp<td>0<td>1<td><p>invalid value in tv_nsec<tr><td>invalid_flag<td>1<td>1<td><p>invalid flag</table><div class=interface-head><div class=row><div><h2><a id=wp_presentation_feedback href=#wp_presentation_feedback>wp_presentation_feedback</a></h2><p class=summary>presentation time feedback event</div><div><b>Interface</b><br>Version 3</div></div></div><p>A presentation_feedback object returns an indication that a
 <b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b> content update has become visible to the user.
 One object corresponds to one content update submission
 (wl_surface.commit). There are two possible outcomes: the
@@ -77,7 +77,10 @@ refresh rate, explicit video mode switches excluded, then the
 refresh argument must be either an appropriate rate picked by the
 compositor (e.g. fastest rate), or 0 if no such rate exists.
 For version 1, if the output does not have a constant refresh rate,
-the refresh argument must be zero.<p>The 64-bit value combined from seq_hi and seq_lo is the value
+the refresh argument must be zero.<p>If the 'fixed_rate' flag is set, then the refresh argument is
+the output's constant refresh rate. If the 'variable_rate' flag
+is set, then the refresh argument is the output's fastest refresh
+rate.<p>The 64-bit value combined from seq_hi and seq_lo is the value
 of the output's vertical retrace counter when the content
 update was first scanned out to the display. This value must
 be compatible with the definition of MSC in
@@ -106,7 +109,16 @@ the buffer from the client was given to display hardware as
 is, without copying it. Compositing with OpenGL counts as
 copying, even if textured directly from the client buffer.
 Possible zero-copy cases include direct scanout of a
-fullscreen surface and a surface on a hardware overlay.</table><div class=interface-head><h2>Copyright</h2></div><div class=copyright><p><br>Copyright © 2013-2014 Collabora, Ltd.<br><br>Permission is hereby granted, free of charge, to any person obtaining a<br>copy of this software and associated documentation files (the "Software"),<br>to deal in the Software without restriction, including without limitation<br>the rights to use, copy, modify, merge, publish, distribute, sublicense,<br>and/or sell copies of the Software, and to permit persons to whom the<br>Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice (including the next<br>paragraph) shall be included in all copies or substantial portions of the<br>Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br>THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br>DEALINGS IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
+fullscreen surface and a surface on a hardware overlay.<tr><td>fixed_rate<td>0x10<td>3<td><p>presentation is at a fixed refresh rate<p>The display hardware is operating at a fixed refresh rate.
+The presentation was aligned to a multiple of this event's
+'refresh' argument.
+If this is set, the refresh argument must not be 0.<tr><td>variable_rate<td>0x20<td>3<td><p>presentation is at a variable refresh rate<p>The display hardware is operating at a variable refresh rate, with
+updates to this surface consistently determining the display refresh
+timing. The definition of 'consistent' is compositor policy.<p>The content update was displayed as soon as possible after it became
+ready, but no sooner than 'refresh' nanoseconds after the previous
+presentation on this surface. In other words, the presentation time
+was determined by when this surface's content became ready, not by
+a periodic display refresh or by updates to other surfaces.<p>If this is set, the refresh argument must not be 0.</table><div class=interface-head><h2>Copyright</h2></div><div class=copyright><p><br>Copyright © 2013-2014 Collabora, Ltd.<br><br>Permission is hereby granted, free of charge, to any person obtaining a<br>copy of this software and associated documentation files (the "Software"),<br>to deal in the Software without restriction, including without limitation<br>the rights to use, copy, modify, merge, publish, distribute, sublicense,<br>and/or sell copies of the Software, and to permit persons to whom the<br>Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice (including the next<br>paragraph) shall be included in all copies or substantial portions of the<br>Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br>THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br>FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br>DEALINGS IN THE SOFTWARE.<br></div></div></main><footer><span class=line>© 2021-2026 Isaac Freund,</span>
 <span class=line><a href=/impressum>Impressum</a>,</span>
 <span class=line>Content <a href=/CC-BY-NC-SA-4.0.txt>CC-BY-NC-SA-4.0</a>,</span>
 <span class=line><a href=https://codeberg.org/ifreund/website>Source Code</a> <a href=/AGPL-3.0-only.txt>AGPL-3.0-only</a></span></footer>

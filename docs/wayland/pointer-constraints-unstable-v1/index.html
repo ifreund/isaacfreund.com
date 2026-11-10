@@ -43,7 +43,7 @@ in order for the lock to activate. It is up to the compositor whether to
 warp the pointer or require some kind of user interaction for the lock
 to activate. If the region is null the surface input region is used.<p>A surface may receive pointer focus without the lock being activated.<p>The request creates a new object wp_locked_pointer which is used to
 interact with the lock as well as receive updates about its state. See
-the the description of wp_locked_pointer for further information.<p>Note that while a pointer is locked, the <b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b> objects of the
+the description of wp_locked_pointer for further information.<p>Note that while a pointer is locked, the <b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b> objects of the
 corresponding seat will not emit any <b><a href=/docs/wayland/wayland/#wl_pointer.motion>wl_pointer.motion</a></b> events, but
 relative motion events will still be emitted via wp_relative_pointer
 objects of the same seat. <b><a href=/docs/wayland/wayland/#wl_pointer.axis>wl_pointer.axis</a></b> and <b><a href=/docs/wayland/wayland/#wl_pointer.button>wl_pointer.button</a></b> events
@@ -59,7 +59,7 @@ whether to warp the pointer or require some kind of user interaction for
 the confinement to activate. If the region is null the surface input
 region is used.<p>The request will create a new object wp_confined_pointer which is used
 to interact with the confinement as well as receive updates about its
-state. See the the description of wp_confined_pointer for further
+state. See the description of wp_confined_pointer for further
 information.<table class=args><thead><tr><th>Argument<th>Type<th>Description<tbody><tr><td>id<td>new_id&lt;<b><a href=/docs/wayland/pointer-constraints-unstable-v1/#zwp_confined_pointer_v1>zwp_confined_pointer_v1</a></b>><td><p><tr><td>surface<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_surface>wl_surface</a></b>><td><p>surface to lock pointer to<tr><td>pointer<td>object&lt;<b><a href=/docs/wayland/wayland/#wl_pointer>wl_pointer</a></b>><td><p>the pointer that should be confined<tr><td>region<td>nullable
 object&lt;<b><a href=/docs/wayland/wayland/#wl_region>wl_region</a></b>><td><p>region of surface<tr><td>lifetime<td>uint&lt;<b><a href=/docs/wayland/pointer-constraints-unstable-v1/#zwp_pointer_constraints_v1.enums.lifetime>lifetime</a></b>><td><p>confinement lifetime</table><div class=message-head><div class=row><div><h3><a id=zwp_pointer_constraints_v1.enums.error href=#zwp_pointer_constraints_v1.enums.error>zwp_pointer_constraints_v1.error</a></h3><p class=summary>wp_pointer_constraints error values</div><div><b>Enum</b><br>Since Version 1</div></div></div><p>These errors can be emitted in response to wp_pointer_constraints
 requests.<table class=enum><thead><tr><th>Entry<th>Value<th>Since<th>Description<tbody><tr><td>already_constrained<td>1<td>1<td><p>pointer constraint already requested on that surface</table><div class=message-head><div class=row><div><h3><a id=zwp_pointer_constraints_v1.enums.lifetime href=#zwp_pointer_constraints_v1.enums.lifetime>zwp_pointer_constraints_v1.lifetime</a></h3><p class=summary>constraint lifetime</div><div><b>Enum</b><br>Since Version 1</div></div></div><p>These values represent different lifetime semantics. They are passed

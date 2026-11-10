@@ -18,7 +18,7 @@ for readout, the "ready" event is sent.<p>If the capture failed, the "cancel" ev
 before the "ready" event.<p>Once either a "ready" or a "cancel" event is received, the client should
 destroy the frame. Once an "object" event is received, the client is
 responsible for closing the associated file descriptor.<p>All frames are read-only and may not be written into or altered.<div class=message-head><div class=row><div><h3><a id=zwlr_export_dmabuf_frame_v1.destroy href=#zwlr_export_dmabuf_frame_v1.destroy>zwlr_export_dmabuf_frame_v1.destroy</a></h3><p class=summary>delete this object, used or not</div><div><b>Destructor
-Request</b><br>Since Version 1</div></div></div><p>Unreferences the frame. This request must be called as soon as its no
+Request</b><br>Since Version 1</div></div></div><p>Unreferences the frame. This request must be called as soon as it's no
 longer used.<p>It can be called at any time by the client. The client will still have
 to close any FDs it has been given.<div class=message-head><div class=row><div><h3><a id=zwlr_export_dmabuf_frame_v1.frame href=#zwlr_export_dmabuf_frame_v1.frame>zwlr_export_dmabuf_frame_v1.frame</a></h3><p class=summary>a frame description</div><div><b>Event</b><br>Since Version 1</div></div></div><p>Main event supplying the client with information about the frame. If the
 capture didn't fail, this event is always emitted first before any other
