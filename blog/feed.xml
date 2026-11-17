@@ -201,8 +201,8 @@ your support!&lt;/p&gt;
 these screenshots of window managers running under river. Note that this
 selection is heavily biased towards the most visually interesting window managers,
 there are plenty of other excellent &lt;a href="https://codeberg.org/river/wiki/src/branch/main/pages/wm-list.md"&gt;window managers&lt;/a&gt; to choose from!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/roblillack/canoe"&gt;Canoe&lt;/a&gt; - Stacking window manager with classic look and feel:&lt;/p&gt;
-&lt;img src="/blog/river-window-management/canoe.png" width="100%"/&gt;
+&lt;p&gt;&lt;a href="https://cow-wm.codeberg.page/cow/"&gt;CoW&lt;/a&gt; - Stacking window manager with 90s FVWM/MWM look and feel:&lt;/p&gt;
+&lt;img src="/blog/river-window-management/cow.png" width="100%"/&gt;
 &lt;p&gt;&lt;a href="https://code.tvl.fyi/about/tools/emacs-pkgs/reka"&gt;reka&lt;/a&gt; - An Emacs-based window manager for river (similar to EXWM):&lt;/p&gt;
 &lt;img src="/blog/river-window-management/reka.png" width="100%"/&gt;
 &lt;p&gt;&lt;a href="https://git.sr.ht/~leon_plickat/tarazed"&gt;tarazed&lt;/a&gt; - A powerful and distraction-free desktop experience:&lt;/p&gt;
